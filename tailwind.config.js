@@ -2,28 +2,14 @@ const colors = require('tailwindcss/colors');
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    './app/**/*.{js,ts,jsx,tsx}',
-    './page/**/*.{js,ts,jsx,tsx}',
-    './ui/**/*.{js,ts,jsx,tsx}',
-  ],
+  content: ['./app/**/*.{js,ts,jsx,tsx}', './ui/**/*.{js,ts,jsx,tsx}'],
   future: {
     hoverOnlyWhenSupported: true,
   },
   theme: {
     extend: {
-      // https://vercel.com/design/color
       colors: {
         gray: colors.zinc,
-        'gray-1000': 'rgb(17,17,19)',
-        'gray-1100': 'rgb(10,10,11)',
-        vercel: {
-          pink: '#FF0080',
-          blue: '#0070F3',
-          cyan: '#50E3C2',
-          orange: '#F5A623',
-          violet: '#7928CA',
-        },
       },
       backgroundImage: ({ theme }) => ({
         'vc-border-gradient': `radial-gradient(at left top, ${theme(
@@ -33,19 +19,19 @@ module.exports = {
       keyframes: ({ theme }) => ({
         rerender: {
           '0%': {
-            ['border-color']: theme('colors.vercel.pink'),
+            ['border-color']: theme('colors.teal.500'),
           },
           '40%': {
-            ['border-color']: theme('colors.vercel.pink'),
+            ['border-color']: theme('colors.teal.500'),
           },
         },
         highlight: {
           '0%': {
-            background: theme('colors.vercel.pink'),
+            background: theme('colors.teal.500'),
             color: theme('colors.white'),
           },
           '40%': {
-            background: theme('colors.vercel.pink'),
+            background: theme('colors.teal.500'),
             color: theme('colors.white'),
           },
         },

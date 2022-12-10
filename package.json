@@ -1,5 +1,5 @@
 {
-  "name": "app-playground",
+  "name": "kaapo-fit",
   "private": true,
   "scripts": {
     "build": "next build",
