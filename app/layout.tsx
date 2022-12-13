@@ -1,5 +1,6 @@
 import React from 'react';
-import { Navigation } from '#/ui/Navigation';
+import { Navigation } from '#/ui/shared/Navigation';
+import { Footer } from '#/ui/shared/Footer';
 
 export default function RootLayout({
   children,
@@ -12,6 +13,7 @@ export default function RootLayout({
       <body className="overflow-y-scroll bg-gray-900 ">
         <Navigation />
         <div className="mt-[56px]">{children}</div>
+        <Footer />
       </body>
     </html>
   );

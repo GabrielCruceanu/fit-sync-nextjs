@@ -6,11 +6,11 @@ import {
   navigationAuth,
   navigationTrainer,
   navigationClient,
-} from '#/lib/navigation';
-import { ProCardCTA } from '#/ui/ProCardCTA';
-import NavigationItem from '#/ui/NavigationItem';
+} from '#/constants/navigation';
+import { ProCardCTA } from '#/ui/shared/ProCardCTA';
+import NavigationItem from '#/ui/shared/NavigationItem';
 import Link from 'next/link';
-import { KaapoFitLogo } from '#/ui/KaapoFitLogo';
+import { KaapoFitLogo } from '#/ui/shared/KaapoFitLogo';
 
 export default function MobileNavigation({
   close,

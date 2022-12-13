@@ -1,4 +1,4 @@
-import { navigationLogout, NavItem } from '#/lib/navigation';
+import { navigationLogout, NavItem } from '#/constants/navigation';
 import { useSelectedLayoutSegment } from 'next/navigation';
 import Link from 'next/link';
 import clsx from 'clsx';

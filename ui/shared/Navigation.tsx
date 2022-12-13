@@ -1,9 +1,9 @@
 'use client';
 
 import '#/styles/globals.css';
-import MobileNavigation from '#/ui/MobileNavigation';
+import MobileNavigation from '#/ui/shared/MobileNavigation';
 import { useState } from 'react';
-import DesktopNavigation from '#/ui/DesktopNavigation';
+import DesktopNavigation from '#/ui/shared/DesktopNavigation';
 
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
