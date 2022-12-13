@@ -8,7 +8,6 @@ import { useSelectedLayoutSegment } from 'next/navigation';
 import { MenuAlt2Icon, XIcon } from '@heroicons/react/solid';
 import clsx from 'clsx';
 import { useState } from 'react';
-import { navigation } from '#/lib/navigation';
 
 export function GlobalNav() {
   const [isOpen, setIsOpen] = useState(false);
