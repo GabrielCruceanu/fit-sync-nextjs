@@ -1,6 +1,12 @@
 import { MenuAlt2Icon, XIcon } from '@heroicons/react/solid';
 import clsx from 'clsx';
-import { navigationBasic, navigationLogout } from '#/lib/navigation';
+import {
+  navigationStatic,
+  navigationLogout,
+  navigationAuth,
+  navigationTrainer,
+  navigationClient,
+} from '#/lib/navigation';
 import { ProCardCTA } from '#/ui/ProCardCTA';
 import NavigationItem from '#/ui/NavigationItem';
 import Link from 'next/link';
@@ -11,12 +17,19 @@ export default function MobileNavigation({
   handleMenu,
   isOpen,
   isLogged,
+  isTrainer,
 }: {
   close: () => void | false;
   handleMenu: () => void;
   isOpen: boolean;
   isLogged: boolean;
+  isTrainer: boolean;
 }) {
+  const navLinks = !isLogged
+    ? navigationStatic
+    : isLogged && isTrainer
+    ? navigationTrainer
+    : navigationClient;
   return (
     <>
       <div className="flex h-14 items-center py-4 px-4 lg:hidden">
@@ -50,7 +63,7 @@ export default function MobileNavigation({
       >
         <nav className="flex min-h-full flex-col px-4 py-8">
           <div>
-            {navigationBasic.map((navItem) => {
+            {navLinks.map((navItem) => {
               return (
                 <NavigationItem
                   key={navItem.slug}
@@ -60,16 +73,26 @@ export default function MobileNavigation({
               );
             })}
           </div>
-
-          {isLogged ? (
-            <NavigationItem
-              key={navigationLogout.slug}
-              item={navigationLogout}
-              close={close}
-            />
-          ) : (
-            <ProCardCTA />
-          )}
+          <div className="mt-auto">
+            <div className="mb-4">
+              <ProCardCTA close={close} />
+            </div>
+            {isLogged ? (
+              <NavigationItem
+                key={navigationLogout.slug}
+                item={navigationLogout}
+                close={close}
+              />
+            ) : (
+              <>
+                <NavigationItem
+                  key={navigationAuth.slug}
+                  item={navigationAuth}
+                  close={close}
+                />
+              </>
+            )}
+          </div>
         </nav>
       </div>
     </>

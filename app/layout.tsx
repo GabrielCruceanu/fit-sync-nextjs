@@ -7,11 +7,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="[color-scheme:dark]">
+    <html lang="ro" className="[color-scheme:dark]">
       <head />
-      <body className="overflow-y-scroll bg-gray-1100 bg-[url('/grid.svg')]">
+      <body className="overflow-y-scroll bg-gray-900 ">
         <Navigation />
-        {children}
+        <div className="mt-[56px]">{children}</div>
       </body>
     </html>
   );

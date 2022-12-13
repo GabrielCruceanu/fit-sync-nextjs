@@ -1,4 +1,10 @@
-import { navigationBasic, navigationLogout } from '#/lib/navigation';
+import {
+  navigationAuth,
+  navigationClient,
+  navigationLogout,
+  navigationStatic,
+  navigationTrainer,
+} from '#/lib/navigation';
 import NavigationItem from '#/ui/NavigationItem';
 import Link from 'next/link';
 import { KaapoFitLogo } from '#/ui/KaapoFitLogo';
@@ -6,10 +12,18 @@ import { KaapoFitLogo } from '#/ui/KaapoFitLogo';
 export default function DesktopNavigation({
   close,
   isLogged,
+  isTrainer,
 }: {
   close: () => void | false;
   isLogged: boolean;
+  isTrainer: boolean;
 }) {
+  const navLinks = !isLogged
+    ? navigationStatic
+    : isLogged && isTrainer
+    ? navigationTrainer
+    : navigationClient;
+
   return (
     <nav className="hidden w-full justify-between lg:flex">
       <div className="flex h-14 items-center py-4 px-4">
@@ -20,7 +34,7 @@ export default function DesktopNavigation({
         </Link>
       </div>
       <div className="flex w-fit lg:flex-row">
-        {navigationBasic.map((navItem) => {
+        {navLinks.map((navItem) => {
           return (
             <NavigationItem key={navItem.slug} item={navItem} close={close} />
           );
@@ -36,8 +50,8 @@ export default function DesktopNavigation({
           />
         ) : (
           <NavigationItem
-            key={navigationLogout.slug}
-            item={navigationLogout}
+            key={navigationAuth.slug}
+            item={navigationAuth}
             close={close}
           />
         )}

@@ -1,11 +1,12 @@
 import Link from 'next/link';
 
-export function ProCardCTA() {
+export function ProCardCTA({ close }: { close?: () => false | void }) {
   return (
     <div className="mt-auto max-w-xs rounded-2xl bg-gray-800 p-3">
       <Link
-        href="/acasa-antrenor"
+        href="/antrenor"
         className="flex items-center justify-between"
+        onClick={close}
       >
         <div>
           <div className="min-w-min">
