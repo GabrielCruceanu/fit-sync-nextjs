@@ -26,7 +26,7 @@ export default function DesktopNavigation({
 
   return (
     <nav className="hidden w-full lg:block">
-      <div className="mx-auto justify-between lg:flex 2xl:container">
+      <div className="container mx-auto justify-between lg:flex">
         <div className="flex h-14 items-center py-4 px-4">
           <Link href="/" className=" space-x-2.5" onClick={close}>
             <div className="h-6">
