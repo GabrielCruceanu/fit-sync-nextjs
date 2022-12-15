@@ -10,9 +10,9 @@ export default function RootLayout({
   return (
     <html lang="ro" className="[color-scheme:dark]">
       <head />
-      <body className="overflow-y-scroll bg-gray-900 ">
+      <body className="min-h-screen overflow-y-scroll bg-gray-900">
         <Navigation />
-        <div className="mt-[56px] min-h-screen">{children}</div>
+        <div className="mt-[56px] h-full">{children}</div>
         <Footer />
       </body>
     </html>

@@ -23,7 +23,7 @@ export default function HomeHeader() {
         <div className="items-center justify-around lg:flex">
           <div className="w-full lg:max-w-[600px]">
             <h1 className="mb-5 text-center text-3xl font-semibold md:text-5xl lg:mb-8 lg:text-left lg:text-6xl lg:leading-tight">
-              O aplicație pentru a găsi o viață sănătoasă
+              Un jurnal pentru o viață sănătoasă
             </h1>
             <div className="flex justify-center lg:justify-start">
               <Link href="/antrenor" className="mr-3 lg:mr-4">

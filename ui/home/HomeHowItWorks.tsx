@@ -17,12 +17,12 @@ export default function HomeHowItWorks() {
           <h2 className="mb-3 text-2xl font-semibold md:text-3xl lg:text-4xl lg:leading-tight">
             Cum Funcționează?
           </h2>
-          <p className="mb-4">
+          <p className="mb-4 text-justify">
             Kaapo.Fit este platforma construită pentru antrenorii personali care
             vor să-și dezvolte afacerea și să managerieze mai ușor clienții
             online.
           </p>
-          <p>
+          <p className="text-justify">
             Iar dacă ești sportiv sau la început de drum doreșți să obții cele
             mai bune rezultate, este important să-ți găseșți un antrenor care
             să-ți înțeleagă nevoile și să te ajute să iți atingi obiectivul.
