@@ -12,7 +12,7 @@ export default function RootLayout({
       <head />
       <body className="overflow-y-scroll bg-gray-900 ">
         <Navigation />
-        <div className="mt-[56px]">{children}</div>
+        <div className="mt-[56px] min-h-screen">{children}</div>
         <Footer />
       </body>
     </html>

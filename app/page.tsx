@@ -1,19 +1,11 @@
-import Link from 'next/link';
+import HomeHeader from '#/ui/home/HomeHeader';
+import HomeHowItWorks from '#/ui/home/HomeHowItWorks';
 
-export default function Page() {
+export default function HomePage() {
   return (
-    <div className="space-y-8">
-      <h1 className="text-xl font-medium text-gray-300">Examples</h1>
-
-      <div className="min-h-screen space-y-10 text-white">
-        <Link href="/">Home</Link>
-      </div>
-      <div className="min-h-screen space-y-10 text-white">
-        <Link href="/">Home</Link>
-      </div>
-      <div className="min-h-screen space-y-10 text-white">
-        <Link href="/">Home</Link>
-      </div>
-    </div>
+    <>
+      <HomeHeader />
+      <HomeHowItWorks />
+    </>
   );
 }

@@ -20,7 +20,7 @@ export default function NavigationItem({
       onClick={close}
       href={`/${item.slug}`}
       className={clsx(
-        'flex items-center justify-between border-t border-gray-500 py-3 px-2 text-sm font-semibold last:border-b hover:text-gray-300 lg:w-fit lg:border-none',
+        'flex items-center justify-between border-t border-gray-500 py-3 px-2 text-sm font-semibold transition ease-in last:border-b hover:text-teal-700  lg:w-fit lg:border-none',
         {
           'text-gray-300 hover:text-teal-700': !isActive,
           'text-teal-500': isActive,

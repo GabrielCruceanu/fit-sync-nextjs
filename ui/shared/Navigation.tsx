@@ -13,7 +13,7 @@ export function Navigation() {
   const isTrainer = false;
 
   return (
-    <header className="fixed top-0 z-10 flex w-full flex-col border-b border-teal-500  bg-gray-900 md:right-0 md:z-auto md:border-b md:border-teal-500 lg:flex-row lg:justify-between">
+    <header className="fixed top-0 left-0 z-50 flex w-full flex-col border-b border-teal-500  bg-gray-900 md:right-0 md:z-10 md:border-b md:border-teal-500 lg:flex-row lg:justify-between">
       <MobileNavigation
         close={close}
         handleMenu={handleMenu}
