@@ -22,7 +22,7 @@ export const OtherLinks = {
     name: 'Termeni',
   },
   gdpr: {
-    link: '/gdpr',
+    link: '/politica-de-confidentialitate',
     name: 'GDPR',
   },
   cookies: {
