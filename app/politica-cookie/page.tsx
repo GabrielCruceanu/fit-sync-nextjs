@@ -50,7 +50,7 @@ export default function CookiesPage() {
           Kaapo.Fit folosește pe site-urile sale atât cookie-uri proprietare cât
           și cookie-uri terțe.
         </p>
-        <p className="mb-3">
+        <p>
           Cookie-urile proprietare sunt cookie-uri utilizate de Kaapo.Fit când
           vizitați unul dintre site-urile noastre web și sunt de următoarele
           tipuri: tehnice, de sesiune, persistente și funcționale:
@@ -150,7 +150,7 @@ export default function CookiesPage() {
           Puteți să vă retrageți în orice moment acordul ștergând cookie-urile
           din browser.
         </p>
-        <p className="mb-3">
+        <p>
           Aceste setări se găsesc de obicei în meniul {`'`}opțiuni{`'`} sau{' '}
           {`'`}preferințe{`'`}
           din browser. Pentru a înțelege aceste setări, ar putea fi utile
@@ -189,7 +189,7 @@ export default function CookiesPage() {
           </li>
         </ul>
 
-        <p className="mb-3">
+        <p>
           Schimbarea setărillor din browser pentru a respinge cookie-urile poate
           influența modul în care ne accesați site-ul web și este posibil să vă
           fie respins accesul la anumite secțiuni ale acestuia. Puteți schimba
