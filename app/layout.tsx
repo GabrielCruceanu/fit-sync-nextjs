@@ -14,7 +14,7 @@ export default function RootLayout({
       <body className="min-h-screen overflow-y-scroll bg-gray-900">
         <Gtag />
         <Navigation />
-        <div className="mt-[56px] h-full">{children}</div>
+        <main className="mt-[56px] h-full">{children}</main>
         <Footer />
       </body>
     </html>

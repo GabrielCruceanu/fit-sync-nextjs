@@ -1,15 +1,15 @@
-import TrainerHeader from '#/ui/antrenor/TrainerHeader';
-import TrainerHowItWorks from '../../ui/antrenor/TrainerHowItWorks';
-import TrainerFeatures from '#/ui/antrenor/TrainerFeatures';
-import TrainerFAQ from '#/ui/antrenor/TrainerFAQ';
+import TrainerHeader from '#/ui/trainer/TrainerHeader';
+import TrainerHowItWorks from '../../ui/trainer/TrainerHowItWorks';
+import TrainerFeatures from '#/ui/trainer/TrainerFeatures';
+import TrainerFAQ from '#/ui/trainer/TrainerFAQ';
 
 export default function TrainerPage() {
   return (
-    <main>
+    <>
       <TrainerHeader />
       <TrainerHowItWorks />
       <TrainerFeatures />
       <TrainerFAQ />
-    </main>
+    </>
   );
 }
