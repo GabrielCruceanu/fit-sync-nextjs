@@ -1,3 +1,17 @@
+import ClientHeader from '../../ui/client/ClientHeader';
+import ClientHowItWorks from '../../ui/client/ClientHowItWorks';
+import ClientFeatures from '../../ui/client/ClientFeatures';
+import ClientFAQ from '../../ui/client/ClientFAQ';
+import ClientBeAPro from '#/ui/client/ClientBeAPro';
+
 export default function ClientPage() {
-  return <h1 className="text-xl">Client page</h1>;
+  return (
+    <>
+      <ClientHeader />
+      <ClientHowItWorks />
+      <ClientFeatures />
+      <ClientBeAPro />
+      <ClientFAQ />
+    </>
+  );
 }
