@@ -1,14 +1,10 @@
-import { DefaultTags } from '#/ui/shared/DefaultTags';
+import HeadUi from '#/ui/shared/HeadUi';
 
 export default function Head() {
   return (
-    <>
-      <DefaultTags />
-      <title>Kaapo.Fit | Un jurnal pentru o viață sănătoasă</title>
-      <meta
-        name="description"
-        content="Kaapo fit vine in ajutorul antrenorului si sportivului pentru a isi mentine un jurnal de antrenament."
-      />
-    </>
+    <HeadUi
+      title="Kaapo.Fit | Un jurnal pentru o viață sănătoasă"
+      description="Kaapo.Fit este o platformă care dorește să îmbunătățească experiența clienților cu antrenorii și să facă munca antrenorilor mai ușoară oferindu-le mai multe unelte prin care își pot gestiona clienții mai ușor."
+    />
   );
 }

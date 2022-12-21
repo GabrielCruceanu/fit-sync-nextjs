@@ -20,7 +20,6 @@ export function Navigation() {
     const handleRouteChange = (url: string) => {
       gtag.pageView(url);
     };
-
     handleRouteChange(pathname ? pathname : 'acasa');
 
     return () => {

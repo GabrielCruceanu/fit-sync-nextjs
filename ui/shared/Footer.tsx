@@ -1,6 +1,6 @@
 import { FacebookIcon } from '#/ui/shared/icons/FacebookIcon';
 import Link from 'next/link';
-import { OtherLinks, SocialLinks } from '#/constants/links';
+import { TermsLinks, SocialLinks } from '#/constants/links';
 import EnvelopeIcon from '#/ui/shared/icons/EnvelopeIcon';
 import TwitterIcon from '#/ui/shared/icons/TwitterIcon';
 import InstagramIcon from '#/ui/shared/InstagramIcon';
@@ -9,8 +9,8 @@ export function Footer() {
   return (
     <footer className="border-1 w-full border-t border-teal-500 py-11 px-4 antialiased">
       <div className="container mx-auto flex flex-col lg:flex-row">
-        <div className="mb-4 w-full lg:mb-0">
-          <h3 className="mb-3 text-2xl font-semibold text-white">Despre noi</h3>
+        <div className="mb-5 w-full lg:mb-0">
+          <h3 className="mb-2 text-2xl font-semibold text-white">Despre noi</h3>
           <p className="text-sm text-gray-200">
             Kaapo.Fit este o platformă care dorește să îmbunătățească experiența
             clienților cu antrenorii și să facă munca antrenorilor mai ușoară
@@ -18,13 +18,17 @@ export function Footer() {
             ușor.
           </p>
         </div>
-        <div className="mb-4 w-full lg:mb-0">
-          <h3 className="mb-3 text-2xl font-semibold text-white lg:text-center">
+        <div className="mb-5 w-full lg:mb-0">
+          <h3 className="mb-2 text-2xl font-semibold text-white lg:text-center">
             Contact
           </h3>
           <div className="flex lg:justify-center">
             <div className="border-1 d-flex w-fit border-r border-gray-50 px-3">
-              <Link href={SocialLinks.facebook.link} className=" space-x-2.5">
+              <Link
+                href={SocialLinks.facebook.link}
+                className=" space-x-2.5"
+                target="_blank"
+              >
                 <div className="h-8 fill-teal-500 hover:fill-teal-800">
                   <FacebookIcon />
                 </div>
@@ -34,6 +38,7 @@ export function Footer() {
               <Link
                 href={SocialLinks.instagram.link}
                 className="space-x-2.5 fill-teal-500 hover:fill-teal-800"
+                target="_blank"
               >
                 <div className="h-8">
                   <InstagramIcon />
@@ -41,14 +46,22 @@ export function Footer() {
               </Link>
             </div>
             <div className="border-1 d-flex w-fit border-r border-gray-50 px-3">
-              <Link href={SocialLinks.twitter.link} className=" space-x-2.5">
+              <Link
+                href={SocialLinks.twitter.link}
+                className=" space-x-2.5"
+                target="_blank"
+              >
                 <div className="h-8 fill-teal-500 hover:fill-teal-800">
                   <TwitterIcon />
                 </div>
               </Link>
             </div>
             <div className="px-3">
-              <Link href={SocialLinks.mail.link} className="space-x-2.5">
+              <Link
+                href={SocialLinks.mail.link}
+                className="space-x-2.5"
+                target="_blank"
+              >
                 <div className="h-8 fill-teal-500 hover:fill-teal-800">
                   <EnvelopeIcon />
                 </div>
@@ -57,28 +70,31 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mb-4 w-full lg:mb-0">
-          <h3 className="mb-3 text-2xl font-semibold text-white lg:text-right">
+        <div className="mb-5 w-full lg:mb-0">
+          <h3 className="mb-2 text-2xl font-semibold text-white lg:text-right">
             Altele
           </h3>
-          <div className="flex lg:justify-end">
+          <div className="flex flex-col text-sm md:flex-row lg:justify-end">
             <Link
-              href={OtherLinks.termeniSiConditii.link}
+              href={TermsLinks.termeniSiConditii.link}
               className="text-teal-500 hover:text-teal-700"
+              target="_blank"
             >
-              {OtherLinks.termeniSiConditii.name}
+              {TermsLinks.termeniSiConditii.name}
             </Link>
             <Link
-              href={OtherLinks.gdpr.link}
-              className="px-3 text-teal-500 hover:text-teal-700"
+              href={TermsLinks.gdpr.link}
+              className="text-teal-500 hover:text-teal-700 md:px-3"
+              target="_blank"
             >
-              {OtherLinks.gdpr.name}
+              {TermsLinks.gdpr.name}
             </Link>
             <Link
-              href={OtherLinks.cookies.link}
+              href={TermsLinks.cookies.link}
               className="text-teal-500 hover:text-teal-700"
+              target="_blank"
             >
-              {OtherLinks.cookies.name}
+              {TermsLinks.cookies.name}
             </Link>
           </div>
 
