@@ -16,17 +16,45 @@ export const SocialLinks = {
     name: 'Mail',
   },
 };
-export const OtherLinks = {
+
+export const TermsLinks = {
   termeniSiConditii: {
     link: '/termeni-si-conditii',
-    name: 'Termeni',
+    name: 'Termeni și condiții',
   },
   gdpr: {
     link: '/politica-de-confidentialitate',
-    name: 'GDPR',
+    name: 'Politică de confidențialitate',
   },
   cookies: {
-    link: 'cookies',
-    name: 'Cookies',
+    link: '/politica-cookie',
+    name: 'Politică cookie',
+  },
+};
+
+export const PagesLinks = {
+  homePage: {
+    link: '/',
+    name: 'Acasa',
+  },
+  trainerHomePage: {
+    link: '/antrenor',
+    name: 'Acasă Antrenor',
+  },
+  clientHomePage: {
+    link: '/client',
+    name: 'Acasă client',
+  },
+  searchTrainerHomePage: {
+    link: '/cauta-antrenor',
+    name: 'Caută antrenor',
+  },
+  blog: {
+    link: '/blog',
+    name: 'Blog',
+  },
+  auth: {
+    link: '/autentificare',
+    name: 'Autentificare',
   },
 };
