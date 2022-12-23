@@ -6,12 +6,12 @@ export type NavItem = {
 
 export const navigationStatic: NavItem[] = [
   {
-    name: 'Acasă antrenor',
-    slug: 'antrenor',
+    name: 'Acasă',
+    slug: '',
   },
   {
-    name: 'Acasă client',
-    slug: 'client',
+    name: 'Antrenor',
+    slug: 'antrenor',
   },
   {
     name: 'Caută antrenor',

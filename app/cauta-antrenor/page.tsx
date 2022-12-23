@@ -1,3 +1,9 @@
+import HeaderSearchATrainer from '../../ui/search-a-trainer/HeaderSearchATrainer';
+
 export default function SearchTrainerPage() {
-  return <h1 className="text-xl">Cauta Antrenor page</h1>;
+  return (
+    <>
+      <HeaderSearchATrainer />
+    </>
+  );
 }

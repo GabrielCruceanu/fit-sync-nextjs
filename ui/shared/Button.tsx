@@ -1,18 +1,27 @@
 import clsx from 'clsx';
+import { MouseEventHandler } from 'react';
 
 export type ButtonProps = {
   type: ButtonType;
   description: string;
+  submit?: boolean;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
 };
 
 export enum ButtonType {
   primary = 'PRIMARY',
 }
 
-export default function Button({ type, description }: ButtonProps) {
+export default function Button({
+  type,
+  description,
+  submit,
+  onClick,
+}: ButtonProps) {
   return (
     <button
-      type="button"
+      type={submit ? 'submit' : 'button'}
+      onClick={onClick}
       className={clsx(
         'mr-3 rounded-md py-2.5 px-4 text-sm font-semibold uppercase focus:outline-none focus:ring-2 md:px-5',
         {

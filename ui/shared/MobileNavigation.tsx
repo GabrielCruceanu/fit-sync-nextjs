@@ -45,7 +45,7 @@ export default function MobileNavigation({
         onClick={handleMenu}
       >
         <div className="font-medium text-gray-100 group-hover:text-gray-400">
-          Meniu
+          {isOpen ? 'Închide' : 'Meniu'}
         </div>
         {isOpen ? (
           <XIcon className="block w-6 text-gray-300 transition-all" />

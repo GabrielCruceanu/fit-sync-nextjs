@@ -2,10 +2,11 @@
 
 import '#/styles/globals.css';
 import MobileNavigation from '#/ui/shared/MobileNavigation';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import DesktopNavigation from '#/ui/shared/DesktopNavigation';
 import { usePathname } from 'next/navigation';
 import * as gtag from '#/lib/gtag';
+import Gtag from '#/ui/shared/Gtag';
 
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
@@ -28,20 +29,24 @@ export function Navigation() {
   }, [pathname]);
 
   return (
-    <header className="fixed top-0 left-0 z-50 flex w-full flex-col border-b border-teal-500  bg-gray-900 md:right-0 md:z-10 md:border-b md:border-teal-500 lg:flex-row lg:justify-between">
-      <MobileNavigation
-        close={close}
-        handleMenu={handleMenu}
-        isOpen={isOpen}
-        isLogged={isLogged}
-        isTrainer={isTrainer}
-      />
+    <>
+      <Gtag />
 
-      <DesktopNavigation
-        isLogged={isLogged}
-        isTrainer={isTrainer}
-        close={close}
-      />
-    </header>
+      <header className="fixed top-0 left-0 z-50 flex w-full flex-col border-b border-teal-500  bg-gray-900 md:right-0 md:z-10 md:border-b md:border-teal-500 lg:flex-row lg:justify-between">
+        <MobileNavigation
+          close={close}
+          handleMenu={handleMenu}
+          isOpen={isOpen}
+          isLogged={isLogged}
+          isTrainer={isTrainer}
+        />
+
+        <DesktopNavigation
+          isLogged={isLogged}
+          isTrainer={isTrainer}
+          close={close}
+        />
+      </header>
+    </>
   );
 }
