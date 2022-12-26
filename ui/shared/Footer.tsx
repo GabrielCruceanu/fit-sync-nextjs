@@ -24,45 +24,29 @@ export function Footer() {
           </h3>
           <div className="flex lg:justify-center">
             <div className="border-1 d-flex w-fit border-r border-gray-50 px-3">
-              <Link
-                href={SocialLinks.facebook.link}
-                className=" space-x-2.5"
-                target="_blank"
-              >
-                <div className="h-8 fill-teal-500 hover:fill-teal-800">
+              <Link href={SocialLinks.facebook.link} target="_blank">
+                <div className="h-8 space-x-2.5 fill-teal-500 hover:fill-teal-800">
                   <FacebookIcon />
                 </div>
               </Link>
             </div>
             <div className="border-1 d-flex w-fit border-r border-gray-50 px-3">
-              <Link
-                href={SocialLinks.instagram.link}
-                className="space-x-2.5 fill-teal-500 hover:fill-teal-800"
-                target="_blank"
-              >
-                <div className="h-8">
+              <Link href={SocialLinks.instagram.link} target="_blank">
+                <div className="h-8 space-x-2.5 fill-teal-500 hover:fill-teal-800">
                   <InstagramIcon />
                 </div>
               </Link>
             </div>
             <div className="border-1 d-flex w-fit border-r border-gray-50 px-3">
-              <Link
-                href={SocialLinks.twitter.link}
-                className=" space-x-2.5"
-                target="_blank"
-              >
-                <div className="h-8 fill-teal-500 hover:fill-teal-800">
+              <Link href={SocialLinks.twitter.link} target="_blank">
+                <div className="h-8 space-x-2.5 fill-teal-500 hover:fill-teal-800">
                   <TwitterIcon />
                 </div>
               </Link>
             </div>
             <div className="px-3">
-              <Link
-                href={SocialLinks.mail.link}
-                className="space-x-2.5"
-                target="_blank"
-              >
-                <div className="h-8 fill-teal-500 hover:fill-teal-800">
+              <Link href={SocialLinks.mail.link} target="_blank">
+                <div className="h-8 space-x-2.5 fill-teal-500 hover:fill-teal-800">
                   <EnvelopeIcon />
                 </div>
               </Link>
@@ -75,26 +59,20 @@ export function Footer() {
             Altele
           </h3>
           <div className="flex flex-col text-sm md:flex-row lg:justify-end">
-            <Link
-              href={TermsLinks.termeniSiConditii.link}
-              className="text-teal-500 hover:text-teal-700"
-              target="_blank"
-            >
-              {TermsLinks.termeniSiConditii.name}
+            <Link href={TermsLinks.termeniSiConditii.link} target="_blank">
+              <span className="text-teal-500 hover:text-teal-700">
+                {TermsLinks.termeniSiConditii.name}
+              </span>
             </Link>
-            <Link
-              href={TermsLinks.gdpr.link}
-              className="text-teal-500 hover:text-teal-700 md:px-3"
-              target="_blank"
-            >
-              {TermsLinks.gdpr.name}
+            <Link href={TermsLinks.gdpr.link} target="_blank">
+              <span className="text-teal-500 hover:text-teal-700 md:px-3">
+                {TermsLinks.gdpr.name}
+              </span>
             </Link>
-            <Link
-              href={TermsLinks.cookies.link}
-              className="text-teal-500 hover:text-teal-700"
-              target="_blank"
-            >
-              {TermsLinks.cookies.name}
+            <Link href={TermsLinks.cookies.link} target="_blank">
+              <span className="text-teal-500 hover:text-teal-700">
+                {TermsLinks.cookies.name}
+              </span>
             </Link>
           </div>
 

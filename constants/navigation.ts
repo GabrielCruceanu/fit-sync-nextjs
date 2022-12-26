@@ -7,7 +7,7 @@ export type NavItem = {
 export const navigationStatic: NavItem[] = [
   {
     name: 'Acasă',
-    slug: '',
+    slug: '/',
   },
   {
     name: 'Antrenor',

@@ -50,7 +50,7 @@ export default function ProItem({
             )}
           </div>
           <div>
-            <h4 className="mb-1 text-lg font-medium leading-none md:text-xl">
+            <h4 className="mb-1 text-lg font-medium leading-none text-white md:text-xl">
               {name}
             </h4>
             <h6 className="mb-1 text-sm text-gray-300">{type}</h6>

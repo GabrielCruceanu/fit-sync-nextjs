@@ -171,9 +171,3 @@ export const ClientMockup: ClientProfileModel = {
     ],
   },
 };
-
-export const ClientsMockup: ClientProfileModel[] = [
-  ClientMockup,
-  ClientMockup,
-  ClientMockup,
-];

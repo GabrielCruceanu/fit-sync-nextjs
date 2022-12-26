@@ -8,7 +8,7 @@ export default function NavigationItem({
   close,
 }: {
   item: NavItem;
-  close: () => false | void;
+  close?: () => false | void;
 }) {
   const segment = useSelectedLayoutSegment();
   const isActive = item.slug === segment;

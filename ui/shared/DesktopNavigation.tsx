@@ -10,11 +10,9 @@ import Link from 'next/link';
 import { KaapoFitLogo } from '#/ui/shared/KaapoFitLogo';
 
 export default function DesktopNavigation({
-  close,
   isLogged,
   isTrainer,
 }: {
-  close: () => void | false;
   isLogged: boolean;
   isTrainer: boolean;
 }) {
@@ -50,11 +48,7 @@ export default function DesktopNavigation({
               close={close}
             />
           ) : (
-            <NavigationItem
-              key={navigationAuth.slug}
-              item={navigationAuth}
-              close={close}
-            />
+            <NavigationItem key={navigationAuth.slug} item={navigationAuth} />
           )}
         </div>
       </div>

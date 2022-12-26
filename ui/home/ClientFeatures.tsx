@@ -6,24 +6,14 @@ import Button, { ButtonType } from '#/ui/shared/Button';
 import Link from 'next/link';
 import ProList from '#/ui/shared/ProList';
 import * as _ from 'lodash';
+import TrainerProfileModel from '#/model/trainer/trainerProfile.model';
 
-async function getTrainersData() {
-  const res = await fetch('http://localhost:3000/api/trainers');
-  // The return value is *not* serialized
-  // You can return Date, Map, Set, etc.
-
-  // Recommendation: handle errors
-  if (!res.ok) {
-    // This will activate the closest `error.js` Error Boundary
-    throw new Error('Failed to fetch trainers data');
-  }
-
-  return res.json();
-}
-
-export default async function ClientFeatures() {
-  const trainersData = await getTrainersData();
-  const sixRandomTrainers = _.sampleSize(trainersData, 6);
+export default function ClientFeatures({
+  trainers,
+}: {
+  trainers: TrainerProfileModel[];
+}) {
+  const sixRandomTrainers = _.sampleSize(trainers, 6);
 
   return (
     <SectionWithWave bgWhite={false}>
