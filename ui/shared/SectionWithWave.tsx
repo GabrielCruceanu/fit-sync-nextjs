@@ -4,9 +4,11 @@ import WaveSvg from '#/ui/shared/WaveSvg';
 
 export default function SectionWithWave({
   bgWhite,
+  id,
   children,
 }: {
   bgWhite: boolean;
+  id?: string;
   children: React.ReactNode;
 }) {
   return (
@@ -14,6 +16,7 @@ export default function SectionWithWave({
       className={clsx('relative bg-gray-900 px-4 py-[100px] text-white ', {
         'bg-white text-gray-900 md:py-[200px] xl:py-[260px]': bgWhite,
       })}
+      id={id}
     >
       <div
         className={clsx('fill:teal-500 absolute -top-1 right-0  w-full', {

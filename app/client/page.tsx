@@ -1,17 +1,9 @@
-import ClientHeader from '../../ui/client/ClientHeader';
-import ClientHowItWorks from '../../ui/client/ClientHowItWorks';
-import ClientFeatures from '../../ui/client/ClientFeatures';
-import ClientFAQ from '../../ui/client/ClientFAQ';
-import ClientBeAPro from '#/ui/client/ClientBeAPro';
+import HomeHeader from '../../ui/home/HomeHeader';
 
 export default function ClientPage() {
   return (
     <>
-      <ClientHeader />
-      <ClientHowItWorks />
-      <ClientFeatures />
-      <ClientBeAPro />
-      <ClientFAQ />
+      <HomeHeader />
     </>
   );
 }

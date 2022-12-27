@@ -7,28 +7,26 @@ import HeroBackground from '#/ui/shared/HeroBackground';
 
 export default function HomeHeader() {
   return (
-    <div className="relative z-0 flex min-h-screen w-full items-center justify-center p-4">
+    <section className="relative z-0 flex min-h-screen w-full items-center justify-center p-4">
       <HeroBackground />
-      <div className="container">
+      <div className="container ">
         <div className="items-center justify-around lg:flex">
-          <div className="w-full lg:max-w-[600px]">
-            <h1 className="mb-5 text-center text-3xl font-semibold md:text-5xl lg:mb-8 lg:text-left lg:text-6xl lg:leading-tight">
-              Un jurnal pentru o viață sănătoasă
+          <div className="flex w-full flex-col items-center lg:block lg:max-w-[600px]">
+            <h1 className="mb-3 text-center text-3xl font-semibold md:text-5xl lg:mb-4 lg:text-left lg:text-5xl lg:leading-tight">
+              Îndeplinește-ți obiectivele de fitness
             </h1>
-            <div className="flex justify-center lg:justify-start">
-              <Link
-                href={PagesLinks.trainerHomePage.link}
-                className="mr-3 lg:mr-4"
-              >
-                <Button type={ButtonType.primary} description="Sunt Antrenor" />
-              </Link>
-              <Link href={PagesLinks.clientHomePage.link}>
-                <Button
-                  type={ButtonType.primary}
-                  description="Caută un Antrenor"
-                />
-              </Link>
-            </div>
+            <p className="mb-4 text-center lg:text-left">
+              Dacă dorești să obții cele mai bune rezultate, este important să
+              găsești un antrenor care să înțeleagă de ce ai nevoie și să te
+              ajute să îți atingi obiectivul.
+            </p>
+
+            <Link href={PagesLinks.searchTrainerHomePage.link}>
+              <Button
+                type={ButtonType.primary}
+                description="CAUTĂ UN ANTRENOR"
+              />
+            </Link>
           </div>
           <div className="w-full lg:max-w-[300px]">
             <Image
@@ -40,6 +38,6 @@ export default function HomeHeader() {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

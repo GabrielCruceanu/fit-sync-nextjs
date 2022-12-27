@@ -2,6 +2,7 @@ import HowItWorkImage from '#/public/images/homepage/how-it-works.png';
 import Image from 'next/image';
 import Link from 'next/link';
 import Button, { ButtonType } from '#/ui/shared/Button';
+import { PagesLinks } from '#/constants/links';
 
 export default function HomeHowItWorks() {
   return (
@@ -13,7 +14,7 @@ export default function HomeHowItWorks() {
           placeholder="blur"
           className="mx-auto mt-4 w-56 w-fit md:mx-0 md:w-[500px] lg:w-[500px]"
         />
-        <div className="mt-7 md:max-w-[500px] lg:ml-28 lg:mt-0">
+        <div className="mt-7 lg:ml-28 lg:mt-0 lg:max-w-[600px]">
           <h2 className="mb-3 text-2xl font-semibold md:text-3xl lg:text-4xl lg:leading-tight">
             Cum Funcționează?
           </h2>
@@ -28,15 +29,19 @@ export default function HomeHowItWorks() {
             să-ți înțeleagă nevoile și să te ajute să iți atingi obiectivul.
           </p>
           <div className="mt-5">
-            <Link href="/antrenor" className="mr-3 lg:mr-4">
-              <Button type={ButtonType.primary} description="Sunt Antrenor" />
-            </Link>
-            <Link href="/client">
-              <Button
-                type={ButtonType.primary}
-                description="Caută un Antrenor"
-              />
-            </Link>
+            <div className="mr-3 mt-3 inline-block md:mt-0 lg:mr-3">
+              <Link href={PagesLinks.trainerHomePage.link}>
+                <Button type={ButtonType.primary} description="Sunt Antrenor" />
+              </Link>
+            </div>
+            <div className="mt-3 inline-block md:mt-0">
+              <Link href={PagesLinks.searchTrainerHomePage.link}>
+                <Button
+                  type={ButtonType.primary}
+                  description="Caută un Antrenor"
+                />
+              </Link>
+            </div>
           </div>
         </div>
       </div>

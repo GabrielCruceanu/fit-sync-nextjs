@@ -7,7 +7,7 @@ import Link from 'next/link';
 import { PagesLinks } from '#/constants/links';
 import Button, { ButtonType } from '#/ui/shared/Button';
 
-export default function ClientBeAPro() {
+export default function HomeBeAPro() {
   return (
     <SectionWithWave bgWhite={false}>
       <div className="lg:flex lg:items-center lg:justify-between">
