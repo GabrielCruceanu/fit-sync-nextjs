@@ -6,7 +6,7 @@ import HomeBeAPro from '#/ui/home/HomeBeAPro';
 import ClientFAQ from '#/ui/home/ClientFAQ';
 
 async function getTrainersData() {
-  const res = await fetch('http://localhost:3000/api/trainers');
+  const res = await fetch('https://kaapo.fit/api/trainers');
   // The return value is *not* serialized
   // You can return Date, Map, Set, etc.
 

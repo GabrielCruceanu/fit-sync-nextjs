@@ -23,10 +23,10 @@ export const CountriesData: Country[] = [
           'Sector 6',
         ],
       },
-      {
-        name: 'Vrancea',
-        cities: ['Adjud', 'Focsani', 'Marasesti', 'Odobesti', 'Panciu'],
-      },
+      // {
+      //   name: 'Vrancea',
+      //   cities: ['Adjud', 'Focsani', 'Marasesti', 'Odobesti', 'Panciu'],
+      // },
     ],
   },
 ];
@@ -43,22 +43,22 @@ export const RomaniaStatesData: State[] = [
       'Sector 6',
     ],
   },
-  {
-    name: 'Vrancea',
-    cities: ['Adjud', 'Focsani', 'Marasesti', 'Odobesti', 'Panciu'],
-  },
+  // {
+  //   name: 'Vrancea',
+  //   cities: ['Adjud', 'Focsani', 'Marasesti', 'Odobesti', 'Panciu'],
+  // },
 ];
 
 export const RomaniaCitiesData: string[] = [
   'Sector 1',
-  'Sector 2',
-  'Sector 3',
-  'Sector 4',
-  'Sector 5',
-  'Sector 6',
-  'Adjud',
-  'Focsani',
-  'Marasesti',
-  'Odobesti',
-  'Panciu',
+  // 'Sector 2',
+  // 'Sector 3',
+  // 'Sector 4',
+  // 'Sector 5',
+  // 'Sector 6',
+  // 'Adjud',
+  // 'Focsani',
+  // 'Marasesti',
+  // 'Odobesti',
+  // 'Panciu',
 ];

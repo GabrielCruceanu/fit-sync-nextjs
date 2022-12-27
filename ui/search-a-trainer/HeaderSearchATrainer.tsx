@@ -53,39 +53,46 @@ export default function HeaderSearchATrainer({
         <div className="container ">
           <div className="items-center justify-around lg:flex">
             <div className="flex w-full flex-col items-center lg:block lg:max-w-[600px]">
-              <h1 className="mb-3 text-center text-3xl font-semibold md:text-5xl lg:mb-4 lg:text-left lg:text-5xl lg:leading-tight">
+              <h1 className="mb-3 text-center text-3xl font-semibold md:text-5xl lg:mb-4 lg:text-5xl lg:leading-tight">
                 Antrenori personali
               </h1>
-              <p className="mb-4 text-center lg:text-left">
+              <p className="mb-4 text-center">
                 Căutați în cea mai cuprinzătoare bază de date de formatori din
                 România. Antrenorul dumneavoastră este aici.
               </p>
-              <div className="w-full">
-                <SelectInput
-                  name="trainer-type"
-                  label="Tip de antrenor"
-                  options={TrainerTypeList}
-                  handleChange={(e) => setTrainerType(e.target.value)}
-                />
+              <div className="w-full justify-center lg:flex">
+                <div className="lg:mx-2 lg:w-4/12">
+                  <SelectInput
+                    name="trainer-type"
+                    label="Tip de antrenor"
+                    options={TrainerTypeList}
+                    handleChange={(e) => setTrainerType(e.target.value)}
+                  />
+                </div>
 
                 {trainerType ? (
-                  <SelectInput
-                    name="state"
-                    label="Județ"
-                    options={states}
-                    handleChange={(e) => setCurrentState(e.target.value)}
-                  />
+                  <div className="lg:mx-2 lg:w-4/12">
+                    <SelectInput
+                      name="state"
+                      label="Județ"
+                      options={states}
+                      handleChange={(e) => setCurrentState(e.target.value)}
+                    />
+                  </div>
                 ) : null}
 
                 {currentState ? (
-                  <SelectInput
-                    name="city"
-                    label="Oraș"
-                    options={currentCites}
-                    handleChange={(e) => setCurrentCity(e.target.value)}
-                  />
+                  <div className="lg:mx-2 lg:w-4/12">
+                    <SelectInput
+                      name="city"
+                      label="Oraș / Sector"
+                      options={currentCites}
+                      handleChange={(e) => setCurrentCity(e.target.value)}
+                    />
+                  </div>
                 ) : null}
-
+              </div>
+              {currentCity ? (
                 <div className="mt-4 text-center">
                   <Button
                     type={ButtonType.primary}
@@ -94,7 +101,7 @@ export default function HeaderSearchATrainer({
                     onClick={searchTrainers}
                   />
                 </div>
-              </div>
+              ) : null}
             </div>
           </div>
         </div>

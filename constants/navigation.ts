@@ -17,10 +17,10 @@ export const navigationStatic: NavItem[] = [
     name: 'Caută antrenor',
     slug: 'cauta-antrenor',
   },
-  {
-    name: 'Blog',
-    slug: 'blog',
-  },
+  // {
+  //   name: 'Blog',
+  //   slug: 'blog',
+  // },
 ];
 export const navigationClient: NavItem[] = [
   {
@@ -44,8 +44,8 @@ export const navigationClient: NavItem[] = [
     slug: 'antrenamente',
   },
   {
-    name: 'Blog',
-    slug: 'blog',
+    name: 'Deconectare',
+    slug: 'deconectare',
   },
 ];
 export const navigationTrainer: NavItem[] = [
@@ -74,8 +74,8 @@ export const navigationTrainer: NavItem[] = [
     slug: 'antrenamente',
   },
   {
-    name: 'Blog',
-    slug: 'blog',
+    name: 'Deconectare',
+    slug: 'deconectare',
   },
 ];
 
