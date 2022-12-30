@@ -158,7 +158,7 @@ export function Navigation() {
                         navigationAuth.slug === segment
                           ? 'bg-teal-500 text-white hover:border-teal-900 hover:bg-teal-900'
                           : 'text-gray-300 hover:bg-teal-500',
-                        'block rounded-md border-2 border border-teal-500 px-3 py-2 align-middle text-sm font-medium font-medium leading-5 transition hover:text-white',
+                        'hidden rounded-md border-2 border border-teal-500 px-3 py-2 align-middle text-sm font-medium font-medium leading-5 transition hover:text-white md:block',
                       )}
                     >
                       {navigationAuth.name}

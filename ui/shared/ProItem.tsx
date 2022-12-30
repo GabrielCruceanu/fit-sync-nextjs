@@ -33,7 +33,7 @@ export default function ProItem({
   }
 
   return (
-    <Link href={link}>
+    <Link href={`/antrenor/${link}`}>
       <div className="flex items-center justify-between rounded-xl bg-gray-800 p-4">
         <div className="flex items-center">
           <div className="mr-3 flex h-[64px] w-[64px] items-center justify-center overflow-hidden rounded-full bg-teal-500 md:h-[100px] md:w-[100px]">

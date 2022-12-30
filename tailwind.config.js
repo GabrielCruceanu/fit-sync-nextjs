@@ -2,7 +2,12 @@ const colors = require('tailwindcss/colors');
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./app/**/*.{js,ts,jsx,tsx}', './ui/**/*.{js,ts,jsx,tsx}'],
+  content: [
+    './node_modules/flowbite-react/**/*.js',
+    './app/**/*.{js,ts,jsx,tsx}',
+    './ui/**/*.{js,ts,jsx,tsx}',
+    './public/**/*.html',
+  ],
   future: {
     hoverOnlyWhenSupported: true,
   },
@@ -10,6 +15,7 @@ module.exports = {
     extend: {
       colors: {
         gray: colors.zinc,
+        teal: colors.teal,
       },
       backgroundImage: ({ theme }) => ({
         'vc-border-gradient': `radial-gradient(at left top, ${theme(
@@ -59,5 +65,5 @@ module.exports = {
       }),
     },
   },
-  plugins: [require('@tailwindcss/forms')],
+  plugins: [require('@tailwindcss/forms'), require('flowbite/plugin')],
 };

@@ -2,6 +2,7 @@ export default function handlerGetTrainers(req, res) {
   res.status(200).json([
     {
       id: '12345',
+      username: 'cristofer-arcand',
       status: 'Trainer',
       firstName: 'Cristofer',
       lastName: 'Arcand',
@@ -64,6 +65,7 @@ export default function handlerGetTrainers(req, res) {
     },
     {
       id: '12346',
+      username: 'gianos-parlosons',
       status: 'Trainer',
       firstName: 'Gianos',
       lastName: 'Parlosons',
@@ -126,6 +128,7 @@ export default function handlerGetTrainers(req, res) {
     },
     {
       id: '12347',
+      username: 'jana-mordekaizer',
       status: 'Trainer',
       firstName: 'Jana',
       lastName: 'Mordekaizer',
@@ -188,6 +191,7 @@ export default function handlerGetTrainers(req, res) {
     },
     {
       id: '12348',
+      username: 'cristofer-arcand',
       status: 'Trainer',
       firstName: 'Cristofer',
       lastName: 'Arcand',
@@ -250,6 +254,7 @@ export default function handlerGetTrainers(req, res) {
     },
     {
       id: '12349',
+      username: 'gianos-parlosons',
       status: 'Trainer',
       firstName: 'Gianos',
       lastName: 'Parlosons',
@@ -312,6 +317,7 @@ export default function handlerGetTrainers(req, res) {
     },
     {
       id: '12350',
+      username: 'jana-mordekaizer',
       status: 'Trainer',
       firstName: 'Jana',
       lastName: 'Mordekaizer',
@@ -374,6 +380,7 @@ export default function handlerGetTrainers(req, res) {
     },
     {
       id: '12345',
+      username: 'cristofer-arcand',
       status: 'Trainer',
       firstName: 'Cristofer',
       lastName: 'Arcand',
@@ -436,6 +443,7 @@ export default function handlerGetTrainers(req, res) {
     },
     {
       id: '12346',
+      username: 'gianos-parlosons',
       status: 'Trainer',
       firstName: 'Gianos',
       lastName: 'Parlosons',
@@ -498,6 +506,7 @@ export default function handlerGetTrainers(req, res) {
     },
     {
       id: '12347',
+      username: 'jana-mordekaizer',
       status: 'Trainer',
       firstName: 'Jana',
       lastName: 'Mordekaizer',
@@ -560,6 +569,7 @@ export default function handlerGetTrainers(req, res) {
     },
     {
       id: '12348',
+      username: 'cristofer-arcand',
       status: 'Trainer',
       firstName: 'Cristofer',
       lastName: 'Arcand',
@@ -622,6 +632,7 @@ export default function handlerGetTrainers(req, res) {
     },
     {
       id: '12349',
+      username: 'gianos-parlosons',
       status: 'Trainer',
       firstName: 'Gianos',
       lastName: 'Parlosons',
@@ -684,6 +695,7 @@ export default function handlerGetTrainers(req, res) {
     },
     {
       id: '12350',
+      username: 'jana-mordekaizer',
       status: 'Trainer',
       firstName: 'Jana',
       lastName: 'Mordekaizer',

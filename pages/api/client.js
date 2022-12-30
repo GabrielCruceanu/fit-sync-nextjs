@@ -1,6 +1,7 @@
 export default function handleGetClient(req, res) {
   res.status(200).json({
     id: 'asdas',
+    username: 'cristina-cruceanu',
     status: 'Client',
     firstName: 'Cristina',
     lastName: 'Cruceanu',
@@ -69,6 +70,7 @@ export default function handleGetClient(req, res) {
     ],
     nutritionist: {
       id: '12345',
+      username: 'cristofer-arcand',
       status: 'Trainer',
       firstName: 'Cristofer',
       lastName: 'Arcand',
@@ -131,6 +133,7 @@ export default function handleGetClient(req, res) {
     },
     trainer: {
       id: '12345',
+      username: 'cristofer-arcand',
       status: 'Trainer',
       firstName: 'Cristofer',
       lastName: 'Arcand',

@@ -4,6 +4,7 @@ import { TrainerType } from '#/constants/trainer';
 
 export const ClientMockup: ClientProfileModel = {
   id: 'asdas',
+  username: 'cristina-cruceanu',
   status: UserType.Client,
   firstName: 'Cristina',
   lastName: 'Cruceanu',
@@ -48,6 +49,7 @@ export const ClientMockup: ClientProfileModel = {
   ],
   nutritionist: {
     id: '12345',
+    username: 'cristofer-arcand',
     status: UserType.Trainer,
     firstName: 'Cristofer',
     lastName: 'Arcand',
@@ -110,6 +112,7 @@ export const ClientMockup: ClientProfileModel = {
   },
   trainer: {
     id: '12345',
+    username: 'cristofer-arcand',
     status: UserType.Trainer,
     firstName: 'Cristofer',
     lastName: 'Arcand',
