@@ -1,6 +1,7 @@
 export default function handlerGetTrainer(req, res) {
   res.status(200).json({
     id: '12345',
+    username: 'cristofer-arcand',
     status: 'Trainer',
     firstName: 'Cristofer',
     lastName: 'Arcand',

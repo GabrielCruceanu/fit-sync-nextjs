@@ -6,6 +6,7 @@ import ReviewModel from '#/model/review/review.model';
 
 export default class ClientProfileModel {
   id: string;
+  username: string;
   status: UserType;
   firstName: string;
   lastName: string;
@@ -28,6 +29,7 @@ export default class ClientProfileModel {
 
   constructor(props: ClientProfileModel) {
     this.id = props.id;
+    this.username = props.username;
     this.status = props.status;
     this.firstName = props.firstName;
     this.lastName = props.lastName;

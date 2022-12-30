@@ -36,11 +36,11 @@ export const RomaniaStatesData: State[] = [
     name: 'Bucuresti',
     cities: [
       'Sector 1',
-      'Sector 2',
-      'Sector 3',
-      'Sector 4',
-      'Sector 5',
-      'Sector 6',
+      // 'Sector 2',
+      // 'Sector 3',
+      // 'Sector 4',
+      // 'Sector 5',
+      // 'Sector 6',
     ],
   },
   // {

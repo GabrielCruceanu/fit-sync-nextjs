@@ -8,6 +8,7 @@ import GalleryImageModel from '#/model/user/galleryImage.model';
 
 export default class TrainerProfileModel {
   id: string;
+  username: string;
   status: UserType.Trainer;
   firstName: string;
   lastName: string;
@@ -32,6 +33,7 @@ export default class TrainerProfileModel {
 
   constructor(props: TrainerProfileModel) {
     this.id = props.id;
+    this.username = props.username;
     this.status = props.status;
     this.firstName = props.firstName;
     this.lastName = props.lastName;
