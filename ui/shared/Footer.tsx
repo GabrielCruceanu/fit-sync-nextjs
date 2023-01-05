@@ -24,32 +24,32 @@ export function Footer() {
           </h3>
           <div className="flex lg:justify-center">
             <div className="border-1 d-flex w-fit border-r border-gray-50 px-3">
-              <Link href={SocialLinks.facebook.link} target="_blank">
-                <div className="h-8 space-x-2.5 fill-teal-500 hover:fill-teal-800">
+              <div className="h-8 space-x-2.5 fill-teal-500 hover:fill-teal-800">
+                <Link href={SocialLinks.facebook.link} target="_blank">
                   <FacebookIcon />
-                </div>
-              </Link>
+                </Link>
+              </div>
             </div>
             <div className="border-1 d-flex w-fit border-r border-gray-50 px-3">
-              <Link href={SocialLinks.instagram.link} target="_blank">
-                <div className="h-8 space-x-2.5 fill-teal-500 hover:fill-teal-800">
+              <div className="h-8 space-x-2.5 fill-teal-500 hover:fill-teal-800">
+                <Link href={SocialLinks.instagram.link} target="_blank">
                   <InstagramIcon />
-                </div>
-              </Link>
+                </Link>
+              </div>
             </div>
             <div className="border-1 d-flex w-fit border-r border-gray-50 px-3">
-              <Link href={SocialLinks.twitter.link} target="_blank">
-                <div className="h-8 space-x-2.5 fill-teal-500 hover:fill-teal-800">
+              <div className="h-8 space-x-2.5 fill-teal-500 hover:fill-teal-800">
+                <Link href={SocialLinks.twitter.link} target="_blank">
                   <TwitterIcon />
-                </div>
-              </Link>
+                </Link>
+              </div>
             </div>
             <div className="px-3">
-              <Link href={SocialLinks.mail.link} target="_blank">
-                <div className="h-8 space-x-2.5 fill-teal-500 hover:fill-teal-800">
+              <div className="h-8 space-x-2.5 fill-teal-500 hover:fill-teal-800">
+                <Link href={SocialLinks.mail.link} target="_blank">
                   <EnvelopeIcon />
-                </div>
-              </Link>
+                </Link>
+              </div>
             </div>
           </div>
         </div>

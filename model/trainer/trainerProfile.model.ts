@@ -5,6 +5,7 @@ import ReviewModel from '#/model/review/review.model';
 import BirthModel from '#/model/user/birth.model';
 import ContactModel from '#/model/user/contact.model';
 import GalleryImageModel from '#/model/user/galleryImage.model';
+import ProgramsModel from '#/model/programs/programs.model';
 
 export default class TrainerProfileModel {
   id: string;
@@ -30,6 +31,7 @@ export default class TrainerProfileModel {
   activeClients?: ClientProfileModel[];
   gallery?: GalleryImageModel[];
   reviews?: ReviewModel[];
+  programs?: ProgramsModel[];
 
   constructor(props: TrainerProfileModel) {
     this.id = props.id;
@@ -55,5 +57,6 @@ export default class TrainerProfileModel {
     this.activeClients = props.activeClients;
     this.gallery = props.gallery;
     this.reviews = props.reviews;
+    this.programs = props.programs;
   }
 }

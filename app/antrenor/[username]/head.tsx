@@ -1,3 +1,4 @@
+import HeadUi from '#/ui/shared/HeadUi';
 import TrainerProfileModel from '#/model/trainer/trainerProfile.model';
 
 async function getTrainersData() {
@@ -14,22 +15,26 @@ async function getTrainersData() {
   return res.json();
 }
 
-export default async function TrainerIdPage({
+export default async function Head({
   params,
 }: {
-  params: { id: string };
+  params: { username: string };
 }) {
   const trainersData: TrainerProfileModel[] = await getTrainersData();
   const trainer = trainersData.find((trainer) => {
-    if (trainer.id === params.id) {
+    if (trainer.username === params.username) {
       return trainer;
     }
   });
+
   return (
     <>
-      <h1>
-        {trainer ? trainer.firstName + ' ' + trainer.lastName : 'trainer'}
-      </h1>
+      <HeadUi
+        title={`Antrenor ${
+          trainer ? trainer.firstName + ' ' + trainer.lastName : ''
+        } | Kaapo.Fit`}
+        description="Kaapo.Fit este platforma construită pentru antrenorii personali care vor să-și dezvolte afacerea și să managerieze mai ușor clienții online."
+      />
     </>
   );
 }

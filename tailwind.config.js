@@ -16,6 +16,8 @@ module.exports = {
       colors: {
         gray: colors.zinc,
         teal: colors.teal,
+        primary: colors.teal,
+        blue: colors.teal,
       },
       backgroundImage: ({ theme }) => ({
         'vc-border-gradient': `radial-gradient(at left top, ${theme(

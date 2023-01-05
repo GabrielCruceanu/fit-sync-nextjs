@@ -13,9 +13,11 @@ export default function SectionWithWave({
 }) {
   return (
     <section
-      className={clsx('relative bg-gray-900 px-4 py-[100px] text-white ', {
-        'bg-white text-gray-900 md:py-[200px] xl:py-[260px]': bgWhite,
-      })}
+      className={`relative px-4 py-[100px] ${
+        bgWhite
+          ? 'bg-white text-gray-900 md:py-[200px] xl:py-[260px]'
+          : ' bg-gray-900 text-white'
+      }`}
       id={id}
     >
       <div
