@@ -1,9 +1,10 @@
 'use client';
 import TrainerProfileHeader from '#/ui/trainer/profile/TrainerProfileHeader';
 import TrainerProfileModel from '#/model/trainer/trainerProfile.model';
-import TrainerContact from '#/ui/trainer/profile/TrainerContact';
+import TrainerProfileContact from '#/ui/trainer/profile/TrainerProfileContact';
 import Reviews from '#/ui/shared/Reviews';
-import TrainerDescription from '#/ui/trainer/profile/TrainerDescription';
+import TrainerProfileDescription from '#/ui/trainer/profile/TrainerProfileDescription';
+import TrainerPrograms from '#/ui/trainer/profile/TrainerPrograms';
 
 export default function TrainerProfile({
   trainer,
@@ -24,10 +25,12 @@ export default function TrainerProfile({
     completedClients,
     contact,
     reviews,
+    programs,
   } = trainer;
 
   return (
     <>
+      {/* Profile Header */}
       <TrainerProfileHeader
         firstName={firstName}
         lastName={lastName}
@@ -42,12 +45,16 @@ export default function TrainerProfile({
       />
 
       {/* Profile Description */}
-      <TrainerDescription description={description} />
+      <TrainerProfileDescription description={description} />
+
       {/* Profile Contact */}
-      <TrainerContact contact={contact} />
+      <TrainerProfileContact contact={contact} />
 
       {/* Profile Review */}
       {reviews ? <Reviews reviews={reviews} username={username} /> : null}
+
+      {/* Profile Programs */}
+      {programs ? <TrainerPrograms programs={programs} /> : null}
     </>
   );
 }

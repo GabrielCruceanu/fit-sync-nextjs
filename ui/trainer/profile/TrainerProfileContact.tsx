@@ -6,7 +6,11 @@ import { FacebookIcon } from '#/ui/shared/icons/FacebookIcon';
 import InstagramIcon from '#/ui/shared/InstagramIcon';
 import TwitterIcon from '#/ui/shared/icons/TwitterIcon';
 
-export default function TrainerContact({ contact }: { contact: ContactModel }) {
+export default function TrainerProfileContact({
+  contact,
+}: {
+  contact: ContactModel;
+}) {
   const { email, phone, website, twitter, facebook, instagram } = contact;
   return (
     <div className="my-5 px-4 text-justify md:my-6">

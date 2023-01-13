@@ -23,7 +23,7 @@ export default function Reviews({
     <section className="my-5 w-full px-4 text-justify md:flex md:flex-wrap">
       <div className="mb-2 flex w-full items-center justify-between">
         <h3 className="text-xl">Recenzii</h3>
-        {username ? (
+        {username && reviews.length > 1 ? (
           <Link href={'/recenzii/' + username} target="_blank">
             <span className="text-teal-500 hover:text-teal-700">
               Vezi toate recenziile
@@ -86,7 +86,7 @@ export function ReviewItem({
 }) {
   return (
     <div className="max-w-5xl rounded-full rounded-xl bg-gray-800 p-4">
-      <Link href={'client/' + clientId} className="mb-3 flex items-center">
+      <div className="mb-3 flex items-center">
         <Avatar
           bordered
           img={clientPhoto}
@@ -98,13 +98,13 @@ export function ReviewItem({
           <h3 className="text-xl text-white">
             {clientFirstName + ' ' + clientLastName}
           </h3>
-          <h6 className="text-sm">
+          <h6 className="text-sm ">
             {' '}
             Din data {date.date + '/' + date.month + '/' + date.year}
           </h6>
         </div>
-      </Link>
-      <p>{description}</p>
+      </div>
+      <p className="text-white">{description}</p>
     </div>
   );
 }

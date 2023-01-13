@@ -27,7 +27,7 @@ export default class ClientProfileModel {
   trainer?: TrainerProfileModel;
   gym?: TrainerProfileModel;
   reviews?: ReviewModel;
-  program: ProgramsModel;
+  program?: ProgramsModel;
 
   constructor(props: ClientProfileModel) {
     this.id = props.id;

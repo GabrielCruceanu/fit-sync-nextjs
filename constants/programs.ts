@@ -2070,3 +2070,14 @@ export const Programs: ProgramsModel[] = [
     },
   },
 ];
+
+export enum ProgramsCategory {
+  MasaMusculara = 'Masa Musculara',
+  Slabit = 'Slabit',
+}
+
+export enum ProgramsExperience {
+  Incepator = 'Incepetor',
+  Intermediar = 'Intermediar',
+  Experimentat = 'Experimentat',
+}
