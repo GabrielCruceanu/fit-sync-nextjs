@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import Button, { ButtonType } from '#/ui/shared/Button';
+import ButtonOld, { ButtonType } from '#/ui/shared/Button-old';
 import Image from 'next/image';
 import KaapoFitPhone from '#/public/images/homepage/phone.png';
 import { PagesLinks } from '#/constants/links';
@@ -25,7 +25,7 @@ export default function TrainerHeader() {
             </p>
 
             <Link href={PagesLinks.auth.link}>
-              <Button type={ButtonType.primary} description="ÎNCEPE ACUM" />
+              <ButtonOld type={ButtonType.primary} description="ÎNCEPE ACUM" />
             </Link>
           </div>
           <div className="w-full lg:max-w-[300px]">

@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import Button, { ButtonType } from '#/ui/shared/Button';
+import ButtonOld, { ButtonType } from '#/ui/shared/Button-old';
 import Image from 'next/image';
 import KaapoFitPhone from '#/public/images/homepage/phone.png';
 import { PagesLinks } from '#/constants/links';
@@ -20,10 +20,13 @@ export default function HomeHeader() {
                 href={PagesLinks.trainerHomePage.link}
                 className="mr-3 lg:mr-4"
               >
-                <Button type={ButtonType.primary} description="Sunt Antrenor" />
+                <ButtonOld
+                  type={ButtonType.primary}
+                  description="Sunt Antrenor"
+                />
               </Link>
               <Link href={PagesLinks.clientHomePage.link}>
-                <Button
+                <ButtonOld
                   type={ButtonType.primary}
                   description="Caută un Antrenor"
                 />

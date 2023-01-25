@@ -1,7 +1,7 @@
 import HowItWorkImage from '#/public/images/homepage/how-it-works.png';
 import Image from 'next/image';
 import Link from 'next/link';
-import Button, { ButtonType } from '#/ui/shared/Button';
+import ButtonOld, { ButtonType } from '#/ui/shared/Button-old';
 
 export default function HomeHowItWorks() {
   return (
@@ -29,10 +29,13 @@ export default function HomeHowItWorks() {
           </p>
           <div className="mt-5">
             <Link href="/antrenor" className="mr-3 lg:mr-4">
-              <Button type={ButtonType.primary} description="Sunt Antrenor" />
+              <ButtonOld
+                type={ButtonType.primary}
+                description="Sunt Antrenor"
+              />
             </Link>
             <Link href="/client">
-              <Button
+              <ButtonOld
                 type={ButtonType.primary}
                 description="Caută un Antrenor"
               />

@@ -9,7 +9,7 @@ export enum ButtonType {
   primary = 'PRIMARY',
 }
 
-export default function Button({ type, description }: ButtonProps) {
+export default function ButtonOld({ type, description }: ButtonProps) {
   return (
     <button
       type="button"
