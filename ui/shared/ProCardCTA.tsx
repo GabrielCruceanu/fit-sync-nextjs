@@ -4,7 +4,7 @@ export function ProCardCTA({ close }: { close?: () => false | void }) {
   return (
     <div className="mt-auto max-w-xs rounded-2xl bg-gray-800 p-3">
       <Link
-        href="/antrenor"
+        href="/autentificare"
         className="flex items-center justify-between"
         onClick={close}
       >
