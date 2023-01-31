@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Navigation } from '#/ui/shared/Navigation';
 import { Footer } from '#/ui/shared/Footer';
 import { Database } from '#/types/supabase';
@@ -43,13 +43,12 @@ export default function RootLayout({
 
   return (
     <html lang="ro" className="[color-scheme:dark]">
-      <head />
       <body className="min-h-screen overflow-y-scroll bg-gray-900">
         <DefaultSeo {...getDefaultSeoConfig(pathname ? pathname : '/')} />
         <SessionContextProvider supabaseClient={supabaseClient}>
           <MyUserContextProvider>
             <Navigation />
-            <main className="mt-[64.8px] h-full">{children}</main>
+            <main className="mt-[56.8px] h-full">{children}</main>
             <Footer />
           </MyUserContextProvider>
         </SessionContextProvider>

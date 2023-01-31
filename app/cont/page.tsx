@@ -1,12 +1,12 @@
 'use client';
 import { withPageAuth } from '@supabase/auth-helpers-nextjs';
-import { User } from '@supabase/auth-helpers-react';
 import { ReactNode, useState } from 'react';
 import { useUser } from '#/utils/useUser';
 import { postData } from '#/utils/helpers';
 import Button from '#/ui/shared/Button';
 import LoadingDots from '#/ui/shared/LoadingDots';
 import Link from 'next/link';
+import { PagesLinks } from '#/constants/links';
 
 interface Props {
   title: string;
@@ -33,9 +33,8 @@ function Card({ title, description, footer, children }: Props) {
 export default function Cont() {
   const [loading, setLoading] = useState(false);
   const { isLoading, subscription, userDetails } = useUser();
-  console.log('user', user);
   console.log('userDetails', userDetails);
-  withPageAuth({ redirectTo: '/login' });
+  withPageAuth({ redirectTo: PagesLinks.auth.link });
 
   const redirectToCustomerPortal = async () => {
     setLoading(true);
@@ -44,6 +43,7 @@ export default function Cont() {
         url: '/api/create-portal-link',
       });
       window.location.assign(url);
+      if (error) console.log('cont error', error);
     } catch (error) {
       if (error) return alert((error as Error).message);
     }
@@ -130,7 +130,7 @@ export default function Cont() {
           footer={<p>We will email you to verify the change.</p>}
         >
           <p className="mt-8 mb-4 text-xl font-semibold">
-            {user ? user.email : undefined}
+            {/*{user ? user.email : undefined}*/}
           </p>
         </Card>
       </div>
