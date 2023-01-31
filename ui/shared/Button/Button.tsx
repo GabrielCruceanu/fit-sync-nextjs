@@ -12,6 +12,7 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   Component?: React.ComponentType;
 }
 
+// eslint-disable-next-line react/display-name
 const Button = forwardRef<HTMLButtonElement, Props>((props, buttonRef) => {
   const {
     className,
