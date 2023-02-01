@@ -3,10 +3,13 @@ export const GA_TRACKING_ID = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS;
 // records data on each page visited
 export const pageView = (url: string) => {
   // @ts-ignore
-  window.dataLayer.push({
-    event: 'pageview',
-    page: url,
-  });
+  if (window && window.dataLayer) {
+    // @ts-ignore
+    window.dataLayer.push({
+      event: 'pageview',
+      page: url,
+    });
+  }
 };
 
 // handles any custom event we want to track. For eg. how many clicks has our subscribe button

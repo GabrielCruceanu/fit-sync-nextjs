@@ -29,6 +29,7 @@ module.exports = {
           900: '#134e4a',
         },
         blue: colors.teal,
+        red: colors.red,
       },
       fontFamily: {
         body: [

@@ -1,7 +1,13 @@
-export function ProCardCTA() {
+import Link from 'next/link';
+
+export function ProCardCTA({ close }: { close?: () => false | void }) {
   return (
     <div className="mt-auto max-w-xs rounded-2xl bg-gray-800 p-3">
-      <div className="flex items-center justify-between">
+      <Link
+        href="/autentificare"
+        className="flex items-center justify-between"
+        onClick={close}
+      >
         <div>
           <div className="min-w-min">
             <p className="inline-block rounded-xl bg-amber-500 px-2 text-xs font-medium">
@@ -12,7 +18,7 @@ export function ProCardCTA() {
           <p className="text-xs text-gray-300">Manageriati clienții mai ușor</p>
         </div>
         <span className="text-xl ">{'>'}</span>
-      </div>
+      </Link>
     </div>
   );
 }

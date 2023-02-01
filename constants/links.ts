@@ -57,4 +57,12 @@ export const PagesLinks = {
     link: '/autentificare',
     name: 'Autentificare',
   },
+  signUp: {
+    link: '/inregistrare',
+    name: 'Inregistrare',
+  },
+  forgotPassword: {
+    link: '/resetare-parola',
+    name: 'Parola uitata',
+  },
 };
