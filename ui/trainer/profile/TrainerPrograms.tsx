@@ -1,7 +1,7 @@
 'use client';
 import ProgramsModel from '#/model/programs/programs.model';
-import { Tabs } from 'flowbite';
-import type { TabsOptions, TabsInterface, TabItem } from 'flowbite';
+import { TabsOptions, TabsInterface, TabItem, Tabs } from 'flowbite';
+// import { Tabs } from 'flowbite-react';
 import { useEffect } from 'react';
 
 export default function TrainerPrograms({
@@ -20,6 +20,7 @@ export default function TrainerPrograms({
       pricingEl: document.querySelector(`#${program.category}-plan`),
     }),
   );
+
   useEffect(function mount() {
     const options: TabsOptions = {
       defaultTabId: 'standard',
@@ -36,7 +37,6 @@ export default function TrainerPrograms({
         activeTab.pricingEl.classList.remove('hidden');
       },
     };
-
     const pricingTabs = new Tabs(pricingTabEls, options);
   });
 
