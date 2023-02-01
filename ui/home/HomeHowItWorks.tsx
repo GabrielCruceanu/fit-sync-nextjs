@@ -1,8 +1,8 @@
 import HowItWorkImage from '#/public/images/homepage/how-it-works.png';
 import Image from 'next/image';
 import Link from 'next/link';
-import Button, { ButtonType } from '#/ui/shared/Button';
 import { PagesLinks } from '#/constants/links';
+import Button, { ButtonType } from '#/ui/shared/Button';
 
 export default function HomeHowItWorks() {
   return (

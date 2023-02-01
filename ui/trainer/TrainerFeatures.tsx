@@ -10,7 +10,7 @@ import {
   UserGroupIcon,
 } from '@heroicons/react/solid';
 import { PagesLinks } from '#/constants/links';
-import ButtonOld, { ButtonType } from '#/ui/shared/Button-old';
+import Button, { ButtonType } from '#/ui/shared/Button';
 import Link from 'next/link';
 
 export default function TrainerFeatures() {
@@ -32,7 +32,7 @@ export default function TrainerFeatures() {
             urmărești progresul.
           </p>
           <Link href={PagesLinks.auth.link}>
-            <ButtonOld type={ButtonType.primary} description="INCEPEȚI ACUM" />
+            <Button type={ButtonType.primary} description="INCEPEȚI ACUM" />
           </Link>
         </div>
 

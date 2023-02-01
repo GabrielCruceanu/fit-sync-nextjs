@@ -3,7 +3,7 @@ import { withPageAuth } from '@supabase/auth-helpers-nextjs';
 import { ReactNode, useState } from 'react';
 import { useUser } from '#/utils/useUser';
 import { postData } from '#/utils/helpers';
-import Button from '#/ui/shared/Button';
+import ButtonWithLoading from '#/ui/shared/Button-with-loading';
 import LoadingDots from '#/ui/shared/LoadingDots';
 import Link from 'next/link';
 import { PagesLinks } from '#/constants/links';
@@ -83,14 +83,14 @@ export default function Cont() {
               <p className="pb-4 sm:pb-0">
                 Manage your subscription on Stripe.
               </p>
-              <Button
+              <ButtonWithLoading
                 variant="slim"
                 loading={loading}
                 disabled={loading || !subscription}
                 onClick={redirectToCustomerPortal}
               >
                 Open customer portal
-              </Button>
+              </ButtonWithLoading>
             </div>
           }
         >
