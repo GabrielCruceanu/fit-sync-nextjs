@@ -15,7 +15,7 @@ export default function HomeHowItWorks() {
           className="mx-auto mt-4 w-56 w-fit md:mx-0 md:w-[500px] lg:w-[500px]"
         />
         <div className="mt-7 lg:ml-28 lg:mt-0 lg:max-w-[600px]">
-          <h2 className="mb-4 text-4xl font-extrabold tracking-tight text-white">
+          <h2 className="mb-4 text-4xl font-bold tracking-tight text-white">
             Cum Funcționează?
           </h2>
           <p className="mb-4 font-light text-gray-300 lg:text-xl">

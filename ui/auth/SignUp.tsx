@@ -69,18 +69,18 @@ export default function SignUp() {
   };
 
   return (
-    <section className="bg-gray-700 bg-opacity-60 bg-[url('https://flowbite.s3.amazonaws.com/blocks/marketing-ui/authentication/background.jpg')] bg-cover bg-center bg-no-repeat bg-blend-multiply">
-      <div className="pt:mt-0 mx-auto flex flex-col items-center justify-center px-6 py-8 md:h-screen">
-        <div className="w-full rounded-lg bg-white shadow dark:bg-gray-800 sm:max-w-md md:mt-0 xl:p-0">
+    <section className="min-h-screen bg-gray-700 bg-opacity-60 bg-[url('/images/auth/signup.jpg')] bg-cover bg-center bg-no-repeat  bg-blend-multiply ">
+      <div className="pt:mt-0 mx-auto flex h-screen flex-col items-center justify-center px-6 py-8">
+        <div className="w-full rounded-lg bg-gray-800 shadow sm:max-w-md md:mt-0 xl:p-0">
           <div className="space-y-4 p-6 sm:p-8 md:space-y-6 lg:space-y-8">
-            <h1 className="text-center text-xl font-bold leading-tight tracking-tight text-gray-900 dark:text-white md:text-2xl">
+            <h1 className="text-center text-xl font-bold leading-tight tracking-tight text-white md:text-2xl">
               Inregistrare
             </h1>
             <form className="space-y-4 md:space-y-6">
               <div>
                 <label
                   htmlFor="email"
-                  className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+                  className="mb-2 block text-sm font-medium text-white"
                 >
                   Email
                 </label>
@@ -88,7 +88,7 @@ export default function SignUp() {
                   type="email"
                   name="email"
                   id="email"
-                  className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 sm:text-sm"
+                  className="block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-gray-900 text-white placeholder-gray-400 focus:border-primary-600 focus:ring-primary-600 sm:text-sm"
                   value={email}
                   placeholder="nume@email.com"
                   required={true}
@@ -99,15 +99,15 @@ export default function SignUp() {
                   }}
                 />
                 {emailError ? (
-                  <div className="mt-2 block text-xs font-medium dark:text-red-600">
+                  <p className="mt-2 block text-xs font-medium text-red-500">
                     {emailError}
-                  </div>
+                  </p>
                 ) : null}
               </div>
               <div>
                 <label
                   htmlFor="password"
-                  className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+                  className="mb-2 block text-sm font-medium text-white"
                 >
                   Parola
                 </label>
@@ -116,7 +116,7 @@ export default function SignUp() {
                   name="password"
                   id="confirm-password"
                   placeholder="••••••••"
-                  className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 sm:text-sm"
+                  className="block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-white placeholder-gray-400 focus:border-primary-600 focus:ring-primary-600 sm:text-sm"
                   required={true}
                   value={password}
                   onChange={(event) => {
@@ -126,15 +126,15 @@ export default function SignUp() {
                   }}
                 />
                 {passwordError ? (
-                  <div className="mt-2 block text-xs font-medium dark:text-red-600">
+                  <p className="mt-2 block text-xs font-medium text-red-500">
                     {passwordError}
-                  </div>
+                  </p>
                 ) : null}
               </div>
               <div>
                 <label
                   htmlFor="password"
-                  className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+                  className="mb-2 block text-sm font-medium text-white"
                 >
                   Confirma Parola
                 </label>
@@ -143,7 +143,7 @@ export default function SignUp() {
                   name="password"
                   id="confirm-password"
                   placeholder="••••••••"
-                  className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 focus:border-primary-600 focus:ring-primary-600 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 sm:text-sm"
+                  className="block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-white placeholder-gray-400 focus:border-primary-600 focus:ring-primary-600 sm:text-sm"
                   required={true}
                   value={confirmPassword}
                   onChange={(event) => {
@@ -153,18 +153,18 @@ export default function SignUp() {
                   }}
                 />
                 {confirmPasswordError ? (
-                  <div className="mt-2 block text-xs font-medium dark:text-red-600">
+                  <p className="mt-2 block text-xs font-medium text-red-500">
                     {confirmPasswordError}
-                  </div>
+                  </p>
                 ) : null}
               </div>
               {/*Terms*/}
-              <p className="mb-2 block text-sm font-medium text-gray-900 dark:text-white">
+              <p className="mb-2 block text-sm font-medium text-white">
                 Sunt de acord cu urmatoarele:
                 {termsError ? (
-                  <small className="mt-2 block text-xs font-medium dark:text-red-600">
+                  <p className="mt-2 block text-xs font-medium text-red-500">
                     {termsError}
-                  </small>
+                  </p>
                 ) : null}
               </p>
 
@@ -175,7 +175,7 @@ export default function SignUp() {
                       id="remember"
                       aria-describedby="remember"
                       type="checkbox"
-                      className="focus:ring-3 h-4 w-4 rounded border border-gray-300 bg-gray-50 focus:ring-primary-300 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600"
+                      className="focus:ring-3 h-4 w-4 rounded border border-gray-600 bg-gray-700 ring-offset-gray-800 focus:ring-primary-600"
                       required
                       onChange={() => {
                         setTerms(true);
@@ -207,7 +207,7 @@ export default function SignUp() {
                       id="remember"
                       aria-describedby="remember"
                       type="checkbox"
-                      className="focus:ring-3 h-4 w-4 rounded border border-gray-300 bg-gray-50 focus:ring-primary-300 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600"
+                      className="focus:ring-3 h-4 w-4 rounded border border-gray-600 bg-gray-700 ring-offset-gray-800 focus:ring-primary-600"
                       required
                       onChange={() => {
                         setGdpr(true);
@@ -217,10 +217,7 @@ export default function SignUp() {
                     />
                   </div>
                   <div className="ml-3 text-sm">
-                    <label
-                      htmlFor="remember"
-                      className="text-gray-500 dark:text-gray-300"
-                    >
+                    <label htmlFor="remember" className="text-gray-300">
                       <Link
                         href={TermsLinks.gdpr.link}
                         className="text-teal-500"
@@ -239,7 +236,7 @@ export default function SignUp() {
                       id="remember"
                       aria-describedby="remember"
                       type="checkbox"
-                      className="focus:ring-3 h-4 w-4 rounded border border-gray-300 bg-gray-50 focus:ring-primary-300 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600"
+                      className="focus:ring-3 h-4 w-4 rounded border border-gray-600 bg-gray-700 ring-offset-gray-800 focus:ring-primary-600"
                       required
                       onChange={() => {
                         setCookie(true);
@@ -249,10 +246,7 @@ export default function SignUp() {
                     />
                   </div>
                   <div className="ml-3 text-sm">
-                    <label
-                      htmlFor="remember"
-                      className="text-gray-500 dark:text-gray-300"
-                    >
+                    <label htmlFor="remember" className="text-gray-300">
                       <Link
                         href={TermsLinks.cookies.link}
                         className="text-teal-500"
@@ -265,13 +259,13 @@ export default function SignUp() {
                 </div>
               </div>
               {signUpError ? (
-                <div className="mt-2 block text-xs font-medium dark:text-red-600">
+                <p className="mt-2 block text-xs font-medium text-red-500">
                   {signUpError}
-                </div>
+                </p>
               ) : null}
               <button
                 type="submit"
-                className="w-full rounded-lg bg-primary-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-primary-700 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+                className="w-full rounded-lg bg-primary-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-primary-700 focus:outline-none focus:ring-4 focus:ring-primary-800"
                 onClick={(e) => {
                   e.preventDefault();
                   handleSignUp(email, password);
@@ -279,20 +273,20 @@ export default function SignUp() {
               >
                 Intra in cont
               </button>
-              <p className="flex justify-between text-sm font-light text-gray-500 dark:text-gray-300">
+              <div className="flex justify-between text-sm font-light ">
                 <Link
                   href={PagesLinks.auth.link}
-                  className="font-medium text-primary-600 hover:underline dark:text-primary-500"
+                  className="font-medium text-primary-500 hover:underline"
                 >
                   Ai deja un cont?
                 </Link>
                 <Link
                   href={PagesLinks.forgotPassword.link}
-                  className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500"
+                  className="text-sm font-medium text-primary-500 hover:underline"
                 >
                   Ai uitat parola?
                 </Link>
-              </p>
+              </div>
             </form>
           </div>
         </div>

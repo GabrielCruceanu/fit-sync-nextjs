@@ -59,20 +59,26 @@ export function Footer() {
             Altele
           </h3>
           <div className="flex flex-col text-sm md:flex-row lg:justify-end">
-            <Link href={TermsLinks.termeniSiConditii.link} target="_blank">
-              <span className="text-teal-500 hover:text-teal-700">
-                {TermsLinks.termeniSiConditii.name}
-              </span>
+            <Link
+              href={TermsLinks.termeniSiConditii.link}
+              target="_blank"
+              className="text-teal-500 hover:text-teal-700"
+            >
+              {TermsLinks.termeniSiConditii.name}
             </Link>
-            <Link href={TermsLinks.gdpr.link} target="_blank">
-              <span className="text-teal-500 hover:text-teal-700 md:px-3">
-                {TermsLinks.gdpr.name}
-              </span>
+            <Link
+              href={TermsLinks.gdpr.link}
+              target="_blank"
+              className="text-teal-500 hover:text-teal-700 md:px-3"
+            >
+              {TermsLinks.gdpr.name}
             </Link>
-            <Link href={TermsLinks.cookies.link} target="_blank">
-              <span className="text-teal-500 hover:text-teal-700">
-                {TermsLinks.cookies.name}
-              </span>
+            <Link
+              href={TermsLinks.cookies.link}
+              target="_blank"
+              className="text-teal-500 hover:text-teal-700"
+            >
+              {TermsLinks.cookies.name}
             </Link>
           </div>
 

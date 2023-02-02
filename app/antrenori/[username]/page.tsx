@@ -1,5 +1,4 @@
 import TrainerProfileModel from '#/model/trainer/trainerProfile.model';
-import TrainerProfileHeader from '#/ui/trainer/profile/TrainerProfileHeader';
 import { notFound } from 'next/navigation';
 import TrainerProfile from '#/ui/trainer/profile/TrainerProfile';
 

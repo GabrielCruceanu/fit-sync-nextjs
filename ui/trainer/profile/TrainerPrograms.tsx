@@ -1,8 +1,6 @@
 'use client';
 import ProgramsModel from '#/model/programs/programs.model';
-import { TabsOptions, TabsInterface, TabItem, Tabs } from 'flowbite';
-// import { Tabs } from 'flowbite-react';
-import { useEffect } from 'react';
+import { TabItem } from 'flowbite';
 
 export default function TrainerPrograms({
   programs,
@@ -12,33 +10,33 @@ export default function TrainerPrograms({
   console.log('programs', programs);
   const programsType = [];
   let pricingTabEls: TabItem[] = [];
-  programs.map((program) =>
-    pricingTabEls.push({
-      id: program.category,
-      triggerEl: document.querySelector(`#${program.category}-tab`),
-      targetEl: document.querySelector(`#${program.category}-content`),
-      pricingEl: document.querySelector(`#${program.category}-plan`),
-    }),
-  );
+  // programs.map((program) =>
+  //   pricingTabEls.push({
+  //     id: program.category,
+  //     triggerEl: document.querySelector(`#${program.category}-tab`),
+  //     targetEl: document.querySelector(`#${program.category}-content`),
+  //     pricingEl: document.querySelector(`#${program.category}-plan`),
+  //   }),
+  // );
 
-  useEffect(function mount() {
-    const options: TabsOptions = {
-      defaultTabId: 'standard',
-      activeClasses: 'bg-teal-600 text-white border-teal-600',
-      inactiveClasses: 'hover:text-white bg-gray-700 hover:bg-gray-500',
-      onShow(context: { getActiveTab: () => any }) {
-        const activeTab = context.getActiveTab();
-        pricingTabEls.map(function (el) {
-          // @ts-ignore
-          el.pricingEl.classList.add('hidden');
-
-          console.log('tab is shown');
-        });
-        activeTab.pricingEl.classList.remove('hidden');
-      },
-    };
-    const pricingTabs = new Tabs(pricingTabEls, options);
-  });
+  // useEffect(function mount() {
+  //   const options: TabsOptions = {
+  //     defaultTabId: 'standard',
+  //     activeClasses: 'bg-teal-600 text-white border-teal-600',
+  //     inactiveClasses: 'hover:text-white bg-gray-700 hover:bg-gray-500',
+  //     onShow(context: { getActiveTab: () => any }) {
+  //       const activeTab = context.getActiveTab();
+  //       pricingTabEls.map(function (el) {
+  //         // @ts-ignore
+  //         el.pricingEl.classList.add('hidden');
+  //
+  //         console.log('tab is shown');
+  //       });
+  //       activeTab.pricingEl.classList.remove('hidden');
+  //     },
+  //   };
+  //   const pricingTabs = new Tabs(pricingTabEls, options);
+  // });
 
   return (
     <section className="my-5 w-full bg-gray-900 px-4 text-justify md:flex md:flex-wrap">

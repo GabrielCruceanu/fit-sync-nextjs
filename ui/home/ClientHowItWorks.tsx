@@ -1,6 +1,11 @@
 import SectionWithWave from '#/ui/shared/SectionWithWave';
 import Image from 'next/image';
-import HowItWorkImage from '#/public/images/homepage/how-it-works.png';
+import TrainerDesktop from '#/public/images/client/trainer-desktop.jpg';
+import TrainerMobile from '#/public/images/client/trainer-mobile.jpg';
+import NutritionistDesktop from '#/public/images/client/nutritionist-desktop.jpg';
+import NutritionistMobile from '#/public/images/client/nutritionist-mobile.jpg';
+import GymDesktop from '#/public/images/client/gym-desktop.jpg';
+import GymMobile from '#/public/images/client/gym-mobile.jpg';
 import { PagesLinks } from '#/constants/links';
 import Button, { ButtonType } from '#/ui/shared/Button';
 import Link from 'next/link';
@@ -12,7 +17,13 @@ export default function ClientHowItWorks() {
         {/*Row*/}
         <div className="items-center gap-8 lg:grid lg:grid-cols-2 xl:gap-16">
           <div className="text-gray-500 dark:text-gray-400 sm:text-lg">
-            <h2 className="mb-4 text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white">
+            {/*Image on mobile and tablet*/}
+            <Image
+              className="mb-4 flex w-full rounded-lg lg:mb-0 lg:hidden"
+              src={TrainerMobile}
+              alt="Antrenor Personal"
+            />
+            <h2 className="mb-4 text-4xl font-bold tracking-tight text-gray-900 dark:text-white">
               Antrenor Personal
             </h2>
             <p className="mb-4 font-light lg:text-xl">
@@ -130,21 +141,29 @@ export default function ClientHowItWorks() {
               />
             </Link>
           </div>
-          <img
+          {/*Image on desktop*/}
+          <Image
             className="mb-4 hidden w-full rounded-lg lg:mb-0 lg:flex"
-            src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/features/feature-office-1.png"
-            alt="office feature image"
+            src={TrainerDesktop}
+            alt="Antrenor personal"
           />
         </div>
         {/*Row*/}
         <div className="items-center gap-8 lg:grid lg:grid-cols-2 xl:gap-16">
-          <img
+          {/*Image on mobile and tablet*/}
+          <Image
+            className="mb-4 flex w-full rounded-lg lg:mb-0 lg:hidden"
+            src={NutritionistMobile}
+            alt="Nutriționist"
+          />
+          {/*Image on desktop*/}
+          <Image
             className="mb-4 hidden w-full rounded-lg lg:mb-0 lg:flex"
-            src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/features/feature-office-2.png"
-            alt="office feature image 2"
+            src={NutritionistDesktop}
+            alt="Nutriționist personal"
           />
           <div className="text-gray-500 dark:text-gray-400 sm:text-lg">
-            <h2 className="mb-4 text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white">
+            <h2 className="mb-4 text-4xl font-bold tracking-tight text-gray-900 dark:text-white">
               Nutriționist
             </h2>
             <p className="mb-4 font-light lg:text-xl">
@@ -248,13 +267,20 @@ export default function ClientHowItWorks() {
         {/*Row*/}
         <div className="items-center gap-8 lg:grid lg:grid-cols-2 xl:gap-16">
           <div className="text-gray-500 dark:text-gray-400 sm:text-lg">
-            <h2 className="mb-4 text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white">
+            {/*Image on mobile and tablet*/}
+            <Image
+              className="mb-4 flex w-full rounded-lg lg:mb-0 lg:hidden"
+              src={GymMobile}
+              alt="Sală de antrenament"
+            />
+            <h2 className="mb-4 text-4xl font-bold tracking-tight text-gray-900 dark:text-white">
               Sală de antrenament
             </h2>
             <p className="mb-8 font-light lg:text-xl">
-              Deliver great service experiences fast - without the complexity of
-              traditional ITSM solutions.Accelerate critical development work,
-              eliminate toil, and deploy changes with ease.
+              Găsirea unei săli de sport bune este esențială pentru a-ți atinge
+              obiectivele de fitness, deoarece aceasta îți poate oferi
+              echipamentul și sprijinul de care ai nevoie pentru a-ți atinge
+              potențialul maxim.
             </p>
             {/*List*/}
             <ul
@@ -276,7 +302,7 @@ export default function ClientHowItWorks() {
                   />
                 </svg>
                 <span className="text-base font-medium leading-tight text-gray-900 dark:text-white">
-                  Continuous integration and deployment
+                  Sală cu antrenor personal
                 </span>
               </li>
               <li className="flex space-x-3">
@@ -294,7 +320,7 @@ export default function ClientHowItWorks() {
                   />
                 </svg>
                 <span className="text-base font-medium leading-tight text-gray-900 dark:text-white">
-                  Development workflow
+                  Abonament sală fitness
                 </span>
               </li>
               <li className="flex space-x-3">
@@ -312,197 +338,27 @@ export default function ClientHowItWorks() {
                   />
                 </svg>
                 <span className="text-base font-medium leading-tight text-gray-900 dark:text-white">
-                  Knowledge management
+                  Abonament ESX sau 7Card
                 </span>
               </li>
             </ul>
-            <p className="mb-8 font-light lg:text-xl">
-              Deliver great service experiences fast - without the complexity of
-              traditional ITSM solutions.
-            </p>
+
+            <Link
+              href={PagesLinks.searchTrainerHomePage.link}
+              className="mb-8 text-white"
+            >
+              <Button type={ButtonType.primary} description="Caută o Sală" />
+            </Link>
           </div>
-          <img
+          {/*Image on desktop*/}
+          <Image
             className="mb-4 hidden w-full rounded-lg lg:mb-0 lg:flex"
-            src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/features/feature-office-1.png"
-            alt="office feature image"
+            src={GymDesktop}
+            alt="Sală de antrenament"
           />
         </div>
       </div>
-      <div className="mx-auto max-w-screen-xl items-center gap-8 py-8 px-4 sm:py-16 lg:grid lg:grid-cols-2 lg:px-6 xl:gap-16 ">
-        {/*<img*/}
-        {/*  className="mb-4 w-full rounded-lg lg:mb-0"*/}
-        {/*  src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/features/feature-office-long.png"*/}
-        {/*  alt="feature image"*/}
-        {/*/>*/}
-        {/*<Image*/}
-        {/*  src={HowItWorksJpg}*/}
-        {/*  alt="Antrenează clienții online"*/}
-        {/*  placeholder="blur"*/}
-        {/*  className="mb-4 w-full rounded-lg lg:mb-0"*/}
-        {/*/>*/}
-        <Image
-          src={HowItWorkImage}
-          alt="Cum functioneaza Kaapo.Fit"
-          placeholder="blur"
-          className="mb-4 w-full rounded-lg lg:mb-0"
-        />
-        <div className="text-gray-500 dark:text-gray-400 sm:text-lg">
-          <h2 className="mb-4 text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white">
-            Ușor, flexibil, simplu.
-          </h2>
-          <p className="mb-4 font-light lg:text-xl">
-            Dacă sunteți un sportiv sau la început de drum și doriți să obțineți
-            cele mai bune rezultate, , un nutritionist care sa va ofere un plan
-            alimentar n.
-          </p>
-          <div className="mb-8 text-white">
-            <Link href={PagesLinks.searchTrainerHomePage.link}>
-              <Button
-                type={ButtonType.primary}
-                description="Caută un Antrenor"
-              />
-            </Link>
-          </div>
 
-          <div className="mb-6 border-t border-b border-gray-200 py-8 dark:border-gray-700">
-            <div className="flex">
-              <div className="mr-4 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary-100 dark:bg-primary-900">
-                <svg
-                  className="h-5 w-5 text-primary-600 dark:text-primary-300"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </div>
-              <div>
-                <h3 className="mb-2 text-xl font-bold text-gray-900 dark:text-white">
-                  Antrenor personal
-                </h3>
-                <p className="mb-2 font-light text-gray-500 dark:text-gray-400">
-                  Este important să-ți găsești un antrenor care să îți înțeleagă
-                  nevoile și să te ajute să îți atingi obiectivul.
-                </p>
-                <a
-                  href="#"
-                  className="inline-flex items-center text-primary-600 hover:text-primary-800 dark:text-primary-500 dark:hover:text-primary-600"
-                >
-                  Caută Antrenor
-                  <svg
-                    className="ml-1 h-6 w-6"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                </a>
-              </div>
-            </div>
-            <div className="flex pt-8">
-              <div className="mr-4 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-purple-100 dark:bg-purple-900">
-                <svg
-                  className="h-5 w-5 text-purple-600 dark:text-purple-300"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11.707 4.707a1 1 0 00-1.414-1.414L10 9.586 8.707 8.293a1 1 0 00-1.414 0l-2 2a1 1 0 101.414 1.414L8 10.414l1.293 1.293a1 1 0 001.414 0l4-4z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </div>
-              <div>
-                <h3 className="mb-2 text-xl font-bold text-gray-900 dark:text-white">
-                  Nutriționist
-                </h3>
-                <p className="mb-2 font-light text-gray-500 dark:text-gray-400">
-                  See the packages your project depends on, the repositories
-                  that depend on them, and any vulnerabilities detected.
-                </p>
-                <a
-                  href="#"
-                  className="inline-flex items-center text-purple-600 hover:text-purple-800 dark:text-purple-500 dark:hover:text-purple-600"
-                >
-                  Learn more
-                  <svg
-                    className="ml-1 h-6 w-6"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                </a>
-              </div>
-            </div>
-            <div className="flex pt-8">
-              <div className="mr-4 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-teal-100 dark:bg-teal-900">
-                <svg
-                  className="dark;text-teal-300 h-5 w-5 text-teal-600"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </div>
-              <div>
-                <h3 className="mb-2 text-xl font-bold text-gray-900 dark:text-white">
-                  Code scanning
-                </h3>
-                <p className="mb-2 font-light text-gray-500 dark:text-gray-400">
-                  Find vulnerabilities in custom code using static analysis.
-                  Prevent new vulnerabilities from being introduced by scanning
-                  every pull request.
-                </p>
-                <a
-                  href="#"
-                  className="inline-flex items-center text-teal-600 hover:text-teal-800 dark:text-teal-500 dark:hover:text-teal-600"
-                >
-                  Learn more
-                  <svg
-                    className="ml-1 h-6 w-6"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                </a>
-              </div>
-            </div>
-          </div>
-          <p className="text-sm">
-            Deliver great service experiences fast - without the complexity of
-            traditional ITSM solutions.Accelerate critical development work,
-            eliminate toil, and deploy changes with ease.
-          </p>
-        </div>
-      </div>
       {/*<div className="lg:flex lg:items-center lg:justify-between">*/}
       {/*  <div className="lg:w-2/4 lg:pr-4">*/}
       {/*    <Badge>CUM FUNCȚIONEAZĂ</Badge>*/}

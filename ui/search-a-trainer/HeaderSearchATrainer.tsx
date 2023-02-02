@@ -4,12 +4,12 @@ import { useState } from 'react';
 import { RomaniaStatesData } from '#/constants/location';
 import SelectInput from '#/ui/shared/form/SelectInput';
 import { TrainerTypeList } from '#/constants/trainer';
-import ButtonWithLoading, { ButtonType } from '#/ui/shared/Button-with-loading';
 import SectionWithWave from '#/ui/shared/SectionWithWave';
 import ProList from '#/ui/shared/ProList';
 import TrainerProfileModel from '#/model/trainer/trainerProfile.model';
 import { flushSync } from 'react-dom';
 import { executeScroll } from '#/lib/scrollTo';
+import Button, { ButtonType } from '#/ui/shared/Button';
 
 export default function HeaderSearchATrainer({
   trainers,
@@ -94,7 +94,7 @@ export default function HeaderSearchATrainer({
               </div>
               {currentCity ? (
                 <div className="mt-4 text-center">
-                  <ButtonWithLoading
+                  <Button
                     type={ButtonType.primary}
                     description="CAUTĂ ANTRENORI"
                     submit={false}

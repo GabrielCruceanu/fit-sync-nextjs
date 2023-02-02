@@ -15,11 +15,10 @@ export default function AuthPage() {
       router.push('/cont');
     }
   }, [router, user]);
-
   if (!user) return <Login />;
 
   return (
-    <div className="m-6">
+    <div className="m-6 h-full">
       <LoadingDots />
     </div>
   );

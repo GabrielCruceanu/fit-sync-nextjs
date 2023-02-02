@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 export default function HomeHeader() {
   return (
     <section className="bg-gray-900">
@@ -39,10 +41,14 @@ export default function HomeHeader() {
             </p>
           </div>
           <div className="col-span-6">
-            <img
+            <Image
               src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/hero/search-mockup-dark.png"
-              className="block"
-              alt="mockup dark"
+              alt="Cum functioneaza Kaapo.Fit"
+              placeholder="blur"
+              className="block w-full"
+              width={600}
+              height={435}
+              blurDataURL="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/hero/search-mockup-dark.png"
             />
           </div>
         </div>
