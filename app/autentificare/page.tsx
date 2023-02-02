@@ -18,7 +18,7 @@ export default function AuthPage() {
   if (!user) return <Login />;
 
   return (
-    <div className="m-6 h-full">
+    <div className="m-6 flex min-h-screen items-center justify-center">
       <LoadingDots />
     </div>
   );
