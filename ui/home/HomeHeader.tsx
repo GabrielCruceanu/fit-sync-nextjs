@@ -30,12 +30,12 @@ export default function HomeHeader() {
             {/*  </svg>*/}
             {/*</a>*/}
             <h1 className="mb-4 text-4xl font-bold leading-none tracking-normal text-white md:text-5xl xl:text-6xl">
-              Găsiți-vă antrenorul, nutriționistul sau sala de sport acum!
+              Găseșțe antrenorul, nutriționistul sau sala de sport acum!
             </h1>
             <p className="mx-auto mb-6 max-w-xl font-light text-gray-300 md:text-lg lg:mx-0 xl:mb-8 xl:text-xl">
-              Vă oferim profiluri detaliate ale antrenorilor, nutriționiștilor
-              și ale centrelor de fitness, astfel încât să îl puteți găsi pe cel
-              care se potrivește cel mai bine nevoilor dumneavoastră.
+              Kaapo.Fit oferă profiluri detaliate ale antrenorilor,
+              nutriționiștilor și ale centrelor de fitness, astfel încât să îl
+              poți găsi pe cel care se potrivește cel mai bine nevoilor tale.
             </p>
           </div>
           <div className="col-span-6">
@@ -66,7 +66,7 @@ export default function HomeHeader() {
               </h3>
               <p className="font-light text-gray-300">
                 Oferim o monitorizare detaliată a progresului, astfel încât să
-                puteți rămâne motivați și să vă păstrați obiectivele la vedere.
+                poți rămâne motivat și să îți păstrazi obiectivul focusat.
               </p>
             </div>
           </div>
@@ -88,9 +88,8 @@ export default function HomeHeader() {
                 Planuri de antrenament personalizate
               </h3>
               <p className="font-light text-gray-300">
-                Antrenorii de pe platforma noastră vă oferă, de asemenea,
-                planuri de antrenament personalizate, adaptate la obiectivele
-                dvs.
+                Antrenorii de pe platforma noastră oferă, de asemenea, planuri
+                de antrenament personalizate, adaptate la obiectivele tale.
               </p>
             </div>
           </div>
@@ -111,11 +110,11 @@ export default function HomeHeader() {
 
             <div>
               <h3 className="mb-1 text-lg font-semibold leading-tight text-white">
-                Planuri de nutritie personalizate
+                Planuri de nutriție personalizate
               </h3>
               <p className="font-light text-gray-300">
-                Nutriționiștii de pe platforma noastră vă oferă, de asemenea,
-                planuri de nutritie personalizate, adaptate la obiectivele dvs.
+                Nutriționiștii de pe platforma noastră oferă, de asemenea,
+                planuri de nutritie personalizate, adaptate la obiectivele tale.
               </p>
             </div>
           </div>

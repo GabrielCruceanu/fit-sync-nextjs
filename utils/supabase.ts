@@ -10,7 +10,7 @@ if (!NEXT_PUBLIC_SUPABASE_URL)
 if (!NEXT_PUBLIC_SUPABASE_KEY)
   throw new Error('Missing env.NEXT_PUBLIC_SUPABASE_KEY');
 
-export const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
+export default createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
 );
