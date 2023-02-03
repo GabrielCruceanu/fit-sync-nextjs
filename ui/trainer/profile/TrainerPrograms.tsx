@@ -1,6 +1,7 @@
 'use client';
 import ProgramsModel from '#/model/programs/programs.model';
 import { TabItem } from 'flowbite';
+import { Tabs } from 'flowbite-react';
 
 export default function TrainerPrograms({
   programs,
@@ -39,8 +40,8 @@ export default function TrainerPrograms({
   // });
 
   return (
-    <section className="my-5 w-full bg-gray-900 px-4 text-justify md:flex md:flex-wrap">
-      <h3 className="mb-4 text-xl text-white">Programe</h3>
+    <section className=" my-5 w-full bg-gray-900  px-4 px-4 text-justify md:my-6">
+      <h3 className="mb-2 text-2xl font-semibold tracking-wide">Programe</h3>
       {/*<Tabs.Group*/}
       {/*  aria-label="Programe"*/}
       {/*  style="underline"*/}
@@ -49,14 +50,14 @@ export default function TrainerPrograms({
       {/*  {programs.map((program, key) => (*/}
       {/*    <Tabs.Item*/}
       {/*      title={program.experience}*/}
-      {/*      className="text-red-600"*/}
+      {/*      className="bg-primary-600 !text-gray-300 "*/}
       {/*      key={key}*/}
       {/*    >*/}
-      {/*      {program.id}*/}
+      {/*      <div className="min-h-[500px] bg-primary-300">{program.id}</div>*/}
       {/*    </Tabs.Item>*/}
       {/*  ))}*/}
       {/*</Tabs.Group>*/}
-      <div className="bg-gray-900">
+      <div className="w-full bg-gray-900 md:flex md:flex-wrap">
         <div className="mx-auto max-w-screen-xl">
           {/*Pricing Card */}
           <div className="divide-y divide-gray-700 rounded-lg bg-gray-800 shadow lg:grid lg:grid-cols-3 lg:divide-y-0 lg:divide-x">

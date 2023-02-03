@@ -22,7 +22,7 @@ export default function Reviews({
   return (
     <section className="my-5 w-full px-4 text-justify md:flex md:flex-wrap">
       <div className="mb-2 flex w-full items-center justify-between">
-        <h3 className="text-xl">Recenzii</h3>
+        <h3 className="text-2xl font-semibold tracking-wide">Recenzii</h3>
         {username && reviews.length > 1 ? (
           <Link href={'/recenzii/' + username} target="_blank">
             <span className="text-teal-500 hover:text-teal-700">
@@ -95,16 +95,16 @@ export function ReviewItem({
           className="mr-3"
         />
         <div>
-          <h3 className="text-xl text-white">
+          <h3 className="text-l font-semibold text-white">
             {clientFirstName + ' ' + clientLastName}
           </h3>
-          <h6 className="text-sm ">
+          <h6 className="text-xs">
             {' '}
             Din data {date.date + '/' + date.month + '/' + date.year}
           </h6>
         </div>
       </div>
-      <p className="text-white">{description}</p>
+      <p className="text-gray-300">{description}</p>
     </div>
   );
 }

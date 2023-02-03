@@ -14,7 +14,7 @@ export default function TrainerProfileContact({
   const { email, phone, website, twitter, facebook, instagram } = contact;
   return (
     <div className="my-5 px-4 text-justify md:my-6">
-      <h3 className="mb-2 text-xl">Contact</h3>
+      <h3 className="mb-2 text-2xl font-semibold tracking-wide">Contact</h3>
 
       <div className="flex">
         {email ? (

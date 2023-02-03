@@ -67,7 +67,7 @@ export default function TrainerProfileHeader({
             {/*Profile Name*/}
             <div>
               <div className="flex">
-                <h1 className="mb-2 w-full overflow-ellipsis text-xl font-semibold md:text-2xl">
+                <h1 className="mb-2 w-full overflow-ellipsis text-xl text-2xl font-semibold tracking-wide">
                   {firstName + ' ' + lastName}
                 </h1>
                 {certificate ? (
@@ -90,12 +90,12 @@ export default function TrainerProfileHeader({
               <div className="md:flex">
                 <div className="flex items-center md:mr-4">
                   <BriefcaseIcon className="mr-2 h-5 w-5 fill-teal-500" />
-                  <h3 className="text-sm">{type}</h3>
+                  <h3 className="text-sm tracking-wide">{type}</h3>
                 </div>
 
                 <div className="flex  items-center">
                   <LocationMarkerIcon className="mr-2 h-5 w-5 fill-teal-500" />
-                  <h3 className="text-sm">{city}</h3>
+                  <h3 className="text-sm tracking-wide">{city}</h3>
                 </div>
               </div>
             </div>
