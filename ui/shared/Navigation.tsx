@@ -18,8 +18,9 @@ import {
 } from '#/constants/navigation';
 import { ProCardCTA } from '#/ui/shared/ProCardCTA';
 import { PagesLinks } from '#/constants/links';
+import { useUser } from '@supabase/auth-helpers-react';
 
-const user = {
+const userFAKE = {
   name: 'Tom Cook',
   email: 'tom@example.com',
   imageUrl:
@@ -31,7 +32,8 @@ function classNames(...classes: string[]) {
 }
 
 export function Navigation() {
-  const isLogged = true;
+  const user = useUser();
+  const isLogged = !!user;
   const isTrainer = true;
   const pathname = usePathname();
   const segment = useSelectedLayoutSegment();
@@ -62,7 +64,7 @@ export function Navigation() {
             <div className="container mx-auto px-4 ">
               <div className="flex h-16 items-center justify-between">
                 <div className="flex-shrink-0">
-                  <Link href="/" className=" space-x-2.5">
+                  <Link replace href="/" className=" space-x-2.5">
                     <div className="h-6">
                       <KaapoFitLogo />
                     </div>
@@ -72,6 +74,7 @@ export function Navigation() {
                   <div className="ml-10 flex items-baseline space-x-4">
                     {navigationStatic.map((item) => (
                       <Link
+                        replace
                         key={item.name}
                         href={item.slug}
                         className={classNames(
@@ -111,7 +114,7 @@ export function Navigation() {
                             <span className="sr-only">Open user menu</span>
                             <Image
                               className="h-8 w-8 rounded-full"
-                              src={user.imageUrl}
+                              src={userFAKE.imageUrl}
                               alt=""
                               width="100"
                               height="100"
@@ -132,6 +135,7 @@ export function Navigation() {
                               <Menu.Item key={item.name}>
                                 {() => (
                                   <Link
+                                    replace
                                     href={item.slug}
                                     className={classNames(
                                       item.slug === segment
@@ -154,6 +158,7 @@ export function Navigation() {
                   <div>
                     <Link
                       href={navigationAuth.slug}
+                      replace
                       className={classNames(
                         navigationAuth.slug === segment
                           ? 'bg-teal-500 text-white hover:border-teal-900 hover:bg-teal-900'
@@ -209,7 +214,7 @@ export function Navigation() {
                     <div className="flex-shrink-0">
                       <Image
                         className="h-10 w-10 rounded-full"
-                        src={user.imageUrl}
+                        src={userFAKE.imageUrl}
                         alt=""
                         width="100"
                         height="100"
@@ -217,10 +222,10 @@ export function Navigation() {
                     </div>
                     <div className="ml-3">
                       <div className="text-base font-medium leading-none text-white">
-                        {user.name}
+                        {userFAKE.name}
                       </div>
                       <div className="text-sm font-medium leading-none text-gray-400">
-                        {user.email}
+                        {userFAKE.email}
                       </div>
                     </div>
                     <button

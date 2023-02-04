@@ -25,7 +25,7 @@ export default function ClientFeatures({
             Căutați în cea mai cuprinzătoare bază de date de formatori din
             România. Antrenorul dumneavoastră este aici.
           </p>
-          <Link href={PagesLinks.searchTrainerHomePage.link}>
+          <Link replace href={PagesLinks.searchTrainerHomePage.link}>
             <Button type={ButtonType.primary} description="Caută un Antrenor" />
           </Link>
         </div>

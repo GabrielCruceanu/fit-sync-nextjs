@@ -13,6 +13,7 @@ export default function TextLink({
 }) {
   return (
     <Link
+      replace
       href={link}
       target={target}
       className="cursor-pointer text-teal-500 transition-all ease-in hover:text-teal-700"
