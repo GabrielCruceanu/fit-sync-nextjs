@@ -3,6 +3,7 @@ import ClientPhysicalDetailsModel from '#/model/client/clientPhysicalDetails.mod
 import BirthModel from '#/model/user/birth.model';
 import TrainerProfileModel from '#/model/trainer/trainerProfile.model';
 import ReviewModel from '#/model/review/review.model';
+import ProgramsModel from '#/model/programs/programs.model';
 
 export default class ClientProfileModel {
   id: string;
@@ -26,6 +27,7 @@ export default class ClientProfileModel {
   trainer?: TrainerProfileModel;
   gym?: TrainerProfileModel;
   reviews?: ReviewModel;
+  program?: ProgramsModel;
 
   constructor(props: ClientProfileModel) {
     this.id = props.id;
@@ -49,5 +51,6 @@ export default class ClientProfileModel {
     this.trainer = props.trainer;
     this.gym = props.gym;
     this.reviews = props.reviews;
+    this.program = props.program;
   }
 }

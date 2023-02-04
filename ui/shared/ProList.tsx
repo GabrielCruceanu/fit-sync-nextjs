@@ -19,7 +19,7 @@ export default function ProList({
           key={key}
         >
           <ProItem
-            link={proCard.id}
+            link={proCard.username}
             key={key}
             name={proCard.firstName + ' ' + proCard.lastName}
             type={proCard.type}

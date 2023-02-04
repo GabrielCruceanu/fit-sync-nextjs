@@ -31,8 +31,8 @@ function classNames(...classes: string[]) {
 }
 
 export function Navigation() {
-  const isLogged = false;
-  const isTrainer = false;
+  const isLogged = true;
+  const isTrainer = true;
   const pathname = usePathname();
   const segment = useSelectedLayoutSegment();
 

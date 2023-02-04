@@ -6,16 +6,24 @@ export type NavItem = {
 
 export const navigationStatic: NavItem[] = [
   {
-    name: 'Acasă',
+    name: 'Acasa',
     slug: '/',
   },
   {
-    name: 'Antrenor',
-    slug: 'antrenor',
+    name: 'Antrenori',
+    slug: 'antrenori',
   },
   {
-    name: 'Caută antrenor',
-    slug: 'cauta-antrenor',
+    name: 'Nutritionisti',
+    slug: 'nutritionisti',
+  },
+  {
+    name: 'Sali',
+    slug: 'sali-de-antrenament',
+  },
+  {
+    name: 'PRO',
+    slug: 'pro',
   },
   // {
   //   name: 'Blog',

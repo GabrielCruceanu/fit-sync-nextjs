@@ -2,11 +2,11 @@ import SectionWithWave from '#/ui/shared/SectionWithWave';
 import Badge from '#/ui/shared/Badge';
 import TitleSection from '#/ui/shared/TitleSection';
 import { PagesLinks } from '#/constants/links';
-import Button, { ButtonType } from '#/ui/shared/Button';
 import Link from 'next/link';
 import ProList from '#/ui/shared/ProList';
 import * as _ from 'lodash';
 import TrainerProfileModel from '#/model/trainer/trainerProfile.model';
+import Button, { ButtonType } from '#/ui/shared/Button';
 
 export default function ClientFeatures({
   trainers,
@@ -26,7 +26,7 @@ export default function ClientFeatures({
             România. Antrenorul dumneavoastră este aici.
           </p>
           <Link href={PagesLinks.searchTrainerHomePage.link}>
-            <Button type={ButtonType.primary} description="CAUTĂ UN ANTRENOR" />
+            <Button type={ButtonType.primary} description="Caută un Antrenor" />
           </Link>
         </div>
 
