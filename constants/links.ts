@@ -38,7 +38,7 @@ export const PagesLinks = {
     name: 'Acasa',
   },
   trainerHomePage: {
-    link: '/antrenor',
+    link: '/pro',
     name: 'Acasă Antrenor',
   },
   clientHomePage: {
@@ -46,8 +46,8 @@ export const PagesLinks = {
     name: 'Acasă client',
   },
   searchTrainerHomePage: {
-    link: '/cauta-antrenor',
-    name: 'Caută antrenor',
+    link: '/cauta-pro',
+    name: 'Caută pro',
   },
   blog: {
     link: '/blog',

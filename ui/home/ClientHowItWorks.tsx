@@ -364,7 +364,7 @@ export default function ClientHowItWorks() {
       {/*    <Badge>CUM FUNCȚIONEAZĂ</Badge>*/}
       {/*    <TitleSection>Antrenament personal online</TitleSection>*/}
       {/*    <p>*/}
-      {/*      Un antrenor personal este o persoană care vă antrenează pentru a vă*/}
+      {/*      Un pro personal este o persoană care vă antrenează pentru a vă*/}
       {/*      atinge obiectivele de fitness. Acesta este de obicei un profesionist*/}
       {/*      cu cunoștințe în diferite tehnici de antrenament și exerciții.*/}
       {/*    </p>*/}
@@ -392,12 +392,12 @@ export default function ClientHowItWorks() {
       {/*        </p>*/}
       {/*      </div>*/}
       {/*      <h4 className="mb-3 text-2xl font-semibold leading-none md:ml-3 lg:mb-4">*/}
-      {/*        Găsiți un antrenor*/}
+      {/*        Găsiți un pro*/}
       {/*      </h4>*/}
       {/*    </div>*/}
       {/*    <p>*/}
       {/*      Dacă doriți să obțineți cele mai bune rezultate, este important să*/}
-      {/*      găsiți un antrenor care să înțeleagă de ce aveți nevoie și să vă*/}
+      {/*      găsiți un pro care să înțeleagă de ce aveți nevoie și să vă*/}
       {/*      ajute să vă atingeți obiectivul. Răsfoiți antrenorii personali în*/}
       {/*      funcție de locație sau de diferite servicii.*/}
       {/*    </p>*/}

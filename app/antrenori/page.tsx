@@ -1,4 +1,4 @@
-import HeaderSearchATrainer from '../../ui/search-a-trainer/HeaderSearchATrainer';
+import HeaderSearchATrainer from '../../ui/search-a-pro/HeaderSearchATrainer';
 
 async function getTrainersData() {
   const res = await fetch('https://kaapo.fit/api/trainers');
