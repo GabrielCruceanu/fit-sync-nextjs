@@ -5,6 +5,7 @@ export default class ProgramsModel {
   id: string;
   trainerUsername: string;
   name: string;
+  price: number;
   type: string;
   category: string;
   experience: string;
@@ -15,6 +16,7 @@ export default class ProgramsModel {
     this.id = props.id;
     this.trainerUsername = props.trainerUsername;
     this.name = props.name;
+    this.price = props.price;
     this.type = props.type;
     this.category = props.category;
     this.experience = props.experience;

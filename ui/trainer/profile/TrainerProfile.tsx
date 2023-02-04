@@ -5,6 +5,7 @@ import TrainerProfileContact from '#/ui/trainer/profile/TrainerProfileContact';
 import Reviews from '#/ui/shared/Reviews';
 import TrainerProfileDescription from '#/ui/trainer/profile/TrainerProfileDescription';
 import TrainerPrograms from '#/ui/trainer/profile/TrainerPrograms';
+import { TabItem } from 'flowbite';
 
 export default function TrainerProfile({
   trainer,

@@ -2077,7 +2077,7 @@ export enum ProgramsCategory {
 }
 
 export enum ProgramsExperience {
-  Incepator = 'Incepetor',
+  Incepator = 'Incepator',
   Intermediar = 'Intermediar',
   Experimentat = 'Experimentat',
 }

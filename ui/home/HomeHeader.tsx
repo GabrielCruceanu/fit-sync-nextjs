@@ -1,8 +1,10 @@
 import Image from 'next/image';
+import HeroBackground from '#/ui/shared/HeroBackground';
 
 export default function HomeHeader() {
   return (
-    <section className="bg-gray-900">
+    <section className="relative  z-0 flex min-h-screen w-full items-center justify-center bg-gray-900 p-4">
+      <HeroBackground />
       <div className="mx-auto max-w-screen-xl px-4 py-8 lg:py-16">
         <div className="mb-8 grid items-center gap-6 lg:mb-16 lg:grid-cols-12 lg:gap-12">
           <div className="col-span-6 text-center sm:mb-6 lg:mb-0 lg:text-left">
