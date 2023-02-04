@@ -24,7 +24,7 @@ export default function TrainerHeader() {
               Începe testul gratuit de 14 zile astăzi!
             </p>
 
-            <Link href={PagesLinks.auth.link}>
+            <Link replace href={PagesLinks.auth.link}>
               <Button type={ButtonType.primary} description="ÎNCEPE ACUM" />
             </Link>
           </div>

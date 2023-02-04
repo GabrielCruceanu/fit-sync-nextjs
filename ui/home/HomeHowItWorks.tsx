@@ -35,7 +35,7 @@ export default function HomeHowItWorks() {
           </p>
           <div className="mt-5">
             <div className="mr-3 mt-3 inline-block md:mt-0 lg:mr-3">
-              <Link href={PagesLinks.trainerHomePage.link}>
+              <Link replace href={PagesLinks.trainerHomePage.link}>
                 <Button
                   type={ButtonType.primary}
                   description="Sunt profesionist"
@@ -43,7 +43,7 @@ export default function HomeHowItWorks() {
               </Link>
             </div>
             <div className="mt-3 inline-block md:mt-0">
-              <Link href={PagesLinks.searchTrainerHomePage.link}>
+              <Link replace href={PagesLinks.searchTrainerHomePage.link}>
                 <Button
                   type={ButtonType.primary}
                   description="Caută un Antrenor"

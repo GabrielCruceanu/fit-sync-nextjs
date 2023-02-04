@@ -132,6 +132,7 @@ export default function ClientHowItWorks() {
             </ul>
 
             <Link
+              replace
               href={PagesLinks.searchTrainerHomePage.link}
               className="mb-8 text-white"
             >

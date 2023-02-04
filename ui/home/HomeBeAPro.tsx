@@ -26,6 +26,7 @@ export default function HomeBeAPro() {
             </p>
 
             <Link
+              replace
               href={PagesLinks.trainerHomePage.link}
               className="inline-flex items-center rounded-lg bg-primary-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900"
             >
@@ -40,7 +41,7 @@ export default function HomeBeAPro() {
                   fillRule="evenodd"
                   d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
                   clipRule="evenodd"
-                ></path>
+                />
               </svg>
             </Link>
           </div>

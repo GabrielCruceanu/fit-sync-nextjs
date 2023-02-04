@@ -60,6 +60,7 @@ export function Footer() {
           </h3>
           <div className="flex flex-col text-sm md:flex-row lg:justify-end">
             <Link
+              replace
               href={TermsLinks.termeniSiConditii.link}
               target="_blank"
               className="text-teal-500 hover:text-teal-700"
@@ -67,6 +68,7 @@ export function Footer() {
               {TermsLinks.termeniSiConditii.name}
             </Link>
             <Link
+              replace
               href={TermsLinks.gdpr.link}
               target="_blank"
               className="text-teal-500 hover:text-teal-700 md:px-3"
@@ -74,6 +76,7 @@ export function Footer() {
               {TermsLinks.gdpr.name}
             </Link>
             <Link
+              replace
               href={TermsLinks.cookies.link}
               target="_blank"
               className="text-teal-500 hover:text-teal-700"
