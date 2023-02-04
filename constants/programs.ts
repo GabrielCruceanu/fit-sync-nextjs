@@ -7,6 +7,7 @@ export const Programs: ProgramsModel[] = [
     name: 'Full Body Goal Crusher',
     type: 'PRO',
     category: 'Masă mulsculară',
+    price: 432,
     experience: 'Incepator',
     workout: {
       id: '12345',
@@ -1042,6 +1043,7 @@ export const Programs: ProgramsModel[] = [
     type: 'PRO',
     category: 'Masă mulsculară',
     experience: 'Incepator',
+    price: 123,
     workout: {
       id: '123455',
       photo:

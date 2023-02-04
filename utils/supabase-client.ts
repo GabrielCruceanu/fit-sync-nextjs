@@ -2,15 +2,15 @@ import {
   createBrowserSupabaseClient,
   User,
 } from '@supabase/auth-helpers-nextjs';
-import { ProductWithPrice } from 'types';
-import type { Database } from 'types_db';
+import { Database } from '#/types/supabase';
+import { ProductWithPrice } from '#/types/types';
 
-export const supabase = createBrowserSupabaseClient<Database>();
+export const supabaseClient = createBrowserSupabaseClient<Database>();
 
 export const getActiveProductsWithPrices = async (): Promise<
   ProductWithPrice[]
 > => {
-  const { data, error } = await supabase
+  const { data, error } = await supabaseClient
     .from('products')
     .select('*, prices(*)')
     .eq('active', true)
@@ -27,7 +27,7 @@ export const getActiveProductsWithPrices = async (): Promise<
 };
 
 export const updateUserName = async (user: User, name: string) => {
-  await supabase
+  await supabaseClient
     .from('users')
     .update({
       full_name: name,

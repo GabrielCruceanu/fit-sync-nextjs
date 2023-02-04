@@ -1,11 +1,11 @@
 'use client';
-import { useSupabaseClient } from '@supabase/auth-helpers-react';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { PagesLinks } from '#/constants/links';
 import { validateEmail } from '#/utils/helpers';
 import { AuthError } from '#/constants/authError';
+import { useSupabaseClient } from '@supabase/auth-helpers-react';
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -13,8 +13,9 @@ export default function Login() {
   const [password, setPassword] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const [loginError, setLoginError] = useState('');
-  const supabaseClient = useSupabaseClient();
   const router = useRouter();
+
+  const supabaseClient = useSupabaseClient();
 
   const handleLogin = async (email: string, password: string) => {
     if (email === null || email === '') {
