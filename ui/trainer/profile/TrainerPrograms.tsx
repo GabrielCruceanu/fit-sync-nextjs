@@ -2,10 +2,10 @@
 import ProgramsModel from '#/model/programs/programs.model';
 import type { TabItem, TabsInterface, TabsOptions } from 'flowbite';
 import { Tabs } from 'flowbite';
-import { useEffect } from 'react';
 import { ProgramsExperience } from '#/constants/programs';
 import TrainerCard from '#/ui/shared/ProgramCard';
 import NoProgramCard from '#/ui/shared/NoProgramCard';
+import { useEffect } from 'react';
 
 export default function TrainerPrograms({
   programs,
@@ -27,22 +27,21 @@ export default function TrainerPrograms({
   );
 
   useEffect(function mount() {
-    // @ts-ignore
-    let pricingTabEls: TabItem[] = [
+    const pricingTabEls: TabItem[] = [
       {
         id: ProgramsExperience.Incepator,
-        triggerEl: document.querySelector('#Incepator-tab'),
-        targetEl: document.querySelector('#Incepator-content'),
+        triggerEl: document.querySelector('#Incepator-tab')!,
+        targetEl: document.querySelector('#Incepator-content')!,
       },
       {
         id: ProgramsExperience.Intermediar,
-        triggerEl: document.querySelector('#Intermediar-tab'),
-        targetEl: document.querySelector('#Intermediar-content'),
+        triggerEl: document.querySelector('#Intermediar-tab')!,
+        targetEl: document.querySelector('#Intermediar-content')!,
       },
       {
         id: ProgramsExperience.Experimentat,
-        triggerEl: document.querySelector('#Experimentat-tab'),
-        targetEl: document.querySelector('#Experimentat-content'),
+        triggerEl: document.querySelector('#Experimentat-tab')!,
+        targetEl: document.querySelector('#Experimentat-content')!,
       },
     ];
 

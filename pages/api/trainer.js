@@ -80,6 +80,7 @@ export default function handlerGetTrainer(req, res) {
         trainerUsername: 'Cristofer Arcand',
         name: 'Full Body Goal Crusher',
         type: 'PRO',
+        price: 78,
         category: 'Masă mulsculară',
         experience: 'Incepator',
         workout: {
@@ -1114,6 +1115,7 @@ export default function handlerGetTrainer(req, res) {
         trainerUsername: 'Cristofer Arcand',
         name: 'Full Body Goal Crusher',
         type: 'PRO',
+        price: 78,
         category: 'Masă mulsculară',
         experience: 'Incepator',
         workout: {

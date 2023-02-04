@@ -59,7 +59,7 @@ export default function Cont() {
     }).format((subscription?.prices?.unit_amount || 0) / 100);
 
   return (
-    <section className="mb-32 bg-black">
+    <section className="mb-32 bg-gray-900">
       <div className="mx-auto max-w-6xl px-4 pt-8 pb-8 sm:px-6 sm:pt-24 lg:px-8">
         <div className="sm:align-center sm:flex sm:flex-col">
           <h1 className="text-4xl font-extrabold text-white sm:text-center sm:text-6xl">
