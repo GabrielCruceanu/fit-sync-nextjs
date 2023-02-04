@@ -5,6 +5,7 @@ import { Tabs } from 'flowbite';
 import { ProgramsExperience } from '#/constants/programs';
 import TrainerCard from '#/ui/shared/ProgramCard';
 import NoProgramCard from '#/ui/shared/NoProgramCard';
+import { useEffect } from 'react';
 
 export default function TrainerPrograms({
   programs,
@@ -24,40 +25,43 @@ export default function TrainerPrograms({
   const programsForExperimentati = programs.filter(
     (program) => program.experience == ProgramsExperience.Experimentat,
   );
-  const pricingTabEls: TabItem[] = [
-    {
-      id: ProgramsExperience.Incepator,
-      triggerEl: document.querySelector('#Incepator-tab')!,
-      targetEl: document.querySelector('#Incepator-content')!,
-    },
-    {
-      id: ProgramsExperience.Intermediar,
-      triggerEl: document.querySelector('#Intermediar-tab')!,
-      targetEl: document.querySelector('#Intermediar-content')!,
-    },
-    {
-      id: ProgramsExperience.Experimentat,
-      triggerEl: document.querySelector('#Experimentat-tab')!,
-      targetEl: document.querySelector('#Experimentat-content')!,
-    },
-  ];
 
-  const options: TabsOptions = {
-    defaultTabId: ProgramsExperience.Incepator,
-    activeClasses:
-      'bg-teal-500 hover:bg-teal-800 hover:border-teal-800 border-teal-500 transition ease-out duration-100',
-    inactiveClasses:
-      'bg-gray-600 hover:bg-gray-800 hover:border-gray-800 border-gray-600 transition ease-in duration-75',
-    // onShow(context) {
-    //   const activeTab = context.getActiveTab();
-    //   pricingTabEls.map(function (el) {
-    //     el.targetEl.classList.add('hidden');
-    //   });
-    //   activeTab.targetEl.classList.remove('hidden');
-    // },
-  };
-  const pricingTabs: TabsInterface = new Tabs(pricingTabEls, options);
-  pricingTabs.show('Incepator');
+  useEffect(function mount() {
+    const pricingTabEls: TabItem[] = [
+      {
+        id: ProgramsExperience.Incepator,
+        triggerEl: document.querySelector('#Incepator-tab')!,
+        targetEl: document.querySelector('#Incepator-content')!,
+      },
+      {
+        id: ProgramsExperience.Intermediar,
+        triggerEl: document.querySelector('#Intermediar-tab')!,
+        targetEl: document.querySelector('#Intermediar-content')!,
+      },
+      {
+        id: ProgramsExperience.Experimentat,
+        triggerEl: document.querySelector('#Experimentat-tab')!,
+        targetEl: document.querySelector('#Experimentat-content')!,
+      },
+    ];
+
+    const options: TabsOptions = {
+      defaultTabId: ProgramsExperience.Incepator,
+      activeClasses:
+        'bg-teal-500 hover:bg-teal-800 hover:border-teal-800 border-teal-500 transition ease-out duration-100',
+      inactiveClasses:
+        'bg-gray-600 hover:bg-gray-800 hover:border-gray-800 border-gray-600 transition ease-in duration-75',
+      // onShow(context) {
+      //   const activeTab = context.getActiveTab();
+      //   pricingTabEls.map(function (el) {
+      //     el.targetEl.classList.add('hidden');
+      //   });
+      //   activeTab.targetEl.classList.remove('hidden');
+      // },
+    };
+    const pricingTabs: TabsInterface = new Tabs(pricingTabEls, options);
+    pricingTabs.show('Incepator');
+  });
 
   return (
     <section className="my-5 w-full bg-gray-900 px-4 px-4 text-justify md:my-6">
