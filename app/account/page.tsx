@@ -4,13 +4,15 @@ import {
   useUser,
   useSupabaseClient,
   Session,
+  useSession,
 } from '@supabase/auth-helpers-react';
 import { Database } from '#/types/supabase';
 type Profiles = Database['public']['Tables']['profiles']['Row'];
 
-export default function Account({ session }: { session: Session }) {
+export default function Account() {
   const supabase = useSupabaseClient<Database>();
   const user = useUser();
+  const session = useSession();
   const [loading, setLoading] = useState(true);
   const [username, setUsername] = useState<Profiles['username']>(null);
   const [website, setWebsite] = useState<Profiles['website']>(null);
@@ -18,7 +20,7 @@ export default function Account({ session }: { session: Session }) {
 
   useEffect(() => {
     getProfile();
-  }, [session]);
+  }, [getProfile, session]);
 
   async function getProfile() {
     try {
@@ -84,7 +86,7 @@ export default function Account({ session }: { session: Session }) {
     <div className="form-widget">
       <div>
         <label htmlFor="email">Email</label>
-        <input id="email" type="text" value={session.user.email} disabled />
+        <input id="email" type="text" value={session?.user.email} disabled />
       </div>
       <div>
         <label htmlFor="username">Username</label>
