@@ -5,17 +5,15 @@ import Link from 'next/link';
 import { PagesLinks } from '#/constants/links';
 import { validateEmail } from '#/utils/helpers';
 import { AuthError } from '#/constants/authError';
-import { useSupabaseClient } from '@supabase/auth-helpers-react';
+import { TypedSupabaseClient } from '#/app/layout';
 
-export default function Login() {
+export default function Login({ supabase }: { supabase: TypedSupabaseClient }) {
   const [email, setEmail] = useState('');
   const [emailError, setEmailError] = useState('');
   const [password, setPassword] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const [loginError, setLoginError] = useState('');
   const router = useRouter();
-
-  const supabaseClient = useSupabaseClient();
 
   const handleLogin = async (email: string, password: string) => {
     if (email === null || email === '') {
@@ -39,7 +37,7 @@ export default function Login() {
       const {
         data: { user },
         error,
-      } = await supabaseClient.auth.signInWithPassword({ email, password });
+      } = await supabase.auth.signInWithPassword({ email, password });
 
       if (!error && !user)
         alert('Verifică-ți e-mailul pentru linkul de autentificare!');

@@ -1,21 +1,22 @@
 'use client';
-import { useUser } from '@supabase/auth-helpers-react';
+
 import { useEffect } from 'react';
 import Login from '#/ui/auth/Login';
 import LoadingDots from '#/ui/shared/LoadingDots';
 import { useRouter } from 'next/navigation';
+import { useSupabase } from '#/supabase/supabase-provider';
 
 export default function AuthPage() {
   const router = useRouter();
-  const user = useUser();
+  const { supabase, session } = useSupabase();
 
   useEffect(() => {
-    if (user) {
-      console.log('user', user);
+    if (session) {
+      console.log('session', session);
       router.push('/cont');
     }
-  }, [router, user]);
-  if (!user) return <Login />;
+  }, [router, session]);
+  if (!session) return <Login supabase={supabase} />;
 
   return (
     <div className="m-6 flex min-h-screen items-center justify-center">

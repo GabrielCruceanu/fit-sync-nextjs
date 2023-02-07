@@ -18,7 +18,7 @@ import {
 } from '#/constants/navigation';
 import { ProCardCTA } from '#/ui/shared/ProCardCTA';
 import { PagesLinks } from '#/constants/links';
-import { useUser } from '@supabase/auth-helpers-react';
+import { useSupabase } from '#/supabase/supabase-provider';
 
 const userFAKE = {
   name: 'Tom Cook',
@@ -32,7 +32,9 @@ function classNames(...classes: string[]) {
 }
 
 export function Navigation() {
-  const user = useUser();
+  const { session } = useSupabase();
+  const user = session?.user;
+  console.log('user', user);
   const isLogged = !!user;
   const isTrainer = true;
   const pathname = usePathname();
