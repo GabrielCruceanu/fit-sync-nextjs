@@ -13,7 +13,7 @@ export default function AuthPage() {
   useEffect(() => {
     if (session) {
       console.log('session', session);
-      router.push('/cont');
+      router.push('/profil');
     }
   }, [router, session]);
   if (!session) return <Login supabase={supabase} />;

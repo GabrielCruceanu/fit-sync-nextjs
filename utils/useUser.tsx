@@ -27,19 +27,16 @@ export const MyUserContextProvider = (props: Props) => {
   const [isLoadingData, setIsloadingData] = useState(false);
   const [userDetails, setUserDetails] = useState<UserDetails | null>(null);
   const [subscription, setSubscription] = useState<Subscription | null>(null);
-  let getUserDetails;
-  // let getSubscription;
+  const getUserDetails = () => supabase.from('users').select('*').single();
+  // const getSubscription = () =>
+  //   supabase
+  //     .from('subscriptions')
+  //     .select('*, prices(*, products(*))')
+  //     .in('status', ['trialing', 'active'])
+  //     .maybeSingle();
   useEffect(() => {
     if (user && !isLoadingData && !userDetails && !subscription) {
       setIsloadingData(true);
-
-      getUserDetails = () => supabase.from('users').select('*').single();
-      // getSubscription = () =>
-      //   supabase
-      //     .from('subscriptions')
-      //     .select('*, prices(*, products(*))')
-      //     .in('status', ['trialing', 'active'])
-      //     .maybeSingle();
 
       Promise.allSettled([
         getUserDetails(),

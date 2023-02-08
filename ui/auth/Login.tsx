@@ -50,7 +50,7 @@ export default function Login({ supabase }: { supabase: TypedSupabaseClient }) {
       console.log('Error thrown:', error.message);
       alert(error.error_description || error);
     }
-    router.push('/cont');
+    router.push('/profil');
   };
 
   return (

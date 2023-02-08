@@ -1,8 +1,8 @@
 export enum UserType {
-  Client = 'Client',
-  Nutritionist = 'Nutritionist',
-  Trainer = 'Trainer',
-  Gym = 'Gym',
+  Client = 'client',
+  Nutritionist = 'nutritionist',
+  Trainer = 'trainer',
+  Gym = 'gym',
 }
 
 export enum CollectionsType {
