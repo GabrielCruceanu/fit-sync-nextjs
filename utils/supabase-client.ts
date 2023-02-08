@@ -26,11 +26,11 @@ export const getActiveProductsWithPrices = async (): Promise<
   return (data as any) || [];
 };
 
-export const updateUserName = async (user: User, name: string) => {
+export const updateUserName = async (user: User, username: string) => {
   await supabaseClient
     .from('users')
     .update({
-      full_name: name,
+      username: username,
     })
     .eq('id', user.id);
 };

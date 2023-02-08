@@ -1,4 +1,6 @@
 import Stripe from 'stripe';
+import { Database } from '#/types/supabase';
+
 export interface PageMeta {
   title: string;
   description: string;
@@ -23,15 +25,7 @@ export interface ProductWithPrice extends Product {
   prices?: Price[];
 }
 
-export interface UserDetails {
-  id: string /* primary key */;
-  first_name?: string | null;
-  last_name?: string | null;
-  full_name?: string | null;
-  avatar_url?: string | null;
-  billing_address?: Stripe.Address | null;
-  payment_method?: Stripe.PaymentMethod[Stripe.PaymentMethod.Type] | null;
-}
+export type Users = Database['public']['Tables']['users']['Row'];
 
 export interface Price {
   id: string /* primary key */;

@@ -4,225 +4,769 @@ export type Json =
   | boolean
   | null
   | { [key: string]: Json }
-  | Json[];
+  | Json[]
 
 export interface Database {
   public: {
     Tables: {
       clients: {
         Row: {
-          created_at: string | null;
-          email: string | null;
-          first_name: string | null;
-          gender: string | null;
-          id: string;
-          last_name: string | null;
-        };
+          birth_date: string | null
+          birth_month: string | null
+          birth_year: string | null
+          city: string | null
+          country: string | null
+          current_details: number
+          email: string | null
+          first_name: string | null
+          gender: Database["public"]["Enums"]["gender_type"] | null
+          has_premium: boolean | null
+          history_details: number | null
+          id: string
+          joined: string
+          last_name: string | null
+          phone: string | null
+          profile_picture_url: string | null
+          state: string | null
+          type: Database["public"]["Enums"]["user_type"] | null
+          username: string | null
+        }
         Insert: {
-          created_at?: string | null;
-          email?: string | null;
-          first_name?: string | null;
-          gender?: string | null;
-          id: string;
-          last_name?: string | null;
-        };
+          birth_date?: string | null
+          birth_month?: string | null
+          birth_year?: string | null
+          city?: string | null
+          country?: string | null
+          current_details: number
+          email?: string | null
+          first_name?: string | null
+          gender?: Database["public"]["Enums"]["gender_type"] | null
+          has_premium?: boolean | null
+          history_details?: number | null
+          id: string
+          joined?: string
+          last_name?: string | null
+          phone?: string | null
+          profile_picture_url?: string | null
+          state?: string | null
+          type?: Database["public"]["Enums"]["user_type"] | null
+          username?: string | null
+        }
         Update: {
-          created_at?: string | null;
-          email?: string | null;
-          first_name?: string | null;
-          gender?: string | null;
-          id?: string;
-          last_name?: string | null;
-        };
-      };
+          birth_date?: string | null
+          birth_month?: string | null
+          birth_year?: string | null
+          city?: string | null
+          country?: string | null
+          current_details?: number
+          email?: string | null
+          first_name?: string | null
+          gender?: Database["public"]["Enums"]["gender_type"] | null
+          has_premium?: boolean | null
+          history_details?: number | null
+          id?: string
+          joined?: string
+          last_name?: string | null
+          phone?: string | null
+          profile_picture_url?: string | null
+          state?: string | null
+          type?: Database["public"]["Enums"]["user_type"] | null
+          username?: string | null
+        }
+      }
+      current_physical_details: {
+        Row: {
+          arm_left: number | null
+          arm_right: number | null
+          ass: number | null
+          back_photo: string | null
+          body_height: number | null
+          body_weight: number | null
+          chest: number | null
+          client_id: string | null
+          date_created: string | null
+          front_photo: string | null
+          hip: number | null
+          id: number
+          neck: number | null
+          shoulders: number | null
+          side_photo: string | null
+          thigh: number | null
+          waist: number | null
+        }
+        Insert: {
+          arm_left?: number | null
+          arm_right?: number | null
+          ass?: number | null
+          back_photo?: string | null
+          body_height?: number | null
+          body_weight?: number | null
+          chest?: number | null
+          client_id?: string | null
+          date_created?: string | null
+          front_photo?: string | null
+          hip?: number | null
+          id?: number
+          neck?: number | null
+          shoulders?: number | null
+          side_photo?: string | null
+          thigh?: number | null
+          waist?: number | null
+        }
+        Update: {
+          arm_left?: number | null
+          arm_right?: number | null
+          ass?: number | null
+          back_photo?: string | null
+          body_height?: number | null
+          body_weight?: number | null
+          chest?: number | null
+          client_id?: string | null
+          date_created?: string | null
+          front_photo?: string | null
+          hip?: number | null
+          id?: number
+          neck?: number | null
+          shoulders?: number | null
+          side_photo?: string | null
+          thigh?: number | null
+          waist?: number | null
+        }
+      }
       customers: {
         Row: {
-          id: string;
-          stripe_customer_id: string | null;
-        };
+          id: string
+          stripe_customer_id: string | null
+        }
         Insert: {
-          id: string;
-          stripe_customer_id?: string | null;
-        };
+          id: string
+          stripe_customer_id?: string | null
+        }
         Update: {
-          id?: string;
-          stripe_customer_id?: string | null;
-        };
-      };
+          id?: string
+          stripe_customer_id?: string | null
+        }
+      }
+      gyms: {
+        Row: {
+          active_personal_trainers: number | null
+          certificate: boolean | null
+          city: string | null
+          country: string | null
+          description: string | null
+          email: string | null
+          experience: string | null
+          facebook: string | null
+          gallery: string | null
+          gym_name: string | null
+          has_premium: boolean | null
+          id: string
+          instagram: string | null
+          joined: string
+          personal: string | null
+          phone: string | null
+          profile_picture_url: string | null
+          reviews: string | null
+          state: string | null
+          street: string | null
+          twitter: string | null
+          type: string | null
+          username: string | null
+          website: string | null
+        }
+        Insert: {
+          active_personal_trainers?: number | null
+          certificate?: boolean | null
+          city?: string | null
+          country?: string | null
+          description?: string | null
+          email?: string | null
+          experience?: string | null
+          facebook?: string | null
+          gallery?: string | null
+          gym_name?: string | null
+          has_premium?: boolean | null
+          id: string
+          instagram?: string | null
+          joined?: string
+          personal?: string | null
+          phone?: string | null
+          profile_picture_url?: string | null
+          reviews?: string | null
+          state?: string | null
+          street?: string | null
+          twitter?: string | null
+          type?: string | null
+          username?: string | null
+          website?: string | null
+        }
+        Update: {
+          active_personal_trainers?: number | null
+          certificate?: boolean | null
+          city?: string | null
+          country?: string | null
+          description?: string | null
+          email?: string | null
+          experience?: string | null
+          facebook?: string | null
+          gallery?: string | null
+          gym_name?: string | null
+          has_premium?: boolean | null
+          id?: string
+          instagram?: string | null
+          joined?: string
+          personal?: string | null
+          phone?: string | null
+          profile_picture_url?: string | null
+          reviews?: string | null
+          state?: string | null
+          street?: string | null
+          twitter?: string | null
+          type?: string | null
+          username?: string | null
+          website?: string | null
+        }
+      }
+      gyms_reviews: {
+        Row: {
+          client_first_name: string | null
+          client_id: string | null
+          client_last_name: string | null
+          client_photo: string | null
+          date_created: string | null
+          description: string | null
+          id: number
+          nutritionist_id: string | null
+          stars: number | null
+        }
+        Insert: {
+          client_first_name?: string | null
+          client_id?: string | null
+          client_last_name?: string | null
+          client_photo?: string | null
+          date_created?: string | null
+          description?: string | null
+          id?: number
+          nutritionist_id?: string | null
+          stars?: number | null
+        }
+        Update: {
+          client_first_name?: string | null
+          client_id?: string | null
+          client_last_name?: string | null
+          client_photo?: string | null
+          date_created?: string | null
+          description?: string | null
+          id?: number
+          nutritionist_id?: string | null
+          stars?: number | null
+        }
+      }
+      history_physical_details: {
+        Row: {
+          arm_left: number | null
+          arm_right: number | null
+          ass: number | null
+          back_photo: string | null
+          body_height: number | null
+          body_weight: number | null
+          chest: number | null
+          client_id: string | null
+          date_created: string | null
+          front_photo: string | null
+          hip: number | null
+          id: number
+          neck: number | null
+          shoulders: string | null
+          side_photo: string | null
+          thigh: number | null
+          waist: number | null
+        }
+        Insert: {
+          arm_left?: number | null
+          arm_right?: number | null
+          ass?: number | null
+          back_photo?: string | null
+          body_height?: number | null
+          body_weight?: number | null
+          chest?: number | null
+          client_id?: string | null
+          date_created?: string | null
+          front_photo?: string | null
+          hip?: number | null
+          id?: number
+          neck?: number | null
+          shoulders?: string | null
+          side_photo?: string | null
+          thigh?: number | null
+          waist?: number | null
+        }
+        Update: {
+          arm_left?: number | null
+          arm_right?: number | null
+          ass?: number | null
+          back_photo?: string | null
+          body_height?: number | null
+          body_weight?: number | null
+          chest?: number | null
+          client_id?: string | null
+          date_created?: string | null
+          front_photo?: string | null
+          hip?: number | null
+          id?: number
+          neck?: number | null
+          shoulders?: string | null
+          side_photo?: string | null
+          thigh?: number | null
+          waist?: number | null
+        }
+      }
+      nutritionist_reviews: {
+        Row: {
+          client_first_name: string | null
+          client_id: string | null
+          client_last_name: string | null
+          client_photo: string | null
+          date_created: string | null
+          description: string | null
+          id: number
+          nutritionist_id: string | null
+          stars: number | null
+        }
+        Insert: {
+          client_first_name?: string | null
+          client_id?: string | null
+          client_last_name?: string | null
+          client_photo?: string | null
+          date_created?: string | null
+          description?: string | null
+          id?: number
+          nutritionist_id?: string | null
+          stars?: number | null
+        }
+        Update: {
+          client_first_name?: string | null
+          client_id?: string | null
+          client_last_name?: string | null
+          client_photo?: string | null
+          date_created?: string | null
+          description?: string | null
+          id?: number
+          nutritionist_id?: string | null
+          stars?: number | null
+        }
+      }
+      nutritionists: {
+        Row: {
+          active_clients: string | null
+          birth_date: string | null
+          birth_month: string | null
+          birth_year: string | null
+          certificate: boolean | null
+          city: string | null
+          completed_clients: string | null
+          country: string | null
+          description: string | null
+          email: string | null
+          experience: string | null
+          facebook: string | null
+          first_name: string | null
+          gallery: string | null
+          gender: Database["public"]["Enums"]["gender_type"] | null
+          has_premium: boolean | null
+          id: string
+          instagram: string | null
+          joined: string
+          last_name: string | null
+          phone: string | null
+          profile_picture_url: string | null
+          programs: string | null
+          reviews: string | null
+          state: string | null
+          twitter: string | null
+          type: Database["public"]["Enums"]["user_type"] | null
+          username: string | null
+          website: string | null
+        }
+        Insert: {
+          active_clients?: string | null
+          birth_date?: string | null
+          birth_month?: string | null
+          birth_year?: string | null
+          certificate?: boolean | null
+          city?: string | null
+          completed_clients?: string | null
+          country?: string | null
+          description?: string | null
+          email?: string | null
+          experience?: string | null
+          facebook?: string | null
+          first_name?: string | null
+          gallery?: string | null
+          gender?: Database["public"]["Enums"]["gender_type"] | null
+          has_premium?: boolean | null
+          id: string
+          instagram?: string | null
+          joined?: string
+          last_name?: string | null
+          phone?: string | null
+          profile_picture_url?: string | null
+          programs?: string | null
+          reviews?: string | null
+          state?: string | null
+          twitter?: string | null
+          type?: Database["public"]["Enums"]["user_type"] | null
+          username?: string | null
+          website?: string | null
+        }
+        Update: {
+          active_clients?: string | null
+          birth_date?: string | null
+          birth_month?: string | null
+          birth_year?: string | null
+          certificate?: boolean | null
+          city?: string | null
+          completed_clients?: string | null
+          country?: string | null
+          description?: string | null
+          email?: string | null
+          experience?: string | null
+          facebook?: string | null
+          first_name?: string | null
+          gallery?: string | null
+          gender?: Database["public"]["Enums"]["gender_type"] | null
+          has_premium?: boolean | null
+          id?: string
+          instagram?: string | null
+          joined?: string
+          last_name?: string | null
+          phone?: string | null
+          profile_picture_url?: string | null
+          programs?: string | null
+          reviews?: string | null
+          state?: string | null
+          twitter?: string | null
+          type?: Database["public"]["Enums"]["user_type"] | null
+          username?: string | null
+          website?: string | null
+        }
+      }
       prices: {
         Row: {
-          active: boolean | null;
-          currency: string | null;
-          description: string | null;
-          id: string;
-          interval: Database['public']['Enums']['pricing_plan_interval'] | null;
-          interval_count: number | null;
-          metadata: Json | null;
-          product_id: string | null;
-          trial_period_days: number | null;
-          type: Database['public']['Enums']['pricing_type'] | null;
-          unit_amount: number | null;
-        };
+          active: boolean | null
+          currency: string | null
+          description: string | null
+          id: string
+          interval: Database["public"]["Enums"]["pricing_plan_interval"] | null
+          interval_count: number | null
+          metadata: Json | null
+          product_id: string | null
+          trial_period_days: number | null
+          type: Database["public"]["Enums"]["pricing_type"] | null
+          unit_amount: number | null
+        }
         Insert: {
-          active?: boolean | null;
-          currency?: string | null;
-          description?: string | null;
-          id: string;
-          interval?:
-            | Database['public']['Enums']['pricing_plan_interval']
-            | null;
-          interval_count?: number | null;
-          metadata?: Json | null;
-          product_id?: string | null;
-          trial_period_days?: number | null;
-          type?: Database['public']['Enums']['pricing_type'] | null;
-          unit_amount?: number | null;
-        };
+          active?: boolean | null
+          currency?: string | null
+          description?: string | null
+          id: string
+          interval?: Database["public"]["Enums"]["pricing_plan_interval"] | null
+          interval_count?: number | null
+          metadata?: Json | null
+          product_id?: string | null
+          trial_period_days?: number | null
+          type?: Database["public"]["Enums"]["pricing_type"] | null
+          unit_amount?: number | null
+        }
         Update: {
-          active?: boolean | null;
-          currency?: string | null;
-          description?: string | null;
-          id?: string;
-          interval?:
-            | Database['public']['Enums']['pricing_plan_interval']
-            | null;
-          interval_count?: number | null;
-          metadata?: Json | null;
-          product_id?: string | null;
-          trial_period_days?: number | null;
-          type?: Database['public']['Enums']['pricing_type'] | null;
-          unit_amount?: number | null;
-        };
-      };
+          active?: boolean | null
+          currency?: string | null
+          description?: string | null
+          id?: string
+          interval?: Database["public"]["Enums"]["pricing_plan_interval"] | null
+          interval_count?: number | null
+          metadata?: Json | null
+          product_id?: string | null
+          trial_period_days?: number | null
+          type?: Database["public"]["Enums"]["pricing_type"] | null
+          unit_amount?: number | null
+        }
+      }
       products: {
         Row: {
-          active: boolean | null;
-          description: string | null;
-          id: string;
-          image: string | null;
-          metadata: Json | null;
-          name: string | null;
-        };
+          active: boolean | null
+          description: string | null
+          id: string
+          image: string | null
+          metadata: Json | null
+          name: string | null
+        }
         Insert: {
-          active?: boolean | null;
-          description?: string | null;
-          id: string;
-          image?: string | null;
-          metadata?: Json | null;
-          name?: string | null;
-        };
+          active?: boolean | null
+          description?: string | null
+          id: string
+          image?: string | null
+          metadata?: Json | null
+          name?: string | null
+        }
         Update: {
-          active?: boolean | null;
-          description?: string | null;
-          id?: string;
-          image?: string | null;
-          metadata?: Json | null;
-          name?: string | null;
-        };
-      };
+          active?: boolean | null
+          description?: string | null
+          id?: string
+          image?: string | null
+          metadata?: Json | null
+          name?: string | null
+        }
+      }
       subscriptions: {
         Row: {
-          cancel_at: string | null;
-          cancel_at_period_end: boolean | null;
-          canceled_at: string | null;
-          created: string;
-          current_period_end: string;
-          current_period_start: string;
-          ended_at: string | null;
-          id: string;
-          metadata: Json | null;
-          price_id: string | null;
-          quantity: number | null;
-          status: Database['public']['Enums']['subscription_status'] | null;
-          trial_end: string | null;
-          trial_start: string | null;
-          user_id: string;
-        };
+          cancel_at: string | null
+          cancel_at_period_end: boolean | null
+          canceled_at: string | null
+          created: string
+          current_period_end: string
+          current_period_start: string
+          ended_at: string | null
+          id: string
+          metadata: Json | null
+          price_id: string | null
+          quantity: number | null
+          status: Database["public"]["Enums"]["subscription_status"] | null
+          trial_end: string | null
+          trial_start: string | null
+          user_id: string
+        }
         Insert: {
-          cancel_at?: string | null;
-          cancel_at_period_end?: boolean | null;
-          canceled_at?: string | null;
-          created?: string;
-          current_period_end?: string;
-          current_period_start?: string;
-          ended_at?: string | null;
-          id: string;
-          metadata?: Json | null;
-          price_id?: string | null;
-          quantity?: number | null;
-          status?: Database['public']['Enums']['subscription_status'] | null;
-          trial_end?: string | null;
-          trial_start?: string | null;
-          user_id: string;
-        };
+          cancel_at?: string | null
+          cancel_at_period_end?: boolean | null
+          canceled_at?: string | null
+          created?: string
+          current_period_end?: string
+          current_period_start?: string
+          ended_at?: string | null
+          id: string
+          metadata?: Json | null
+          price_id?: string | null
+          quantity?: number | null
+          status?: Database["public"]["Enums"]["subscription_status"] | null
+          trial_end?: string | null
+          trial_start?: string | null
+          user_id: string
+        }
         Update: {
-          cancel_at?: string | null;
-          cancel_at_period_end?: boolean | null;
-          canceled_at?: string | null;
-          created?: string;
-          current_period_end?: string;
-          current_period_start?: string;
-          ended_at?: string | null;
-          id?: string;
-          metadata?: Json | null;
-          price_id?: string | null;
-          quantity?: number | null;
-          status?: Database['public']['Enums']['subscription_status'] | null;
-          trial_end?: string | null;
-          trial_start?: string | null;
-          user_id?: string;
-        };
-      };
+          cancel_at?: string | null
+          cancel_at_period_end?: boolean | null
+          canceled_at?: string | null
+          created?: string
+          current_period_end?: string
+          current_period_start?: string
+          ended_at?: string | null
+          id?: string
+          metadata?: Json | null
+          price_id?: string | null
+          quantity?: number | null
+          status?: Database["public"]["Enums"]["subscription_status"] | null
+          trial_end?: string | null
+          trial_start?: string | null
+          user_id?: string
+        }
+      }
+      trainer_reviews: {
+        Row: {
+          client_first_name: string | null
+          client_id: string | null
+          client_last_name: string | null
+          client_photo: string | null
+          date_created: string | null
+          description: string | null
+          id: number
+          stars: number | null
+          trainer_id: string | null
+        }
+        Insert: {
+          client_first_name?: string | null
+          client_id?: string | null
+          client_last_name?: string | null
+          client_photo?: string | null
+          date_created?: string | null
+          description?: string | null
+          id?: number
+          stars?: number | null
+          trainer_id?: string | null
+        }
+        Update: {
+          client_first_name?: string | null
+          client_id?: string | null
+          client_last_name?: string | null
+          client_photo?: string | null
+          date_created?: string | null
+          description?: string | null
+          id?: number
+          stars?: number | null
+          trainer_id?: string | null
+        }
+      }
+      trainers: {
+        Row: {
+          active_clients: string | null
+          birth_date: string | null
+          birth_month: string | null
+          birth_year: string | null
+          certificate: boolean | null
+          city: string | null
+          completed_clients: string | null
+          country: string | null
+          description: string | null
+          email: string | null
+          experience: string | null
+          facebook: string | null
+          first_name: string | null
+          gallery: string | null
+          gender: Database["public"]["Enums"]["gender_type"] | null
+          has_premium: boolean | null
+          id: string
+          instagram: string | null
+          joined: string
+          last_name: string | null
+          phone: string | null
+          profile_picture_url: string | null
+          programs: string | null
+          reviews: string | null
+          state: string | null
+          twitter: string | null
+          type: Database["public"]["Enums"]["user_type"] | null
+          username: string | null
+          website: string | null
+        }
+        Insert: {
+          active_clients?: string | null
+          birth_date?: string | null
+          birth_month?: string | null
+          birth_year?: string | null
+          certificate?: boolean | null
+          city?: string | null
+          completed_clients?: string | null
+          country?: string | null
+          description?: string | null
+          email?: string | null
+          experience?: string | null
+          facebook?: string | null
+          first_name?: string | null
+          gallery?: string | null
+          gender?: Database["public"]["Enums"]["gender_type"] | null
+          has_premium?: boolean | null
+          id: string
+          instagram?: string | null
+          joined?: string
+          last_name?: string | null
+          phone?: string | null
+          profile_picture_url?: string | null
+          programs?: string | null
+          reviews?: string | null
+          state?: string | null
+          twitter?: string | null
+          type?: Database["public"]["Enums"]["user_type"] | null
+          username?: string | null
+          website?: string | null
+        }
+        Update: {
+          active_clients?: string | null
+          birth_date?: string | null
+          birth_month?: string | null
+          birth_year?: string | null
+          certificate?: boolean | null
+          city?: string | null
+          completed_clients?: string | null
+          country?: string | null
+          description?: string | null
+          email?: string | null
+          experience?: string | null
+          facebook?: string | null
+          first_name?: string | null
+          gallery?: string | null
+          gender?: Database["public"]["Enums"]["gender_type"] | null
+          has_premium?: boolean | null
+          id?: string
+          instagram?: string | null
+          joined?: string
+          last_name?: string | null
+          phone?: string | null
+          profile_picture_url?: string | null
+          programs?: string | null
+          reviews?: string | null
+          state?: string | null
+          twitter?: string | null
+          type?: Database["public"]["Enums"]["user_type"] | null
+          username?: string | null
+          website?: string | null
+        }
+      }
+      usernames: {
+        Row: {
+          created_at: string | null
+          id: string
+          username: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          id: string
+          username?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          username?: string | null
+        }
+      }
       users: {
         Row: {
-          avatar_url: string | null;
-          billing_address: Json | null;
-          email: string | null;
-          full_name: string | null;
-          id: string;
-          payment_method: Json | null;
-          username: string | null;
-          website: string | null;
-        };
+          billing_address: Json | null
+          email: string | null
+          id: string
+          payment_method: Json | null
+          user_type: Database["public"]["Enums"]["user_type"] | null
+          username: string | null
+        }
         Insert: {
-          avatar_url?: string | null;
-          billing_address?: Json | null;
-          email?: string | null;
-          full_name?: string | null;
-          id: string;
-          payment_method?: Json | null;
-          username?: string | null;
-          website?: string | null;
-        };
+          billing_address?: Json | null
+          email?: string | null
+          id: string
+          payment_method?: Json | null
+          user_type?: Database["public"]["Enums"]["user_type"] | null
+          username?: string | null
+        }
         Update: {
-          avatar_url?: string | null;
-          billing_address?: Json | null;
-          email?: string | null;
-          full_name?: string | null;
-          id?: string;
-          payment_method?: Json | null;
-          username?: string | null;
-          website?: string | null;
-        };
-      };
-    };
+          billing_address?: Json | null
+          email?: string | null
+          id?: string
+          payment_method?: Json | null
+          user_type?: Database["public"]["Enums"]["user_type"] | null
+          username?: string | null
+        }
+      }
+    }
     Views: {
-      [_ in never]: never;
-    };
+      [_ in never]: never
+    }
     Functions: {
-      [_ in never]: never;
-    };
+      [_ in never]: never
+    }
     Enums: {
-      pricing_plan_interval: 'day' | 'week' | 'month' | 'year';
-      pricing_type: 'one_time' | 'recurring';
+      gender_type: "masculin" | "feminin" | "altul"
+      pricing_plan_interval: "day" | "week" | "month" | "year"
+      pricing_type: "one_time" | "recurring"
       subscription_status:
-        | 'trialing'
-        | 'active'
-        | 'canceled'
-        | 'incomplete'
-        | 'incomplete_expired'
-        | 'past_due'
-        | 'unpaid';
-    };
-  };
+        | "trialing"
+        | "active"
+        | "canceled"
+        | "incomplete"
+        | "incomplete_expired"
+        | "past_due"
+        | "unpaid"
+      user_type: "client" | "nutritionist" | "trainer" | "gym"
+    }
+    CompositeTypes: {
+      [_ in never]: never
+    }
+  }
 }

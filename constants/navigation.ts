@@ -51,10 +51,6 @@ export const navigationClient: NavItem[] = [
     name: 'Antrenamente',
     slug: 'antrenamente',
   },
-  {
-    name: 'Deconectare',
-    slug: 'deconectare',
-  },
 ];
 export const navigationTrainer: NavItem[] = [
   {
@@ -80,10 +76,6 @@ export const navigationTrainer: NavItem[] = [
   {
     name: 'Antrenamente',
     slug: 'antrenamente',
-  },
-  {
-    name: 'Deconectare',
-    slug: 'deconectare',
   },
 ];
 

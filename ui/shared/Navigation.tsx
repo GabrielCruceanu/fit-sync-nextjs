@@ -2,7 +2,11 @@
 
 import '#/styles/globals.css';
 import React, { Fragment, useEffect } from 'react';
-import { usePathname, useSelectedLayoutSegment } from 'next/navigation';
+import {
+  usePathname,
+  useRouter,
+  useSelectedLayoutSegment,
+} from 'next/navigation';
 import * as gtag from '#/lib/gtag';
 import Gtag from '#/ui/shared/Gtag';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
@@ -13,12 +17,14 @@ import Link from 'next/link';
 import {
   navigationAuth,
   navigationClient,
+  navigationLogout,
   navigationStatic,
   navigationTrainer,
 } from '#/constants/navigation';
 import { ProCardCTA } from '#/ui/shared/ProCardCTA';
 import { PagesLinks } from '#/constants/links';
 import { useSupabase } from '#/ui/auth/SupabaseProvider';
+import LogoutIcon from '@heroicons/react/solid/LogoutIcon';
 
 const userFAKE = {
   name: 'Tom Cook',
@@ -32,15 +38,19 @@ function classNames(...classes: string[]) {
 }
 
 export function Navigation() {
-  const { session } = useSupabase();
+  const { supabase, session } = useSupabase();
   const user = session?.user;
-  console.log('user', user);
   const isLogged = !!user;
   const isTrainer = true;
   const pathname = usePathname();
+  const router = useRouter();
   const segment = useSelectedLayoutSegment();
 
   const navLinks = isTrainer ? navigationTrainer : navigationClient;
+
+  const logout = () => {
+    supabase.auth.signOut().then(() => router.push('/'));
+  };
 
   useEffect(() => {
     // function to get the current page url and pass it to gtag pageView() function
@@ -101,6 +111,14 @@ export function Navigation() {
                 {isLogged ? (
                   <div className="hidden md:block">
                     <div className="ml-4 flex items-center md:ml-6">
+                      <button
+                        type="button"
+                        onClick={logout}
+                        className="mr-3 rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                      >
+                        <span className="sr-only">{navigationLogout.name}</span>
+                        <LogoutIcon className="h-6 w-6" aria-hidden="true" />
+                      </button>
                       <button
                         type="button"
                         className="rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
@@ -236,6 +254,14 @@ export function Navigation() {
                     >
                       <span className="sr-only">View notifications</span>
                       <BellIcon className="h-6 w-6" aria-hidden="true" />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={logout}
+                      className="ml-4 rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                    >
+                      <span className="sr-only">{navigationLogout.name}</span>
+                      <LogoutIcon className="h-6 w-6" aria-hidden="true" />
                     </button>
                   </div>
                   <div className="mt-3 space-y-1 px-2">

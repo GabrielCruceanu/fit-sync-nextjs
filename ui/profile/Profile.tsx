@@ -1,5 +1,7 @@
-import TrainerProfile from '#/ui/trainer/profile/TrainerProfile';
-
 export default function Profile() {
-  const isTrainer = true;
+  return (
+    <>
+      <h1>Profile</h1>
+    </>
+  );
 }
