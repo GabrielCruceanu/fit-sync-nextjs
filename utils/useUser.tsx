@@ -1,11 +1,8 @@
 'use client';
-import { useEffect, useState, createContext, useContext } from 'react';
-import {
-  useUser as useSupaUser,
-  useSessionContext,
-  User,
-} from '@supabase/auth-helpers-react';
+import { createContext, useContext, useEffect, useState } from 'react';
+import { User } from '@supabase/auth-helpers-react';
 import { Subscription, UserDetails } from '#/types/types';
+import { useSupabase } from '#/ui/auth/SupabaseProvider';
 
 type UserContextType = {
   accessToken: string | null;
@@ -24,61 +21,60 @@ export interface Props {
 }
 
 export const MyUserContextProvider = (props: Props) => {
-  const {
-    session,
-    isLoading: isLoadingUser,
-    supabaseClient: supabase,
-  } = useSessionContext();
-  const user = useSupaUser();
+  const { session, supabase } = useSupabase();
+  const user = session?.user;
   const accessToken = session?.access_token ?? null;
   const [isLoadingData, setIsloadingData] = useState(false);
   const [userDetails, setUserDetails] = useState<UserDetails | null>(null);
   const [subscription, setSubscription] = useState<Subscription | null>(null);
-
-  const getUserDetails = () => supabase.from('users').select('*').single();
-  const getSubscription = () =>
-    supabase
-      .from('subscriptions')
-      .select('*, prices(*, products(*))')
-      .in('status', ['trialing', 'active'])
-      .single();
-
+  let getUserDetails;
+  // let getSubscription;
   useEffect(() => {
     if (user && !isLoadingData && !userDetails && !subscription) {
       setIsloadingData(true);
-      Promise.allSettled([getUserDetails(), getSubscription()]).then(
-        (results) => {
-          const userDetailsPromise = results[0];
-          const subscriptionPromise = results[1];
 
-          if (userDetailsPromise.status === 'fulfilled')
-            setUserDetails(userDetailsPromise.value.data);
+      getUserDetails = () => supabase.from('users').select('*').single();
+      // getSubscription = () =>
+      //   supabase
+      //     .from('subscriptions')
+      //     .select('*, prices(*, products(*))')
+      //     .in('status', ['trialing', 'active'])
+      //     .maybeSingle();
 
-          if (subscriptionPromise.status === 'fulfilled')
-            setSubscription(subscriptionPromise.value.data);
+      Promise.allSettled([
+        getUserDetails(),
+        // getSubscription()
+      ]).then((results) => {
+        const userDetailsPromise = results[0];
+        // const subscriptionPromise = results[1];
+        console.log('results', results);
 
-          setIsloadingData(false);
-        },
-      );
-    } else if (!user && !isLoadingUser && !isLoadingData) {
+        if (userDetailsPromise.status === 'fulfilled')
+          setUserDetails(userDetailsPromise.value.data);
+
+        // if (subscriptionPromise.status === 'fulfilled')
+        //   setSubscription(subscriptionPromise.value.data);
+
+        setIsloadingData(false);
+      });
+    } else if (!user && !isLoadingData) {
       setUserDetails(null);
       setSubscription(null);
     }
   }, [
     user,
-    isLoadingUser,
     isLoadingData,
     userDetails,
     subscription,
     getUserDetails,
-    getSubscription,
+    // getSubscription,
   ]);
 
   const value = {
     accessToken,
     user,
     userDetails,
-    isLoading: isLoadingUser || isLoadingData,
+    isLoading: isLoadingData,
     subscription,
   };
 

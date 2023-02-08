@@ -7,8 +7,8 @@ import { Database } from '#/types/supabase';
 import { SupabaseClient } from '@supabase/auth-helpers-nextjs';
 import { MyUserContextProvider } from '#/utils/useUser';
 import { createServerClient } from '#/utils/supabase-server';
-import SupabaseProvider from '#/supabase/supabase-provider';
-import SupabaseListener from '#/supabase/supabase-listener';
+import SupabaseProvider from '#/ui/auth/SupabaseProvider';
+import SupabaseListener from '#/ui/auth/SupabaseListener';
 import SeoProvider from '#/ui/shared/SeoProvider';
 
 export type TypedSupabaseClient = SupabaseClient<Database>;
@@ -32,7 +32,7 @@ export default async function RootLayout({
           <SupabaseListener serverAccessToken={session?.access_token} />
           <MyUserContextProvider>
             <Navigation />
-            <main className="mt-[56.8px] h-full">{children}</main>
+            <main className="mt-[65px] h-full">{children}</main>
             <Footer />
           </MyUserContextProvider>
         </SupabaseProvider>

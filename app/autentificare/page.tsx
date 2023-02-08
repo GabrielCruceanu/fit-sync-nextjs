@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import Login from '#/ui/auth/Login';
 import LoadingDots from '#/ui/shared/LoadingDots';
 import { useRouter } from 'next/navigation';
-import { useSupabase } from '#/supabase/supabase-provider';
+import { useSupabase } from '#/ui/auth/SupabaseProvider';
 
 export default function AuthPage() {
   const router = useRouter();

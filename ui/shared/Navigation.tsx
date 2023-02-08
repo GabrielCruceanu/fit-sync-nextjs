@@ -18,7 +18,7 @@ import {
 } from '#/constants/navigation';
 import { ProCardCTA } from '#/ui/shared/ProCardCTA';
 import { PagesLinks } from '#/constants/links';
-import { useSupabase } from '#/supabase/supabase-provider';
+import { useSupabase } from '#/ui/auth/SupabaseProvider';
 
 const userFAKE = {
   name: 'Tom Cook',
