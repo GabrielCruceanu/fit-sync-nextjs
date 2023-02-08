@@ -1,13 +1,16 @@
 'use client';
-import { useSupabaseClient } from '@supabase/auth-helpers-react';
 import { useState } from 'react';
 import { validateEmail } from '#/utils/helpers';
+import { TypedSupabaseClient } from '#/types/types';
 
-export default function ForgotPassword() {
+export default function ForgotPassword({
+  supabase,
+}: {
+  supabase: TypedSupabaseClient;
+}) {
   const [email, setEmail] = useState('');
   const [emailError, setEmailError] = useState('');
   const [forgotPasswordError, setForgotPasswordError] = useState('');
-  const supabaseClient = useSupabaseClient();
 
   async function forgotPassword(email: string) {
     if (email === null || email === '') {
@@ -19,7 +22,7 @@ export default function ForgotPassword() {
       return;
     }
 
-    let { error } = await supabaseClient.auth.resetPasswordForEmail(email);
+    let { error } = await supabase.auth.resetPasswordForEmail(email);
     if (error) {
       console.log('Error: ', error.message);
     } else {

@@ -1,5 +1,6 @@
 import Stripe from 'stripe';
 import { Database } from '#/types/supabase';
+import { SupabaseClient } from '@supabase/auth-helpers-nextjs';
 
 export interface PageMeta {
   title: string;
@@ -24,8 +25,6 @@ export interface Product {
 export interface ProductWithPrice extends Product {
   prices?: Price[];
 }
-
-export type Users = Database['public']['Tables']['users']['Row'];
 
 export interface Price {
   id: string /* primary key */;
@@ -67,3 +66,30 @@ export enum AuthType {
   SIGN_IN = 'SIGN_IN',
   SIGN_UP = 'SIGN_UP',
 }
+
+export type TypedSupabaseClient = SupabaseClient<Database>;
+
+export type UserDetails = Database['public']['Tables']['users']['Row'];
+
+export type ClientDetails = Database['public']['Tables']['clients']['Row'];
+
+export type TrainerDetails = Database['public']['Tables']['trainers']['Row'];
+
+export type NutritionistDetails =
+  Database['public']['Tables']['nutritionists']['Row'];
+
+export type GymDetails = Database['public']['Tables']['gyms']['Row'];
+
+export type CurrentPhysicalDetails =
+  Database['public']['Tables']['current_physical_details']['Row'];
+
+export type HistoryPhysicalDetails =
+  Database['public']['Tables']['history_physical_details']['Row'];
+
+export type TrainerReview =
+  Database['public']['Tables']['trainer_reviews']['Row'];
+
+export type NutritionistReview =
+  Database['public']['Tables']['nutritionist_reviews']['Row'];
+
+export type GymReview = Database['public']['Tables']['gyms_reviews']['Row'];

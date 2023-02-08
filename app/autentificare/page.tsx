@@ -12,7 +12,6 @@ export default function AuthPage() {
 
   useEffect(() => {
     if (session) {
-      console.log('session', session);
       router.push('/profil');
     }
   }, [router, session]);

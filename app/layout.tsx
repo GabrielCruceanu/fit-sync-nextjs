@@ -3,15 +3,11 @@ import 'server-only';
 import React from 'react';
 import { Navigation } from '#/ui/shared/Navigation';
 import { Footer } from '#/ui/shared/Footer';
-import { Database } from '#/types/supabase';
-import { SupabaseClient } from '@supabase/auth-helpers-nextjs';
 import { MyUserContextProvider } from '#/utils/useUser';
 import { createServerClient } from '#/utils/supabase-server';
 import SupabaseProvider from '#/ui/auth/SupabaseProvider';
 import SupabaseListener from '#/ui/auth/SupabaseListener';
 import SeoProvider from '#/ui/shared/SeoProvider';
-
-export type TypedSupabaseClient = SupabaseClient<Database>;
 
 export default async function RootLayout({
   children,

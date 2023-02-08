@@ -6,14 +6,14 @@ import {
   useUser,
 } from '@supabase/auth-helpers-react';
 import { Database } from '#/types/supabase';
-import { Users } from '#/types/types';
+import { UserDetails } from '#/types/types';
 
 export default function Account() {
   const supabase = useSupabaseClient<Database>();
   const user = useUser();
   const session = useSession();
   const [loading, setLoading] = useState(true);
-  const [username, setUsername] = useState<Users['username']>(null);
+  const [username, setUsername] = useState<UserDetails['username']>(null);
 
   useEffect(() => {
     getProfile();
@@ -45,7 +45,11 @@ export default function Account() {
     }
   }
 
-  async function updateProfile({ username }: { username: Users['username'] }) {
+  async function updateProfile({
+    username,
+  }: {
+    username: UserDetails['username'];
+  }) {
     try {
       setLoading(true);
       if (!user) throw new Error('No user');

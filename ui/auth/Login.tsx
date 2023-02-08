@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { PagesLinks } from '#/constants/links';
 import { validateEmail } from '#/utils/helpers';
 import { AuthError } from '#/constants/authError';
-import { TypedSupabaseClient } from '#/app/layout';
+import { TypedSupabaseClient } from '#/types/types';
 
 export default function Login({ supabase }: { supabase: TypedSupabaseClient }) {
   const [email, setEmail] = useState('');

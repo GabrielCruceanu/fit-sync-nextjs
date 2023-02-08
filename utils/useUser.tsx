@@ -1,13 +1,23 @@
 'use client';
 import { createContext, useContext, useEffect, useState } from 'react';
 import { User } from '@supabase/auth-helpers-react';
-import { Subscription, UserDetails } from '#/types/types';
+import {
+  ClientDetails,
+  GymDetails,
+  NutritionistDetails,
+  Subscription,
+  TrainerDetails,
+  UserDetails,
+} from '#/types/types';
 import { useSupabase } from '#/ui/auth/SupabaseProvider';
 
 type UserContextType = {
   accessToken: string | null;
   user: User | null;
   userDetails: UserDetails | null;
+  trainerDetails: TrainerDetails | null;
+  nutritionistDetails: NutritionistDetails | null;
+  gymDetails: GymDetails | null;
   isLoading: boolean;
   subscription: Subscription | null;
 };
@@ -22,10 +32,19 @@ export interface Props {
 
 export const MyUserContextProvider = (props: Props) => {
   const { session, supabase } = useSupabase();
-  const user = session?.user;
+  const user = session?.user ? session.user : null;
   const accessToken = session?.access_token ?? null;
   const [isLoadingData, setIsloadingData] = useState(false);
   const [userDetails, setUserDetails] = useState<UserDetails | null>(null);
+  const [clientDetails, setClientDetails] = useState<ClientDetails | null>(
+    null,
+  );
+  const [trainerDetails, setTrainerDetails] = useState<TrainerDetails | null>(
+    null,
+  );
+  const [nutritionistDetails, setNutritionistDetails] =
+    useState<NutritionistDetails | null>(null);
+  const [gymDetails, setGymDetails] = useState<GymDetails | null>(null);
   const [subscription, setSubscription] = useState<Subscription | null>(null);
   const getUserDetails = () => supabase.from('users').select('*').single();
   // const getSubscription = () =>
@@ -35,7 +54,7 @@ export const MyUserContextProvider = (props: Props) => {
   //     .in('status', ['trialing', 'active'])
   //     .maybeSingle();
   useEffect(() => {
-    if (user && !isLoadingData && !userDetails && !subscription) {
+    if (user && !isLoadingData && !userDetails) {
       setIsloadingData(true);
 
       Promise.allSettled([
@@ -65,6 +84,10 @@ export const MyUserContextProvider = (props: Props) => {
     subscription,
     getUserDetails,
     // getSubscription,
+    clientDetails,
+    trainerDetails,
+    nutritionistDetails,
+    gymDetails,
   ]);
 
   const value = {
@@ -73,6 +96,10 @@ export const MyUserContextProvider = (props: Props) => {
     userDetails,
     isLoading: isLoadingData,
     subscription,
+    clientDetails,
+    trainerDetails,
+    nutritionistDetails,
+    gymDetails,
   };
 
   return <UserContext.Provider value={value} {...props} />;

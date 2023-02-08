@@ -1,13 +1,17 @@
 'use client';
-import { useSupabaseClient } from '@supabase/auth-helpers-react';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { PagesLinks, TermsLinks } from '#/constants/links';
 import { validateEmail } from '#/utils/helpers';
 import { AuthError } from '#/constants/authError';
+import { TypedSupabaseClient } from '#/types/types';
 
-export default function SignUp() {
+export default function SignUp({
+  supabase,
+}: {
+  supabase: TypedSupabaseClient;
+}) {
   const [email, setEmail] = useState('');
   const [emailError, setEmailError] = useState('');
   const [password, setPassword] = useState('');
@@ -19,7 +23,6 @@ export default function SignUp() {
   const [cookie, setCookie] = useState(false);
   const [termsError, setTermsError] = useState('');
   const [signUpError, setSignUpError] = useState('');
-  const supabaseClient = useSupabaseClient();
   const router = useRouter();
 
   const handleSignUp = async (email: string, password: string) => {
@@ -52,7 +55,7 @@ export default function SignUp() {
       const {
         data: { user },
         error,
-      } = await supabaseClient.auth.signUp({ email, password });
+      } = await supabase.auth.signUp({ email, password });
 
       if (!error && !user)
         alert('Verifică-ți e-mailul pentru linkul de autentificare');
