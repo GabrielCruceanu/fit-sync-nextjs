@@ -2,24 +2,56 @@
 import Profile from '#/ui/profile/Profile';
 import { useRouter } from 'next/navigation';
 import { useSupabase } from '#/ui/auth/SupabaseProvider';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { navigationAuth } from '#/constants/navigation';
 import LoadingDots from '#/ui/shared/LoadingDots';
+import { UserDetails } from '#/types/types';
 
 export default function Cont() {
   const router = useRouter();
   const { supabase, session } = useSupabase();
+  const [loading, setLoading] = useState(true);
+  const [userType, setUserType] = useState<UserDetails['user_type']>(null);
 
   useEffect(() => {
     if (!session) {
       router.push(navigationAuth.slug);
     }
-  }, [router, session]);
-  return session ? (
-    <Profile supabase={supabase} session={session} />
-  ) : (
+    const fetchUser = async () => {
+      try {
+        if (!session?.user.id) throw new Error('No user');
+
+        const { data, error, status } = await supabase
+          .from('users')
+          .select('user_type')
+          .eq('id', session.user.id)
+          .single();
+
+        if (error && status !== 406) {
+          throw error;
+        }
+
+        console.log('user_type', data);
+        if (data) {
+          setUserType(data.user_type);
+        }
+      } catch (error) {
+        alert('Error loading user_type data!');
+        console.log(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    if (session) {
+      fetchUser();
+    }
+  }, [session]);
+
+  return loading ? (
     <div className="m-6 flex min-h-screen items-center justify-center">
       <LoadingDots />
     </div>
+  ) : (
+    <Profile userType={userType} />
   );
 }

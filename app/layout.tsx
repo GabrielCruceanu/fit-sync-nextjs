@@ -3,7 +3,7 @@ import 'server-only';
 import React from 'react';
 import { Navigation } from '#/ui/shared/Navigation';
 import { Footer } from '#/ui/shared/Footer';
-import { MyUserContextProvider } from '#/utils/useUser';
+import { MyUserContextProvider } from '#/utils/useUserContext';
 import { createServerClient } from '#/utils/supabase-server';
 import SupabaseProvider from '#/ui/auth/SupabaseProvider';
 import SupabaseListener from '#/ui/auth/SupabaseListener';
