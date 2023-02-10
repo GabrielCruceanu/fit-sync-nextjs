@@ -23,7 +23,7 @@ export default function UserTypeOnboard() {
                     fillRule="evenodd"
                     d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
                     clipRule="evenodd"
-                  ></path>
+                  />
                 </svg>
                 <span>Individual configuration</span>
               </li>
@@ -39,7 +39,7 @@ export default function UserTypeOnboard() {
                     fillRule="evenodd"
                     d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
                     clipRule="evenodd"
-                  ></path>
+                  />
                 </svg>
                 <span>No setup, or hidden fees</span>
               </li>
@@ -55,7 +55,7 @@ export default function UserTypeOnboard() {
                     fillRule="evenodd"
                     d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
                     clipRule="evenodd"
-                  ></path>
+                  />
                 </svg>
                 <span>
                   Team size: <span className="font-semibold">1 developer</span>
@@ -73,7 +73,7 @@ export default function UserTypeOnboard() {
                     fillRule="evenodd"
                     d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
                     clipRule="evenodd"
-                  ></path>
+                  />
                 </svg>
                 <span>
                   Premium support:{' '}
@@ -92,7 +92,7 @@ export default function UserTypeOnboard() {
                     fillRule="evenodd"
                     d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
                     clipRule="evenodd"
-                  ></path>
+                  />
                 </svg>
                 <span>
                   Free updates: <span className="font-semibold">6 months</span>
@@ -103,9 +103,9 @@ export default function UserTypeOnboard() {
         </div>
         <div className="mx-auto flex items-center px-4 md:w-[42rem] md:px-8 xl:px-0">
           <div className="w-full">
-            <ol className="mb-6 flex items-center text-center text-sm font-medium text-gray-400 sm:text-base lg:mb-12">
+            <ol className="mb-6 flex items-center justify-center text-center text-sm font-medium text-gray-400 sm:text-base lg:mb-12">
               <li className="after:border-1 flex items-center after:mx-6 after:hidden after:h-1 after:w-12 after:border-b after:border-gray-700 after:content-[''] sm:after:inline-block xl:after:mx-10">
-                <div className="flex items-center after:mx-2 after:font-light after:text-gray-500 after:content-['/'] sm:block sm:after:hidden">
+                <div className="flex items-center text-primary-500 after:mx-2 after:font-light after:text-gray-500 after:content-['/'] sm:block sm:after:hidden">
                   <div className="mr-2 sm:mx-auto sm:mb-2">1</div>
                   Tip utilizator
                 </div>
@@ -121,10 +121,10 @@ export default function UserTypeOnboard() {
                 Confirmare
               </li>
             </ol>
-            <h1 className="mb-4 text-2xl font-extrabold leading-tight tracking-tight text-white sm:mb-6">
+            <h1 className="mb-4 text-center text-2xl font-extrabold leading-tight tracking-tight text-white">
               Spune-ne despre tine
             </h1>
-            <p className="mb-4 text-lg font-light text-gray-300">
+            <p className="mb-4 text-center text-lg font-light text-gray-300">
               Ce tip de cont doresti sa ai?
             </p>
             <ul className="container mb-6 flex flex-wrap items-center justify-center">
@@ -140,7 +140,7 @@ export default function UserTypeOnboard() {
                 <label
                   htmlFor={UserType.Client}
                   className="inline-flex w-full cursor-pointer items-center justify-center rounded-lg border-2  border-gray-700 bg-gray-800
-                  p-5 text-gray-400 hover:bg-gray-700 hover:text-gray-300 peer-checked:border-primary-600 peer-checked:text-primary-500"
+                  p-5 text-gray-400 transition-all ease-in-out hover:bg-primary-700 hover:text-gray-300 peer-checked:border-primary-600 peer-checked:text-primary-500"
                 >
                   <span className="w-full">Client</span>
                   <svg
@@ -153,7 +153,7 @@ export default function UserTypeOnboard() {
                       fillRule="evenodd"
                       d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
                       clipRule="evenodd"
-                    ></path>
+                    />
                   </svg>
                 </label>
               </li>
@@ -169,7 +169,7 @@ export default function UserTypeOnboard() {
                 <label
                   htmlFor={UserType.Trainer}
                   className="inline-flex w-full cursor-pointer items-center justify-center rounded-lg border-2  border-gray-700 bg-gray-800
-                  p-5 text-gray-400 hover:bg-gray-700 hover:text-gray-300 peer-checked:border-primary-600 peer-checked:text-primary-500"
+                   p-5 text-gray-400 transition-all ease-in-out hover:bg-primary-700 hover:text-gray-300 peer-checked:border-primary-600 peer-checked:text-primary-500"
                 >
                   <span className="w-full">Personal Trainer</span>
                   <svg
@@ -182,7 +182,7 @@ export default function UserTypeOnboard() {
                       fillRule="evenodd"
                       d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
                       clipRule="evenodd"
-                    ></path>
+                    />
                   </svg>
                 </label>
               </li>
@@ -198,7 +198,7 @@ export default function UserTypeOnboard() {
                 <label
                   htmlFor={UserType.Nutritionist}
                   className="inline-flex w-full cursor-pointer items-center justify-center rounded-lg border-2  border-gray-700 bg-gray-800
-                  p-5 text-gray-400 hover:bg-gray-700 hover:text-gray-300 peer-checked:border-primary-600 peer-checked:text-primary-500"
+                  p-5 text-gray-400 transition-all ease-in-out hover:bg-primary-700 hover:text-gray-300 peer-checked:border-primary-600 peer-checked:text-primary-500"
                 >
                   <span className="w-full">Nutritionist</span>
                   <svg
@@ -211,7 +211,7 @@ export default function UserTypeOnboard() {
                       fillRule="evenodd"
                       d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
                       clipRule="evenodd"
-                    ></path>
+                    />
                   </svg>
                 </label>
               </li>
@@ -227,7 +227,7 @@ export default function UserTypeOnboard() {
                 <label
                   htmlFor={UserType.Gym}
                   className="inline-flex w-full cursor-pointer items-center justify-center rounded-lg border-2  border-gray-700 bg-gray-800
-                  p-5 text-gray-400 hover:bg-gray-700 hover:text-gray-300 peer-checked:border-primary-600 peer-checked:text-primary-500"
+                  p-5 text-gray-400 transition-all ease-in-out hover:bg-primary-700 hover:text-gray-300 peer-checked:border-primary-600 peer-checked:text-primary-500"
                 >
                   <span className="w-full">Sala de antrenament</span>
                   <svg
@@ -240,14 +240,14 @@ export default function UserTypeOnboard() {
                       fillRule="evenodd"
                       d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
                       clipRule="evenodd"
-                    ></path>
+                    />
                   </svg>
                 </label>
               </li>
             </ul>
-            <button className="w-full rounded-lg bg-primary-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-primary-700 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 sm:py-3.5">
-              Next: Account Info
-            </button>
+            {/*<button className="w-full rounded-lg bg-primary-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-primary-700 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 sm:py-3.5">*/}
+            {/*  Next: Account Info*/}
+            {/*</button>*/}
           </div>
         </div>
       </div>
