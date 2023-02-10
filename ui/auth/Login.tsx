@@ -6,6 +6,7 @@ import { PagesLinks } from '#/constants/links';
 import { validateEmail } from '#/utils/helpers';
 import { AuthError } from '#/constants/authError';
 import { TypedSupabaseClient } from '#/types/types';
+import clsx from 'clsx';
 
 export default function Login({ supabase }: { supabase: TypedSupabaseClient }) {
   const [email, setEmail] = useState('');
@@ -73,7 +74,12 @@ export default function Login({ supabase }: { supabase: TypedSupabaseClient }) {
                   type="email"
                   name="email"
                   id="email"
-                  className="block w-full rounded-lg border border-gray-600  bg-gray-700 p-2.5 text-white placeholder-gray-400 focus:border-primary-600 focus:ring-primary-600 sm:text-sm"
+                  className={clsx(
+                    'block w-full rounded-lg border border-gray-600  bg-gray-700 p-2.5 text-white placeholder-gray-400 focus:border-primary-600 focus:ring-primary-600 sm:text-sm',
+                    {
+                      'border-red-600': setEmailError.length > 0,
+                    },
+                  )}
                   value={email}
                   placeholder="nume@email.com"
                   required={true}
@@ -101,8 +107,12 @@ export default function Login({ supabase }: { supabase: TypedSupabaseClient }) {
                   name="password"
                   id="confirm-password"
                   placeholder="••••••••"
-                  className="block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-gray-900 text-white placeholder-gray-400 focus:border-primary-600 focus:ring-primary-600 sm:text-sm"
-                  required={true}
+                  className={clsx(
+                    'block w-full rounded-lg border border-gray-600  bg-gray-700 p-2.5 text-white placeholder-gray-400 focus:border-primary-600 focus:ring-primary-600 sm:text-sm',
+                    {
+                      'border-red-600': setPasswordError.length > 0,
+                    },
+                  )}
                   value={password}
                   onChange={(event) => {
                     setPassword(event.target.value);

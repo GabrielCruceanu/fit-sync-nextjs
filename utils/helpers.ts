@@ -48,3 +48,17 @@ export const validateEmail = (email: string) => {
     /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
   return !!email.match(validEmailRegex);
 };
+
+export const validateUsername = (username: string) => {
+  const validUsernameRegex =
+    /^[a-zA-Z0-9]+([a-zA-Z0-9](_|-| )[a-zA-Z0-9])*[a-zA-Z0-9]+$/;
+  return validUsernameRegex.test(username);
+};
+export const validateOnlyLetter = (input: string) => {
+  const validUsernameRegex = /^[a-zA-Z]+([a-zA-Z](_|-| )[a-zA-Z])*[a-zA-Z]+$/;
+  return validUsernameRegex.test(input);
+};
+
+export const handleInputRequired = (value: string) => {
+  return value === '';
+};

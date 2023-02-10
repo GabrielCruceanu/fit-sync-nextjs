@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { validateEmail } from '#/utils/helpers';
 import { TypedSupabaseClient } from '#/types/types';
+import clsx from 'clsx';
 
 export default function ForgotPassword({
   supabase,
@@ -50,7 +51,12 @@ export default function ForgotPassword({
                   type="email"
                   name="email"
                   id="email"
-                  className="block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-white placeholder-gray-400 focus:border-primary-600 focus:ring-primary-600 sm:text-sm"
+                  className={clsx(
+                    'block w-full rounded-lg border border-gray-600  bg-gray-700 p-2.5 text-white placeholder-gray-400 focus:border-primary-600 focus:ring-primary-600 sm:text-sm',
+                    {
+                      'border-red-600': setEmailError.length > 0,
+                    },
+                  )}
                   value={email}
                   placeholder="nume@email.com"
                   required={true}

@@ -1,128 +1,29 @@
 import { UserType } from '#/constants/user';
-export default function UserTypeOnboard() {
+import { UserDetails } from '#/types/types';
+import OnboardSteps, {
+  OnboardStepsType,
+} from '#/ui/user-onboarding/OnboardSteps';
+
+export default function UserTypeOnboard({
+  handleSetUserType,
+  handleSetOnboardSteps,
+}: {
+  handleSetUserType: (value: UserDetails['user_type']) => void;
+  handleSetOnboardSteps: (value: OnboardStepsType) => void;
+}) {
+  const handleUserTypeClick = (value: UserDetails['user_type']) => {
+    handleSetUserType(value);
+    handleSetOnboardSteps(OnboardStepsType.UserDetails);
+    console.log('handleUserTypeClick', value);
+  };
   return (
     <section className="bg-gray-900 py-8 lg:py-0">
-      <div className="lg:flex">
-        <div className=" w-full max-w-md bg-primary-600 p-12 lg:h-screen">
-          <div className="block rounded-lg bg-primary-500 p-8 text-white">
-            <h2 className="mb-1 text-2xl font-semibold">Your selected plan</h2>
-            <p className="mb-4 font-light text-primary-100 sm:text-lg">
-              30-day free trial
-            </p>
-            {/*List*/}
-            <ul role="list" className="space-y-4 text-left">
-              <li className="flex items-center space-x-3">
-                {/*Icon*/}
-                <svg
-                  className="h-5 w-5 flex-shrink-0 text-green-300"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-                <span>Individual configuration</span>
-              </li>
-              <li className="flex items-center space-x-3">
-                {/*Icon*/}
-                <svg
-                  className="h-5 w-5 flex-shrink-0 text-green-300"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-                <span>No setup, or hidden fees</span>
-              </li>
-              <li className="flex items-center space-x-3">
-                {/*Icon*/}
-                <svg
-                  className="h-5 w-5 flex-shrink-0 text-green-300"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-                <span>
-                  Team size: <span className="font-semibold">1 developer</span>
-                </span>
-              </li>
-              <li className="flex items-center space-x-3">
-                {/*Icon*/}
-                <svg
-                  className="h-5 w-5 flex-shrink-0 text-green-300"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-                <span>
-                  Premium support:{' '}
-                  <span className="font-semibold">6 months</span>
-                </span>
-              </li>
-              <li className="flex items-center space-x-3">
-                {/*Icon*/}
-                <svg
-                  className="h-5 w-5 flex-shrink-0 text-green-300"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-                <span>
-                  Free updates: <span className="font-semibold">6 months</span>
-                </span>
-              </li>
-            </ul>
-          </div>
-        </div>
+      <div className="md:flex md:min-h-[42rem]">
         <div className="mx-auto flex items-center px-4 md:w-[42rem] md:px-8 xl:px-0">
           <div className="w-full">
-            <ol className="mb-6 flex items-center justify-center text-center text-sm font-medium text-gray-400 sm:text-base lg:mb-12">
-              <li className="after:border-1 flex items-center after:mx-6 after:hidden after:h-1 after:w-12 after:border-b after:border-gray-700 after:content-[''] sm:after:inline-block xl:after:mx-10">
-                <div className="flex items-center text-primary-500 after:mx-2 after:font-light after:text-gray-500 after:content-['/'] sm:block sm:after:hidden">
-                  <div className="mr-2 sm:mx-auto sm:mb-2">1</div>
-                  Tip utilizator
-                </div>
-              </li>
-              <li className="after:border-1 flex items-center after:mx-6 after:hidden after:h-1 after:w-12 after:border-b after:border-gray-700 after:content-[''] sm:after:inline-block xl:after:mx-10">
-                <div className="flex items-center after:mx-2 after:font-light after:text-gray-500 after:content-['/'] sm:block sm:after:hidden">
-                  <div className="mr-2 sm:mx-auto sm:mb-2">2</div>
-                  Detalii cont
-                </div>
-              </li>
-              <li className="flex items-center sm:block">
-                <div className="mr-2 sm:mx-auto sm:mb-2">3</div>
-                Confirmare
-              </li>
-            </ol>
+            <OnboardSteps currentStep={OnboardStepsType.UserType} />
             <h1 className="mb-4 text-center text-2xl font-extrabold leading-tight tracking-tight text-white">
-              Spune-ne despre tine
+              Tip utilizator
             </h1>
             <p className="mb-4 text-center text-lg font-light text-gray-300">
               Ce tip de cont doresti sa ai?
@@ -139,8 +40,9 @@ export default function UserTypeOnboard() {
                 />
                 <label
                   htmlFor={UserType.Client}
+                  onClick={() => handleUserTypeClick(UserType.Client)}
                   className="inline-flex w-full cursor-pointer items-center justify-center rounded-lg border-2  border-gray-700 bg-gray-800
-                  p-5 text-gray-400 transition-all ease-in-out hover:bg-primary-700 hover:text-gray-300 peer-checked:border-primary-600 peer-checked:text-primary-500"
+                  p-5 text-gray-400 transition-all ease-in-out hover:bg-gray-700 hover:text-gray-300 peer-checked:border-primary-600 peer-checked:text-primary-500"
                 >
                   <span className="w-full">Client</span>
                   <svg
@@ -168,8 +70,9 @@ export default function UserTypeOnboard() {
                 />
                 <label
                   htmlFor={UserType.Trainer}
+                  onClick={() => handleUserTypeClick(UserType.Trainer)}
                   className="inline-flex w-full cursor-pointer items-center justify-center rounded-lg border-2  border-gray-700 bg-gray-800
-                   p-5 text-gray-400 transition-all ease-in-out hover:bg-primary-700 hover:text-gray-300 peer-checked:border-primary-600 peer-checked:text-primary-500"
+                   p-5 text-gray-400 transition-all ease-in-out hover:bg-gray-700 hover:text-gray-300 peer-checked:border-primary-600 peer-checked:text-primary-500"
                 >
                   <span className="w-full">Personal Trainer</span>
                   <svg
@@ -197,8 +100,9 @@ export default function UserTypeOnboard() {
                 />
                 <label
                   htmlFor={UserType.Nutritionist}
+                  onClick={() => handleUserTypeClick(UserType.Nutritionist)}
                   className="inline-flex w-full cursor-pointer items-center justify-center rounded-lg border-2  border-gray-700 bg-gray-800
-                  p-5 text-gray-400 transition-all ease-in-out hover:bg-primary-700 hover:text-gray-300 peer-checked:border-primary-600 peer-checked:text-primary-500"
+                  p-5 text-gray-400 transition-all ease-in-out hover:bg-gray-700 hover:text-gray-300 peer-checked:border-primary-600 peer-checked:text-primary-500"
                 >
                   <span className="w-full">Nutritionist</span>
                   <svg
@@ -226,8 +130,9 @@ export default function UserTypeOnboard() {
                 />
                 <label
                   htmlFor={UserType.Gym}
+                  onClick={() => handleUserTypeClick(UserType.Gym)}
                   className="inline-flex w-full cursor-pointer items-center justify-center rounded-lg border-2  border-gray-700 bg-gray-800
-                  p-5 text-gray-400 transition-all ease-in-out hover:bg-primary-700 hover:text-gray-300 peer-checked:border-primary-600 peer-checked:text-primary-500"
+                  p-5 text-gray-400 transition-all ease-in-out hover:bg-gray-700 hover:text-gray-300 peer-checked:border-primary-600 peer-checked:text-primary-500"
                 >
                   <span className="w-full">Sala de antrenament</span>
                   <svg
