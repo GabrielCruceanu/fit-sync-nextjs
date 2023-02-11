@@ -13,17 +13,17 @@ export enum TrainerType {
 }
 
 export const TrainerTypeList: string[] = [
-  // 'High Intensity Training',
+  'High Intensity Training',
   'Yoga',
-  // 'Fitness',
-  // 'Powerlifting',
-  // 'Calisthenic',
-  // 'Spin',
-  // 'Barre',
-  // 'Pilates',
-  // 'Bootcamp',
-  // 'Rock climbing',
-  // 'Other',
+  'Fitness',
+  'Powerlifting',
+  'Calisthenic',
+  'Spin',
+  'Barre',
+  'Pilates',
+  'Bootcamp',
+  'Rock climbing',
+  'Altul',
 ];
 
 export const NutritionistTypeList: string[] = [

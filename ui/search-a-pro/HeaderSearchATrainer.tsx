@@ -8,6 +8,8 @@ import ProList from '#/ui/shared/ProList';
 import TrainerProfileModel from '#/model/trainer/trainerProfile.model';
 import { flushSync } from 'react-dom';
 import { executeScroll } from '#/lib/scrollTo';
+import { handleInputRequired } from '#/utils/helpers';
+import { AuthError } from '#/constants/authError';
 
 export default function HeaderSearchATrainer({
   trainers,
@@ -15,8 +17,11 @@ export default function HeaderSearchATrainer({
   trainers: TrainerProfileModel[];
 }) {
   const [trainerType, setTrainerType] = useState('');
+  const [trainerTypeError, setTrainerTypeError] = useState('');
   const [currentState, setCurrentState] = useState('');
+  const [currentStateError, setCurrentStateError] = useState('');
   const [currentCity, setCurrentCity] = useState('');
+  const [currentCityError, setCurrentCityError] = useState('');
   const [currentTrainers, setCurrentTrainers] = useState<TrainerProfileModel[]>(
     [],
   );
@@ -64,22 +69,40 @@ export default function HeaderSearchATrainer({
                 label="Tip de antrenor"
                 options={TrainerTypeList}
                 handleChange={(e) => setTrainerType(e.target.value)}
+                handleBlur={() => {
+                  handleInputRequired(trainerType)
+                    ? setTrainerTypeError(AuthError.InputRequired)
+                    : null;
+                }}
+                error={trainerTypeError}
               />
             </div>
             <div className="mt-4 w-full md:w-4/12 md:px-3">
               <SelectInput
                 name="state"
-                label="Județ"
+                label="Judet"
                 options={states}
                 handleChange={(e) => setCurrentState(e.target.value)}
+                handleBlur={() => {
+                  handleInputRequired(currentState)
+                    ? setCurrentStateError(AuthError.InputRequired)
+                    : null;
+                }}
+                error={currentStateError}
               />
             </div>
             <div className="mt-4 w-full md:w-4/12 md:px-3">
               <SelectInput
                 name="city"
-                label="Oraș / Sector"
+                label="Oras / Sector"
                 options={currentCites}
                 handleChange={(e) => setCurrentCity(e.target.value)}
+                handleBlur={() => {
+                  handleInputRequired(currentCity)
+                    ? setCurrentCityError(AuthError.InputRequired)
+                    : null;
+                }}
+                error={currentCityError}
               />
             </div>
             <button
@@ -97,7 +120,7 @@ export default function HeaderSearchATrainer({
                   fillRule="evenodd"
                   d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
                   clipRule="evenodd"
-                ></path>
+                />
               </svg>
               CAUTA
             </button>
