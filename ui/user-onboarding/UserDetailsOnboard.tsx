@@ -16,11 +16,11 @@ import {
   validateOnlyLetter,
   validateUsername,
 } from '#/utils/helpers';
-import clsx from 'clsx';
 import { AuthError } from '#/constants/authError';
-import { GenderType, UserType } from '#/constants/user';
-import TrainerProfileModel from '#/model/trainer/trainerProfile.model';
+import { GenderList, UserType } from '#/constants/user';
 import { RomaniaStatesData } from '#/constants/location';
+import SelectInput from '#/ui/shared/form/SelectInput';
+import Input from '#/ui/shared/form/Input';
 
 export default function UserDetailsOnboard({
   handleSetUserDetails,
@@ -76,9 +76,7 @@ export default function UserDetailsOnboard({
       return;
     }
 
-    let { data: usernames, error } = await supabase
-      .from('usernames')
-      .select('*');
+    let { data: usernames } = await supabase.from('usernames').select('*');
 
     const found = usernames?.find((item) => item.username === username);
 
@@ -86,10 +84,9 @@ export default function UserDetailsOnboard({
       setUsernameError(AuthError.UsernameIsNotAvailable);
     }
   };
+  const genderType = GenderList;
 
   let currentCites: string[] = [];
-  let trainersSearched: TrainerProfileModel[];
-
   const states = RomaniaStatesData.map((state) => state.name);
 
   RomaniaStatesData.filter((state) => {
@@ -97,6 +94,9 @@ export default function UserDetailsOnboard({
       currentCites = state.cities;
     }
   });
+
+  console.log('gender', gender);
+  console.log('currentState', currentState);
 
   return (
     <section className="bg-gray-900 py-8 lg:py-0">
@@ -114,31 +114,19 @@ export default function UserDetailsOnboard({
               {userType === UserType.Gym ? (
                 <>
                   {/*NAME*/}
-                  <div className="my-3 w-full md:w-6/12 md:px-2">
-                    <label
-                      htmlFor="name"
-                      className="mb-2 block text-sm font-medium text-white"
-                    >
-                      Nume sala*
-                    </label>
-                    <input
-                      type="text"
+                  <div className="my-2 w-full md:w-6/12 md:px-2">
+                    <Input
                       name="name"
-                      id="name"
-                      className={clsx(
-                        'block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-white placeholder-gray-400 focus:border-primary-600 focus:ring-primary-600 sm:text-sm',
-                        {
-                          'border-red-600': nameError.length > 0,
-                        },
-                      )}
+                      label="Nume sala"
                       value={name}
+                      type="text"
                       placeholder="Gym Fit"
-                      required={true}
-                      onChange={(event) => {
+                      error={nameError}
+                      handleChange={(event) => {
                         setName(event.target.value);
                         setNameError('');
                       }}
-                      onBlur={() => {
+                      handleBlur={() => {
                         handleInputRequired(name)
                           ? setNameError(AuthError.InputRequired)
                           : !validateOnlyLetter(name)
@@ -146,41 +134,24 @@ export default function UserDetailsOnboard({
                           : null;
                       }}
                     />
-                    {nameError ? (
-                      <p className="mt-2 block text-xs font-medium text-red-500">
-                        {nameError}
-                      </p>
-                    ) : null}
                   </div>
                 </>
               ) : (
                 <>
                   {/*LASTNAME*/}
-                  <div className="my-3 w-full md:w-6/12 md:px-2">
-                    <label
-                      htmlFor="lastname"
-                      className="mb-2 block text-sm font-medium text-white"
-                    >
-                      Nume *
-                    </label>
-                    <input
-                      type="text"
+                  <div className="my-2 w-full md:w-6/12 md:px-2">
+                    <Input
                       name="lastname"
-                      id="lastname"
-                      className={clsx(
-                        'block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-white placeholder-gray-400 focus:border-primary-600 focus:ring-primary-600 sm:text-sm',
-                        {
-                          'border-red-600': lastNameError.length > 0,
-                        },
-                      )}
+                      label="Nume"
                       value={lastName}
+                      type="text"
                       placeholder="Jon"
-                      required={true}
-                      onChange={(event) => {
+                      error={lastNameError}
+                      handleChange={(event) => {
                         setLastName(event.target.value);
                         setLastNameError('');
                       }}
-                      onBlur={() => {
+                      handleBlur={() => {
                         handleInputRequired(lastName)
                           ? setLastNameError(AuthError.InputRequired)
                           : !validateOnlyLetter(lastName)
@@ -188,39 +159,22 @@ export default function UserDetailsOnboard({
                           : null;
                       }}
                     />
-                    {lastNameError ? (
-                      <p className="mt-2 block text-xs font-medium text-red-500">
-                        {lastNameError}
-                      </p>
-                    ) : null}
                   </div>
 
                   {/*FIRSTNAME*/}
-                  <div className="my-3 w-full md:w-6/12 md:px-2">
-                    <label
-                      htmlFor="firstname"
-                      className="mb-2 block text-sm font-medium text-white"
-                    >
-                      Prenume *
-                    </label>
-                    <input
-                      type="text"
+                  <div className="my-2 w-full md:w-6/12 md:px-2">
+                    <Input
                       name="firstname"
-                      id="firstname"
-                      className={clsx(
-                        'block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-white placeholder-gray-400 focus:border-primary-600 focus:ring-primary-600 sm:text-sm',
-                        {
-                          'border-red-600': firstNameError.length > 0,
-                        },
-                      )}
+                      label="Prenume"
                       value={firstName}
+                      type="text"
                       placeholder="Doe"
-                      required={true}
-                      onChange={(event) => {
+                      error={firstNameError}
+                      handleChange={(event) => {
                         setFirstName(event.target.value);
                         setFirstNameError('');
                       }}
-                      onBlur={() => {
+                      handleBlur={() => {
                         handleInputRequired(firstName)
                           ? setFirstNameError(AuthError.InputRequired)
                           : !validateOnlyLetter(firstName)
@@ -228,137 +182,96 @@ export default function UserDetailsOnboard({
                           : null;
                       }}
                     />
-                    {firstNameError ? (
-                      <p className="mt-2 block text-xs font-medium text-red-500">
-                        {firstNameError}
-                      </p>
-                    ) : null}
                   </div>
                 </>
               )}
 
               {/*USERNAME*/}
-              <div className="my-3 w-full md:w-6/12 md:px-2">
-                <label
-                  htmlFor="email"
-                  className="mb-2 block text-sm font-medium text-white"
-                >
-                  Nume de utilizator *
-                </label>
-                <input
-                  type="text"
+              <div className="my-2 w-full md:w-6/12 md:px-2">
+                <Input
                   name="username"
-                  id="email"
-                  className={clsx(
-                    'block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-white placeholder-gray-400 focus:border-primary-600 focus:ring-primary-600 sm:text-sm',
-                    {
-                      'border-red-600': usernameError.length > 0,
-                    },
-                  )}
+                  label="Nume de utilizator"
                   value={username}
+                  type="text"
                   placeholder="jondoe"
-                  required={true}
-                  onChange={(event) => {
+                  error={usernameError}
+                  handleChange={(event) => {
                     setUsername(event.target.value);
                     setUsernameError('');
                   }}
-                  onBlur={() => {
+                  handleBlur={() => {
                     handleSearchUsername();
+                    handleInputRequired(username)
+                      ? setUsernameError(AuthError.InputRequired)
+                      : !validateOnlyLetter(username)
+                      ? setUsernameError(AuthError.OnlyLetter)
+                      : null;
                   }}
                 />
-                {usernameError ? (
-                  <p className="mt-2 block text-xs font-medium text-red-500">
-                    {usernameError}
-                  </p>
-                ) : null}
               </div>
 
               {userType !== UserType.Gym ? (
                 <>
                   {/*GENDER*/}
-                  <div className="my-3 w-full md:w-6/12 md:px-2">
-                    <label
-                      htmlFor="gender"
-                      className="mb-2 block text-sm font-medium text-white"
-                    >
-                      Gen *
-                    </label>
-                    <select
+                  <div className="my-2 w-full md:w-6/12 md:px-2">
+                    <SelectInput
                       name="gender"
-                      id="gender"
-                      className={clsx(
-                        'block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-white placeholder-gray-400 focus:border-primary-600 focus:ring-primary-600 sm:text-sm',
-                        {
-                          'border-red-600': genderError.length > 0,
-                        },
-                      )}
-                      value={gender}
+                      label="Gen"
                       placeholder="Masculin"
-                      required={true}
-                      onChange={(event) => {
-                        setGender(event.target.value);
+                      options={genderType}
+                      handleChange={(e) => {
                         setGenderError('');
+                        setGender(e.target.value);
                       }}
-                      onBlur={() => {
+                      handleBlur={() => {
                         handleInputRequired(gender)
                           ? setGenderError(AuthError.InputRequired)
                           : null;
                       }}
-                    >
-                      <option value="">Alege</option>
-                      <option value={GenderType.Male}>Masculin</option>
-                      <option value={GenderType.Female}>Feminin</option>
-                      <option value={GenderType.Other}>Altul</option>
-                    </select>
-                    {genderError ? (
-                      <p className="mt-2 block text-xs font-medium text-red-500">
-                        {genderError}
-                      </p>
-                    ) : null}
+                      error={genderError}
+                    />
                   </div>
                 </>
               ) : null}
 
               {/*STATE*/}
-              <div className="my-3 w-full md:w-6/12 md:px-2">
-                <label
-                  htmlFor="gender"
-                  className="mb-2 block text-sm font-medium text-white"
-                >
-                  Judet *
-                </label>
-                <select
+              <div className="my-2 w-full md:w-6/12 md:px-2">
+                <SelectInput
                   name="state"
-                  id="state"
-                  className={clsx(
-                    'block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-white placeholder-gray-400 focus:border-primary-600 focus:ring-primary-600 sm:text-sm',
-                    {
-                      'border-red-600': genderError.length > 0,
-                    },
-                  )}
-                  value={currentState}
+                  label="Judet"
                   placeholder="Bucuresti"
-                  required={true}
-                  onChange={(event) => {
-                    setCurrentState(event.target.value);
+                  options={states}
+                  handleChange={(e) => {
                     setCurrentStateError('');
+                    setCurrentState(e.target.value);
                   }}
-                  onBlur={() => {
+                  handleBlur={() => {
                     handleInputRequired(currentState)
                       ? setCurrentStateError(AuthError.InputRequired)
                       : null;
                   }}
-                >
-                  <option value="">Alege</option>
-                  <option value={GenderType.Male}>Masculin</option>
-                  <option value={GenderType.Female}>Feminin</option>
-                  <option value={GenderType.Other}>Altul</option>
-                </select>
-                {genderError ? (
-                  <p className="mt-2 block text-xs font-medium text-red-500">
-                    {genderError}
-                  </p>
-                ) : null}
+                  error={currentStateError}
+                />
+              </div>
+
+              {/*City*/}
+              <div className="my-2 w-full md:w-6/12 md:px-2">
+                <SelectInput
+                  name="city"
+                  label="Oras / Sector"
+                  placeholder="Sector 1"
+                  options={currentCites}
+                  handleChange={(e) => {
+                    setCurrentCityError('');
+                    setCurrentCity(e.target.value);
+                  }}
+                  handleBlur={() => {
+                    handleInputRequired(currentCity)
+                      ? setCurrentCityError(AuthError.InputRequired)
+                      : null;
+                  }}
+                  error={currentCityError}
+                />
               </div>
             </form>
             <div className="flex space-x-3">

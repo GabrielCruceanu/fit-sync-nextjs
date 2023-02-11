@@ -1,25 +1,27 @@
 import { ChangeEventHandler } from 'react';
 import clsx from 'clsx';
 
-export type SelectInputProps = {
+export type InputProps = {
   label: string;
   name: string;
+  value: string;
+  type: string;
   placeholder: string;
-  options: string[];
   error: string;
-  handleChange: ChangeEventHandler<HTMLSelectElement> | undefined;
-  handleBlur: ChangeEventHandler<HTMLSelectElement> | undefined;
+  handleChange: ChangeEventHandler<HTMLInputElement>;
+  handleBlur: ChangeEventHandler<HTMLInputElement>;
 };
 
-export default function SelectInput({
+export default function Input({
   label,
   name,
+  value,
+  type,
   placeholder,
-  options,
   error,
   handleChange,
   handleBlur,
-}: SelectInputProps) {
+}: InputProps) {
   return (
     <div className="w-full">
       {label ? (
@@ -30,9 +32,11 @@ export default function SelectInput({
           {label}
         </label>
       ) : null}
-      <select
+      <input
         id={name}
         name={name}
+        value={value}
+        type={type}
         placeholder={placeholder}
         autoComplete={name}
         onChange={handleChange}
@@ -43,14 +47,7 @@ export default function SelectInput({
             'border-red-600': error,
           },
         )}
-      >
-        <option></option>
-        {options.map((optionName, key) => (
-          <option key={key} value={optionName} className="capitalize">
-            {optionName}
-          </option>
-        ))}
-      </select>
+      />
       {error ? (
         <p className="mt-2 block text-xs font-medium text-red-500">{error}</p>
       ) : null}

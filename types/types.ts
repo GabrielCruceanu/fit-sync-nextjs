@@ -93,3 +93,5 @@ export type NutritionistReview =
   Database['public']['Tables']['nutritionist_reviews']['Row'];
 
 export type GymReview = Database['public']['Tables']['gyms_reviews']['Row'];
+
+export type GenderTypes = ClientDetails['gender'];

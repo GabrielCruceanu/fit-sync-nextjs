@@ -67,8 +67,12 @@ export default function HeaderSearchATrainer({
               <SelectInput
                 name="trainer-type"
                 label="Tip de antrenor"
+                placeholder={'Fitness'}
                 options={TrainerTypeList}
-                handleChange={(e) => setTrainerType(e.target.value)}
+                handleChange={(e) => {
+                  setTrainerTypeError('');
+                  setTrainerType(e.target.value);
+                }}
                 handleBlur={() => {
                   handleInputRequired(trainerType)
                     ? setTrainerTypeError(AuthError.InputRequired)
@@ -81,8 +85,12 @@ export default function HeaderSearchATrainer({
               <SelectInput
                 name="state"
                 label="Judet"
+                placeholder={'Bucuresti'}
                 options={states}
-                handleChange={(e) => setCurrentState(e.target.value)}
+                handleChange={(e) => {
+                  setCurrentStateError('');
+                  setCurrentState(e.target.value);
+                }}
                 handleBlur={() => {
                   handleInputRequired(currentState)
                     ? setCurrentStateError(AuthError.InputRequired)
@@ -95,8 +103,12 @@ export default function HeaderSearchATrainer({
               <SelectInput
                 name="city"
                 label="Oras / Sector"
+                placeholder={'Sectorul 1'}
                 options={currentCites}
-                handleChange={(e) => setCurrentCity(e.target.value)}
+                handleChange={(e) => {
+                  setCurrentCityError('');
+                  setCurrentCity(e.target.value);
+                }}
                 handleBlur={() => {
                   handleInputRequired(currentCity)
                     ? setCurrentCityError(AuthError.InputRequired)

@@ -14,7 +14,9 @@ export enum CollectionsType {
 }
 
 export enum GenderType {
-  Male = 'Masculin',
-  Female = 'Feminin',
-  Other = 'Altu',
+  Male = 'masculin',
+  Female = 'feminin',
+  Other = 'altul',
 }
+
+export const GenderList = ['masculin', 'feminin', 'altul'];
