@@ -4,6 +4,7 @@ import clsx from 'clsx';
 export type SelectInputProps = {
   label: string;
   name: string;
+  value: string;
   placeholder: string;
   options: string[];
   error: string;
@@ -14,6 +15,7 @@ export type SelectInputProps = {
 export default function SelectInput({
   label,
   name,
+  value,
   placeholder,
   options,
   error,
@@ -33,6 +35,7 @@ export default function SelectInput({
       <select
         id={name}
         name={name}
+        value={value}
         placeholder={placeholder}
         autoComplete={name}
         onChange={handleChange}
