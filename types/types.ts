@@ -67,6 +67,11 @@ export enum AuthType {
   SIGN_UP = 'SIGN_UP',
 }
 
+export enum ButtonType {
+  Primary = 'PRIMARY',
+  Secondary = 'SECONDARY',
+}
+
 export type TypedSupabaseClient = SupabaseClient<Database>;
 
 export type UserDetails = Database['public']['Tables']['users']['Row'];

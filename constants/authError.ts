@@ -5,4 +5,5 @@ export enum AuthError {
   UsernameIsNotAvailable = 'Numele de utilizator este luat.',
   InputRequired = 'Acest camp este obligatoriu',
   OnlyLetter = 'Caractere invalide sau prea putine, foloseste doar "a-z"',
+  OnlyNumbers = 'Caractere invalide sau prea putine, foloseste doar "0-9"',
 }

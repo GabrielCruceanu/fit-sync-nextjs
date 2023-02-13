@@ -1,18 +1,17 @@
 import { UserType } from '#/constants/user';
-import { ChangeEventHandler } from 'react';
+import { MouseEventHandler } from 'react';
 export type InputSelectButtonProps = {
   label: string;
   name: string;
-  placeholder: string;
-  options: string[];
-  error: string;
-  handleClick: ChangeEventHandler<HTMLSelectElement> | undefined;
-  handleBlur: ChangeEventHandler<HTMLSelectElement> | undefined;
+  value: string;
+  handleClick: MouseEventHandler<HTMLLabelElement> | undefined;
 };
 
 export default function InputSelectButton({
   label,
   name,
+  value,
+  handleClick,
 }: InputSelectButtonProps) {
   return (
     <>
@@ -20,17 +19,17 @@ export default function InputSelectButton({
         id={name}
         name={name}
         type="radio"
-        value={UserType.Trainer}
+        value={value}
         className="peer hidden"
         required
       />
       <label
         htmlFor={UserType.Trainer}
-        onClick={() => handleUserTypeClick(UserType.Trainer)}
+        onClick={handleClick}
         className="inline-flex w-full cursor-pointer items-center justify-center rounded-lg border-2  border-gray-700 bg-gray-800
                    p-5 text-gray-400 transition-all ease-in-out hover:bg-gray-700 hover:text-gray-300 peer-checked:border-primary-600 peer-checked:text-primary-500"
       >
-        <span className="w-full">Personal Trainer</span>
+        <span className="w-full">{label}</span>
         <svg
           className="ml-3 h-6 w-6"
           fill="currentColor"

@@ -47,7 +47,9 @@ export default function SelectInput({
           },
         )}
       >
-        <option></option>
+        <option value="" disabled hidden>
+          Alege
+        </option>
         {options.map((optionName, key) => (
           <option key={key} value={optionName} className="capitalize">
             {optionName}

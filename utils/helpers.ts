@@ -58,6 +58,13 @@ export const validateOnlyLetter = (input: string) => {
   const validUsernameRegex = /^[a-zA-Z]+([a-zA-Z](_|-| )[a-zA-Z])*[a-zA-Z]+$/;
   return validUsernameRegex.test(input);
 };
+export const validateIsPhoneNumber = (input: string) => {
+  if (input.length !== 10) {
+    return false;
+  }
+  const validUsernameRegex = /^[0-9]*$/;
+  return validUsernameRegex.test(input);
+};
 
 export const handleInputRequired = (value: string) => {
   return value === '';

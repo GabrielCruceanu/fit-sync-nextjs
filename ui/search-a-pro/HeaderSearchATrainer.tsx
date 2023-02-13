@@ -67,6 +67,7 @@ export default function HeaderSearchATrainer({
               <SelectInput
                 name="trainer-type"
                 label="Tip de antrenor"
+                value={trainerType}
                 placeholder={'Fitness'}
                 options={TrainerTypeList}
                 handleChange={(e) => {
@@ -85,6 +86,7 @@ export default function HeaderSearchATrainer({
               <SelectInput
                 name="state"
                 label="Judet"
+                value={currentState}
                 placeholder={'Bucuresti'}
                 options={states}
                 handleChange={(e) => {
@@ -103,6 +105,7 @@ export default function HeaderSearchATrainer({
               <SelectInput
                 name="city"
                 label="Oras / Sector"
+                value={currentCity}
                 placeholder={'Sectorul 1'}
                 options={currentCites}
                 handleChange={(e) => {
