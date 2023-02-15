@@ -1,6 +1,6 @@
 'use client';
 import { useState } from 'react';
-import { RomaniaStatesData } from '#/constants/location';
+import { RomaniaStatesData } from '#/data/location-data';
 import SelectInput from '#/ui/shared/form/SelectInput';
 import { TrainerTypeList } from '#/constants/trainer';
 import SectionWithWave from '#/ui/shared/SectionWithWave';

@@ -26,25 +26,7 @@ export const TrainerTypeList: string[] = [
   'Altul',
 ];
 
-export const NutritionistTypeList: string[] = [
-  'Terapeut nutritionist',
-  'Medic nutritionist',
-  'Tehnician nutritie',
-];
-
-export const GymsTypeList: string[] = [
-  'Powerlifting',
-  'Calisthenic',
-  'Fitness',
-  'Spin',
-  'Barre',
-  'Pilates',
-  'Bootcamp',
-  'Rock climbing',
-  'Other',
-];
-
-export const TrainerExperienceData: string[] = [
+export const ExperienceData: string[] = [
   '1',
   '2',
   '3',

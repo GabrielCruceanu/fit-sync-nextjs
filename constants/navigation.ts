@@ -24,8 +24,7 @@ export const navigationStatic: NavItem[] = [
   {
     name: 'PRO',
     slug: 'pro',
-  },
-  // {
+  }, // {
   //   name: 'Blog',
   //   slug: 'blog',
   // },

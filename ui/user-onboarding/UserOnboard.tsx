@@ -20,12 +20,21 @@ import {
 } from '#/utils/helpers';
 import { AuthError } from '#/constants/authError';
 import SelectInput from '#/ui/shared/form/SelectInput';
-import { RomaniaStatesData } from '#/constants/location';
+import { RomaniaStatesData } from '#/data/location-data';
 import { useSupabase } from '#/ui/auth/SupabaseProvider';
 import ButtonFull from '#/ui/shared/form/ButtonFull';
 import Datepicker from 'react-tailwindcss-datepicker';
 import clsx from 'clsx';
 import Paragraph from '#/ui/shared/Paragraph';
+import {
+  createGymProfile,
+  createTrainerProfile,
+  createUserName,
+  updateUser,
+} from '#/utils/supabase-client';
+import { TrainerTypeList } from '#/constants/trainer';
+import { GymsTypeList } from '#/constants/gym';
+import { NutritionistTypeList } from '#/constants/nutritionist';
 
 export default function UserOnboard() {
   const { supabase, session } = useSupabase();
@@ -33,9 +42,6 @@ export default function UserOnboard() {
     OnboardStepsType.UserType,
   );
   const [userType, setUserType] = useState<UserDetails['user_type']>(null);
-  const [userDetails, setUserDetails] = useState<
-    ClientDetails | TrainerDetails | NutritionistDetails | GymDetails | null
-  >(null);
 
   const [name, setName] = useState('');
   const [nameError, setNameError] = useState('');
@@ -47,6 +53,14 @@ export default function UserOnboard() {
   const [usernameError, setUsernameError] = useState('');
   const [gender, setGender] = useState('');
   const [genderError, setGenderError] = useState('');
+  const [gymType, setGymType] = useState('');
+  const [gymTypeError, setGymTypeError] = useState('');
+  const [trainerType, setTrainerType] = useState('');
+  const [trainerTypeError, setTrainerTypeError] = useState('');
+  const [nutritionistType, setNutritionistType] = useState('');
+  const [nutritionistTypeError, setNutritionistTypeError] = useState('');
+  const [experience, setExperience] = useState('');
+  const [experienceError, setExperienceError] = useState('');
   const [currentState, setCurrentState] = useState('');
   const [currentStateError, setCurrentStateError] = useState('');
   const [currentCity, setCurrentCity] = useState('');
@@ -64,16 +78,14 @@ export default function UserOnboard() {
   const [birthMonth, setBirthMonth] = useState('');
   const [birthYear, setBirthYear] = useState('');
 
+  const [confirmBtnDisable, setConfirmBtnDisable] = useState(false);
+
   const handleSetOnboardSteps = (value: OnboardStepsType) => {
     setOnboardSteps(value);
   };
 
   const handleSetUserType = (value: UserDetails['user_type']) => {
     setUserType(value);
-  };
-
-  const handleSetUserDetails = () => {
-    setUserDetails(null);
   };
 
   const handleUserTypeClick = (value: UserDetails['user_type']) => {
@@ -100,7 +112,10 @@ export default function UserOnboard() {
       setUsernameError(AuthError.UsernameIsNotAvailable);
     }
   };
-  const genderType = GenderList;
+  const genderTypeList = GenderList;
+  const gymTypeList = GymsTypeList;
+  const trainerTypeList = TrainerTypeList;
+  const nutritionistTypeList = NutritionistTypeList;
 
   let currentCites: string[] = [];
   const states = RomaniaStatesData.map((state) => state.name);
@@ -128,6 +143,88 @@ export default function UserOnboard() {
 
   const handleConfirm = () => {
     console.log('confirm');
+    const today = new Date().toISOString();
+    if (session?.user && session.user.email && userType) {
+      createUserName({
+        user: session.user,
+        username: username,
+        supabase: supabase,
+      });
+      updateUser({
+        user: session.user,
+        email: session.user.email,
+        username: username,
+        userType: userType,
+        supabase: supabase,
+      });
+
+      switch (userType) {
+        case UserType.Gym:
+          const gym: GymDetails = {
+            active_personal_trainers: null,
+            certificate: false,
+            city: currentCity,
+            country: 'Romania',
+            description: null,
+            email: session.user.email,
+            facebook: null,
+            gallery: null,
+            gym_name: name,
+            gym_type: gymType,
+            has_premium: false,
+            id: session.user.id,
+            instagram: null,
+            joined: today,
+            personal: null,
+            phone: phone,
+            profile_picture_url: null,
+            reviews: null,
+            state: currentState,
+            street: street,
+            twitter: null,
+            type: UserType.Gym,
+            username: username,
+            website: null,
+          };
+          createGymProfile(session.user, gym, supabase);
+          break;
+        case UserType.Trainer:
+          const trainer: TrainerDetails = {
+            certificate: false,
+            country: 'Romania',
+            city: currentCity,
+            state: currentState,
+            description: null,
+            email: session.user.email,
+            facebook: null,
+            gallery: null,
+            first_name: firstName,
+            last_name: lastName,
+            trainer_type: trainerType,
+            active_clients: null,
+            birth_date: birthDate,
+            birth_month: birthMonth,
+            birth_year: birthYear,
+            completed_clients: null,
+            experience: '1',
+            gender: gender,
+            programs: null,
+            has_premium: false,
+            id: session.user.id,
+            joined: today,
+            profile_picture_url: null,
+            reviews: null,
+            type: UserType.Gym,
+            username: username,
+            twitter: null,
+            instagram: null,
+            website: null,
+            phone: phone,
+          };
+          createTrainerProfile(session.user, trainer, supabase);
+          break;
+      }
+    }
   };
 
   if (onboardSteps === OnboardStepsType.UserType)
@@ -296,7 +393,7 @@ export default function UserOnboard() {
                   label="Gen"
                   value={gender}
                   placeholder="Masculin"
-                  options={genderType}
+                  options={genderTypeList}
                   handleChange={(e) => {
                     setGenderError('');
                     setGender(e.target.value);
@@ -308,6 +405,84 @@ export default function UserOnboard() {
                       : null;
                   }}
                   error={genderError}
+                />
+              </div>
+            </>
+          ) : null}
+
+          {userType === UserType.Gym ? (
+            <>
+              {/*GYM TYPE*/}
+              <div className="my-2 w-full md:w-6/12 md:px-2">
+                <SelectInput
+                  name="gym_type"
+                  label="Tip Sala"
+                  value={gymType}
+                  placeholder="Fitness"
+                  options={gymTypeList}
+                  handleChange={(e) => {
+                    setGymTypeError('');
+                    setGymType(e.target.value);
+                  }}
+                  handleBlur={() => {
+                    setGymTypeError('');
+                    handleInputRequired(gymType)
+                      ? setGymTypeError(AuthError.InputRequired)
+                      : null;
+                  }}
+                  error={gymTypeError}
+                />
+              </div>
+            </>
+          ) : null}
+
+          {userType === UserType.Trainer ? (
+            <>
+              {/*TRAINER TYPE*/}
+              <div className="my-2 w-full md:w-6/12 md:px-2">
+                <SelectInput
+                  name="trainer_type"
+                  label="Tip Trainer"
+                  value={trainerType}
+                  placeholder="Fitness"
+                  options={trainerTypeList}
+                  handleChange={(e) => {
+                    setTrainerTypeError('');
+                    setTrainerType(e.target.value);
+                  }}
+                  handleBlur={() => {
+                    setTrainerTypeError('');
+                    handleInputRequired(gymType)
+                      ? setTrainerTypeError(AuthError.InputRequired)
+                      : null;
+                  }}
+                  error={trainerTypeError}
+                />
+              </div>
+            </>
+          ) : null}
+
+          {userType === UserType.Nutritionist ? (
+            <>
+              {/*NUTRITIONIST TYPE*/}
+              <div className="my-2 w-full md:w-6/12 md:px-2">
+                <SelectInput
+                  name="nutritionist_type"
+                  label="Tip Nutritionist"
+                  value={nutritionistType}
+                  placeholder="Medic nutritionist"
+                  options={nutritionistTypeList}
+                  handleChange={(e) => {
+                    setNutritionistTypeError('');
+                    setNutritionistType(e.target.value);
+                  }}
+                  handleBlur={() => {
+                    setNutritionistTypeError('');
+                    handleInputRequired(nutritionistType)
+                      ? setNutritionistTypeError(AuthError.InputRequired)
+                      : null;
+                  }}
+                  error={nutritionistTypeError}
                 />
               </div>
             </>
@@ -354,30 +529,6 @@ export default function UserOnboard() {
                   : null;
               }}
               error={currentCityError}
-            />
-          </div>
-
-          {/*Phone*/}
-          <div className="my-2 w-full md:w-6/12 md:px-2">
-            <Input
-              name="phone"
-              label="Telefon"
-              value={phone}
-              type="phone"
-              placeholder="0770121943"
-              error={phoneError}
-              handleChange={(event) => {
-                setPhone(event.target.value);
-                setPhoneError('');
-              }}
-              handleBlur={() => {
-                setPhoneError('');
-                handleInputRequired(phone)
-                  ? setPhoneError(AuthError.InputRequired)
-                  : !validateIsPhoneNumber(phone)
-                  ? setPhoneError(AuthError.OnlyNumbers)
-                  : null;
-              }}
             />
           </div>
 
@@ -438,6 +589,30 @@ export default function UserOnboard() {
               </div>
             </>
           )}
+
+          {/*Phone*/}
+          <div className="my-2 w-full md:w-6/12 md:px-2">
+            <Input
+              name="phone"
+              label="Telefon"
+              value={phone}
+              type="phone"
+              placeholder="0770121943"
+              error={phoneError}
+              handleChange={(event) => {
+                setPhone(event.target.value);
+                setPhoneError('');
+              }}
+              handleBlur={() => {
+                setPhoneError('');
+                handleInputRequired(phone)
+                  ? setPhoneError(AuthError.InputRequired)
+                  : !validateIsPhoneNumber(phone)
+                  ? setPhoneError(AuthError.OnlyNumbers)
+                  : null;
+              }}
+            />
+          </div>
         </form>
         <div className="flex space-x-3">
           <ButtonFull
@@ -575,8 +750,8 @@ export default function UserOnboard() {
           type={ButtonType.Primary}
           shortText={'Confirm'}
           longText={''}
-          disabled={true}
-          handleClick={() => handleSetUserDetails()}
+          disabled={confirmBtnDisable}
+          handleClick={() => handleConfirm()}
         />
       </div>
     </UserOnboardWrap>

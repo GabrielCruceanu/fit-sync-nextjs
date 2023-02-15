@@ -155,10 +155,10 @@ export interface Database {
           country: string | null
           description: string | null
           email: string | null
-          experience: string | null
           facebook: string | null
           gallery: string | null
           gym_name: string | null
+          gym_type: string | null
           has_premium: boolean | null
           id: string
           instagram: string | null
@@ -170,7 +170,7 @@ export interface Database {
           state: string | null
           street: string | null
           twitter: string | null
-          type: string | null
+          type: Database["public"]["Enums"]["user_type"] | null
           username: string | null
           website: string | null
         }
@@ -181,10 +181,10 @@ export interface Database {
           country?: string | null
           description?: string | null
           email?: string | null
-          experience?: string | null
           facebook?: string | null
           gallery?: string | null
           gym_name?: string | null
+          gym_type?: string | null
           has_premium?: boolean | null
           id: string
           instagram?: string | null
@@ -196,7 +196,7 @@ export interface Database {
           state?: string | null
           street?: string | null
           twitter?: string | null
-          type?: string | null
+          type?: Database["public"]["Enums"]["user_type"] | null
           username?: string | null
           website?: string | null
         }
@@ -207,10 +207,10 @@ export interface Database {
           country?: string | null
           description?: string | null
           email?: string | null
-          experience?: string | null
           facebook?: string | null
           gallery?: string | null
           gym_name?: string | null
+          gym_type?: string | null
           has_premium?: boolean | null
           id?: string
           instagram?: string | null
@@ -222,7 +222,7 @@ export interface Database {
           state?: string | null
           street?: string | null
           twitter?: string | null
-          type?: string | null
+          type?: Database["public"]["Enums"]["user_type"] | null
           username?: string | null
           website?: string | null
         }
@@ -378,6 +378,7 @@ export interface Database {
           instagram: string | null
           joined: string
           last_name: string | null
+          nutritionist_type: string | null
           phone: string | null
           profile_picture_url: string | null
           programs: string | null
@@ -409,6 +410,7 @@ export interface Database {
           instagram?: string | null
           joined?: string
           last_name?: string | null
+          nutritionist_type?: string | null
           phone?: string | null
           profile_picture_url?: string | null
           programs?: string | null
@@ -440,6 +442,7 @@ export interface Database {
           instagram?: string | null
           joined?: string
           last_name?: string | null
+          nutritionist_type?: string | null
           phone?: string | null
           profile_picture_url?: string | null
           programs?: string | null
@@ -633,8 +636,9 @@ export interface Database {
           programs: string | null
           reviews: string | null
           state: string | null
+          trainer_type: string | null
           twitter: string | null
-          type: Database["public"]["Enums"]["user_type"] | null
+          type: string | null
           username: string | null
           website: string | null
         }
@@ -664,8 +668,9 @@ export interface Database {
           programs?: string | null
           reviews?: string | null
           state?: string | null
+          trainer_type?: string | null
           twitter?: string | null
-          type?: Database["public"]["Enums"]["user_type"] | null
+          type?: string | null
           username?: string | null
           website?: string | null
         }
@@ -695,8 +700,9 @@ export interface Database {
           programs?: string | null
           reviews?: string | null
           state?: string | null
+          trainer_type?: string | null
           twitter?: string | null
-          type?: Database["public"]["Enums"]["user_type"] | null
+          type?: string | null
           username?: string | null
           website?: string | null
         }
