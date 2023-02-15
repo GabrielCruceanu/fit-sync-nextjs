@@ -3,7 +3,12 @@ import {
   User,
 } from '@supabase/auth-helpers-nextjs';
 import { Database } from '#/types/supabase';
-import { ProductWithPrice } from '#/types/types';
+import {
+  ProductWithPrice,
+  TypedSupabaseClient,
+  UserDetails,
+} from '#/types/types';
+import { useSupabase } from '#/ui/auth/SupabaseProvider';
 
 export const supabaseClient = createBrowserSupabaseClient<Database>();
 
@@ -34,3 +39,9 @@ export const updateUserName = async (user: User, username: string) => {
     })
     .eq('id', user.id);
 };
+
+export const createUserName = async (
+  user: UserDetails,
+  username: string,
+  supabase: TypedSupabaseClient,
+) => {};

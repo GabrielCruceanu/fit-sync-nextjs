@@ -25,6 +25,7 @@ import { useSupabase } from '#/ui/auth/SupabaseProvider';
 import ButtonFull from '#/ui/shared/form/ButtonFull';
 import Datepicker from 'react-tailwindcss-datepicker';
 import clsx from 'clsx';
+import Paragraph from '#/ui/shared/Paragraph';
 
 export default function UserOnboard() {
   const { supabase, session } = useSupabase();
@@ -71,15 +72,8 @@ export default function UserOnboard() {
     setUserType(value);
   };
 
-  const handleSetUserDetails = (
-    value:
-      | ClientDetails
-      | TrainerDetails
-      | NutritionistDetails
-      | GymDetails
-      | null,
-  ) => {
-    setUserDetails(value);
+  const handleSetUserDetails = () => {
+    setUserDetails(null);
   };
 
   const handleUserTypeClick = (value: UserDetails['user_type']) => {
@@ -135,15 +129,6 @@ export default function UserOnboard() {
   const handleConfirm = () => {
     console.log('confirm');
   };
-  console.log('onboardSteps onboard', onboardSteps);
-  console.log('userType onboard', userType);
-  console.log('userDetails onboard', userDetails);
-  console.log('email onboard', session?.user.email);
-  console.log('-------------------------------------');
-
-  console.log('birthDate', birthDate);
-  console.log('birthMonth', birthMonth);
-  console.log('birthYear', birthYear);
 
   if (onboardSteps === OnboardStepsType.UserType)
     return (
@@ -476,13 +461,108 @@ export default function UserOnboard() {
   return (
     <UserOnboardWrap
       currentStep={OnboardStepsType.UserConfirm}
-      heading={'User Confirm'}
+      heading={'Confirmare'}
       paragraph={
         'Prin apasarea butonului de confirma iti vei salva datele de\n' +
         '              utilizarea'
       }
     >
-      <div className="flex space-x-3">
+      <div className="flex flex-wrap">
+        <div className="w-full md:w-6/12">
+          <Paragraph customClass={''}>
+            Tip utilizator:{' '}
+            <strong className="capitalize text-primary-500">{userType}</strong>
+          </Paragraph>
+        </div>
+
+        <div className="w-full md:w-6/12">
+          <Paragraph customClass={''}>
+            Nume de utilizator:{' '}
+            <strong className="capitalize text-primary-500">{username}</strong>
+          </Paragraph>
+        </div>
+
+        {userType === UserType.Gym ? (
+          <div className="w-full md:w-6/12">
+            <Paragraph customClass={''}>
+              Nume sala:{' '}
+              <strong className="capitalize text-primary-500">{name}</strong>
+            </Paragraph>
+          </div>
+        ) : (
+          <>
+            <div className="w-full md:w-6/12">
+              <Paragraph customClass={''}>
+                Nume:{' '}
+                <strong className="capitalize text-primary-500">
+                  {lastName}
+                </strong>
+              </Paragraph>
+            </div>
+
+            <div className="w-full md:w-6/12">
+              <Paragraph customClass={''}>
+                Prenume:{' '}
+                <strong className="capitalize text-primary-500">
+                  {firstName}
+                </strong>
+              </Paragraph>
+            </div>
+
+            <div className="w-full md:w-6/12">
+              <Paragraph customClass={''}>
+                Gen:{' '}
+                <strong className="capitalize text-primary-500">
+                  {gender}
+                </strong>
+              </Paragraph>
+            </div>
+
+            <div className="w-full md:w-6/12">
+              <Paragraph customClass={''}>
+                Data nasterii:{' '}
+                <strong className="capitalize text-primary-500">
+                  {birthDate}/{birthMonth}/{birthYear}
+                </strong>
+              </Paragraph>
+            </div>
+          </>
+        )}
+
+        <div className="w-full md:w-6/12">
+          <Paragraph customClass={''}>
+            Judet:{' '}
+            <strong className="capitalize text-primary-500">
+              {currentState}
+            </strong>
+          </Paragraph>
+        </div>
+
+        <div className="w-full md:w-6/12">
+          <Paragraph customClass={''}>
+            Oras/Sector:{' '}
+            <strong className="capitalize text-primary-500">
+              {currentCity}
+            </strong>
+          </Paragraph>
+        </div>
+
+        {userType === UserType.Gym ? (
+          <div className="w-full md:w-6/12">
+            <Paragraph customClass={''}>
+              Strada:{' '}
+              <strong className="capitalize text-primary-500">{street}</strong>
+            </Paragraph>
+          </div>
+        ) : null}
+        <div className="w-full md:w-6/12">
+          <Paragraph customClass={''}>
+            Telefon:{' '}
+            <strong className="capitalize text-primary-500">{phone}</strong>
+          </Paragraph>
+        </div>
+      </div>
+      <div className="mt-4 flex space-x-3">
         <ButtonFull
           type={ButtonType.Secondary}
           shortText={'Anterior'}
@@ -493,10 +573,10 @@ export default function UserOnboard() {
         />
         <ButtonFull
           type={ButtonType.Primary}
-          shortText={'Urmatorul'}
-          longText={'Confirm'}
+          shortText={'Confirm'}
+          longText={''}
           disabled={true}
-          handleClick={() => handleConfirm()}
+          handleClick={() => handleSetUserDetails()}
         />
       </div>
     </UserOnboardWrap>

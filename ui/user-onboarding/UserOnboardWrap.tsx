@@ -2,6 +2,7 @@ import OnboardSteps, {
   OnboardStepsType,
 } from '#/ui/user-onboarding/OnboardSteps';
 import React from 'react';
+import Paragraph from '../shared/Paragraph';
 
 export default function UserOnboardWrap({
   children,
@@ -20,12 +21,10 @@ export default function UserOnboardWrap({
         <div className="mx-auto flex px-4 md:w-[42rem] md:px-8 xl:px-0">
           <div className="w-full">
             <OnboardSteps currentStep={currentStep} />
-            <h1 className="mb-4 text-center text-2xl font-extrabold leading-tight tracking-tight text-white">
+            <h1 className="mb-4 text-2xl font-extrabold leading-tight tracking-tight text-white">
               {heading}
             </h1>
-            <p className="mb-4 text-center text-lg font-light text-gray-300">
-              {paragraph}
-            </p>
+            <Paragraph customClass="">{paragraph}</Paragraph>
             <>{children}</>
           </div>
         </div>

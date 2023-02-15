@@ -16,14 +16,14 @@ export default function ClientHowItWorks() {
       <div className="mx-auto max-w-screen-xl space-y-12 py-8 px-4 sm:py-16 lg:space-y-20 lg:px-6">
         {/*Row*/}
         <div className="items-center gap-8 lg:grid lg:grid-cols-2 xl:gap-16">
-          <div className="text-gray-500 dark:text-gray-400 sm:text-lg">
+          <div className="text-gray-400 sm:text-lg">
             {/*Image on mobile and tablet*/}
             <Image
               className="mb-4 flex w-full rounded-lg lg:mb-0 lg:hidden"
               src={TrainerMobile}
               alt="Antrenor Personal"
             />
-            <h2 className="mb-4 text-4xl font-bold tracking-tight text-gray-900 dark:text-white">
+            <h2 className="mb-4 text-4xl font-bold tracking-tight text-white">
               Antrenor Personal
             </h2>
             <p className="mb-4 font-light lg:text-xl">

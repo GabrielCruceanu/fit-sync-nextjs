@@ -85,6 +85,7 @@ export default function HeaderSearchAGym({
                 name="state"
                 label="Județ"
                 value={currentState}
+                placeholder={'Bucuresti'}
                 options={states}
                 error={currentStateError}
                 handleChange={(e) => {
@@ -102,8 +103,16 @@ export default function HeaderSearchAGym({
               <SelectInput
                 name="city"
                 label="Oraș / Sector"
+                value={currentCity}
+                placeholder={'Sectorul 1'}
                 options={currentCites}
                 handleChange={(e) => setCurrentCity(e.target.value)}
+                handleBlur={() => {
+                  handleInputRequired(currentCity)
+                    ? setCurrentCityError(AuthError.InputRequired)
+                    : null;
+                }}
+                error={currentCityError}
               />
             </div>
             <button
