@@ -42,7 +42,7 @@ export default function Input({
         onChange={handleChange}
         onBlur={handleBlur}
         className={clsx(
-          'block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 capitalize text-white placeholder-gray-400 focus:border-primary-600 focus:outline-none focus:ring-primary-600 sm:text-sm',
+          'block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-white placeholder-gray-400 focus:border-primary-600 focus:outline-none focus:ring-primary-600 sm:text-sm',
           {
             'border-red-600': error,
           },

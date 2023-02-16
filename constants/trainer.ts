@@ -26,7 +26,7 @@ export const TrainerTypeList: string[] = [
   'Altul',
 ];
 
-export const ExperienceData: string[] = [
+export const ExperienceDataList: string[] = [
   '1',
   '2',
   '3',

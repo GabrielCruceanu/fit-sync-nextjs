@@ -27,12 +27,14 @@ import Datepicker from 'react-tailwindcss-datepicker';
 import clsx from 'clsx';
 import Paragraph from '#/ui/shared/Paragraph';
 import {
+  createClientProfile,
   createGymProfile,
+  createNutritionistProfile,
   createTrainerProfile,
   createUserName,
   updateUser,
 } from '#/utils/supabase-client';
-import { TrainerTypeList } from '#/constants/trainer';
+import { ExperienceDataList, TrainerTypeList } from '#/constants/trainer';
 import { GymsTypeList } from '#/constants/gym';
 import { NutritionistTypeList } from '#/constants/nutritionist';
 
@@ -116,6 +118,7 @@ export default function UserOnboard() {
   const gymTypeList = GymsTypeList;
   const trainerTypeList = TrainerTypeList;
   const nutritionistTypeList = NutritionistTypeList;
+  const experienceList = ExperienceDataList;
 
   let currentCites: string[] = [];
   const states = RomaniaStatesData.map((state) => state.name);
@@ -141,6 +144,95 @@ export default function UserOnboard() {
       : null;
   };
 
+  const inputsAreOk = () => {
+    if (!lastName && userType !== UserType.Gym) {
+      setLastNameError(AuthError.InputRequired);
+      setConfirmBtnDisable(true);
+      return;
+    }
+    if (!firstName && userType !== UserType.Gym) {
+      setFirstNameError(AuthError.InputRequired);
+      setConfirmBtnDisable(true);
+      return;
+    }
+    if (!username) {
+      setUsernameError(AuthError.InputRequired);
+      setConfirmBtnDisable(true);
+      return;
+    }
+    if (!phone) {
+      setPhoneError(AuthError.InputRequired);
+      setConfirmBtnDisable(true);
+      return;
+    }
+    if (!currentState) {
+      setCurrentStateError(AuthError.InputRequired);
+      setConfirmBtnDisable(true);
+      return;
+    }
+    if (!currentCity) {
+      setCurrentCityError(AuthError.InputRequired);
+      setConfirmBtnDisable(true);
+      return;
+    }
+    if (!gender && userType !== UserType.Gym) {
+      setGenderError(AuthError.InputRequired);
+      setConfirmBtnDisable(true);
+      return;
+    }
+    if (!birth && userType !== UserType.Gym) {
+      setBirthError(AuthError.InputRequired);
+      setConfirmBtnDisable(true);
+      return;
+    }
+
+    switch (userType) {
+      case UserType.Gym:
+        if (!name) {
+          setNameError(AuthError.InputRequired);
+          setConfirmBtnDisable(true);
+          return;
+        }
+        if (!gymType) {
+          setGymTypeError(AuthError.InputRequired);
+          setConfirmBtnDisable(true);
+          return;
+        }
+        if (!street) {
+          setStreetError(AuthError.InputRequired);
+          setConfirmBtnDisable(true);
+          return;
+        }
+        break;
+      case UserType.Trainer:
+        if (!trainerType) {
+          setTrainerTypeError(AuthError.InputRequired);
+          setConfirmBtnDisable(true);
+          return;
+        }
+        if (!experience) {
+          setExperienceError(AuthError.InputRequired);
+          setConfirmBtnDisable(true);
+          return;
+        }
+        break;
+      case UserType.Nutritionist:
+        if (!nutritionistType) {
+          setNutritionistTypeError(AuthError.InputRequired);
+          setConfirmBtnDisable(true);
+          return;
+        }
+        if (!experience) {
+          setExperienceError(AuthError.InputRequired);
+          setConfirmBtnDisable(true);
+          return;
+        }
+        break;
+    }
+    setConfirmBtnDisable(false);
+    handleSetOnboardSteps(OnboardStepsType.UserConfirm);
+  };
+
   const handleConfirm = () => {
     console.log('confirm');
     const today = new Date().toISOString();
@@ -161,67 +253,126 @@ export default function UserOnboard() {
       switch (userType) {
         case UserType.Gym:
           const gym: GymDetails = {
-            active_personal_trainers: null,
-            certificate: false,
-            city: currentCity,
-            country: 'Romania',
-            description: null,
+            id: session.user.id,
             email: session.user.email,
-            facebook: null,
-            gallery: null,
+            type: userType,
+            username: username,
             gym_name: name,
             gym_type: gymType,
-            has_premium: false,
-            id: session.user.id,
-            instagram: null,
-            joined: today,
-            personal: null,
             phone: phone,
+            country: 'Romania',
+            state: currentState,
+            city: currentCity,
+            street: street,
+            joined: today,
+            active_personal_trainers: null,
+            certificate: false,
+            description: null,
+            facebook: null,
+            gallery: null,
+            has_premium: false,
+            instagram: null,
+            personal: null,
             profile_picture_url: null,
             reviews: null,
-            state: currentState,
-            street: street,
             twitter: null,
-            type: UserType.Gym,
-            username: username,
             website: null,
           };
           createGymProfile(session.user, gym, supabase);
           break;
         case UserType.Trainer:
           const trainer: TrainerDetails = {
-            certificate: false,
-            country: 'Romania',
-            city: currentCity,
-            state: currentState,
-            description: null,
+            id: session.user.id,
             email: session.user.email,
-            facebook: null,
-            gallery: null,
+            type: userType,
+            username: username,
+            joined: today,
             first_name: firstName,
             last_name: lastName,
-            trainer_type: trainerType,
-            active_clients: null,
+            gender: gender,
+            phone: phone,
             birth_date: birthDate,
             birth_month: birthMonth,
             birth_year: birthYear,
+            trainer_type: trainerType,
+            experience: experience,
+            country: 'Romania',
+            city: currentCity,
+            state: currentState,
+            certificate: false,
+            description: null,
+            facebook: null,
+            gallery: null,
+            active_clients: null,
             completed_clients: null,
-            experience: '1',
-            gender: gender,
             programs: null,
             has_premium: false,
-            id: session.user.id,
-            joined: today,
             profile_picture_url: null,
             reviews: null,
-            type: UserType.Gym,
-            username: username,
             twitter: null,
             instagram: null,
             website: null,
-            phone: phone,
           };
           createTrainerProfile(session.user, trainer, supabase);
+          break;
+        case UserType.Nutritionist:
+          const nutritionist: NutritionistDetails = {
+            id: session.user.id,
+            email: session.user.email,
+            joined: today,
+            type: userType,
+            username: username,
+            first_name: firstName,
+            last_name: lastName,
+            gender: gender,
+            phone: phone,
+            birth_date: birthDate,
+            birth_month: birthMonth,
+            birth_year: birthYear,
+            nutritionist_type: nutritionistType,
+            experience: experience,
+            country: 'Romania',
+            city: currentCity,
+            state: currentState,
+            certificate: false,
+            description: null,
+            facebook: null,
+            gallery: null,
+            active_clients: null,
+            completed_clients: null,
+            programs: null,
+            has_premium: false,
+            profile_picture_url: null,
+            reviews: null,
+            twitter: null,
+            instagram: null,
+            website: null,
+          };
+          createNutritionistProfile(session.user, nutritionist, supabase);
+          break;
+        case UserType.Client:
+          const client: ClientDetails = {
+            id: session.user.id,
+            first_name: firstName,
+            last_name: lastName,
+            country: 'Romania',
+            city: currentCity,
+            state: currentState,
+            email: session.user.email,
+            birth_date: birthDate,
+            birth_month: birthMonth,
+            birth_year: birthYear,
+            gender: gender,
+            has_premium: false,
+            joined: today,
+            profile_picture_url: null,
+            type: userType,
+            username: username,
+            phone: phone,
+            current_details: null,
+            history_details: null,
+          };
+          createClientProfile(session.user, client, supabase);
           break;
       }
     }
@@ -369,7 +520,7 @@ export default function UserOnboard() {
               placeholder="jondoe"
               error={usernameError}
               handleChange={(event) => {
-                setUsername(event.target.value);
+                setUsername(event.target.value.toLowerCase());
                 setUsernameError('');
               }}
               handleBlur={() => {
@@ -488,6 +639,33 @@ export default function UserOnboard() {
             </>
           ) : null}
 
+          {userType === UserType.Trainer ||
+          userType === UserType.Nutritionist ? (
+            <>
+              {/*EXPERIENCE*/}
+              <div className="my-2 w-full md:w-6/12 md:px-2">
+                <SelectInput
+                  name="experience"
+                  label="Ani de experienta"
+                  value={experience}
+                  placeholder="5"
+                  options={experienceList}
+                  handleChange={(e) => {
+                    setExperienceError('');
+                    setExperience(e.target.value);
+                  }}
+                  handleBlur={() => {
+                    setExperienceError('');
+                    handleInputRequired(experience)
+                      ? setExperienceError(AuthError.InputRequired)
+                      : null;
+                  }}
+                  error={experienceError}
+                />
+              </div>
+            </>
+          ) : null}
+
           {/*STATE*/}
           <div className="my-2 w-full md:w-6/12 md:px-2">
             <SelectInput
@@ -540,7 +718,7 @@ export default function UserOnboard() {
                   htmlFor="birth"
                   className="mb-2 block text-left text-sm font-medium text-gray-300"
                 >
-                  An de nastere
+                  Data nasterii
                 </label>
                 <Datepicker
                   inputId="birth"
@@ -625,9 +803,10 @@ export default function UserOnboard() {
             type={ButtonType.Primary}
             shortText={'Urmatorul'}
             longText={'Confirmare'}
-            handleClick={() =>
-              handleSetOnboardSteps(OnboardStepsType.UserConfirm)
-            }
+            disabled={confirmBtnDisable}
+            handleClick={() => {
+              inputsAreOk();
+            }}
           />
         </div>
       </UserOnboardWrap>
@@ -653,7 +832,7 @@ export default function UserOnboard() {
         <div className="w-full md:w-6/12">
           <Paragraph customClass={''}>
             Nume de utilizator:{' '}
-            <strong className="capitalize text-primary-500">{username}</strong>
+            <strong className="text-primary-500">{username}</strong>
           </Paragraph>
         </div>
 
@@ -750,7 +929,6 @@ export default function UserOnboard() {
           type={ButtonType.Primary}
           shortText={'Confirm'}
           longText={''}
-          disabled={confirmBtnDisable}
           handleClick={() => handleConfirm()}
         />
       </div>

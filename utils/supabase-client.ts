@@ -12,8 +12,6 @@ import {
   TypedSupabaseClient,
   UserDetails,
 } from '#/types/types';
-import { useSupabase } from '#/ui/auth/SupabaseProvider';
-import { UserType } from '#/constants/user';
 
 export const supabaseClient = createBrowserSupabaseClient<Database>();
 
@@ -84,7 +82,7 @@ export const createUserName = async ({
   supabase: TypedSupabaseClient;
 }) => {
   const today = new Date().toISOString();
-  const { data, error } = await supabase.from('usernames').insert([
+  const { data, error } = await supabase.from('usernames').upsert([
     {
       id: user.id,
       created_at: today,
@@ -103,7 +101,7 @@ export const createGymProfile = async (
   gym: GymDetails,
   supabase: TypedSupabaseClient,
 ) => {
-  const { data, error } = await supabase.from('gyms').insert([gym]);
+  const { data, error } = await supabase.from('gyms').upsert([gym]);
 
   if (error) {
     console.log('create gym profile error: ', error.message);
@@ -117,7 +115,7 @@ export const createTrainerProfile = async (
   trainer: TrainerDetails,
   supabase: TypedSupabaseClient,
 ) => {
-  const { data, error } = await supabase.from('trainers').insert([trainer]);
+  const { data, error } = await supabase.from('trainers').upsert([trainer]);
 
   if (error) {
     console.log('create trainer profile error: ', error.message);
@@ -133,7 +131,7 @@ export const createNutritionistProfile = async (
 ) => {
   const { data, error } = await supabase
     .from('nutritionists')
-    .insert([nutritionist]);
+    .upsert([nutritionist]);
 
   if (error) {
     console.log('create nutritionist profile error: ', error.message);
@@ -147,7 +145,7 @@ export const createClientProfile = async (
   client: ClientDetails,
   supabase: TypedSupabaseClient,
 ) => {
-  const { data, error } = await supabase.from('clients').insert([client]);
+  const { data, error } = await supabase.from('clients').upsert([client]);
 
   if (error) {
     console.log('create client profile error: ', error.message);

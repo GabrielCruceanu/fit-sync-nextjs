@@ -16,10 +16,10 @@ export interface Database {
           birth_year: string | null
           city: string | null
           country: string | null
-          current_details: number
+          current_details: number | null
           email: string | null
           first_name: string | null
-          gender: Database["public"]["Enums"]["gender_type"] | null
+          gender: string | null
           has_premium: boolean | null
           history_details: number | null
           id: string
@@ -37,10 +37,10 @@ export interface Database {
           birth_year?: string | null
           city?: string | null
           country?: string | null
-          current_details: number
+          current_details?: number | null
           email?: string | null
           first_name?: string | null
-          gender?: Database["public"]["Enums"]["gender_type"] | null
+          gender?: string | null
           has_premium?: boolean | null
           history_details?: number | null
           id: string
@@ -58,10 +58,10 @@ export interface Database {
           birth_year?: string | null
           city?: string | null
           country?: string | null
-          current_details?: number
+          current_details?: number | null
           email?: string | null
           first_name?: string | null
-          gender?: Database["public"]["Enums"]["gender_type"] | null
+          gender?: string | null
           has_premium?: boolean | null
           history_details?: number | null
           id?: string
@@ -372,7 +372,7 @@ export interface Database {
           facebook: string | null
           first_name: string | null
           gallery: string | null
-          gender: Database["public"]["Enums"]["gender_type"] | null
+          gender: string | null
           has_premium: boolean | null
           id: string
           instagram: string | null
@@ -404,7 +404,7 @@ export interface Database {
           facebook?: string | null
           first_name?: string | null
           gallery?: string | null
-          gender?: Database["public"]["Enums"]["gender_type"] | null
+          gender?: string | null
           has_premium?: boolean | null
           id: string
           instagram?: string | null
@@ -436,7 +436,7 @@ export interface Database {
           facebook?: string | null
           first_name?: string | null
           gallery?: string | null
-          gender?: Database["public"]["Enums"]["gender_type"] | null
+          gender?: string | null
           has_premium?: boolean | null
           id?: string
           instagram?: string | null
@@ -625,7 +625,7 @@ export interface Database {
           facebook: string | null
           first_name: string | null
           gallery: string | null
-          gender: Database["public"]["Enums"]["gender_type"] | null
+          gender: string | null
           has_premium: boolean | null
           id: string
           instagram: string | null
@@ -657,7 +657,7 @@ export interface Database {
           facebook?: string | null
           first_name?: string | null
           gallery?: string | null
-          gender?: Database["public"]["Enums"]["gender_type"] | null
+          gender?: string | null
           has_premium?: boolean | null
           id: string
           instagram?: string | null
@@ -689,7 +689,7 @@ export interface Database {
           facebook?: string | null
           first_name?: string | null
           gallery?: string | null
-          gender?: Database["public"]["Enums"]["gender_type"] | null
+          gender?: string | null
           has_premium?: boolean | null
           id?: string
           instagram?: string | null
