@@ -3,10 +3,11 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { PagesLinks, TermsLinks } from '#/constants/links';
-import { validateEmail } from '#/utils/helpers';
+import { handleInputRequired, validateEmail } from '#/utils/helpers';
 import { AuthError } from '#/constants/authError';
 import { TypedSupabaseClient } from '#/types/types';
 import clsx from 'clsx';
+import Input from '#/ui/shared/form/Input';
 
 export default function SignUp({
   supabase,
@@ -81,102 +82,66 @@ export default function SignUp({
               Inregistrare
             </h1>
             <form className="space-y-4 md:space-y-6">
-              <div>
-                <label
-                  htmlFor="email"
-                  className="mb-2 block text-sm font-medium text-white"
-                >
-                  Email
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  id="email"
-                  className={clsx(
-                    'block w-full rounded-lg border border-gray-600  bg-gray-700 p-2.5 text-white placeholder-gray-400 focus:border-primary-600 focus:ring-primary-600 sm:text-sm',
-                    {
-                      'border-red-600': setEmailError.length > 0,
-                    },
-                  )}
-                  value={email}
-                  placeholder="nume@email.com"
-                  required={true}
-                  onChange={(event) => {
-                    setEmail(event.target.value);
-                    setEmailError('');
-                    setSignUpError('');
-                  }}
-                />
-                {emailError ? (
-                  <p className="mt-2 block text-xs font-medium text-red-500">
-                    {emailError}
-                  </p>
-                ) : null}
-              </div>
-              <div>
-                <label
-                  htmlFor="password"
-                  className="mb-2 block text-sm font-medium text-white"
-                >
-                  Parola
-                </label>
-                <input
-                  type="password"
-                  name="password"
-                  id="confirm-password"
-                  placeholder="••••••••"
-                  className={clsx(
-                    'block w-full rounded-lg border border-gray-600  bg-gray-700 p-2.5 text-white placeholder-gray-400 focus:border-primary-600 focus:ring-primary-600 sm:text-sm',
-                    {
-                      'border-red-600': setPasswordError.length > 0,
-                    },
-                  )}
-                  required={true}
-                  value={password}
-                  onChange={(event) => {
-                    setPassword(event.target.value);
-                    setPasswordError('');
-                    setSignUpError('');
-                  }}
-                />
-                {passwordError ? (
-                  <p className="mt-2 block text-xs font-medium text-red-500">
-                    {passwordError}
-                  </p>
-                ) : null}
-              </div>
-              <div>
-                <label
-                  htmlFor="password"
-                  className="mb-2 block text-sm font-medium text-white"
-                >
-                  Confirma Parola
-                </label>
-                <input
-                  type="password"
-                  name="password"
-                  id="confirm-password"
-                  placeholder="••••••••"
-                  className={clsx(
-                    'block w-full rounded-lg border border-gray-600  bg-gray-700 p-2.5 text-white placeholder-gray-400 focus:border-primary-600 focus:ring-primary-600 sm:text-sm',
-                    {
-                      'border-red-600': setConfirmPasswordError.length > 0,
-                    },
-                  )}
-                  required={true}
-                  value={confirmPassword}
-                  onChange={(event) => {
-                    setConfirmPassword(event.target.value);
-                    setConfirmPasswordError('');
-                    setSignUpError('');
-                  }}
-                />
-                {confirmPasswordError ? (
-                  <p className="mt-2 block text-xs font-medium text-red-500">
-                    {confirmPasswordError}
-                  </p>
-                ) : null}
-              </div>
+              <Input
+                name={'email'}
+                value={email}
+                label={'Email'}
+                placeholder={'nume@email.com'}
+                error={emailError}
+                type={'email'}
+                handleChange={(event) => {
+                  setEmail(event.target.value);
+                  setEmailError('');
+                  setSignUpError('');
+                }}
+                handleBlur={() => {
+                  setEmailError('');
+                  setSignUpError('');
+                  handleInputRequired(email)
+                    ? setEmailError(AuthError.InputRequired)
+                    : null;
+                }}
+              />
+              <Input
+                name={'password'}
+                value={password}
+                label={'Parola'}
+                placeholder={'••••••••'}
+                error={passwordError}
+                type={'password'}
+                handleChange={(event) => {
+                  setPassword(event.target.value);
+                  setPasswordError('');
+                  setSignUpError('');
+                }}
+                handleBlur={() => {
+                  setPasswordError('');
+                  setSignUpError('');
+                  handleInputRequired(password)
+                    ? setPasswordError(AuthError.InputRequired)
+                    : null;
+                }}
+              />
+              <Input
+                name={'confirm-password'}
+                value={confirmPassword}
+                label={'Confirma Parola'}
+                placeholder={'••••••••'}
+                error={confirmPasswordError}
+                type={'password'}
+                handleChange={(event) => {
+                  setConfirmPassword(event.target.value);
+                  setConfirmPasswordError('');
+                  setSignUpError('');
+                }}
+                handleBlur={() => {
+                  setConfirmPasswordError('');
+                  setSignUpError('');
+                  handleInputRequired(confirmPassword)
+                    ? setConfirmPasswordError(AuthError.InputRequired)
+                    : null;
+                }}
+              />
               {/*Terms*/}
               <p className="mb-2 block text-sm font-medium text-white">
                 Sunt de acord cu urmatoarele:

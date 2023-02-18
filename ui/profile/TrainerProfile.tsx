@@ -1,10 +1,10 @@
 'use client';
-import TrainerProfileHeader from '#/ui/trainer/profile/TrainerProfileHeader';
+import ProfileHeader from '#/ui/profile/ProfileHeader';
 import TrainerProfileModel from '#/model/trainer/trainerProfile.model';
-import TrainerProfileContact from '#/ui/trainer/profile/TrainerProfileContact';
+import ProfileContact from '#/ui/profile/ProfileContact';
 import Reviews from '#/ui/shared/Reviews';
-import TrainerProfileDescription from '#/ui/trainer/profile/TrainerProfileDescription';
-import TrainerPrograms from '#/ui/trainer/profile/TrainerPrograms';
+import ProfileDescription from '#/ui/profile/ProfileDescription';
+import ProfilePrograms from '#/ui/profile/ProfilePrograms';
 import { TabItem } from 'flowbite';
 
 export default function TrainerProfile({
@@ -32,7 +32,7 @@ export default function TrainerProfile({
   return (
     <>
       {/* Profile Header */}
-      <TrainerProfileHeader
+      <ProfileHeader
         firstName={firstName}
         lastName={lastName}
         profilePicture={profilePicture}
@@ -46,16 +46,16 @@ export default function TrainerProfile({
       />
 
       {/* Profile Description */}
-      <TrainerProfileDescription description={description} />
+      <ProfileDescription description={description} />
 
       {/* Profile Contact */}
-      <TrainerProfileContact contact={contact} />
+      <ProfileContact contact={contact} />
 
       {/* Profile Review */}
       {reviews ? <Reviews reviews={reviews} username={username} /> : null}
 
       {/* Profile Programs */}
-      {programs ? <TrainerPrograms programs={programs} /> : null}
+      {programs ? <ProfilePrograms programs={programs} /> : null}
     </>
   );
 }

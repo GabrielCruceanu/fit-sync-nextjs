@@ -19,12 +19,14 @@ import {
   navigationClient,
   navigationLogout,
   navigationStatic,
-  navigationTrainer,
+  navigationProfessional,
 } from '#/constants/navigation';
 import { ProCardCTA } from '#/ui/shared/ProCardCTA';
 import { PagesLinks } from '#/constants/links';
 import { useSupabase } from '#/ui/auth/SupabaseProvider';
 import LogoutIcon from '@heroicons/react/solid/LogoutIcon';
+import { useUserContext } from '#/utils/useUserContext';
+import { UserType } from '#/constants/user';
 
 const userFAKE = {
   name: 'Tom Cook',
@@ -39,14 +41,14 @@ function classNames(...classes: string[]) {
 
 export function Navigation() {
   const { supabase, session } = useSupabase();
-  const user = session?.user;
-  const isLogged = !!user;
-  const isTrainer = true;
+  const user = useUserContext();
+  const isLogged = session?.user;
+  const isProfessional = user?.userDetails?.user_type !== UserType.Client;
   const pathname = usePathname();
   const router = useRouter();
   const segment = useSelectedLayoutSegment();
 
-  const navLinks = isTrainer ? navigationTrainer : navigationClient;
+  const navLinks = isProfessional ? navigationProfessional : navigationClient;
 
   const logout = () => {
     supabase.auth.signOut().then(() => router.push('/'));
@@ -242,10 +244,14 @@ export function Navigation() {
                     </div>
                     <div className="ml-3">
                       <div className="text-base font-medium leading-none text-white">
-                        {userFAKE.name}
+                        {user?.userDetails?.name
+                          ? user?.userDetails?.name
+                          : user?.userDetails?.last_name +
+                            ' ' +
+                            user?.userDetails?.first_name}
                       </div>
                       <div className="text-sm font-medium leading-none text-gray-400">
-                        {userFAKE.email}
+                        {user?.userDetails?.email}
                       </div>
                     </div>
                     <button

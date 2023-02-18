@@ -728,7 +728,10 @@ export interface Database {
         Row: {
           billing_address: Json | null
           email: string | null
+          first_name: string | null
           id: string
+          last_name: string | null
+          name: string | null
           payment_method: Json | null
           user_type: Database["public"]["Enums"]["user_type"] | null
           username: string | null
@@ -736,7 +739,10 @@ export interface Database {
         Insert: {
           billing_address?: Json | null
           email?: string | null
+          first_name?: string | null
           id: string
+          last_name?: string | null
+          name?: string | null
           payment_method?: Json | null
           user_type?: Database["public"]["Enums"]["user_type"] | null
           username?: string | null
@@ -744,7 +750,10 @@ export interface Database {
         Update: {
           billing_address?: Json | null
           email?: string | null
+          first_name?: string | null
           id?: string
+          last_name?: string | null
+          name?: string | null
           payment_method?: Json | null
           user_type?: Database["public"]["Enums"]["user_type"] | null
           username?: string | null

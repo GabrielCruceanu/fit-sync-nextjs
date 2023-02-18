@@ -4,11 +4,7 @@ import {
 } from '@supabase/auth-helpers-nextjs';
 import { Database, Json } from '#/types/supabase';
 import {
-  ClientDetails,
-  GymDetails,
-  NutritionistDetails,
   ProductWithPrice,
-  TrainerDetails,
   TypedSupabaseClient,
   UserDetails,
 } from '#/types/types';
@@ -46,6 +42,9 @@ export const updateUserName = async (user: User, username: string) => {
 export const updateUser = async ({
   user,
   username,
+  firstName,
+  lastName,
+  name,
   billingAddress,
   paymentMethod,
   email,
@@ -54,6 +53,9 @@ export const updateUser = async ({
 }: {
   user: User;
   username: string;
+  firstName: string | null;
+  lastName: string | null;
+  name: string | null;
   billingAddress?: Json;
   paymentMethod?: Json;
   email: string;
@@ -67,6 +69,9 @@ export const updateUser = async ({
       paymentMethod: paymentMethod,
       email: email,
       username: username,
+      first_name: firstName,
+      last_name: lastName,
+      name: name,
       user_type: userType,
     })
     .eq('id', user.id);
@@ -93,63 +98,5 @@ export const createUserName = async ({
     console.log('create username error: ', error.message);
   }
   console.log('create username data:', data);
-  return data;
-};
-
-export const createGymProfile = async (
-  user: User,
-  gym: GymDetails,
-  supabase: TypedSupabaseClient,
-) => {
-  const { data, error } = await supabase.from('gyms').upsert([gym]);
-
-  if (error) {
-    console.log('create gym profile error: ', error.message);
-  }
-  console.log('create  gym profile data:', data);
-  return data;
-};
-
-export const createTrainerProfile = async (
-  user: User,
-  trainer: TrainerDetails,
-  supabase: TypedSupabaseClient,
-) => {
-  const { data, error } = await supabase.from('trainers').upsert([trainer]);
-
-  if (error) {
-    console.log('create trainer profile error: ', error.message);
-  }
-  console.log('create  trainer profile data:', data);
-  return data;
-};
-
-export const createNutritionistProfile = async (
-  user: User,
-  nutritionist: NutritionistDetails,
-  supabase: TypedSupabaseClient,
-) => {
-  const { data, error } = await supabase
-    .from('nutritionists')
-    .upsert([nutritionist]);
-
-  if (error) {
-    console.log('create nutritionist profile error: ', error.message);
-  }
-  console.log('create  nutritionist profile data:', data);
-  return data;
-};
-
-export const createClientProfile = async (
-  user: User,
-  client: ClientDetails,
-  supabase: TypedSupabaseClient,
-) => {
-  const { data, error } = await supabase.from('clients').upsert([client]);
-
-  if (error) {
-    console.log('create client profile error: ', error.message);
-  }
-  console.log('create  client profile data:', data);
   return data;
 };

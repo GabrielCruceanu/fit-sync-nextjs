@@ -10,7 +10,8 @@ import { TrainerType } from '#/constants/trainer';
 import ClientProfileModel from '#/model/client/clientProfile.model';
 import { Button, Tooltip } from 'flowbite-react';
 
-export default function TrainerProfileHeader({
+export default function ProfileHeader({
+  name,
   firstName,
   lastName,
   profilePicture,
@@ -22,16 +23,17 @@ export default function TrainerProfileHeader({
   activeClients,
   contact,
 }: {
-  firstName: string;
-  lastName: string;
-  profilePicture?: string;
-  type: TrainerType;
-  experience: string;
-  certificate: boolean;
-  city: string;
-  completedClients?: ClientProfileModel[];
-  activeClients?: ClientProfileModel[];
-  contact: ContactModel;
+  name: string | null;
+  firstName: string | null;
+  lastName: string | null;
+  profilePicture?: string | null;
+  type?: TrainerType | null;
+  experience?: string | null;
+  certificate?: boolean | null;
+  city: string | null;
+  completedClients?: ClientProfileModel[] | null;
+  activeClients?: ClientProfileModel[] | null;
+  contact?: ContactModel | null;
 }) {
   return (
     <div className="md:mx-auto md:px-4 md:pt-4">
@@ -54,7 +56,8 @@ export default function TrainerProfileHeader({
             ) : (
               <div className="relative inline-flex h-full w-full items-center justify-center overflow-hidden bg-gray-600">
                 <span className="text-4xl text-gray-300 dark:text-gray-300">
-                  {firstName[0] + lastName[0]}
+                  {firstName && lastName ? firstName[0] + lastName[0] : null}
+                  {name ? name[0] : null}
                 </span>
               </div>
             )}
@@ -101,16 +104,18 @@ export default function TrainerProfileHeader({
             </div>
 
             {/*Contact Action*/}
-            <div className="mt-2">
-              <a
-                href={'https://wa.me/' + contact.phone}
-                target="_blank"
-                rel="noreferrer"
-                className="block flex h-[54px] w-[54px] items-center justify-center overflow-hidden rounded-full bg-teal-500"
-              >
-                <ChatIcon className="h-9 w-9 fill-gray-900 transition-all ease-in-out hover:fill-teal-900" />
-              </a>
-            </div>
+            {contact ? (
+              <div className="mt-2">
+                <a
+                  href={'https://wa.me/' + contact.phone}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="block flex h-[54px] w-[54px] items-center justify-center overflow-hidden rounded-full bg-teal-500"
+                >
+                  <ChatIcon className="h-9 w-9 fill-gray-900 transition-all ease-in-out hover:fill-teal-900" />
+                </a>
+              </div>
+            ) : null}
           </div>
 
           {/* Profile Experience */}

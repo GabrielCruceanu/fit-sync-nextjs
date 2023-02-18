@@ -5,13 +5,30 @@ import { useSupabase } from '#/ui/auth/SupabaseProvider';
 import { useEffect, useState } from 'react';
 import { navigationAuth } from '#/constants/navigation';
 import LoadingDots from '#/ui/shared/LoadingDots';
-import { UserDetails } from '#/types/types';
+import {
+  ClientDetails,
+  GymDetails,
+  NutritionistDetails,
+  TrainerDetails,
+  UserDetails,
+} from '#/types/types';
+import { getClientProfile } from '#/utils/client-hooks';
+import { UserType } from '#/constants/user';
 
 export default function Cont() {
   const router = useRouter();
   const { supabase, session } = useSupabase();
   const [loading, setLoading] = useState(true);
   const [userType, setUserType] = useState<UserDetails['user_type']>(null);
+  const [clientProfile, setClientProfile] = useState<ClientDetails | null>(
+    null,
+  );
+  const [trainerProfile, setTrainerProfile] = useState<TrainerDetails | null>(
+    null,
+  );
+  const [nutritionistProfile, setNutritionistProfile] =
+    useState<NutritionistDetails | null>(null);
+  const [gymProfile, setGymProfile] = useState<GymDetails | null>(null);
 
   useEffect(() => {
     if (!session) {
@@ -34,6 +51,15 @@ export default function Cont() {
         console.log('user_type', data);
         if (data) {
           setUserType(data.user_type);
+
+          switch (data.user_type) {
+            case UserType.Client:
+              const clientProfile = await getClientProfile(
+                session.user.id,
+                supabase,
+              );
+              setClientProfile(clientProfile);
+          }
         }
       } catch (error) {
         alert('Error loading user_type data!');
@@ -52,6 +78,6 @@ export default function Cont() {
       <LoadingDots />
     </div>
   ) : (
-    <Profile userType={userType} />
+    <Profile userType={userType} clientProfile={clientProfile} />
   );
 }

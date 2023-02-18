@@ -1,6 +1,6 @@
 import TrainerProfileModel from '#/model/trainer/trainerProfile.model';
 import { notFound } from 'next/navigation';
-import TrainerProfile from '#/ui/trainer/profile/TrainerProfile';
+import TrainerProfile from '#/ui/profile/TrainerProfile';
 
 async function getTrainersData() {
   const res = await fetch('https://www.kaapo.fit/api/trainers');

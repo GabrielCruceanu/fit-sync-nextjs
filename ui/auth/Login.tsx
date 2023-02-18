@@ -3,10 +3,15 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { PagesLinks } from '#/constants/links';
-import { validateEmail } from '#/utils/helpers';
+import {
+  handleInputRequired,
+  validateEmail,
+  validateOnlyLetter,
+} from '#/utils/helpers';
 import { AuthError } from '#/constants/authError';
 import { TypedSupabaseClient } from '#/types/types';
 import clsx from 'clsx';
+import Input from '#/ui/shared/form/Input';
 
 export default function Login({ supabase }: { supabase: TypedSupabaseClient }) {
   const [email, setEmail] = useState('');
@@ -60,72 +65,49 @@ export default function Login({ supabase }: { supabase: TypedSupabaseClient }) {
         <div className="w-full rounded-lg bg-gray-800 shadow sm:max-w-md md:mt-0 xl:p-0">
           <div className="space-y-4 p-6 sm:p-8 md:space-y-6 lg:space-y-8">
             <h1 className="text-center text-xl font-bold leading-tight tracking-tight text-white md:text-2xl">
-              Bine ai revenit
+              Autentificare
             </h1>
             <form className="space-y-4 md:space-y-6">
-              <div>
-                <label
-                  htmlFor="email"
-                  className="mb-2 block text-sm font-medium text-white"
-                >
-                  Email
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  id="email"
-                  className={clsx(
-                    'block w-full rounded-lg border border-gray-600  bg-gray-700 p-2.5 text-white placeholder-gray-400 focus:border-primary-600 focus:ring-primary-600 sm:text-sm',
-                    {
-                      'border-red-600': setEmailError.length > 0,
-                    },
-                  )}
-                  value={email}
-                  placeholder="nume@email.com"
-                  required={true}
-                  onChange={(event) => {
-                    setEmail(event.target.value);
-                    setEmailError('');
-                    setLoginError('');
-                  }}
-                />
-                {emailError ? (
-                  <p className="mt-2 block text-xs font-medium text-red-500">
-                    {emailError}
-                  </p>
-                ) : null}
-              </div>
-              <div>
-                <label
-                  htmlFor="password"
-                  className="mb-2 block text-sm font-medium text-white"
-                >
-                  Parola
-                </label>
-                <input
-                  type="password"
-                  name="password"
-                  id="confirm-password"
-                  placeholder="••••••••"
-                  className={clsx(
-                    'block w-full rounded-lg border border-gray-600  bg-gray-700 p-2.5 text-white placeholder-gray-400 focus:border-primary-600 focus:ring-primary-600 sm:text-sm',
-                    {
-                      'border-red-600': setPasswordError.length > 0,
-                    },
-                  )}
-                  value={password}
-                  onChange={(event) => {
-                    setPassword(event.target.value);
-                    setPasswordError('');
-                    setLoginError('');
-                  }}
-                />
-                {passwordError ? (
-                  <p className="mt-2 block text-xs font-medium text-red-500">
-                    {passwordError}
-                  </p>
-                ) : null}
-              </div>
+              <Input
+                name={'email'}
+                value={email}
+                label={'Email'}
+                placeholder={'nume@email.com'}
+                error={emailError}
+                type={'email'}
+                handleChange={(event) => {
+                  setEmail(event.target.value);
+                  setEmailError('');
+                  setLoginError('');
+                }}
+                handleBlur={() => {
+                  setEmailError('');
+                  setLoginError('');
+                  handleInputRequired(email)
+                    ? setEmailError(AuthError.InputRequired)
+                    : null;
+                }}
+              />
+              <Input
+                name={'password'}
+                value={password}
+                label={'Parola'}
+                placeholder={'••••••••'}
+                error={passwordError}
+                type={'password'}
+                handleChange={(event) => {
+                  setPassword(event.target.value);
+                  setPasswordError('');
+                  setLoginError('');
+                }}
+                handleBlur={() => {
+                  setPasswordError('');
+                  setLoginError('');
+                  handleInputRequired(password)
+                    ? setPasswordError(AuthError.InputRequired)
+                    : null;
+                }}
+              />
               {loginError ? (
                 <p className="mt-2 block text-xs font-medium text-red-500">
                   {loginError}

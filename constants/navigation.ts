@@ -38,20 +38,20 @@ export const navigationClient: NavItem[] = [
     name: 'Editare profil',
     slug: 'editare-profil',
   },
-  {
-    name: 'Mesaje',
-    slug: 'mesaje',
-  },
-  {
-    name: 'Rețete',
-    slug: 'retete',
-  },
-  {
-    name: 'Antrenamente',
-    slug: 'antrenamente',
-  },
+  // {
+  //   name: 'Mesaje',
+  //   slug: 'mesaje',
+  // },
+  // {
+  //   name: 'Rețete',
+  //   slug: 'retete',
+  // },
+  // {
+  //   name: 'Antrenamente',
+  //   slug: 'antrenamente',
+  // },
 ];
-export const navigationTrainer: NavItem[] = [
+export const navigationProfessional: NavItem[] = [
   {
     name: 'Profilul meu',
     slug: 'profil',
@@ -60,22 +60,22 @@ export const navigationTrainer: NavItem[] = [
     name: 'Editare profil',
     slug: 'editare-profil',
   },
-  {
-    name: 'Mesaje',
-    slug: 'mesaje',
-  },
-  {
-    name: 'Clienti',
-    slug: 'clienti',
-  },
-  {
-    name: 'Rețete',
-    slug: 'retete',
-  },
-  {
-    name: 'Antrenamente',
-    slug: 'antrenamente',
-  },
+  // {
+  //   name: 'Mesaje',
+  //   slug: 'mesaje',
+  // },
+  // {
+  //   name: 'Clienti',
+  //   slug: 'clienti',
+  // },
+  // {
+  //   name: 'Rețete',
+  //   slug: 'retete',
+  // },
+  // {
+  //   name: 'Antrenamente',
+  //   slug: 'antrenamente',
+  // },
 ];
 
 export const navigationLogout: NavItem = {

@@ -26,17 +26,14 @@ import ButtonFull from '#/ui/shared/form/ButtonFull';
 import Datepicker from 'react-tailwindcss-datepicker';
 import clsx from 'clsx';
 import Paragraph from '#/ui/shared/Paragraph';
-import {
-  createClientProfile,
-  createGymProfile,
-  createNutritionistProfile,
-  createTrainerProfile,
-  createUserName,
-  updateUser,
-} from '#/utils/supabase-client';
+import { createUserName, updateUser } from '#/utils/supabase-client';
 import { ExperienceDataList, TrainerTypeList } from '#/constants/trainer';
 import { GymsTypeList } from '#/constants/gym';
 import { NutritionistTypeList } from '#/constants/nutritionist';
+import { createClientProfile } from '#/utils/client-hooks';
+import { createNutritionistProfile } from '#/utils/nutritionist-hooks';
+import { createTrainerProfile } from '#/utils/trainer-hooks';
+import { createGymProfile } from '#/utils/gym-hooks';
 
 export default function UserOnboard() {
   const { supabase, session } = useSupabase();
@@ -234,7 +231,6 @@ export default function UserOnboard() {
   };
 
   const handleConfirm = () => {
-    console.log('confirm');
     const today = new Date().toISOString();
     if (session?.user && session.user.email && userType) {
       createUserName({
@@ -246,6 +242,9 @@ export default function UserOnboard() {
         user: session.user,
         email: session.user.email,
         username: username,
+        firstName: firstName ? firstName : null,
+        lastName: lastName ? lastName : null,
+        name: name ? name : null,
         userType: userType,
         supabase: supabase,
       });

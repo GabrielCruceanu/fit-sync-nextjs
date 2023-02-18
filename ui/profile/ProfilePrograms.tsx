@@ -7,7 +7,7 @@ import TrainerCard from '#/ui/shared/ProgramCard';
 import NoProgramCard from '#/ui/shared/NoProgramCard';
 import { useEffect } from 'react';
 
-export default function TrainerPrograms({
+export default function ProfilePrograms({
   programs,
 }: {
   programs: ProgramsModel[];
