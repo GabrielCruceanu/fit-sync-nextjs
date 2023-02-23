@@ -1,57 +1,37 @@
-'use client';
-import React, { useState } from 'react';
+import 'server-only';
+
+import React from 'react';
 import { Navigation } from '#/ui/shared/Navigation';
 import { Footer } from '#/ui/shared/Footer';
-import { Database } from '#/types/supabase';
-import { DefaultSeo, DefaultSeoProps } from 'next-seo';
-import { createBrowserSupabaseClient } from '@supabase/auth-helpers-nextjs';
-import { appTitle } from '#/constants';
-import { SessionContextProvider } from '@supabase/auth-helpers-react';
-import { MyUserContextProvider } from '#/utils/useUser';
-import { usePathname } from 'next/navigation';
+import { MyUserContextProvider } from '#/utils/useUserContext';
+import { createServerClient } from '#/utils/supabase-server';
+import SupabaseProvider from '#/ui/auth/SupabaseProvider';
+import SupabaseListener from '#/ui/auth/SupabaseListener';
+import SeoProvider from '#/ui/shared/SeoProvider';
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const [supabaseClient] = useState(() =>
-    createBrowserSupabaseClient<Database>(),
-  );
+  const supabase = createServerClient();
 
-  const getDefaultSeoConfig = (pathname: string): DefaultSeoProps => {
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
-    const url = `${baseUrl}${pathname}`;
-    const title = appTitle;
-    const description = `${appTitle} will help programmers learn how Stripe Connect OAuth Process works with React.`;
-    return {
-      title,
-      canonical: url,
-      description,
-      openGraph: {
-        url,
-        title,
-        type: 'website',
-        description,
-        site_name: appTitle,
-      },
-      additionalMetaTags: [{ name: 'application-name', content: title }],
-    };
-  };
-
-  const pathname = usePathname();
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
 
   return (
     <html lang="ro" className="[color-scheme:dark]">
       <body className="min-h-screen overflow-y-scroll bg-gray-900">
-        <DefaultSeo {...getDefaultSeoConfig(pathname ? pathname : '/')} />
-        <SessionContextProvider supabaseClient={supabaseClient}>
+        <SeoProvider />
+        <SupabaseProvider session={session}>
+          <SupabaseListener serverAccessToken={session?.access_token} />
           <MyUserContextProvider>
             <Navigation />
-            <main className="mt-[56.8px] h-full">{children}</main>
+            <main className="mt-[65px] h-full">{children}</main>
             <Footer />
           </MyUserContextProvider>
-        </SessionContextProvider>
+        </SupabaseProvider>
       </body>
     </html>
   );

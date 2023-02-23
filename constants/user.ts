@@ -1,8 +1,8 @@
 export enum UserType {
-  Client = 'Client',
-  Nutritionist = 'Nutritionist',
-  Trainer = 'Trainer',
-  Gym = 'Gym',
+  Client = 'client',
+  Nutritionist = 'nutritionist',
+  Trainer = 'trainer',
+  Gym = 'gym',
 }
 
 export enum CollectionsType {
@@ -14,7 +14,9 @@ export enum CollectionsType {
 }
 
 export enum GenderType {
-  Male = 'Masculin',
-  Female = 'Feminin',
-  Other = 'Altu',
+  Male = 'masculin',
+  Female = 'feminin',
+  Other = 'altul',
 }
+
+export const GenderList = ['masculin', 'feminin', 'altul'];

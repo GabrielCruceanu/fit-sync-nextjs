@@ -1,22 +1,19 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import {
-  useUser,
-  useSupabaseClient,
-  Session,
   useSession,
+  useSupabaseClient,
+  useUser,
 } from '@supabase/auth-helpers-react';
 import { Database } from '#/types/supabase';
-type Users = Database['public']['Tables']['users']['Row'];
+import { TypedUserDetails } from '#/types/types';
 
 export default function Account() {
   const supabase = useSupabaseClient<Database>();
   const user = useUser();
   const session = useSession();
   const [loading, setLoading] = useState(true);
-  const [username, setUsername] = useState<Users['username']>(null);
-  const [website, setWebsite] = useState<Users['website']>(null);
-  const [avatar_url, setAvatarUrl] = useState<Users['avatar_url']>(null);
+  const [username, setUsername] = useState<TypedUserDetails['username']>(null);
 
   useEffect(() => {
     getProfile();
@@ -39,8 +36,6 @@ export default function Account() {
 
       if (data) {
         setUsername(data.username);
-        setWebsite(data.website);
-        setAvatarUrl(data.avatar_url);
       }
     } catch (error) {
       alert('Error loading user data!');
@@ -52,12 +47,8 @@ export default function Account() {
 
   async function updateProfile({
     username,
-    website,
-    avatar_url,
   }: {
-    username: Users['username'];
-    website: Users['website'];
-    avatar_url: Users['avatar_url'];
+    username: TypedUserDetails['username'];
   }) {
     try {
       setLoading(true);
@@ -66,8 +57,6 @@ export default function Account() {
       const updates = {
         id: user.id,
         username,
-        website,
-        avatar_url,
         updated_at: new Date().toISOString(),
       };
 
@@ -97,20 +86,11 @@ export default function Account() {
           onChange={(e) => setUsername(e.target.value)}
         />
       </div>
-      <div>
-        <label htmlFor="website">Website</label>
-        <input
-          id="website"
-          type="website"
-          value={website || ''}
-          onChange={(e) => setWebsite(e.target.value)}
-        />
-      </div>
 
       <div>
         <button
           className="button primary block"
-          onClick={() => updateProfile({ username, website, avatar_url })}
+          onClick={() => updateProfile({ username })}
           disabled={loading}
         >
           {loading ? 'Loading ...' : 'Update'}

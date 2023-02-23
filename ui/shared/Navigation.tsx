@@ -2,7 +2,11 @@
 
 import '#/styles/globals.css';
 import React, { Fragment, useEffect } from 'react';
-import { usePathname, useSelectedLayoutSegment } from 'next/navigation';
+import {
+  usePathname,
+  useRouter,
+  useSelectedLayoutSegment,
+} from 'next/navigation';
 import * as gtag from '#/lib/gtag';
 import Gtag from '#/ui/shared/Gtag';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
@@ -13,12 +17,16 @@ import Link from 'next/link';
 import {
   navigationAuth,
   navigationClient,
+  navigationLogout,
   navigationStatic,
-  navigationTrainer,
+  navigationProfessional,
 } from '#/constants/navigation';
 import { ProCardCTA } from '#/ui/shared/ProCardCTA';
 import { PagesLinks } from '#/constants/links';
-import { useUser } from '@supabase/auth-helpers-react';
+import { useSupabase } from '#/ui/auth/SupabaseProvider';
+import LogoutIcon from '@heroicons/react/solid/LogoutIcon';
+import { useUserContext } from '#/utils/useUserContext';
+import { UserType } from '#/constants/user';
 
 const userFAKE = {
   name: 'Tom Cook',
@@ -32,13 +40,19 @@ function classNames(...classes: string[]) {
 }
 
 export function Navigation() {
-  const user = useUser();
-  const isLogged = !!user;
-  const isTrainer = true;
+  const { supabase, session } = useSupabase();
+  const user = useUserContext();
+  const isLogged = session?.user;
+  const isProfessional = user?.userDetails?.user_type !== UserType.Client;
   const pathname = usePathname();
+  const router = useRouter();
   const segment = useSelectedLayoutSegment();
 
-  const navLinks = isTrainer ? navigationTrainer : navigationClient;
+  const navLinks = isProfessional ? navigationProfessional : navigationClient;
+
+  const logout = () => {
+    supabase.auth.signOut().then(() => router.push('/'));
+  };
 
   useEffect(() => {
     // function to get the current page url and pass it to gtag pageView() function
@@ -99,6 +113,14 @@ export function Navigation() {
                 {isLogged ? (
                   <div className="hidden md:block">
                     <div className="ml-4 flex items-center md:ml-6">
+                      <button
+                        type="button"
+                        onClick={logout}
+                        className="mr-3 rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                      >
+                        <span className="sr-only">{navigationLogout.name}</span>
+                        <LogoutIcon className="h-6 w-6" aria-hidden="true" />
+                      </button>
                       <button
                         type="button"
                         className="rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
@@ -222,10 +244,14 @@ export function Navigation() {
                     </div>
                     <div className="ml-3">
                       <div className="text-base font-medium leading-none text-white">
-                        {userFAKE.name}
+                        {user?.userDetails?.name
+                          ? user?.userDetails?.name
+                          : user?.userDetails?.last_name +
+                            ' ' +
+                            user?.userDetails?.first_name}
                       </div>
                       <div className="text-sm font-medium leading-none text-gray-400">
-                        {userFAKE.email}
+                        {user?.userDetails?.email}
                       </div>
                     </div>
                     <button
@@ -234,6 +260,14 @@ export function Navigation() {
                     >
                       <span className="sr-only">View notifications</span>
                       <BellIcon className="h-6 w-6" aria-hidden="true" />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={logout}
+                      className="ml-4 rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                    >
+                      <span className="sr-only">{navigationLogout.name}</span>
+                      <LogoutIcon className="h-6 w-6" aria-hidden="true" />
                     </button>
                   </div>
                   <div className="mt-3 space-y-1 px-2">

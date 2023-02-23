@@ -1,4 +1,7 @@
 import Stripe from 'stripe';
+import { Database } from '#/types/supabase';
+import { SupabaseClient } from '@supabase/auth-helpers-nextjs';
+
 export interface PageMeta {
   title: string;
   description: string;
@@ -21,16 +24,6 @@ export interface Product {
 
 export interface ProductWithPrice extends Product {
   prices?: Price[];
-}
-
-export interface UserDetails {
-  id: string /* primary key */;
-  first_name: string;
-  last_name: string;
-  full_name?: string;
-  avatar_url?: string;
-  billing_address?: Stripe.Address;
-  payment_method?: Stripe.PaymentMethod[Stripe.PaymentMethod.Type];
 }
 
 export interface Price {
@@ -73,3 +66,36 @@ export enum AuthType {
   SIGN_IN = 'SIGN_IN',
   SIGN_UP = 'SIGN_UP',
 }
+
+export enum ButtonType {
+  Primary = 'PRIMARY',
+  Secondary = 'SECONDARY',
+}
+
+export type TypedSupabaseClient = SupabaseClient<Database>;
+
+export type TypedUserDetails = Database['public']['Tables']['users']['Row'];
+
+export type TypedClientDetails = Database['public']['Tables']['clients']['Row'];
+
+export type TypedTrainerDetails =
+  Database['public']['Tables']['trainers']['Row'];
+
+export type TypedNutritionistDetails =
+  Database['public']['Tables']['nutritionists']['Row'];
+
+export type TypedGymDetails = Database['public']['Tables']['gyms']['Row'];
+
+export type TypedPhysicalDetails =
+  Database['public']['Tables']['physical_details']['Row'];
+
+export type TypedTrainerReview =
+  Database['public']['Tables']['trainer_reviews']['Row'];
+
+export type TypedNutritionistReview =
+  Database['public']['Tables']['nutritionist_reviews']['Row'];
+
+export type TypedGymReview =
+  Database['public']['Tables']['gyms_reviews']['Row'];
+
+export type TypedGender = TypedClientDetails['gender'];

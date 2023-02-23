@@ -1,4 +1,4 @@
-export default function TrainerProfileDescription({
+export default function ProfileDescription({
   description,
 }: {
   description: string;

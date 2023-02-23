@@ -4,6 +4,7 @@ const colors = require('tailwindcss/colors');
 module.exports = {
   content: [
     './node_modules/flowbite-react/**/*.js',
+    './node_modules/react-tailwindcss-datepicker/dist/index.esm.js',
     './app/**/*.{js,ts,jsx,tsx}',
     './ui/**/*.{js,ts,jsx,tsx}',
     './public/**/*.html',

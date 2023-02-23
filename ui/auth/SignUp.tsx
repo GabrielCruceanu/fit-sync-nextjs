@@ -1,13 +1,19 @@
 'use client';
-import { useSupabaseClient } from '@supabase/auth-helpers-react';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { PagesLinks, TermsLinks } from '#/constants/links';
-import { validateEmail } from '#/utils/helpers';
+import { handleInputRequired, validateEmail } from '#/utils/helpers';
 import { AuthError } from '#/constants/authError';
+import { TypedSupabaseClient } from '#/types/types';
+import clsx from 'clsx';
+import Input from '#/ui/shared/form/Input';
 
-export default function SignUp() {
+export default function SignUp({
+  supabase,
+}: {
+  supabase: TypedSupabaseClient;
+}) {
   const [email, setEmail] = useState('');
   const [emailError, setEmailError] = useState('');
   const [password, setPassword] = useState('');
@@ -19,7 +25,6 @@ export default function SignUp() {
   const [cookie, setCookie] = useState(false);
   const [termsError, setTermsError] = useState('');
   const [signUpError, setSignUpError] = useState('');
-  const supabaseClient = useSupabaseClient();
   const router = useRouter();
 
   const handleSignUp = async (email: string, password: string) => {
@@ -52,7 +57,7 @@ export default function SignUp() {
       const {
         data: { user },
         error,
-      } = await supabaseClient.auth.signUp({ email, password });
+      } = await supabase.auth.signUp({ email, password });
 
       if (!error && !user)
         alert('Verifică-ți e-mailul pentru linkul de autentificare');
@@ -65,7 +70,7 @@ export default function SignUp() {
       console.log('Error thrown:', error.message);
       alert(error.error_description || error);
     }
-    router.push('/cont');
+    router.push('/profil');
   };
 
   return (
@@ -77,87 +82,66 @@ export default function SignUp() {
               Inregistrare
             </h1>
             <form className="space-y-4 md:space-y-6">
-              <div>
-                <label
-                  htmlFor="email"
-                  className="mb-2 block text-sm font-medium text-white"
-                >
-                  Email
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  id="email"
-                  className="block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-gray-900 text-white placeholder-gray-400 focus:border-primary-600 focus:ring-primary-600 sm:text-sm"
-                  value={email}
-                  placeholder="nume@email.com"
-                  required={true}
-                  onChange={(event) => {
-                    setEmail(event.target.value);
-                    setEmailError('');
-                    setSignUpError('');
-                  }}
-                />
-                {emailError ? (
-                  <p className="mt-2 block text-xs font-medium text-red-500">
-                    {emailError}
-                  </p>
-                ) : null}
-              </div>
-              <div>
-                <label
-                  htmlFor="password"
-                  className="mb-2 block text-sm font-medium text-white"
-                >
-                  Parola
-                </label>
-                <input
-                  type="password"
-                  name="password"
-                  id="confirm-password"
-                  placeholder="••••••••"
-                  className="block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-white placeholder-gray-400 focus:border-primary-600 focus:ring-primary-600 sm:text-sm"
-                  required={true}
-                  value={password}
-                  onChange={(event) => {
-                    setPassword(event.target.value);
-                    setPasswordError('');
-                    setSignUpError('');
-                  }}
-                />
-                {passwordError ? (
-                  <p className="mt-2 block text-xs font-medium text-red-500">
-                    {passwordError}
-                  </p>
-                ) : null}
-              </div>
-              <div>
-                <label
-                  htmlFor="password"
-                  className="mb-2 block text-sm font-medium text-white"
-                >
-                  Confirma Parola
-                </label>
-                <input
-                  type="password"
-                  name="password"
-                  id="confirm-password"
-                  placeholder="••••••••"
-                  className="block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-white placeholder-gray-400 focus:border-primary-600 focus:ring-primary-600 sm:text-sm"
-                  required={true}
-                  value={confirmPassword}
-                  onChange={(event) => {
-                    setConfirmPassword(event.target.value);
-                    setConfirmPasswordError('');
-                    setSignUpError('');
-                  }}
-                />
-                {confirmPasswordError ? (
-                  <p className="mt-2 block text-xs font-medium text-red-500">
-                    {confirmPasswordError}
-                  </p>
-                ) : null}
-              </div>
+              <Input
+                name={'email'}
+                value={email}
+                label={'Email'}
+                placeholder={'nume@email.com'}
+                error={emailError}
+                type={'email'}
+                handleChange={(event) => {
+                  setEmail(event.target.value);
+                  setEmailError('');
+                  setSignUpError('');
+                }}
+                handleBlur={() => {
+                  setEmailError('');
+                  setSignUpError('');
+                  handleInputRequired(email)
+                    ? setEmailError(AuthError.InputRequired)
+                    : null;
+                }}
+              />
+              <Input
+                name={'password'}
+                value={password}
+                label={'Parola'}
+                placeholder={'••••••••'}
+                error={passwordError}
+                type={'password'}
+                handleChange={(event) => {
+                  setPassword(event.target.value);
+                  setPasswordError('');
+                  setSignUpError('');
+                }}
+                handleBlur={() => {
+                  setPasswordError('');
+                  setSignUpError('');
+                  handleInputRequired(password)
+                    ? setPasswordError(AuthError.InputRequired)
+                    : null;
+                }}
+              />
+              <Input
+                name={'confirm-password'}
+                value={confirmPassword}
+                label={'Confirma Parola'}
+                placeholder={'••••••••'}
+                error={confirmPasswordError}
+                type={'password'}
+                handleChange={(event) => {
+                  setConfirmPassword(event.target.value);
+                  setConfirmPasswordError('');
+                  setSignUpError('');
+                }}
+                handleBlur={() => {
+                  setConfirmPasswordError('');
+                  setSignUpError('');
+                  handleInputRequired(confirmPassword)
+                    ? setConfirmPasswordError(AuthError.InputRequired)
+                    : null;
+                }}
+              />
               {/*Terms*/}
               <p className="mb-2 block text-sm font-medium text-white">
                 Sunt de acord cu urmatoarele:

@@ -1,13 +1,15 @@
 'use client';
 import { useState } from 'react';
-import { RomaniaStatesData } from '#/constants/location';
+import { RomaniaStatesData } from '#/data/location-data';
 import SelectInput from '#/ui/shared/form/SelectInput';
-import { NutritionistTypeList } from '#/constants/trainer';
 import SectionWithWave from '#/ui/shared/SectionWithWave';
 import ProList from '#/ui/shared/ProList';
 import TrainerProfileModel from '#/model/trainer/trainerProfile.model';
 import { flushSync } from 'react-dom';
 import { executeScroll } from '#/lib/scrollTo';
+import { handleInputRequired } from '#/utils/helpers';
+import { AuthError } from '#/constants/authError';
+import { NutritionistTypeList } from '#/constants/nutritionist';
 
 export default function HeaderSearchANutritionist({
   nutritionists,
@@ -15,8 +17,11 @@ export default function HeaderSearchANutritionist({
   nutritionists: TrainerProfileModel[];
 }) {
   const [nutritionistType, setNutritionistType] = useState('');
+  const [nutritionistTypeError, setNutritionistTypeError] = useState('');
   const [currentState, setCurrentState] = useState('');
+  const [currentStateError, setCurrentStateError] = useState('');
   const [currentCity, setCurrentCity] = useState('');
+  const [currentCityError, setCurrentCityError] = useState('');
   const [currentNutritionists, setCurrentNutritionists] = useState<
     TrainerProfileModel[]
   >([]);
@@ -64,24 +69,58 @@ export default function HeaderSearchANutritionist({
               <SelectInput
                 name="nutritionist-type"
                 label="Tip de nutritionist"
+                value={nutritionistType}
+                placeholder={'Terapeut nutritionist'}
                 options={NutritionistTypeList}
-                handleChange={(e) => setNutritionistType(e.target.value)}
+                handleChange={(e) => {
+                  setNutritionistTypeError('');
+                  setNutritionistType(e.target.value);
+                }}
+                handleBlur={() => {
+                  setNutritionistTypeError('');
+                  handleInputRequired(nutritionistType)
+                    ? setNutritionistType(AuthError.InputRequired)
+                    : null;
+                }}
+                error={nutritionistTypeError}
               />
             </div>
             <div className="mt-4 w-full md:w-4/12 md:px-3">
               <SelectInput
                 name="state"
-                label="Județ"
+                label="Judet"
+                value={currentState}
+                placeholder={'Bucuresti'}
                 options={states}
-                handleChange={(e) => setCurrentState(e.target.value)}
+                handleChange={(e) => {
+                  setCurrentStateError('');
+                  setCurrentState(e.target.value);
+                }}
+                handleBlur={() => {
+                  handleInputRequired(currentState)
+                    ? setCurrentStateError(AuthError.InputRequired)
+                    : null;
+                }}
+                error={currentStateError}
               />
             </div>
             <div className="mt-4 w-full md:w-4/12 md:px-3">
               <SelectInput
                 name="city"
-                label="Oraș / Sector"
+                label="Oras / Sector"
+                value={currentCity}
+                placeholder={'Sectorul 1'}
                 options={currentCites}
-                handleChange={(e) => setCurrentCity(e.target.value)}
+                handleChange={(e) => {
+                  setCurrentCityError('');
+                  setCurrentCity(e.target.value);
+                }}
+                handleBlur={() => {
+                  handleInputRequired(currentCity)
+                    ? setCurrentCityError(AuthError.InputRequired)
+                    : null;
+                }}
+                error={currentCityError}
               />
             </div>
             <button

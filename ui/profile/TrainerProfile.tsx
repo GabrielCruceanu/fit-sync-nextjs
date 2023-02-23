@@ -1,11 +1,10 @@
 'use client';
-import TrainerProfileHeader from '#/ui/trainer/profile/TrainerProfileHeader';
+import ProfileHeader from '#/ui/profile/ProfileHeader';
 import TrainerProfileModel from '#/model/trainer/trainerProfile.model';
-import TrainerProfileContact from '#/ui/trainer/profile/TrainerProfileContact';
+import ProfileContact from '#/ui/profile/ProfileContact';
 import Reviews from '#/ui/shared/Reviews';
-import TrainerProfileDescription from '#/ui/trainer/profile/TrainerProfileDescription';
-import TrainerPrograms from '#/ui/trainer/profile/TrainerPrograms';
-import { TabItem } from 'flowbite';
+import ProfileDescription from '#/ui/profile/ProfileDescription';
+import ProfilePrograms from '#/ui/profile/ProfilePrograms';
 
 export default function TrainerProfile({
   trainer,
@@ -27,35 +26,38 @@ export default function TrainerProfile({
     contact,
     reviews,
     programs,
+    state,
   } = trainer;
 
   return (
     <>
       {/* Profile Header */}
-      <TrainerProfileHeader
+      <ProfileHeader
         firstName={firstName}
         lastName={lastName}
         profilePicture={profilePicture}
-        contact={contact}
+        phone={contact.phone}
         type={type}
         city={city}
         experience={experience}
         certificate={certificate}
         activeClients={activeClients}
         completedClients={completedClients}
+        name={null}
+        state={state}
       />
 
       {/* Profile Description */}
-      <TrainerProfileDescription description={description} />
+      <ProfileDescription description={description} />
 
       {/* Profile Contact */}
-      <TrainerProfileContact contact={contact} />
+      <ProfileContact contact={contact} />
 
       {/* Profile Review */}
       {reviews ? <Reviews reviews={reviews} username={username} /> : null}
 
       {/* Profile Programs */}
-      {programs ? <TrainerPrograms programs={programs} /> : null}
+      {programs ? <ProfilePrograms programs={programs} /> : null}
     </>
   );
 }

@@ -13,40 +13,20 @@ export enum TrainerType {
 }
 
 export const TrainerTypeList: string[] = [
-  // 'High Intensity Training',
+  'High Intensity Training',
   'Yoga',
-  // 'Fitness',
-  // 'Powerlifting',
-  // 'Calisthenic',
-  // 'Spin',
-  // 'Barre',
-  // 'Pilates',
-  // 'Bootcamp',
-  // 'Rock climbing',
-  // 'Other',
+  'Fitness',
+  'Powerlifting',
+  'Calisthenic',
+  'Spin',
+  'Barre',
+  'Pilates',
+  'Bootcamp',
+  'Rock climbing',
+  'Altul',
 ];
 
-export const NutritionistTypeList: string[] = [
-  // 'Terapeut nutritionist',
-  // 'Medic nutritionist',
-  // 'Tehnician nutritie',
-  'Yoga',
-];
-
-export const GymsTypeList: string[] = [
-  // 'Powerlifting',
-  // 'Calisthenic',
-  // 'Fitness',
-  'Yoga',
-  // 'Spin',
-  // 'Barre',
-  // 'Pilates',
-  // 'Bootcamp',
-  // 'Rock climbing',
-  // 'Other',
-];
-
-export const TrainerExperienceData: string[] = [
+export const ExperienceDataList: string[] = [
   '1',
   '2',
   '3',

@@ -1,13 +1,15 @@
 'use client';
 import { useState } from 'react';
-import { RomaniaStatesData } from '#/constants/location';
+import { RomaniaStatesData } from '#/data/location-data';
 import SelectInput from '#/ui/shared/form/SelectInput';
-import { GymsTypeList } from '#/constants/trainer';
 import SectionWithWave from '#/ui/shared/SectionWithWave';
 import ProList from '#/ui/shared/ProList';
 import TrainerProfileModel from '#/model/trainer/trainerProfile.model';
 import { flushSync } from 'react-dom';
 import { executeScroll } from '#/lib/scrollTo';
+import { handleInputRequired } from '#/utils/helpers';
+import { AuthError } from '#/constants/authError';
+import { GymsTypeList } from '#/constants/gym';
 
 export default function HeaderSearchAGym({
   gyms,
@@ -15,8 +17,11 @@ export default function HeaderSearchAGym({
   gyms: TrainerProfileModel[];
 }) {
   const [gymType, setGymType] = useState('');
+  const [gymTypeError, setGymTypeError] = useState('');
   const [currentState, setCurrentState] = useState('');
+  const [currentStateError, setCurrentStateError] = useState('');
   const [currentCity, setCurrentCity] = useState('');
+  const [currentCityError, setCurrentCityError] = useState('');
   const [currentGyms, setCurrentGyms] = useState<TrainerProfileModel[]>([]);
   let currentCites: string[] = [];
   let gymsSearched: TrainerProfileModel[];
@@ -60,24 +65,54 @@ export default function HeaderSearchAGym({
               <SelectInput
                 name="nutritionist-type"
                 label="Tip de sala"
+                value={gymType}
+                placeholder="Gym Fit"
                 options={GymsTypeList}
-                handleChange={(e) => setGymType(e.target.value)}
+                handleChange={(e) => {
+                  setGymTypeError('');
+                  setGymType(e.target.value);
+                }}
+                handleBlur={() => {
+                  handleInputRequired(gymType)
+                    ? setGymTypeError(AuthError.InputRequired)
+                    : null;
+                }}
+                error={gymTypeError}
               />
             </div>
             <div className="mt-4 w-full md:w-4/12 md:px-3">
               <SelectInput
                 name="state"
                 label="Județ"
+                value={currentState}
+                placeholder={'Bucuresti'}
                 options={states}
-                handleChange={(e) => setCurrentState(e.target.value)}
+                error={currentStateError}
+                handleChange={(e) => {
+                  setCurrentStateError('');
+                  setCurrentState(e.target.value);
+                }}
+                handleBlur={() => {
+                  handleInputRequired(currentState)
+                    ? setCurrentStateError(AuthError.InputRequired)
+                    : null;
+                }}
               />
             </div>
             <div className="mt-4 w-full md:w-4/12 md:px-3">
               <SelectInput
                 name="city"
                 label="Oraș / Sector"
+                value={currentCity}
+                placeholder={'Sectorul 1'}
                 options={currentCites}
                 handleChange={(e) => setCurrentCity(e.target.value)}
+                handleBlur={() => {
+                  handleInputRequired(currentCity)
+                    ? setCurrentCityError(AuthError.InputRequired)
+                    : null;
+                }}
+                error={currentCityError}
               />
             </div>
             <button
