@@ -1,9 +1,9 @@
 import { User } from '@supabase/auth-helpers-nextjs';
-import { NutritionistDetails, TypedSupabaseClient } from '#/types/types';
+import { TypedNutritionistDetails, TypedSupabaseClient } from '#/types/types';
 
 export const createNutritionistProfile = async (
   user: User,
-  nutritionist: NutritionistDetails,
+  nutritionist: TypedNutritionistDetails,
   supabase: TypedSupabaseClient,
 ) => {
   const { data, error } = await supabase

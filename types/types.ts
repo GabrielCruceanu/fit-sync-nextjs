@@ -74,29 +74,28 @@ export enum ButtonType {
 
 export type TypedSupabaseClient = SupabaseClient<Database>;
 
-export type UserDetails = Database['public']['Tables']['users']['Row'];
+export type TypedUserDetails = Database['public']['Tables']['users']['Row'];
 
-export type ClientDetails = Database['public']['Tables']['clients']['Row'];
+export type TypedClientDetails = Database['public']['Tables']['clients']['Row'];
 
-export type TrainerDetails = Database['public']['Tables']['trainers']['Row'];
+export type TypedTrainerDetails =
+  Database['public']['Tables']['trainers']['Row'];
 
-export type NutritionistDetails =
+export type TypedNutritionistDetails =
   Database['public']['Tables']['nutritionists']['Row'];
 
-export type GymDetails = Database['public']['Tables']['gyms']['Row'];
+export type TypedGymDetails = Database['public']['Tables']['gyms']['Row'];
 
-export type CurrentPhysicalDetails =
-  Database['public']['Tables']['current_physical_details']['Row'];
+export type TypedPhysicalDetails =
+  Database['public']['Tables']['physical_details']['Row'];
 
-export type HistoryPhysicalDetails =
-  Database['public']['Tables']['history_physical_details']['Row'];
-
-export type TrainerReview =
+export type TypedTrainerReview =
   Database['public']['Tables']['trainer_reviews']['Row'];
 
-export type NutritionistReview =
+export type TypedNutritionistReview =
   Database['public']['Tables']['nutritionist_reviews']['Row'];
 
-export type GymReview = Database['public']['Tables']['gyms_reviews']['Row'];
+export type TypedGymReview =
+  Database['public']['Tables']['gyms_reviews']['Row'];
 
-export type GenderTypes = ClientDetails['gender'];
+export type TypedGender = TypedClientDetails['gender'];

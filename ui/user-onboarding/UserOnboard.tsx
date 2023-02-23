@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import {
   ButtonType,
-  ClientDetails,
-  GymDetails,
-  NutritionistDetails,
-  TrainerDetails,
-  UserDetails,
+  TypedClientDetails,
+  TypedGymDetails,
+  TypedNutritionistDetails,
+  TypedTrainerDetails,
+  TypedUserDetails,
 } from '#/types/types';
 import { OnboardStepsType } from '#/ui/user-onboarding/OnboardSteps';
 import { GenderList, UserType } from '#/constants/user';
@@ -14,13 +14,13 @@ import InputSelectButton from '#/ui/shared/form/InputSelectButton';
 import Input from '#/ui/shared/form/Input';
 import {
   handleInputRequired,
-  validateOnlyLetter,
   validateIsPhoneNumber,
+  validateOnlyLetter,
   validateUsername,
 } from '#/utils/helpers';
 import { AuthError } from '#/constants/authError';
 import SelectInput from '#/ui/shared/form/SelectInput';
-import { RomaniaStatesData } from '#/data/location-data';
+import { CountriesData, RomaniaStatesData } from '#/data/location-data';
 import { useSupabase } from '#/ui/auth/SupabaseProvider';
 import ButtonFull from '#/ui/shared/form/ButtonFull';
 import Datepicker from 'react-tailwindcss-datepicker';
@@ -40,7 +40,7 @@ export default function UserOnboard() {
   const [onboardSteps, setOnboardSteps] = useState<OnboardStepsType>(
     OnboardStepsType.UserType,
   );
-  const [userType, setUserType] = useState<UserDetails['user_type']>(null);
+  const [userType, setUserType] = useState<TypedUserDetails['user_type']>(null);
 
   const [name, setName] = useState('');
   const [nameError, setNameError] = useState('');
@@ -83,11 +83,11 @@ export default function UserOnboard() {
     setOnboardSteps(value);
   };
 
-  const handleSetUserType = (value: UserDetails['user_type']) => {
+  const handleSetUserType = (value: TypedUserDetails['user_type']) => {
     setUserType(value);
   };
 
-  const handleUserTypeClick = (value: UserDetails['user_type']) => {
+  const handleUserTypeClick = (value: TypedUserDetails['user_type']) => {
     handleSetUserType(value);
     handleSetOnboardSteps(OnboardStepsType.UserDetails);
   };
@@ -251,7 +251,7 @@ export default function UserOnboard() {
 
       switch (userType) {
         case UserType.Gym:
-          const gym: GymDetails = {
+          const gym: TypedGymDetails = {
             id: session.user.id,
             email: session.user.email,
             type: userType,
@@ -259,7 +259,7 @@ export default function UserOnboard() {
             gym_name: name,
             gym_type: gymType,
             phone: phone,
-            country: 'Romania',
+            country: CountriesData[0].name,
             state: currentState,
             city: currentCity,
             street: street,
@@ -280,7 +280,7 @@ export default function UserOnboard() {
           createGymProfile(session.user, gym, supabase);
           break;
         case UserType.Trainer:
-          const trainer: TrainerDetails = {
+          const trainer: TypedTrainerDetails = {
             id: session.user.id,
             email: session.user.email,
             type: userType,
@@ -295,7 +295,7 @@ export default function UserOnboard() {
             birth_year: birthYear,
             trainer_type: trainerType,
             experience: experience,
-            country: 'Romania',
+            country: CountriesData[0].name,
             city: currentCity,
             state: currentState,
             certificate: false,
@@ -315,7 +315,7 @@ export default function UserOnboard() {
           createTrainerProfile(session.user, trainer, supabase);
           break;
         case UserType.Nutritionist:
-          const nutritionist: NutritionistDetails = {
+          const nutritionist: TypedNutritionistDetails = {
             id: session.user.id,
             email: session.user.email,
             joined: today,
@@ -330,7 +330,7 @@ export default function UserOnboard() {
             birth_year: birthYear,
             nutritionist_type: nutritionistType,
             experience: experience,
-            country: 'Romania',
+            country: CountriesData[0].name,
             city: currentCity,
             state: currentState,
             certificate: false,
@@ -350,11 +350,11 @@ export default function UserOnboard() {
           createNutritionistProfile(session.user, nutritionist, supabase);
           break;
         case UserType.Client:
-          const client: ClientDetails = {
+          const client: TypedClientDetails = {
             id: session.user.id,
             first_name: firstName,
             last_name: lastName,
-            country: 'Romania',
+            country: CountriesData[0].name,
             city: currentCity,
             state: currentState,
             email: session.user.email,

@@ -2,22 +2,22 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import { User } from '@supabase/auth-helpers-react';
 import {
-  ClientDetails,
-  GymDetails,
-  NutritionistDetails,
+  TypedClientDetails,
+  TypedGymDetails,
+  TypedNutritionistDetails,
   Subscription,
-  TrainerDetails,
-  UserDetails,
+  TypedTrainerDetails,
+  TypedUserDetails,
 } from '#/types/types';
 import { useSupabase } from '#/ui/auth/SupabaseProvider';
 
 type UserContextType = {
   accessToken: string | null;
   user: User | null;
-  userDetails: UserDetails | null;
-  trainerDetails: TrainerDetails | null;
-  nutritionistDetails: NutritionistDetails | null;
-  gymDetails: GymDetails | null;
+  userDetails: TypedUserDetails | null;
+  trainerDetails: TypedTrainerDetails | null;
+  nutritionistDetails: TypedNutritionistDetails | null;
+  gymDetails: TypedGymDetails | null;
   isLoading: boolean;
   subscription: Subscription | null;
 };
@@ -35,16 +35,15 @@ export const MyUserContextProvider = (props: Props) => {
   const user = session?.user ? session.user : null;
   const accessToken = session?.access_token ?? null;
   const [isLoadingData, setIsloadingData] = useState(false);
-  const [userDetails, setUserDetails] = useState<UserDetails | null>(null);
-  const [clientDetails, setClientDetails] = useState<ClientDetails | null>(
+  const [userDetails, setUserDetails] = useState<TypedUserDetails | null>(null);
+  const [clientDetails, setClientDetails] = useState<TypedClientDetails | null>(
     null,
   );
-  const [trainerDetails, setTrainerDetails] = useState<TrainerDetails | null>(
-    null,
-  );
+  const [trainerDetails, setTrainerDetails] =
+    useState<TypedTrainerDetails | null>(null);
   const [nutritionistDetails, setNutritionistDetails] =
-    useState<NutritionistDetails | null>(null);
-  const [gymDetails, setGymDetails] = useState<GymDetails | null>(null);
+    useState<TypedNutritionistDetails | null>(null);
+  const [gymDetails, setGymDetails] = useState<TypedGymDetails | null>(null);
   const [subscription, setSubscription] = useState<Subscription | null>(null);
   const getUserDetails = () => supabase.from('users').select('*').single();
 

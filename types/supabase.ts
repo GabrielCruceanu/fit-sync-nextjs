@@ -15,14 +15,12 @@ export interface Database {
           birth_month: string | null
           birth_year: string | null
           city: string | null
+          client_id: string
           country: string | null
-          current_details: number | null
           email: string | null
           first_name: string | null
           gender: string | null
           has_premium: boolean | null
-          history_details: number | null
-          id: string
           joined: string
           last_name: string | null
           phone: string | null
@@ -36,14 +34,12 @@ export interface Database {
           birth_month?: string | null
           birth_year?: string | null
           city?: string | null
+          client_id: string
           country?: string | null
-          current_details?: number | null
           email?: string | null
           first_name?: string | null
           gender?: string | null
           has_premium?: boolean | null
-          history_details?: number | null
-          id: string
           joined?: string
           last_name?: string | null
           phone?: string | null
@@ -57,14 +53,12 @@ export interface Database {
           birth_month?: string | null
           birth_year?: string | null
           city?: string | null
+          client_id?: string
           country?: string | null
-          current_details?: number | null
           email?: string | null
           first_name?: string | null
           gender?: string | null
           has_premium?: boolean | null
-          history_details?: number | null
-          id?: string
           joined?: string
           last_name?: string | null
           phone?: string | null
@@ -72,65 +66,6 @@ export interface Database {
           state?: string | null
           type?: Database["public"]["Enums"]["user_type"] | null
           username?: string | null
-        }
-      }
-      current_physical_details: {
-        Row: {
-          arm_left: number | null
-          arm_right: number | null
-          ass: number | null
-          back_photo: string | null
-          body_height: number | null
-          body_weight: number | null
-          chest: number | null
-          client_id: string | null
-          date_created: string | null
-          front_photo: string | null
-          hip: number | null
-          id: number
-          neck: number | null
-          shoulders: number | null
-          side_photo: string | null
-          thigh: number | null
-          waist: number | null
-        }
-        Insert: {
-          arm_left?: number | null
-          arm_right?: number | null
-          ass?: number | null
-          back_photo?: string | null
-          body_height?: number | null
-          body_weight?: number | null
-          chest?: number | null
-          client_id?: string | null
-          date_created?: string | null
-          front_photo?: string | null
-          hip?: number | null
-          id?: number
-          neck?: number | null
-          shoulders?: number | null
-          side_photo?: string | null
-          thigh?: number | null
-          waist?: number | null
-        }
-        Update: {
-          arm_left?: number | null
-          arm_right?: number | null
-          ass?: number | null
-          back_photo?: string | null
-          body_height?: number | null
-          body_weight?: number | null
-          chest?: number | null
-          client_id?: string | null
-          date_created?: string | null
-          front_photo?: string | null
-          hip?: number | null
-          id?: number
-          neck?: number | null
-          shoulders?: number | null
-          side_photo?: string | null
-          thigh?: number | null
-          waist?: number | null
         }
       }
       customers: {
@@ -260,65 +195,6 @@ export interface Database {
           id?: number
           nutritionist_id?: string | null
           stars?: number | null
-        }
-      }
-      history_physical_details: {
-        Row: {
-          arm_left: number | null
-          arm_right: number | null
-          ass: number | null
-          back_photo: string | null
-          body_height: number | null
-          body_weight: number | null
-          chest: number | null
-          client_id: string | null
-          date_created: string | null
-          front_photo: string | null
-          hip: number | null
-          id: number
-          neck: number | null
-          shoulders: string | null
-          side_photo: string | null
-          thigh: number | null
-          waist: number | null
-        }
-        Insert: {
-          arm_left?: number | null
-          arm_right?: number | null
-          ass?: number | null
-          back_photo?: string | null
-          body_height?: number | null
-          body_weight?: number | null
-          chest?: number | null
-          client_id?: string | null
-          date_created?: string | null
-          front_photo?: string | null
-          hip?: number | null
-          id?: number
-          neck?: number | null
-          shoulders?: string | null
-          side_photo?: string | null
-          thigh?: number | null
-          waist?: number | null
-        }
-        Update: {
-          arm_left?: number | null
-          arm_right?: number | null
-          ass?: number | null
-          back_photo?: string | null
-          body_height?: number | null
-          body_weight?: number | null
-          chest?: number | null
-          client_id?: string | null
-          date_created?: string | null
-          front_photo?: string | null
-          hip?: number | null
-          id?: number
-          neck?: number | null
-          shoulders?: string | null
-          side_photo?: string | null
-          thigh?: number | null
-          waist?: number | null
         }
       }
       nutritionist_reviews: {
@@ -452,6 +328,65 @@ export interface Database {
           type?: Database["public"]["Enums"]["user_type"] | null
           username?: string | null
           website?: string | null
+        }
+      }
+      physical_details: {
+        Row: {
+          arm_left: number | null
+          arm_right: number | null
+          ass: number | null
+          back_photo: string | null
+          body_height: number | null
+          body_weight: number | null
+          chest: number | null
+          client_id: string | null
+          date_created: string
+          front_photo: string | null
+          hip: number | null
+          id: number
+          neck: number | null
+          shoulders: number | null
+          side_photo: string | null
+          thigh: number | null
+          waist: number | null
+        }
+        Insert: {
+          arm_left?: number | null
+          arm_right?: number | null
+          ass?: number | null
+          back_photo?: string | null
+          body_height?: number | null
+          body_weight?: number | null
+          chest?: number | null
+          client_id?: string | null
+          date_created?: string
+          front_photo?: string | null
+          hip?: number | null
+          id?: number
+          neck?: number | null
+          shoulders?: number | null
+          side_photo?: string | null
+          thigh?: number | null
+          waist?: number | null
+        }
+        Update: {
+          arm_left?: number | null
+          arm_right?: number | null
+          ass?: number | null
+          back_photo?: string | null
+          body_height?: number | null
+          body_weight?: number | null
+          chest?: number | null
+          client_id?: string | null
+          date_created?: string
+          front_photo?: string | null
+          hip?: number | null
+          id?: number
+          neck?: number | null
+          shoulders?: number | null
+          side_photo?: string | null
+          thigh?: number | null
+          waist?: number | null
         }
       }
       prices: {

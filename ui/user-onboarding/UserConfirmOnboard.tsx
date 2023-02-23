@@ -1,8 +1,8 @@
 import {
-  ClientDetails,
-  GymDetails,
-  NutritionistDetails,
-  TrainerDetails,
+  TypedClientDetails,
+  TypedGymDetails,
+  TypedNutritionistDetails,
+  TypedTrainerDetails,
 } from '#/types/types';
 import OnboardSteps, {
   OnboardStepsType,
@@ -15,10 +15,10 @@ export default function UserConfirmOnboard({
   handleSetOnboardSteps: (value: OnboardStepsType) => void;
   handleSetUserDetails: (
     value:
-      | ClientDetails
-      | TrainerDetails
-      | NutritionistDetails
-      | GymDetails
+      | TypedClientDetails
+      | TypedTrainerDetails
+      | TypedNutritionistDetails
+      | TypedGymDetails
       | null,
   ) => void;
 }) {

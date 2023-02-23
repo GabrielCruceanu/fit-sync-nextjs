@@ -65,4 +65,8 @@ export const PagesLinks = {
     link: '/resetare-parola',
     name: 'Parola uitata',
   },
+  physicalDetails: {
+    link: '/adaugare-masuratori',
+    name: 'Adauga progress',
+  },
 };

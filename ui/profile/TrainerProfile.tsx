@@ -5,7 +5,6 @@ import ProfileContact from '#/ui/profile/ProfileContact';
 import Reviews from '#/ui/shared/Reviews';
 import ProfileDescription from '#/ui/profile/ProfileDescription';
 import ProfilePrograms from '#/ui/profile/ProfilePrograms';
-import { TabItem } from 'flowbite';
 
 export default function TrainerProfile({
   trainer,
@@ -27,6 +26,7 @@ export default function TrainerProfile({
     contact,
     reviews,
     programs,
+    state,
   } = trainer;
 
   return (
@@ -36,13 +36,15 @@ export default function TrainerProfile({
         firstName={firstName}
         lastName={lastName}
         profilePicture={profilePicture}
-        contact={contact}
+        phone={contact.phone}
         type={type}
         city={city}
         experience={experience}
         certificate={certificate}
         activeClients={activeClients}
         completedClients={completedClients}
+        name={null}
+        state={state}
       />
 
       {/* Profile Description */}

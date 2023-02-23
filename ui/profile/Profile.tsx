@@ -1,4 +1,4 @@
-import { ClientDetails, UserDetails } from '#/types/types';
+import { TypedClientDetails, TypedUserDetails } from '#/types/types';
 import UserOnboard from '#/ui/user-onboarding/UserOnboard';
 import { UserType } from '#/constants/user';
 import ClientProfile from '#/ui/profile/ClientProfile';
@@ -7,10 +7,10 @@ export default function Profile({
   userType,
   clientProfile,
 }: {
-  userType: UserDetails['user_type'];
-  clientProfile: ClientDetails | null;
+  userType: TypedUserDetails['user_type'];
+  clientProfile: TypedClientDetails | null;
 }) {
-  switch (UserType.Client) {
+  switch (userType) {
     case UserType.Client:
       return clientProfile ? (
         <ClientProfile clientProfile={clientProfile} />

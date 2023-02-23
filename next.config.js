@@ -7,7 +7,13 @@ const nextConfig = {
     appDir: true,
   },
   images: {
-    domains: ['images.unsplash.com', 'flowbite.s3.amazonaws.com', 'localhost'],
+    domains: [
+      'images.unsplash.com',
+      'flowbite.s3.amazonaws.com',
+      'localhost',
+      'firebasestorage.googleapis.com',
+      'www.kaapo.fit',
+    ],
   },
 };
 

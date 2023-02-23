@@ -6,7 +6,7 @@ import { Database, Json } from '#/types/supabase';
 import {
   ProductWithPrice,
   TypedSupabaseClient,
-  UserDetails,
+  TypedUserDetails,
 } from '#/types/types';
 
 export const supabaseClient = createBrowserSupabaseClient<Database>();
@@ -59,7 +59,7 @@ export const updateUser = async ({
   billingAddress?: Json;
   paymentMethod?: Json;
   email: string;
-  userType: UserDetails['user_type'];
+  userType: TypedUserDetails['user_type'];
   supabase: TypedSupabaseClient;
 }) => {
   await supabase
@@ -86,11 +86,9 @@ export const createUserName = async ({
   username: string;
   supabase: TypedSupabaseClient;
 }) => {
-  const today = new Date().toISOString();
   const { data, error } = await supabase.from('usernames').upsert([
     {
       id: user.id,
-      created_at: today,
       username: username,
     },
   ]);

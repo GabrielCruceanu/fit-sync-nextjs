@@ -1,26 +1,37 @@
-import { ClientDetails } from '#/types/types';
+import { TypedClientDetails } from '#/types/types';
+import ProfileHeader from '#/ui/profile/ProfileHeader';
+import ProfilePhysicalDetails from '#/ui/profile/ProfilePhysicalDetails';
 
 export default function ClientProfile({
   clientProfile,
 }: {
-  clientProfile: ClientDetails;
+  clientProfile: TypedClientDetails;
 }) {
-  const { first_name, last_name, profile_picture_url, city } = clientProfile;
+  const {
+    first_name,
+    last_name,
+    profile_picture_url,
+    type,
+    state,
+    city,
+    phone,
+  } = clientProfile;
   console.log('clientProfile', clientProfile);
   return (
     <>
       {/* Profile Header */}
-      <pre>{clientProfile.country}</pre>
-      {/*<ProfileHeader*/}
-      {/*  name={null}*/}
-      {/*  firstName={first_name}*/}
-      {/*  lastName={last_name}*/}
-      {/*  profilePicture={profile_picture_url}*/}
-      {/*  city={city}*/}
-      {/*/>*/}
+      <ProfileHeader
+        firstName={first_name}
+        lastName={last_name}
+        profilePicture={profile_picture_url}
+        state={state}
+        city={city}
+        type={type}
+        phone={phone}
+      />
 
-      {/* Profile Description */}
-      {/*<ProfileDescription description={description} />*/}
+      {/* Profile Physical Details */}
+      <ProfilePhysicalDetails />
     </>
   );
 }

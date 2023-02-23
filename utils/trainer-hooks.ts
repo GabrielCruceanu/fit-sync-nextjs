@@ -1,9 +1,9 @@
 import { User } from '@supabase/auth-helpers-nextjs';
-import { TrainerDetails, TypedSupabaseClient } from '#/types/types';
+import { TypedTrainerDetails, TypedSupabaseClient } from '#/types/types';
 
 export const createTrainerProfile = async (
   user: User,
-  trainer: TrainerDetails,
+  trainer: TypedTrainerDetails,
   supabase: TypedSupabaseClient,
 ) => {
   const { data, error } = await supabase.from('trainers').upsert([trainer]);

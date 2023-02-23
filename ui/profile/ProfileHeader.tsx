@@ -1,12 +1,10 @@
 import Image from 'next/image';
-import ContactModel from '#/model/user/contact.model';
 import {
   BadgeCheckIcon,
   BriefcaseIcon,
   ChatIcon,
   LocationMarkerIcon,
 } from '@heroicons/react/solid';
-import { TrainerType } from '#/constants/trainer';
 import ClientProfileModel from '#/model/client/clientProfile.model';
 import { Button, Tooltip } from 'flowbite-react';
 
@@ -16,24 +14,28 @@ export default function ProfileHeader({
   lastName,
   profilePicture,
   type,
+  proType,
   experience,
   certificate,
+  state,
   city,
   completedClients,
   activeClients,
-  contact,
+  phone,
 }: {
-  name: string | null;
+  name?: string | null;
   firstName: string | null;
   lastName: string | null;
   profilePicture?: string | null;
-  type?: TrainerType | null;
+  type?: string | null;
+  proType?: string | null;
   experience?: string | null;
   certificate?: boolean | null;
+  state: string | null;
   city: string | null;
   completedClients?: ClientProfileModel[] | null;
   activeClients?: ClientProfileModel[] | null;
-  contact?: ContactModel | null;
+  phone?: string | null;
 }) {
   return (
     <div className="md:mx-auto md:px-4 md:pt-4">
@@ -91,23 +93,27 @@ export default function ProfileHeader({
               </div>
 
               <div className="md:flex">
-                <div className="flex items-center md:mr-4">
+                <div className="mb-1 flex items-center md:mr-4 lg:mb-0">
                   <BriefcaseIcon className="mr-2 h-5 w-5 fill-teal-500" />
-                  <h3 className="text-sm tracking-wide">{type}</h3>
+                  <h3 className="text-sm capitalize tracking-wide">
+                    {proType ? type + ' / ' + proType : type}
+                  </h3>
                 </div>
 
                 <div className="flex  items-center">
                   <LocationMarkerIcon className="mr-2 h-5 w-5 fill-teal-500" />
-                  <h3 className="text-sm tracking-wide">{city}</h3>
+                  <h3 className="text-sm tracking-wide">
+                    {state + ' / ' + city}
+                  </h3>
                 </div>
               </div>
             </div>
 
             {/*Contact Action*/}
-            {contact ? (
+            {phone ? (
               <div className="mt-2">
                 <a
-                  href={'https://wa.me/' + contact.phone}
+                  href={'https://wa.me/' + phone}
                   target="_blank"
                   rel="noreferrer"
                   className="block flex h-[54px] w-[54px] items-center justify-center overflow-hidden rounded-full bg-teal-500"
@@ -119,26 +125,30 @@ export default function ProfileHeader({
           </div>
 
           {/* Profile Experience */}
-          <ul className="mx-auto my-4 flex max-w-[288px] items-center rounded-xl bg-gray-800 text-center text-white">
-            <li className="w-4/12 p-3">
-              <h3 className="text-xl font-bold">{experience}</h3>
-              <p className="text-xs text-gray-300">Ani de Experienta</p>
-            </li>
-            <li className="w-4/12 border-x border-gray-700 p-3">
-              <h3 className="text-xl font-bold">
-                {completedClients ? completedClients.length : '0'}
-              </h3>
-              <p className="text-xs text-gray-300">Clienti Completi</p>
-            </li>
-            <li className="w-4/12 p-3">
-              <h3 className="text-xl font-bold">
-                {activeClients ? activeClients.length : '0'}
-              </h3>
-              <p className="text-xs text-gray-300">
-                Clienti <br /> Activi
-              </p>
-            </li>
-          </ul>
+          {completedClients || experience || activeClients ? (
+            <ul className="mx-auto my-4 flex max-w-[288px] items-center rounded-xl bg-gray-800 text-center text-white">
+              <li className="w-4/12 p-3">
+                <h3 className="text-xl font-bold">
+                  {experience ? experience : '0'}
+                </h3>
+                <p className="text-xs text-gray-300">Ani de Experienta</p>
+              </li>
+              <li className="w-4/12 border-x border-gray-700 p-3">
+                <h3 className="text-xl font-bold">
+                  {completedClients ? completedClients.length : '0'}
+                </h3>
+                <p className="text-xs text-gray-300">Clienti Completi</p>
+              </li>
+              <li className="w-4/12 p-3">
+                <h3 className="text-xl font-bold">
+                  {activeClients ? activeClients.length : '0'}
+                </h3>
+                <p className="text-xs text-gray-300">
+                  Clienti <br /> Activi
+                </p>
+              </li>
+            </ul>
+          ) : null}
         </div>
       </div>
     </div>

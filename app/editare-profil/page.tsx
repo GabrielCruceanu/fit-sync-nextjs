@@ -1,33 +1,14 @@
 'use client';
-import Profile from '#/ui/profile/Profile';
 import { useRouter } from 'next/navigation';
 import { useSupabase } from '#/ui/auth/SupabaseProvider';
 import { useEffect, useState } from 'react';
 import { navigationAuth } from '#/constants/navigation';
 import LoadingDots from '#/ui/shared/LoadingDots';
-import {
-  TypedClientDetails,
-  TypedGymDetails,
-  TypedNutritionistDetails,
-  TypedTrainerDetails,
-  TypedUserDetails,
-} from '#/types/types';
-import { getClientProfile } from '#/utils/client-hooks';
-import { UserType } from '#/constants/user';
 
-export default function ProfilePage() {
+export default function EditProfilePage() {
   const router = useRouter();
   const { supabase, session } = useSupabase();
   const [loading, setLoading] = useState(true);
-  const [userType, setUserType] = useState<TypedUserDetails['user_type']>(null);
-  const [clientProfile, setClientProfile] = useState<TypedClientDetails | null>(
-    null,
-  );
-  const [trainerProfile, setTrainerProfile] =
-    useState<TypedTrainerDetails | null>(null);
-  const [nutritionistProfile, setNutritionistProfile] =
-    useState<TypedNutritionistDetails | null>(null);
-  const [gymProfile, setGymProfile] = useState<TypedGymDetails | null>(null);
 
   useEffect(() => {
     if (!session) {
@@ -49,16 +30,6 @@ export default function ProfilePage() {
 
         console.log('user_type', data);
         if (data) {
-          setUserType(data.user_type);
-
-          switch (data.user_type) {
-            case UserType.Client:
-              const clientProfile = await getClientProfile(
-                session.user.id,
-                supabase,
-              );
-              setClientProfile(clientProfile);
-          }
         }
       } catch (error) {
         alert('Error loading user_type data!');
@@ -77,6 +48,6 @@ export default function ProfilePage() {
       <LoadingDots />
     </div>
   ) : (
-    <Profile userType={userType} clientProfile={clientProfile} />
+    <h1>Edit Profile</h1>
   );
 }

@@ -2,7 +2,6 @@
 import { useState } from 'react';
 import { RomaniaStatesData } from '#/data/location-data';
 import SelectInput from '#/ui/shared/form/SelectInput';
-import { GymsTypeList } from '#/constants/trainer';
 import SectionWithWave from '#/ui/shared/SectionWithWave';
 import ProList from '#/ui/shared/ProList';
 import TrainerProfileModel from '#/model/trainer/trainerProfile.model';
@@ -10,6 +9,7 @@ import { flushSync } from 'react-dom';
 import { executeScroll } from '#/lib/scrollTo';
 import { handleInputRequired } from '#/utils/helpers';
 import { AuthError } from '#/constants/authError';
+import { GymsTypeList } from '#/constants/gym';
 
 export default function HeaderSearchAGym({
   gyms,
