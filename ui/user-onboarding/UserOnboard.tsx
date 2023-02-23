@@ -351,7 +351,7 @@ export default function UserOnboard() {
           break;
         case UserType.Client:
           const client: TypedClientDetails = {
-            id: session.user.id,
+            client_id: session.user.id,
             first_name: firstName,
             last_name: lastName,
             country: CountriesData[0].name,
@@ -368,8 +368,6 @@ export default function UserOnboard() {
             type: userType,
             username: username,
             phone: phone,
-            current_details: null,
-            history_details: null,
           };
           createClientProfile(session.user, client, supabase);
           break;
