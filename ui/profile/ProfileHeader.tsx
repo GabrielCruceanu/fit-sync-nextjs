@@ -33,8 +33,8 @@ export default function ProfileHeader({
   certificate?: boolean | null;
   state: string | null;
   city: string | null;
-  completedClients?: ClientProfileModel[] | null;
-  activeClients?: ClientProfileModel[] | null;
+  completedClients?: string | null;
+  activeClients?: string | null;
   phone?: string | null;
 }) {
   return (
@@ -129,23 +129,22 @@ export default function ProfileHeader({
             <ul className="mx-auto my-4 flex max-w-[288px] items-center rounded-xl bg-gray-800 text-center text-white">
               <li className="w-4/12 p-3">
                 <h3 className="text-xl font-bold">
-                  {experience ? experience : '0'}
+                  {experience ? experience : '0'}{' '}
+                  <span className="text-xs">Ani</span>
                 </h3>
-                <p className="text-xs text-gray-300">Ani de Experienta</p>
+                <p className="text-xs text-gray-300">Experienta</p>
               </li>
               <li className="w-4/12 border-x border-gray-700 p-3">
                 <h3 className="text-xl font-bold">
-                  {completedClients ? completedClients.length : '0'}
+                  {certificate ? 'Da' : 'Nu'}
                 </h3>
-                <p className="text-xs text-gray-300">Clienti Completi</p>
+                <p className="text-xs text-gray-300">Certificat</p>
               </li>
               <li className="w-4/12 p-3">
                 <h3 className="text-xl font-bold">
-                  {activeClients ? activeClients.length : '0'}
+                  {certificate ? 'Da' : 'Nu'}
                 </h3>
-                <p className="text-xs text-gray-300">
-                  Clienti <br /> Activi
-                </p>
+                <p className="text-xs text-gray-300">Verificat</p>
               </li>
             </ul>
           ) : null}

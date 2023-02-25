@@ -28,7 +28,7 @@ export default async function HomePage() {
       <HomeHeader />
       <HomeHowItWorks />
       <ClientHowItWorks />
-      <ClientFeatures trainers={trainersData} />
+      {/*<ClientFeatures trainers={trainersData} />*/}
       <HomeBeAPro />
       <ClientFAQ />
     </>

@@ -1,63 +1,72 @@
 'use client';
 import ProfileHeader from '#/ui/profile/ProfileHeader';
-import TrainerProfileModel from '#/model/trainer/trainerProfile.model';
 import ProfileContact from '#/ui/profile/ProfileContact';
 import Reviews from '#/ui/shared/Reviews';
 import ProfileDescription from '#/ui/profile/ProfileDescription';
 import ProfilePrograms from '#/ui/profile/ProfilePrograms';
+import { TypedTrainerDetails, TypedTrainerReview } from '#/types/types';
 
 export default function TrainerProfile({
   trainer,
+  reviews,
 }: {
-  trainer: TrainerProfileModel;
+  trainer: TypedTrainerDetails;
+  reviews: TypedTrainerReview[];
 }) {
   const {
-    firstName,
-    lastName,
+    first_name,
+    last_name,
     username,
-    profilePicture,
+    profile_picture_url,
     type,
     city,
     description,
     experience,
     certificate,
-    activeClients,
-    completedClients,
-    contact,
-    reviews,
+    active_clients,
+    completed_clients,
+    email,
+    phone,
+    facebook,
+    instagram,
+    twitter,
     programs,
+    trainer_type,
     state,
   } = trainer;
+
+  const contact = { email, phone, facebook, instagram, twitter };
 
   return (
     <>
       {/* Profile Header */}
       <ProfileHeader
-        firstName={firstName}
-        lastName={lastName}
-        profilePicture={profilePicture}
-        phone={contact.phone}
+        firstName={first_name}
+        lastName={last_name}
+        profilePicture={profile_picture_url}
+        phone={phone}
         type={type}
+        proType={trainer_type}
         city={city}
         experience={experience}
         certificate={certificate}
-        activeClients={activeClients}
-        completedClients={completedClients}
+        activeClients={active_clients}
+        completedClients={completed_clients}
         name={null}
         state={state}
       />
 
       {/* Profile Description */}
-      <ProfileDescription description={description} />
+      {description ? <ProfileDescription description={description} /> : null}
 
       {/* Profile Contact */}
       <ProfileContact contact={contact} />
 
       {/* Profile Review */}
-      {reviews ? <Reviews reviews={reviews} username={username} /> : null}
+      {/*{reviews ? <Reviews reviews={reviews} username={username!} /> : null}*/}
 
       {/* Profile Programs */}
-      {programs ? <ProfilePrograms programs={programs} /> : null}
+      {/*{programs ? <ProfilePrograms programs={programs} /> : null}*/}
     </>
   );
 }

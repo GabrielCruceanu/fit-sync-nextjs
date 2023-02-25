@@ -14,6 +14,7 @@ import {
 } from '#/types/types';
 import { getClientProfile } from '#/utils/client-hooks';
 import { UserType } from '#/constants/user';
+import { getTrainerProfile } from '#/utils/trainer-hooks';
 
 export default function ProfilePage() {
   const router = useRouter();
@@ -58,6 +59,14 @@ export default function ProfilePage() {
                 supabase,
               );
               setClientProfile(clientProfile);
+              break;
+            case UserType.Trainer:
+              const trainerProfile = await getTrainerProfile(
+                session.user.id,
+                supabase,
+              );
+              setTrainerProfile(trainerProfile);
+              break;
           }
         }
       } catch (error) {
@@ -77,6 +86,11 @@ export default function ProfilePage() {
       <LoadingDots />
     </div>
   ) : (
-    <Profile userType={userType} clientProfile={clientProfile} />
+    <Profile
+      userType={userType}
+      clientProfile={clientProfile}
+      gymProfile={gymProfile}
+      trainerProfile={trainerProfile}
+    />
   );
 }

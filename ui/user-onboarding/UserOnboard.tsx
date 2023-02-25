@@ -127,12 +127,15 @@ export default function UserOnboard() {
   });
 
   const handleBirthChange = (newValue: any) => {
-    setBirthError('');
+    console.log('newValue', newValue);
     setBirth(newValue);
     const dateLanding = new Date(newValue.startDate);
     const date = dateLanding.getDate().toString();
     const month = (dateLanding.getMonth() + 1).toString();
     const year = dateLanding.getFullYear().toString();
+    console.log('date', date);
+    console.log('month', month);
+    console.log('year', year);
     setBirthDate(date);
     setBirthMonth(month);
     setBirthYear(year);
@@ -445,6 +448,7 @@ export default function UserOnboard() {
                     setNameError('');
                   }}
                   handleBlur={() => {
+                    setConfirmBtnDisable(false);
                     setNameError('');
                     handleInputRequired(name)
                       ? setNameError(AuthError.InputRequired)
@@ -471,6 +475,7 @@ export default function UserOnboard() {
                     setLastNameError('');
                   }}
                   handleBlur={() => {
+                    setConfirmBtnDisable(false);
                     setLastNameError('');
                     handleInputRequired(lastName)
                       ? setLastNameError(AuthError.InputRequired)
@@ -495,6 +500,7 @@ export default function UserOnboard() {
                     setFirstNameError('');
                   }}
                   handleBlur={() => {
+                    setConfirmBtnDisable(false);
                     setFirstNameError('');
                     handleInputRequired(firstName)
                       ? setFirstNameError(AuthError.InputRequired)
@@ -521,6 +527,7 @@ export default function UserOnboard() {
                 setUsernameError('');
               }}
               handleBlur={() => {
+                setConfirmBtnDisable(false);
                 setUsernameError('');
                 handleSearchUsername();
                 handleInputRequired(username)
@@ -547,6 +554,7 @@ export default function UserOnboard() {
                     setGender(e.target.value);
                   }}
                   handleBlur={() => {
+                    setConfirmBtnDisable(false);
                     setGenderError('');
                     handleInputRequired(gender)
                       ? setGenderError(AuthError.InputRequired)
@@ -573,6 +581,7 @@ export default function UserOnboard() {
                     setGymType(e.target.value);
                   }}
                   handleBlur={() => {
+                    setConfirmBtnDisable(false);
                     setGymTypeError('');
                     handleInputRequired(gymType)
                       ? setGymTypeError(AuthError.InputRequired)
@@ -599,8 +608,9 @@ export default function UserOnboard() {
                     setTrainerType(e.target.value);
                   }}
                   handleBlur={() => {
+                    setConfirmBtnDisable(false);
                     setTrainerTypeError('');
-                    handleInputRequired(gymType)
+                    handleInputRequired(trainerType)
                       ? setTrainerTypeError(AuthError.InputRequired)
                       : null;
                   }}
@@ -625,6 +635,7 @@ export default function UserOnboard() {
                     setNutritionistType(e.target.value);
                   }}
                   handleBlur={() => {
+                    setConfirmBtnDisable(false);
                     setNutritionistTypeError('');
                     handleInputRequired(nutritionistType)
                       ? setNutritionistTypeError(AuthError.InputRequired)
@@ -652,6 +663,7 @@ export default function UserOnboard() {
                     setExperience(e.target.value);
                   }}
                   handleBlur={() => {
+                    setConfirmBtnDisable(false);
                     setExperienceError('');
                     handleInputRequired(experience)
                       ? setExperienceError(AuthError.InputRequired)
@@ -676,6 +688,7 @@ export default function UserOnboard() {
                 setCurrentState(e.target.value);
               }}
               handleBlur={() => {
+                setConfirmBtnDisable(false);
                 setCurrentStateError('');
                 handleInputRequired(currentState)
                   ? setCurrentStateError(AuthError.InputRequired)
@@ -698,6 +711,7 @@ export default function UserOnboard() {
                 setCurrentCity(e.target.value);
               }}
               handleBlur={() => {
+                setConfirmBtnDisable(false);
                 setCurrentCityError('');
                 handleInputRequired(currentCity)
                   ? setCurrentCityError(AuthError.InputRequired)
@@ -724,7 +738,12 @@ export default function UserOnboard() {
                   placeholder={'DD/MM/YYYY'}
                   displayFormat={'DD/MM/YYYY'}
                   value={birth}
-                  onChange={handleBirthChange}
+                  onChange={(value) => {
+                    console.log('value', value);
+                    setConfirmBtnDisable(false);
+                    setBirthError('');
+                    handleBirthChange(value);
+                  }}
                   inputClassName={clsx(
                     'rounded-lg border border-gray-600 bg-gray-700 p-2.5 capitalize text-white placeholder-gray-400 focus:border-primary-600 focus:outline-none focus:ring-primary-600 sm:text-sm',
                     {
@@ -755,6 +774,7 @@ export default function UserOnboard() {
                     setStreetError('');
                   }}
                   handleBlur={() => {
+                    setConfirmBtnDisable(false);
                     setStreetError('');
                     handleInputRequired(street)
                       ? setStreetError(AuthError.InputRequired)
@@ -779,6 +799,7 @@ export default function UserOnboard() {
                 setPhoneError('');
               }}
               handleBlur={() => {
+                setConfirmBtnDisable(false);
                 setPhoneError('');
                 handleInputRequired(phone)
                   ? setPhoneError(AuthError.InputRequired)
