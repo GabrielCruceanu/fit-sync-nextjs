@@ -89,13 +89,6 @@ export type TypedGymDetails = Database['public']['Tables']['gyms']['Row'];
 export type TypedPhysicalDetails =
   Database['public']['Tables']['physical_details']['Row'];
 
-export type TypedTrainerReview =
-  Database['public']['Tables']['trainer_reviews']['Row'];
-
-export type TypedNutritionistReview =
-  Database['public']['Tables']['nutritionist_reviews']['Row'];
-
-export type TypedGymReview =
-  Database['public']['Tables']['gyms_reviews']['Row'];
+export type TypedReviews = Database['public']['Tables']['reviews']['Row'];
 
 export type TypedGender = TypedClientDetails['gender'];

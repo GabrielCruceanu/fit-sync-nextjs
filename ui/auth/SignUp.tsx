@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { PagesLinks, TermsLinks } from '#/constants/links';
 import { handleInputRequired, validateEmail } from '#/utils/helpers';
 import { AuthError } from '#/constants/authError';
-import { TypedSupabaseClient } from '#/types/types';
+import { TypedSupabaseClient } from '#/types';
 import clsx from 'clsx';
 import Input from '#/ui/shared/form/Input';
 

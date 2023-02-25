@@ -1,11 +1,10 @@
 import Image from 'next/image';
 import {
-  BadgeCheckIcon,
+  CheckBadgeIcon,
   BriefcaseIcon,
-  ChatIcon,
-  LocationMarkerIcon,
-} from '@heroicons/react/solid';
-import ClientProfileModel from '#/model/client/clientProfile.model';
+  ChatBubbleBottomCenterIcon,
+  MapPinIcon,
+} from '@heroicons/react/20/solid';
 import { Button, Tooltip } from 'flowbite-react';
 
 export default function ProfileHeader({
@@ -86,7 +85,7 @@ export default function ProfileHeader({
                       size={'xs'}
                       pill={true}
                     >
-                      <BadgeCheckIcon className="h-6 w-6 fill-amber-500" />
+                      <CheckBadgeIcon className="h-6 w-6 fill-amber-500" />
                     </Button>
                   </Tooltip>
                 ) : null}
@@ -101,7 +100,7 @@ export default function ProfileHeader({
                 </div>
 
                 <div className="flex  items-center">
-                  <LocationMarkerIcon className="mr-2 h-5 w-5 fill-teal-500" />
+                  <MapPinIcon className="mr-2 h-5 w-5 fill-teal-500" />
                   <h3 className="text-sm tracking-wide">
                     {state + ' / ' + city}
                   </h3>
@@ -118,7 +117,7 @@ export default function ProfileHeader({
                   rel="noreferrer"
                   className="block flex h-[54px] w-[54px] items-center justify-center overflow-hidden rounded-full bg-teal-500"
                 >
-                  <ChatIcon className="h-9 w-9 fill-gray-900 transition-all ease-in-out hover:fill-teal-900" />
+                  <ChatBubbleBottomCenterIcon className="h-9 w-9 fill-gray-900 transition-all ease-in-out hover:fill-teal-900" />
                 </a>
               </div>
             ) : null}

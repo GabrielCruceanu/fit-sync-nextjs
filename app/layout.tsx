@@ -21,7 +21,7 @@ export default async function RootLayout({
   } = await supabase.auth.getSession();
 
   return (
-    <html lang="ro" className="[color-scheme:dark]">
+    <html lang="ro" className="h-full [color-scheme:dark]">
       <body className="min-h-screen overflow-y-scroll bg-gray-900">
         <SeoProvider />
         <SupabaseProvider session={session}>

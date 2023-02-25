@@ -11,7 +11,7 @@ import {
   TypedNutritionistDetails,
   TypedTrainerDetails,
   TypedUserDetails,
-} from '#/types/types';
+} from '#/types';
 import { getClientProfile } from '#/utils/client-hooks';
 import { UserType } from '#/constants/user';
 import { getTrainerProfile } from '#/utils/trainer-hooks';

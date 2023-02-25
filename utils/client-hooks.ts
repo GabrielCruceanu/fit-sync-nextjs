@@ -3,7 +3,7 @@ import {
   TypedClientDetails,
   TypedPhysicalDetails,
   TypedSupabaseClient,
-} from '#/types/types';
+} from '#/types';
 
 export const createClientProfile = async (
   user: User,

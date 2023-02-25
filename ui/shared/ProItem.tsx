@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { ArrowRightIcon, UserCircleIcon } from '@heroicons/react/solid';
+import { ArrowRightIcon, UserCircleIcon } from '@heroicons/react/20/solid';
 import Link from 'next/link';
 import ReviewModel from '#/model/review/review.model';
 

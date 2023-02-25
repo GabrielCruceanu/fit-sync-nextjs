@@ -3,7 +3,7 @@ import {
   TypedGymDetails,
   TypedNutritionistDetails,
   TypedTrainerDetails,
-} from '#/types/types';
+} from '#/types';
 import OnboardSteps, {
   OnboardStepsType,
 } from '#/ui/user-onboarding/OnboardSteps';

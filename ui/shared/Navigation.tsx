@@ -10,7 +10,7 @@ import {
 import * as gtag from '#/lib/gtag';
 import Gtag from '#/ui/shared/Gtag';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
-import { BellIcon, MenuAlt2Icon, XIcon } from '@heroicons/react/solid';
+import { BellIcon, Bars3Icon, XMarkIcon } from '@heroicons/react/20/solid';
 import Image from 'next/image';
 import { KaapoFitLogo } from '#/ui/shared/KaapoFitLogo';
 import Link from 'next/link';
@@ -24,9 +24,10 @@ import {
 import { ProCardCTA } from '#/ui/shared/ProCardCTA';
 import { PagesLinks } from '#/constants/links';
 import { useSupabase } from '#/ui/auth/SupabaseProvider';
-import LogoutIcon from '@heroicons/react/solid/LogoutIcon';
+import { ArrowLeftOnRectangleIcon } from '@heroicons/react/20/solid';
 import { useUserContext } from '#/utils/useUserContext';
 import { UserType } from '#/constants/user';
+import LinkCustom from '#/ui/shared/LinkCustom';
 
 const userFAKE = {
   name: 'Tom Cook',
@@ -77,18 +78,13 @@ export function Navigation() {
           <>
             <div className="container mx-auto px-4 ">
               <div className="flex h-16 items-center justify-between">
-                <div className="flex-shrink-0">
-                  <Link replace href="/" className=" space-x-2.5">
-                    <div className="h-6">
-                      <KaapoFitLogo />
-                    </div>
-                  </Link>
-                </div>
+                <a href="/" className={'h-6'}>
+                  <KaapoFitLogo />
+                </a>
                 <div className="hidden md:block">
                   <div className="ml-10 flex items-baseline space-x-4">
                     {navigationStatic.map((item) => (
                       <Link
-                        replace
                         key={item.name}
                         href={item.slug}
                         className={classNames(
@@ -119,7 +115,10 @@ export function Navigation() {
                         className="mr-3 rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
                       >
                         <span className="sr-only">{navigationLogout.name}</span>
-                        <LogoutIcon className="h-6 w-6" aria-hidden="true" />
+                        <ArrowLeftOnRectangleIcon
+                          className="h-6 w-6"
+                          aria-hidden="true"
+                        />
                       </button>
                       <button
                         type="button"
@@ -156,8 +155,7 @@ export function Navigation() {
                             {navLinks.map((item) => (
                               <Menu.Item key={item.name}>
                                 {() => (
-                                  <Link
-                                    replace
+                                  <a
                                     href={item.slug}
                                     className={classNames(
                                       item.slug === segment
@@ -167,7 +165,7 @@ export function Navigation() {
                                     )}
                                   >
                                     {item.name}
-                                  </Link>
+                                  </a>
                                 )}
                               </Menu.Item>
                             ))}
@@ -178,9 +176,8 @@ export function Navigation() {
                   </div>
                 ) : (
                   <div>
-                    <Link
+                    <a
                       href={navigationAuth.slug}
-                      replace
                       className={classNames(
                         navigationAuth.slug === segment
                           ? 'bg-teal-500 text-white hover:border-teal-900 hover:bg-teal-900'
@@ -189,7 +186,7 @@ export function Navigation() {
                       )}
                     >
                       {navigationAuth.name}
-                    </Link>
+                    </a>
                   </div>
                 )}
 
@@ -198,12 +195,9 @@ export function Navigation() {
                   <Disclosure.Button className="inline-flex items-center justify-center rounded-md bg-gray-800 p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                     <span className="sr-only">Open main menu</span>
                     {open ? (
-                      <XIcon className="block h-6 w-6" aria-hidden="true" />
+                      <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
                     ) : (
-                      <MenuAlt2Icon
-                        className="block h-6 w-6"
-                        aria-hidden="true"
-                      />
+                      <Bars3Icon className="block h-6 w-6" aria-hidden="true" />
                     )}
                   </Disclosure.Button>
                 </div>
@@ -267,7 +261,10 @@ export function Navigation() {
                       className="ml-4 rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
                     >
                       <span className="sr-only">{navigationLogout.name}</span>
-                      <LogoutIcon className="h-6 w-6" aria-hidden="true" />
+                      <ArrowLeftOnRectangleIcon
+                        className="h-6 w-6"
+                        aria-hidden="true"
+                      />
                     </button>
                   </div>
                   <div className="mt-3 space-y-1 px-2">

@@ -1,7 +1,7 @@
 'use client';
 import Link from 'next/link';
 import { Avatar, Rating } from 'flowbite-react';
-import { TypedTrainerReview } from '#/types/types';
+import { TypedTrainerReview } from '#/types';
 const _ = require('lodash');
 
 export default function Reviews({

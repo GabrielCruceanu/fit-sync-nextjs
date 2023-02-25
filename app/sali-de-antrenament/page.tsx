@@ -14,7 +14,7 @@ async function getGymsData() {
   return res.json();
 }
 
-export default async function SearchGymsPage() {
+export default async function Page() {
   const gymsData = await getGymsData();
   return (
     <>

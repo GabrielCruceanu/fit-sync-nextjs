@@ -1,6 +1,6 @@
 import { MouseEventHandler } from 'react';
 import clsx from 'clsx';
-import { ButtonType } from '#/types/types';
+import { ButtonType } from '#/types';
 
 export type ButtonFullProps = {
   shortText: string;

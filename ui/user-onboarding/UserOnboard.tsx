@@ -6,7 +6,7 @@ import {
   TypedNutritionistDetails,
   TypedTrainerDetails,
   TypedUserDetails,
-} from '#/types/types';
+} from '#/types';
 import { OnboardStepsType } from '#/ui/user-onboarding/OnboardSteps';
 import { GenderList, UserType } from '#/constants/user';
 import UserOnboardWrap from '#/ui/user-onboarding/UserOnboardWrap';

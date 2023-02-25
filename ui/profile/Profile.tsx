@@ -3,7 +3,7 @@ import {
   TypedGymDetails,
   TypedTrainerDetails,
   TypedUserDetails,
-} from '#/types/types';
+} from '#/types';
 import UserOnboard from '#/ui/user-onboarding/UserOnboard';
 import { UserType } from '#/constants/user';
 import ClientProfile from '#/ui/profile/ClientProfile';

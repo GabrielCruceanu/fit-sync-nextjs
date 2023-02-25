@@ -1,7 +1,7 @@
 import ContactModel from '#/model/user/contact.model';
 import Link from 'next/link';
 import EnvelopeIcon from '#/ui/shared/icons/EnvelopeIcon';
-import { GlobeAltIcon, PhoneIcon } from '@heroicons/react/solid';
+import { GlobeAltIcon, PhoneIcon } from '@heroicons/react/20/solid';
 import { FacebookIcon } from '#/ui/shared/icons/FacebookIcon';
 import InstagramIcon from '#/ui/shared/InstagramIcon';
 import TwitterIcon from '#/ui/shared/icons/TwitterIcon';

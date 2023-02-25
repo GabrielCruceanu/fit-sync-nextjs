@@ -1,6 +1,6 @@
 import ProfileHeader from '#/ui/profile/ProfileHeader';
 import ProfilePhysicalDetails from '#/ui/profile/ProfilePhysicalDetails';
-import { TypedClientDetails } from '#/types/types';
+import { TypedClientDetails } from '#/types';
 
 export default function ClientProfile({
   clientProfile,

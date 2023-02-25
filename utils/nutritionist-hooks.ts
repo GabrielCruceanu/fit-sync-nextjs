@@ -1,5 +1,5 @@
 import { User } from '@supabase/auth-helpers-nextjs';
-import { TypedNutritionistDetails, TypedSupabaseClient } from '#/types/types';
+import { TypedNutritionistDetails, TypedSupabaseClient } from '#/types';
 
 export const createNutritionistProfile = async (
   user: User,

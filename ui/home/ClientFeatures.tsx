@@ -5,13 +5,13 @@ import { PagesLinks } from '#/constants/links';
 import Link from 'next/link';
 import ProList from '#/ui/shared/ProList';
 import * as _ from 'lodash';
-import TrainerProfileModel from '#/model/trainer/trainerProfile.model';
 import Button, { ButtonType } from '#/ui/shared/Button';
+import { TypedTrainerDetails } from '#/types';
 
 export default function ClientFeatures({
   trainers,
 }: {
-  trainers: TrainerProfileModel[];
+  trainers: TypedTrainerDetails;
 }) {
   const sixRandomTrainers = _.sampleSize(trainers, 6);
 

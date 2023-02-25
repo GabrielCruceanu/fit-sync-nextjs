@@ -1,9 +1,5 @@
 import { User } from '@supabase/auth-helpers-nextjs';
-import {
-  TypedTrainerDetails,
-  TypedSupabaseClient,
-  TypedClientDetails,
-} from '#/types/types';
+import { TypedTrainerDetails, TypedSupabaseClient } from '#/types';
 
 export const createTrainerProfile = async (
   user: User,
@@ -19,6 +15,17 @@ export const createTrainerProfile = async (
   return data;
 };
 
+export const getAllTrainers = async (supabase: TypedSupabaseClient) => {
+  const { data: trainers, error } = await supabase.from('trainers').select('*');
+
+  if (error) {
+    console.log('select trainers error: ', error.message);
+  }
+
+  console.log('select trainers data:', trainers);
+  return trainers as unknown as TypedTrainerDetails[];
+};
+
 export const getTrainerProfile = async (
   userId: string,
   supabase: TypedSupabaseClient,
@@ -27,6 +34,24 @@ export const getTrainerProfile = async (
     .from('trainers')
     .select('*')
     .eq('id', userId)
+    .single();
+
+  if (error) {
+    console.log('select trainer profile error: ', error.message);
+  }
+
+  console.log('select trainer profile data:', trainers);
+  return trainers as unknown as TypedTrainerDetails;
+};
+
+export const getTrainerProfileByUserName = async (
+  usernamr: string,
+  supabase: TypedSupabaseClient,
+) => {
+  const { data: trainers, error } = await supabase
+    .from('trainers')
+    .select('*')
+    .eq('username', usernamr)
     .single();
 
   if (error) {

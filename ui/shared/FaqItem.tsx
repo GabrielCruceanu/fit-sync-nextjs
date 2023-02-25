@@ -1,5 +1,8 @@
 'use client';
-import { ArrowCircleDownIcon, ArrowCircleUpIcon } from '@heroicons/react/solid';
+import {
+  ArrowDownCircleIcon,
+  ArrowUpCircleIcon,
+} from '@heroicons/react/20/solid';
 import { useState } from 'react';
 import clsx from 'clsx';
 
@@ -21,9 +24,9 @@ export default function FaqItem({
         <h4 className="font-semibold">{question}</h4>
         <span className="ml-4">
           {isOpenFaq ? (
-            <ArrowCircleUpIcon className="block w-8 text-teal-100 transition-all ease-linear" />
+            <ArrowUpCircleIcon className="block w-8 text-teal-100 transition-all ease-linear" />
           ) : (
-            <ArrowCircleDownIcon className="block w-8 text-teal-100 transition-all ease-linear" />
+            <ArrowDownCircleIcon className="block w-8 text-teal-100 transition-all ease-linear" />
           )}
         </span>
       </div>

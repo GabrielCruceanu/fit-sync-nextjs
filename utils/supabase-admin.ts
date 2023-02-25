@@ -1,7 +1,7 @@
 import { createClient } from '@supabase/supabase-js';
 import { stripe } from './stripe';
 import { toDateTime } from './helpers';
-import { Price, Product } from '#/types/types';
+import { Price, Product } from '#/types';
 import type { Database } from '#/types/supabase';
 import Stripe from 'stripe';
 

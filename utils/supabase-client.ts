@@ -7,7 +7,7 @@ import {
   ProductWithPrice,
   TypedSupabaseClient,
   TypedUserDetails,
-} from '#/types/types';
+} from '#/types';
 
 export const supabaseClient = createBrowserSupabaseClient<Database>();
 

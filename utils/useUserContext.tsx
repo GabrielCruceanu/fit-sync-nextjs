@@ -8,7 +8,7 @@ import {
   Subscription,
   TypedTrainerDetails,
   TypedUserDetails,
-} from '#/types/types';
+} from '#/types';
 import { useSupabase } from '#/ui/auth/SupabaseProvider';
 
 type UserContextType = {

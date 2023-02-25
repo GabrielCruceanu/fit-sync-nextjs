@@ -1,17 +1,16 @@
 'use client';
 import ProfileHeader from '#/ui/profile/ProfileHeader';
 import ProfileContact from '#/ui/profile/ProfileContact';
-import Reviews from '#/ui/shared/Reviews';
 import ProfileDescription from '#/ui/profile/ProfileDescription';
-import ProfilePrograms from '#/ui/profile/ProfilePrograms';
-import { TypedTrainerDetails, TypedTrainerReview } from '#/types/types';
+import { TypedReviews, TypedTrainerDetails } from '#/types';
+import Reviews from '#/ui/shared/Reviews';
 
 export default function TrainerProfile({
   trainer,
   reviews,
 }: {
   trainer: TypedTrainerDetails;
-  reviews: TypedTrainerReview[];
+  reviews: TypedReviews[];
 }) {
   const {
     first_name,
@@ -30,11 +29,10 @@ export default function TrainerProfile({
     facebook,
     instagram,
     twitter,
-    programs,
     trainer_type,
     state,
   } = trainer;
-
+  console.log('trainer', trainer);
   const contact = { email, phone, facebook, instagram, twitter };
 
   return (
@@ -63,7 +61,7 @@ export default function TrainerProfile({
       <ProfileContact contact={contact} />
 
       {/* Profile Review */}
-      {/*{reviews ? <Reviews reviews={reviews} username={username!} /> : null}*/}
+      {reviews ? <Reviews reviews={reviews} username={username!} /> : null}
 
       {/* Profile Programs */}
       {/*{programs ? <ProfilePrograms programs={programs} /> : null}*/}
