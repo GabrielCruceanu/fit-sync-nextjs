@@ -77,4 +77,8 @@ export const PagesLinks = {
     link: '/adaugare-masuratori',
     name: 'Adauga progress',
   },
+  profile: {
+    link: '/profil',
+    name: 'Profil',
+  },
 };

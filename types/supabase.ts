@@ -93,13 +93,13 @@ export interface Database {
           facebook: string | null
           gallery: string | null
           gym_name: string | null
-          gym_type: string | null
           has_premium: boolean | null
           id: string
           instagram: string | null
           joined: string
           personal: string | null
           phone: string | null
+          pro_type: string | null
           profile_picture_url: string | null
           state: string | null
           street: string | null
@@ -118,13 +118,13 @@ export interface Database {
           facebook?: string | null
           gallery?: string | null
           gym_name?: string | null
-          gym_type?: string | null
           has_premium?: boolean | null
           id: string
           instagram?: string | null
           joined?: string
           personal?: string | null
           phone?: string | null
+          pro_type?: string | null
           profile_picture_url?: string | null
           state?: string | null
           street?: string | null
@@ -143,13 +143,13 @@ export interface Database {
           facebook?: string | null
           gallery?: string | null
           gym_name?: string | null
-          gym_type?: string | null
           has_premium?: boolean | null
           id?: string
           instagram?: string | null
           joined?: string
           personal?: string | null
           phone?: string | null
+          pro_type?: string | null
           profile_picture_url?: string | null
           state?: string | null
           street?: string | null
@@ -181,8 +181,8 @@ export interface Database {
           instagram: string | null
           joined: string
           last_name: string | null
-          nutritionist_type: string | null
           phone: string | null
+          pro_type: string | null
           profile_picture_url: string | null
           programs: string | null
           state: string | null
@@ -212,8 +212,8 @@ export interface Database {
           instagram?: string | null
           joined?: string
           last_name?: string | null
-          nutritionist_type?: string | null
           phone?: string | null
+          pro_type?: string | null
           profile_picture_url?: string | null
           programs?: string | null
           state?: string | null
@@ -243,8 +243,8 @@ export interface Database {
           instagram?: string | null
           joined?: string
           last_name?: string | null
-          nutritionist_type?: string | null
           phone?: string | null
+          pro_type?: string | null
           profile_picture_url?: string | null
           programs?: string | null
           state?: string | null
@@ -491,9 +491,9 @@ export interface Database {
           joined: string
           last_name: string | null
           phone: string | null
+          pro_type: string | null
           profile_picture_url: string | null
           state: string | null
-          trainer_type: string | null
           twitter: string | null
           type: string | null
           username: string | null
@@ -521,9 +521,9 @@ export interface Database {
           joined?: string
           last_name?: string | null
           phone?: string | null
+          pro_type?: string | null
           profile_picture_url?: string | null
           state?: string | null
-          trainer_type?: string | null
           twitter?: string | null
           type?: string | null
           username?: string | null
@@ -551,9 +551,9 @@ export interface Database {
           joined?: string
           last_name?: string | null
           phone?: string | null
+          pro_type?: string | null
           profile_picture_url?: string | null
           state?: string | null
-          trainer_type?: string | null
           twitter?: string | null
           type?: string | null
           username?: string | null
@@ -586,6 +586,7 @@ export interface Database {
           last_name: string | null
           name: string | null
           payment_method: Json | null
+          profile_picture_url: string | null
           user_type: Database["public"]["Enums"]["user_type"] | null
           username: string | null
         }
@@ -597,6 +598,7 @@ export interface Database {
           last_name?: string | null
           name?: string | null
           payment_method?: Json | null
+          profile_picture_url?: string | null
           user_type?: Database["public"]["Enums"]["user_type"] | null
           username?: string | null
         }
@@ -608,6 +610,7 @@ export interface Database {
           last_name?: string | null
           name?: string | null
           payment_method?: Json | null
+          profile_picture_url?: string | null
           user_type?: Database["public"]["Enums"]["user_type"] | null
           username?: string | null
         }
