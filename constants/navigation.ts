@@ -11,19 +11,19 @@ export const navigationStatic: NavItem[] = [
   },
   {
     name: 'Antrenori',
-    slug: 'antrenori',
+    slug: '/antrenori',
   },
   {
     name: 'Nutritionisti',
-    slug: 'nutritionisti',
+    slug: '/nutritionisti',
   },
   {
     name: 'Sali',
-    slug: 'sali-de-antrenament',
+    slug: '/sali-de-antrenament',
   },
   {
     name: 'PRO',
-    slug: 'pro',
+    slug: '/pro',
   }, // {
   //   name: 'Blog',
   //   slug: 'blog',
@@ -32,11 +32,11 @@ export const navigationStatic: NavItem[] = [
 export const navigationClient: NavItem[] = [
   {
     name: 'Profilul meu',
-    slug: 'profil',
+    slug: '/profil',
   },
   {
     name: 'Editare profil',
-    slug: 'editare-profil',
+    slug: '/editare-profil',
   },
   // {
   //   name: 'Mesaje',
@@ -54,11 +54,11 @@ export const navigationClient: NavItem[] = [
 export const navigationProfessional: NavItem[] = [
   {
     name: 'Profilul meu',
-    slug: 'profil',
+    slug: '/profil',
   },
   {
     name: 'Editare profil',
-    slug: 'editare-profil',
+    slug: '/editare-profil',
   },
   // {
   //   name: 'Mesaje',
@@ -80,10 +80,10 @@ export const navigationProfessional: NavItem[] = [
 
 export const navigationLogout: NavItem = {
   name: 'Deconectare',
-  slug: 'deconectare',
+  slug: '/deconectare',
 };
 
 export const navigationAuth: NavItem = {
   name: 'Autentificare',
-  slug: 'autentificare',
+  slug: '/autentificare',
 };

@@ -34,9 +34,11 @@ import { createClientProfile } from '#/utils/client-hooks';
 import { createNutritionistProfile } from '#/utils/nutritionist-hooks';
 import { createTrainerProfile } from '#/utils/trainer-hooks';
 import { createGymProfile } from '#/utils/gym-hooks';
+import { useRouter } from 'next/navigation';
 
 export default function UserOnboard() {
   const { supabase, session } = useSupabase();
+  const router = useRouter();
   const [onboardSteps, setOnboardSteps] = useState<OnboardStepsType>(
     OnboardStepsType.UserType,
   );
@@ -127,15 +129,11 @@ export default function UserOnboard() {
   });
 
   const handleBirthChange = (newValue: any) => {
-    console.log('newValue', newValue);
     setBirth(newValue);
     const dateLanding = new Date(newValue.startDate);
     const date = dateLanding.getDate().toString();
     const month = (dateLanding.getMonth() + 1).toString();
     const year = dateLanding.getFullYear().toString();
-    console.log('date', date);
-    console.log('month', month);
-    console.log('year', year);
     setBirthDate(date);
     setBirthMonth(month);
     setBirthYear(year);
@@ -260,7 +258,7 @@ export default function UserOnboard() {
             type: userType,
             username: username,
             gym_name: name,
-            gym_type: gymType,
+            pro_type: gymType,
             phone: phone,
             country: CountriesData[0].name,
             state: currentState,
@@ -276,11 +274,12 @@ export default function UserOnboard() {
             instagram: null,
             personal: null,
             profile_picture_url: null,
-            reviews: null,
             twitter: null,
             website: null,
           };
-          createGymProfile(session.user, gym, supabase);
+          createGymProfile(session.user, gym, supabase).then((result) =>
+            result ? router.push('/profil') : null,
+          );
           break;
         case UserType.Trainer:
           const trainer: TypedTrainerDetails = {
@@ -296,7 +295,7 @@ export default function UserOnboard() {
             birth_date: birthDate,
             birth_month: birthMonth,
             birth_year: birthYear,
-            trainer_type: trainerType,
+            pro_type: trainerType,
             experience: experience,
             country: CountriesData[0].name,
             city: currentCity,
@@ -307,15 +306,15 @@ export default function UserOnboard() {
             gallery: null,
             active_clients: null,
             completed_clients: null,
-            programs: null,
             has_premium: false,
             profile_picture_url: null,
-            reviews: null,
             twitter: null,
             instagram: null,
             website: null,
           };
-          createTrainerProfile(session.user, trainer, supabase);
+          createTrainerProfile(session.user, trainer, supabase).then((result) =>
+            result ? router.push('/profil') : null,
+          );
           break;
         case UserType.Nutritionist:
           const nutritionist: TypedNutritionistDetails = {
@@ -331,7 +330,7 @@ export default function UserOnboard() {
             birth_date: birthDate,
             birth_month: birthMonth,
             birth_year: birthYear,
-            nutritionist_type: nutritionistType,
+            pro_type: nutritionistType,
             experience: experience,
             country: CountriesData[0].name,
             city: currentCity,
@@ -345,12 +344,13 @@ export default function UserOnboard() {
             programs: null,
             has_premium: false,
             profile_picture_url: null,
-            reviews: null,
             twitter: null,
             instagram: null,
             website: null,
           };
-          createNutritionistProfile(session.user, nutritionist, supabase);
+          createNutritionistProfile(session.user, nutritionist, supabase).then(
+            (result) => (result ? router.push('/profil') : null),
+          );
           break;
         case UserType.Client:
           const client: TypedClientDetails = {
@@ -372,7 +372,9 @@ export default function UserOnboard() {
             username: username,
             phone: phone,
           };
-          createClientProfile(session.user, client, supabase);
+          createClientProfile(session.user, client, supabase).then((result) =>
+            result ? router.push('/profil') : null,
+          );
           break;
       }
     }
@@ -739,13 +741,12 @@ export default function UserOnboard() {
                   displayFormat={'DD/MM/YYYY'}
                   value={birth}
                   onChange={(value) => {
-                    console.log('value', value);
                     setConfirmBtnDisable(false);
                     setBirthError('');
                     handleBirthChange(value);
                   }}
                   inputClassName={clsx(
-                    'rounded-lg border border-gray-600 bg-gray-700 p-2.5 capitalize text-white placeholder-gray-400 focus:border-primary-600 focus:outline-none focus:ring-primary-600 sm:text-sm',
+                    'rounded-lg border border-gray-600 !bg-gray-700 p-2.5 capitalize text-white placeholder-gray-400 focus:border-primary-600 focus:outline-none focus:ring-primary-600 sm:text-sm',
                     {
                       'border-red-600': birthError,
                     },

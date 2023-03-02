@@ -10,7 +10,8 @@ export const createGymProfile = async (
 
   if (error) {
     console.log('create gym profile error: ', error.message);
+    return false;
   }
   console.log('create  gym profile data:', data);
-  return data;
+  return true;
 };

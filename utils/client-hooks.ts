@@ -14,9 +14,10 @@ export const createClientProfile = async (
 
   if (error) {
     console.log('create client profile error: ', error.message);
+    return false;
   }
   console.log('create  client profile data:', data);
-  return data;
+  return true;
 };
 
 export const getClientProfile = async (

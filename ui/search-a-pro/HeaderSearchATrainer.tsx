@@ -2,15 +2,15 @@
 import { useState } from 'react';
 import { RomaniaStatesData } from '#/data/location-data';
 import SelectInput from '#/ui/shared/form/SelectInput';
-import { TrainerTypeList } from '#/constants/trainer';
 import SectionWithWave from '#/ui/shared/SectionWithWave';
 import ProList from '#/ui/shared/ProList';
-import TrainerProfileModel from '#/model/trainer/trainerProfile.model';
 import { flushSync } from 'react-dom';
 import { executeScroll } from '#/lib/scrollTo';
 import { handleInputRequired } from '#/utils/helpers';
 import { AuthError } from '#/constants/authError';
 import { TypedTrainerDetails } from '#/types';
+import clsx from 'clsx';
+import { TrainerTypeList } from '#/constants/trainer';
 
 export default function HeaderSearchATrainer({
   trainers,
@@ -23,33 +23,46 @@ export default function HeaderSearchATrainer({
   const [currentStateError, setCurrentStateError] = useState('');
   const [currentCity, setCurrentCity] = useState('');
   const [currentCityError, setCurrentCityError] = useState('');
-  const [currentTrainers, setCurrentTrainers] = useState<TrainerProfileModel[]>(
+  const [currentTrainers, setCurrentTrainers] = useState<TypedTrainerDetails[]>(
     [],
   );
-  let currentCites: string[] = [];
-  let trainersSearched: TrainerProfileModel[];
+  const [showCurrentTrainers, setShowCurrentTrainers] =
+    useState<boolean>(false);
 
+  let currentCites: string[] = [];
+  let trainersSearched: TypedTrainerDetails[];
+  const trainerTypes = TrainerTypeList;
   const states = RomaniaStatesData.map((state) => state.name);
 
-  RomaniaStatesData.filter((state) => {
-    if (state.name === currentState) {
-      currentCites = state.cities;
+  trainers.filter((trainer) => {
+    if (trainer.state === currentState) {
+      const state = RomaniaStatesData.find(
+        (state) => state.name === currentState,
+      );
+      currentCites = state?.cities
+        ? state?.cities.filter((city) => city === trainer.city)
+        : [];
     }
   });
+  const findTrainers = () => {
+    trainersSearched = trainers.filter((trainer) => {
+      if (trainer.pro_type === trainerType && trainer.city === currentCity) {
+        return trainer;
+      }
+    });
+  };
 
   const searchTrainers = () => {
-    trainersSearched = trainers.filter(
-      (trainer) => trainer.type === trainerType && trainer.city === currentCity,
-    );
     // Will wait until the DOM is updated with the new state
     flushSync(() => {
+      findTrainers();
       setCurrentTrainers(trainersSearched);
+      setShowCurrentTrainers(true);
+      console.log('currentTrainers', currentTrainers);
     });
-
     // Scroll to the trainer section where we see the trainers searched
     executeScroll('trainers-section');
   };
-
   return (
     <>
       <section className="bg-noRepeat flex min-h-screen items-center bg-gray-700 bg-[url('https://images.unsplash.com/photo-1519311965067-36d3e5f33d39?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80')] bg-cover bg-center bg-blend-multiply">
@@ -59,8 +72,8 @@ export default function HeaderSearchATrainer({
               Antrenori personali
             </h1>
             <p className="mx-auto mb-6 max-w-xl font-light text-gray-300 md:text-lg xl:mb-8 xl:text-xl">
-              Cauta în cea mai cuprinzătoare baza de date de antrenori personali
-              din Romania. Antrenorul tau este aici.
+              Caută un antrenor personal să îți descoperi potențialul fizic, să
+              îți stabilești obiective realiste și să rămâi motivat.
             </p>
           </div>
           <div className="mt-8 flex w-full flex-wrap items-end justify-center rounded bg-gray-800 p-4 lg:mt-12">
@@ -70,7 +83,7 @@ export default function HeaderSearchATrainer({
                 label="Tip de antrenor"
                 value={trainerType}
                 placeholder={'Fitness'}
-                options={TrainerTypeList}
+                options={trainerTypes}
                 handleChange={(e) => {
                   setTrainerTypeError('');
                   setTrainerType(e.target.value);
@@ -123,8 +136,18 @@ export default function HeaderSearchATrainer({
             </div>
             <button
               onClick={searchTrainers}
-              disabled={!currentCites}
-              className="mt-6 inline-flex h-fit w-full max-w-[400px] items-center justify-center justify-self-center rounded-lg bg-primary-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 md:mx-auto lg:w-4/12 "
+              disabled={
+                trainerType === '' || currentState === '' || currentCity === ''
+              }
+              className={clsx(
+                'mt-6 inline-flex h-fit w-full max-w-[400px] items-center justify-center justify-self-center rounded-lg bg-primary-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 md:mx-auto lg:w-4/12 ',
+                {
+                  '!bg-gray-300 !text-gray-600':
+                    trainerType === '' ||
+                    currentState === '' ||
+                    currentCity === '',
+                },
+              )}
             >
               <svg
                 className="mr-2 -ml-1 h-5 w-5"
@@ -143,11 +166,16 @@ export default function HeaderSearchATrainer({
           </div>
         </div>
       </section>
-
-      {currentTrainers.length > 0 ? (
-        <SectionWithWave bgWhite={true} id="trainers-section">
-          <ProList proList={currentTrainers} isHome={false} />
-        </SectionWithWave>
+      {showCurrentTrainers ? (
+        currentTrainers.length > 0 ? (
+          <SectionWithWave bgWhite={true} id="trainers-section">
+            <ProList proList={currentTrainers} isHome={false} />
+          </SectionWithWave>
+        ) : (
+          <SectionWithWave bgWhite={true} id="trainers-section">
+            <h1>Nu s-au gasit antrenori</h1>
+          </SectionWithWave>
+        )
       ) : null}
     </>
   );

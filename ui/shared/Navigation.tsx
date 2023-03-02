@@ -98,12 +98,12 @@ export function Navigation() {
                     {/* Profile dropdown */}
                     <Menu as="div" className="relative ml-3">
                       <div>
-                        <Menu.Button className="flex h-8 w-8 items-center justify-center text-sm font-medium font-medium leading-5 text-gray-300 transition hover:bg-gray-700 hover:text-white">
+                        <Menu.Button className="rounded-md px-3 py-2 align-middle text-sm font-medium font-medium leading-5 text-gray-300 transition hover:bg-gray-700 hover:text-white">
                           {/*<Bars3Icon*/}
                           {/*  className="block h-6 w-6"*/}
                           {/*  aria-hidden="true"*/}
                           {/*/>*/}
-                          Bord
+                          Profil
                         </Menu.Button>
                       </div>
                       <Transition
@@ -125,7 +125,7 @@ export function Navigation() {
                                     item.slug === segment
                                       ? 'bg-gray-800 text-teal-500'
                                       : 'text-gray-300 hover:bg-gray-700',
-                                    'block rounded-md px-3 py-2 align-middle text-sm font-medium font-medium leading-5 transition hover:text-white',
+                                    'block w-full rounded-md px-3 py-2 text-center align-middle text-sm font-medium font-medium leading-5 transition hover:text-white',
                                   )}
                                 >
                                   {item.name}
@@ -138,9 +138,7 @@ export function Navigation() {
                             {() => (
                               <button
                                 onClick={logout}
-                                className={
-                                  'block rounded-md px-3 py-2 align-middle text-sm font-medium font-medium leading-5 text-red-500 transition hover:bg-gray-700 hover:text-white'
-                                }
+                                className="block w-full rounded-md px-3 py-2 align-middle text-sm font-medium font-medium leading-5 text-red-500 transition hover:bg-red-700 hover:text-white"
                               >
                                 Deconectare
                               </button>
@@ -210,7 +208,7 @@ export function Navigation() {
                     </div>
                   </div>
                 ) : (
-                  <div>
+                  <div className="hidden w-full justify-end md:flex">
                     <a
                       href={navigationAuth.slug}
                       className={classNames(

@@ -12,6 +12,7 @@ export default function TrainerProfile({
   trainer: TypedTrainerDetails;
   reviews: TypedReviews[];
 }) {
+  console.log('trainer', trainer);
   const {
     first_name,
     last_name,
@@ -29,10 +30,9 @@ export default function TrainerProfile({
     facebook,
     instagram,
     twitter,
-    trainer_type,
+    pro_type,
     state,
   } = trainer;
-  console.log('trainer', trainer);
   const contact = { email, phone, facebook, instagram, twitter };
 
   return (
@@ -44,7 +44,7 @@ export default function TrainerProfile({
         profilePicture={profile_picture_url}
         phone={phone}
         type={type}
-        proType={trainer_type}
+        proType={pro_type}
         city={city}
         experience={experience}
         certificate={certificate}

@@ -12,7 +12,8 @@ export const createNutritionistProfile = async (
 
   if (error) {
     console.log('create nutritionist profile error: ', error.message);
+    return false;
   }
   console.log('create  nutritionist profile data:', data);
-  return data;
+  return true;
 };

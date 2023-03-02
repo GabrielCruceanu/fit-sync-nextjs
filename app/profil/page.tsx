@@ -15,6 +15,7 @@ import {
 import { getClientProfile } from '#/utils/client-hooks';
 import { UserType } from '#/constants/user';
 import { getTrainerProfile } from '#/utils/trainer-hooks';
+import { flushSync } from 'react-dom';
 
 export default function ProfilePage() {
   const router = useRouter();
@@ -50,8 +51,6 @@ export default function ProfilePage() {
 
         console.log('user_type', data);
         if (data) {
-          setUserType(data.user_type);
-
           switch (data.user_type) {
             case UserType.Client:
               const clientProfile = await getClientProfile(
@@ -68,6 +67,17 @@ export default function ProfilePage() {
               setTrainerProfile(trainerProfile);
               break;
           }
+          flushSync(() => {
+            setUserType(data.user_type);
+            switch (data.user_type) {
+              case UserType.Client:
+                setClientProfile(clientProfile);
+                break;
+              case UserType.Trainer:
+                setTrainerProfile(trainerProfile);
+                break;
+            }
+          });
         }
       } catch (error) {
         alert('Error loading user_type data!');
