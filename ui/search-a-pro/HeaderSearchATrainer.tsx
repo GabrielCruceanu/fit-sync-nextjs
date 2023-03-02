@@ -10,11 +10,12 @@ import { flushSync } from 'react-dom';
 import { executeScroll } from '#/lib/scrollTo';
 import { handleInputRequired } from '#/utils/helpers';
 import { AuthError } from '#/constants/authError';
+import { TypedTrainerDetails } from '#/types';
 
 export default function HeaderSearchATrainer({
   trainers,
 }: {
-  trainers: TrainerProfileModel[];
+  trainers: TypedTrainerDetails[];
 }) {
   const [trainerType, setTrainerType] = useState('');
   const [trainerTypeError, setTrainerTypeError] = useState('');

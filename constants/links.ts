@@ -34,20 +34,28 @@ export const TermsLinks = {
 
 export const PagesLinks = {
   homePage: {
-    link: '/',
+    link: '/acasa',
     name: 'Acasa',
   },
-  trainerHomePage: {
+  proPage: {
     link: '/pro',
-    name: 'Acasă Antrenor',
+    name: 'PRO',
   },
   clientHomePage: {
     link: '/client',
     name: 'Acasă client',
   },
   searchTrainerHomePage: {
-    link: '/cauta-pro',
-    name: 'Caută pro',
+    link: 'antrenori',
+    name: 'Antrenori',
+  },
+  searchNutritionistHomePage: {
+    link: 'nutritionisti',
+    name: 'Nutritritionisti',
+  },
+  searchGymHomePage: {
+    link: 'sali-de-antrenament',
+    name: 'Sali',
   },
   blog: {
     link: '/blog',

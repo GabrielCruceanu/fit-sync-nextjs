@@ -90,5 +90,3 @@ export type TypedPhysicalDetails =
   Database['public']['Tables']['physical_details']['Row'];
 
 export type TypedReviews = Database['public']['Tables']['reviews']['Row'];
-
-export type TypedGender = TypedClientDetails['gender'];

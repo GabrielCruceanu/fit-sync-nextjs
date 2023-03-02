@@ -10,24 +10,26 @@ import {
 import * as gtag from '#/lib/gtag';
 import Gtag from '#/ui/shared/Gtag';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
-import { BellIcon, Bars3Icon, XMarkIcon } from '@heroicons/react/20/solid';
+import {
+  ArrowLeftOnRectangleIcon,
+  Bars3Icon,
+  BellIcon,
+  XMarkIcon,
+} from '@heroicons/react/20/solid';
 import Image from 'next/image';
 import { KaapoFitLogo } from '#/ui/shared/KaapoFitLogo';
-import Link from 'next/link';
 import {
   navigationAuth,
   navigationClient,
   navigationLogout,
-  navigationStatic,
   navigationProfessional,
+  navigationStatic,
 } from '#/constants/navigation';
 import { ProCardCTA } from '#/ui/shared/ProCardCTA';
 import { PagesLinks } from '#/constants/links';
 import { useSupabase } from '#/ui/auth/SupabaseProvider';
-import { ArrowLeftOnRectangleIcon } from '@heroicons/react/20/solid';
 import { useUserContext } from '#/utils/useUserContext';
 import { UserType } from '#/constants/user';
-import LinkCustom from '#/ui/shared/LinkCustom';
 
 const userFAKE = {
   name: 'Tom Cook',
@@ -84,7 +86,7 @@ export function Navigation() {
                 <div className="hidden md:block">
                   <div className="ml-10 flex items-baseline space-x-4">
                     {navigationStatic.map((item) => (
-                      <Link
+                      <a
                         key={item.name}
                         href={item.slug}
                         className={classNames(
@@ -96,13 +98,13 @@ export function Navigation() {
                         )}
                         aria-current={
                           item.slug === segment ||
-                          (item.slug === '/' && segment === null)
+                          (item.slug === '' && segment === null)
                             ? 'page'
                             : undefined
                         }
                       >
                         {item.name}
-                      </Link>
+                      </a>
                     ))}
                   </div>
                 </div>
@@ -305,7 +307,7 @@ export function Navigation() {
                     as="a"
                     className="m-4 block"
                     key="ProCardCTA"
-                    href={PagesLinks.trainerHomePage.link}
+                    href={PagesLinks.proPage.link}
                   >
                     <ProCardCTA />
                   </Disclosure.Button>

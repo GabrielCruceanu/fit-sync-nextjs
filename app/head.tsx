@@ -4,7 +4,7 @@ export default function Head() {
   return (
     <HeadUi
       title="Acasă | Kaapo.Fit"
-      description="Kaapo.Fit este o platformă care dorește să îmbunătățească experiența clienților cu antrenorii și să facă munca antrenorilor mai ușoară oferindu-le mai multe unelte prin care își pot gestiona clienții mai ușor."
+      description="Kaapo.Fit oferă profiluri detaliate ale antrenorilor, nutriționiștilor și ale centrelor de fitness, astfel încât să îl poți găsi pe cel care se potrivește cel mai bine nevoilor tale."
     />
   );
 }
