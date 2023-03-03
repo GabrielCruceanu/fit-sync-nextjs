@@ -68,7 +68,7 @@ export function Navigation() {
             <div className="container mx-auto px-4">
               <div className="flex h-16 items-center justify-between">
                 <div className="flex w-full">
-                  <a href="/" className={'h-6'}>
+                  <a href="/" className={'h-6 max-w-[104px]'}>
                     <KaapoFitLogo />
                   </a>
                 </div>
@@ -171,20 +171,25 @@ export function Navigation() {
                       {/*  <span className="sr-only">View notifications</span>*/}
                       {/*  <BellIcon className="h-6 w-6" aria-hidden="true" />*/}
                       {/*</button>*/}
-                      <div className="ml-3 text-right">
-                        <div className="mb-1 text-sm font-medium leading-none text-gray-400">
-                          Salutare,
-                        </div>
-                        <div className="text-base font-medium leading-none text-white">
-                          {user?.userDetails
-                            ? user?.userDetails?.name
+                      {user?.userDetails?.name ||
+                      user?.userDetails?.last_name ||
+                      user?.userDetails?.first_name ? (
+                        <div className="ml-3 text-right">
+                          <div className="mb-1 text-sm font-medium leading-none text-gray-400">
+                            Salutare,
+                          </div>
+                          <div className="text-base font-medium leading-none text-white">
+                            {user?.userDetails
                               ? user?.userDetails?.name
-                              : user?.userDetails?.last_name +
-                                ' ' +
-                                user?.userDetails?.first_name
-                            : 'Prenume Nume'}
+                                ? user?.userDetails?.name
+                                : user?.userDetails?.last_name +
+                                  ' ' +
+                                  user?.userDetails?.first_name
+                              : 'Prenume Nume'}
+                          </div>
                         </div>
-                      </div>
+                      ) : null}
+
                       <div className="ml-3 flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                         <a href={PagesLinks.profile.link}>
                           {user.userDetails?.profile_picture_url ? (
@@ -344,9 +349,9 @@ export function Navigation() {
                     as="a"
                     className={classNames(
                       navigationAuth.slug === segment
-                        ? 'bg-gray-800 text-teal-500'
+                        ? 'bg-teal-800'
                         : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                      'mx-2 block rounded-md px-3 py-2 text-base font-medium sm:mx-3',
+                      'mx-2 block rounded-md bg-gray-800 px-3 py-2 text-base font-medium text-teal-500 sm:mx-3',
                     )}
                     href={navigationAuth.slug}
                   >

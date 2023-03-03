@@ -2,7 +2,7 @@
 import Image from 'next/image';
 import HeroBackground from '#/ui/shared/HeroBackground';
 import HowItWorkImage from '#/public/images/homepage/how-it-works.png';
-import { executeScroll } from '#/lib/scrollTo';
+import { executeScroll } from '#/helpers/scrollTo';
 import Button, { ButtonType } from '#/ui/shared/Button';
 
 export default function HomeHeader() {

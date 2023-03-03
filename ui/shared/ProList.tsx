@@ -16,9 +16,10 @@ export default function ProList({
           username,
           first_name,
           last_name,
-          trainer_type,
+          pro_type,
           profile_picture_url,
           certificate,
+          city,
         } = proCard;
         return (
           <li
@@ -31,7 +32,8 @@ export default function ProList({
               link={username!}
               key={key}
               name={first_name + ' ' + last_name}
-              type={trainer_type!}
+              type={pro_type!}
+              city={city}
               photoSrc={profile_picture_url!}
               certificate={!!certificate}
             />

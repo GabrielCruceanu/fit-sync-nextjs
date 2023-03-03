@@ -5,18 +5,20 @@ import SelectInput from '#/ui/shared/form/SelectInput';
 import SectionWithWave from '#/ui/shared/SectionWithWave';
 import ProList from '#/ui/shared/ProList';
 import { flushSync } from 'react-dom';
-import { executeScroll } from '#/lib/scrollTo';
+import { executeScroll } from '#/helpers/scrollTo';
 import { handleInputRequired } from '#/utils/helpers';
 import { AuthError } from '#/constants/authError';
 import { TypedTrainerDetails } from '#/types';
 import clsx from 'clsx';
-import { TrainerTypeList } from '#/constants/trainer';
+import { removeDuplicate } from '#/helpers/remove-duplicate';
+import { useSupabase } from '#/ui/auth/SupabaseProvider';
 
 export default function HeaderSearchATrainer({
   trainers,
 }: {
   trainers: TypedTrainerDetails[];
 }) {
+  const { supabase } = useSupabase();
   const [trainerType, setTrainerType] = useState('');
   const [trainerTypeError, setTrainerTypeError] = useState('');
   const [currentState, setCurrentState] = useState('');
@@ -30,39 +32,36 @@ export default function HeaderSearchATrainer({
     useState<boolean>(false);
 
   let currentCites: string[] = [];
-  let trainersSearched: TypedTrainerDetails[];
-  const trainerTypes = TrainerTypeList;
-  const states = RomaniaStatesData.map((state) => state.name);
+  const trainerTypesData = trainers.map(
+    (trainer) => trainer.pro_type as string,
+  );
+  const trainerStatesData = trainers.map((trainer) => trainer.state as string);
+  const trainerTypes: string[] = removeDuplicate(trainerTypesData);
+  const states: string[] = removeDuplicate(trainerStatesData);
 
-  trainers.filter((trainer) => {
-    if (trainer.state === currentState) {
-      const state = RomaniaStatesData.find(
-        (state) => state.name === currentState,
-      );
-      currentCites = state?.cities
-        ? state?.cities.filter((city) => city === trainer.city)
-        : [];
+  RomaniaStatesData.filter((state) => {
+    if (state.name === currentState) {
+      currentCites = state.cities;
     }
   });
-  const findTrainers = () => {
-    trainersSearched = trainers.filter((trainer) => {
-      if (trainer.pro_type === trainerType && trainer.city === currentCity) {
-        return trainer;
-      }
-    });
+
+  const findTrainers = async () => {
+    if (trainerType && currentCity) {
+      const { data: trainers } = await supabase
+        .from('trainers')
+        .select('*')
+        .eq('pro_type', trainerType)
+        .eq('city', currentCity);
+
+      flushSync(() => {
+        setCurrentTrainers(trainers as TypedTrainerDetails[]);
+        setShowCurrentTrainers(true);
+      });
+      // Scroll to the trainer section where we see the trainers searched
+      executeScroll('trainers-section');
+    }
   };
 
-  const searchTrainers = () => {
-    // Will wait until the DOM is updated with the new state
-    flushSync(() => {
-      findTrainers();
-      setCurrentTrainers(trainersSearched);
-      setShowCurrentTrainers(true);
-      console.log('currentTrainers', currentTrainers);
-    });
-    // Scroll to the trainer section where we see the trainers searched
-    executeScroll('trainers-section');
-  };
   return (
     <>
       <section className="bg-noRepeat flex min-h-screen items-center bg-gray-700 bg-[url('https://images.unsplash.com/photo-1519311965067-36d3e5f33d39?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80')] bg-cover bg-center bg-blend-multiply">
@@ -87,8 +86,16 @@ export default function HeaderSearchATrainer({
                 handleChange={(e) => {
                   setTrainerTypeError('');
                   setTrainerType(e.target.value);
+                  setCurrentTrainers([]);
+                  setShowCurrentTrainers(false);
+                  setCurrentState('');
+                  setCurrentCity('');
                 }}
                 handleBlur={() => {
+                  setCurrentTrainers([]);
+                  setShowCurrentTrainers(false);
+                  setCurrentState('');
+                  setCurrentCity('');
                   handleInputRequired(trainerType)
                     ? setTrainerTypeError(AuthError.InputRequired)
                     : null;
@@ -106,8 +113,14 @@ export default function HeaderSearchATrainer({
                 handleChange={(e) => {
                   setCurrentStateError('');
                   setCurrentState(e.target.value);
+                  setCurrentTrainers([]);
+                  setCurrentCity('');
+                  setShowCurrentTrainers(false);
                 }}
                 handleBlur={() => {
+                  setCurrentTrainers([]);
+                  setShowCurrentTrainers(false);
+                  setCurrentCity('');
                   handleInputRequired(currentState)
                     ? setCurrentStateError(AuthError.InputRequired)
                     : null;
@@ -125,8 +138,12 @@ export default function HeaderSearchATrainer({
                 handleChange={(e) => {
                   setCurrentCityError('');
                   setCurrentCity(e.target.value);
+                  setCurrentTrainers([]);
+                  setShowCurrentTrainers(false);
                 }}
                 handleBlur={() => {
+                  setCurrentTrainers([]);
+                  setShowCurrentTrainers(false);
                   handleInputRequired(currentCity)
                     ? setCurrentCityError(AuthError.InputRequired)
                     : null;
@@ -135,7 +152,7 @@ export default function HeaderSearchATrainer({
               />
             </div>
             <button
-              onClick={searchTrainers}
+              onClick={findTrainers}
               disabled={
                 trainerType === '' || currentState === '' || currentCity === ''
               }
@@ -166,13 +183,17 @@ export default function HeaderSearchATrainer({
           </div>
         </div>
       </section>
+      <div id="trainers-section"></div>
       {showCurrentTrainers ? (
         currentTrainers.length > 0 ? (
-          <SectionWithWave bgWhite={true} id="trainers-section">
+          <SectionWithWave bgWhite={true}>
+            <h2 className="mb-4 text-center text-3xl font-bold">
+              Antrenori personali <br /> in {currentCity}
+            </h2>
             <ProList proList={currentTrainers} isHome={false} />
           </SectionWithWave>
         ) : (
-          <SectionWithWave bgWhite={true} id="trainers-section">
+          <SectionWithWave bgWhite={true}>
             <h1>Nu s-au gasit antrenori</h1>
           </SectionWithWave>
         )
