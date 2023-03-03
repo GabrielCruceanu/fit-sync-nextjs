@@ -2,7 +2,7 @@
 import { Button, Timeline } from 'flowbite-react';
 import { useSupabase } from '#/ui/auth/SupabaseProvider';
 import { useEffect, useState } from 'react';
-import { TypedPhysicalDetails } from '#/types/types';
+import { TypedPhysicalDetails } from '#/types';
 import { navigationAuth } from '#/constants/navigation';
 import { useRouter } from 'next/navigation';
 import { getClientPhysicalDetails } from '#/utils/client-hooks';

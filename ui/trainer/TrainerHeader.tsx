@@ -19,9 +19,6 @@ export default function TrainerHeader() {
               Kaapo.Fit este platforma construită pentru antrenorii personali
               care vor să-și dezvolte afacerea și să managerieze mai ușor
               clienții online.
-              <br />
-              <br />
-              Începe testul gratuit de 14 zile astăzi!
             </p>
 
             <Link replace href={PagesLinks.auth.link}>

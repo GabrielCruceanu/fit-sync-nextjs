@@ -9,7 +9,7 @@ import {
   validateOnlyLetter,
 } from '#/utils/helpers';
 import { AuthError } from '#/constants/authError';
-import { TypedSupabaseClient } from '#/types/types';
+import { TypedSupabaseClient } from '#/types';
 import clsx from 'clsx';
 import Input from '#/ui/shared/form/Input';
 

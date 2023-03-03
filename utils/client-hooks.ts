@@ -3,20 +3,21 @@ import {
   TypedClientDetails,
   TypedPhysicalDetails,
   TypedSupabaseClient,
-} from '#/types/types';
+} from '#/types';
 
 export const createClientProfile = async (
   user: User,
   client: TypedClientDetails,
   supabase: TypedSupabaseClient,
 ) => {
-  const { data, error } = await supabase.from('clients').upsert([client]);
+  const { error } = await supabase.from('clients').upsert([client]);
 
   if (error) {
     console.log('create client profile error: ', error.message);
+    return false;
   }
-  console.log('create  client profile data:', data);
-  return data;
+  console.log('create  client profile data:');
+  location.reload();
 };
 
 export const getClientProfile = async (

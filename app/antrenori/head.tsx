@@ -4,8 +4,8 @@ export default function Head() {
   return (
     <>
       <HeadUi
-        title={`Caută un antrenor personal | Kaapo.Fit`}
-        description="Căutați în cea mai cuprinzătoare bază de date de antrenori din România. Antrenorul potrivit tie este aici."
+        title={`Antrenori personali | Kaapo.Fit`}
+        description="Caută un antrenor personal să îți descoperi potențialul fizic, să îți stabilești obiective realiste și să rămâi motivat."
       />
     </>
   );

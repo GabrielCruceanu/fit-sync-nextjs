@@ -6,7 +6,7 @@ import {
   TypedNutritionistDetails,
   TypedTrainerDetails,
   TypedUserDetails,
-} from '#/types/types';
+} from '#/types';
 import { OnboardStepsType } from '#/ui/user-onboarding/OnboardSteps';
 import { GenderList, UserType } from '#/constants/user';
 import UserOnboardWrap from '#/ui/user-onboarding/UserOnboardWrap';
@@ -127,7 +127,6 @@ export default function UserOnboard() {
   });
 
   const handleBirthChange = (newValue: any) => {
-    setBirthError('');
     setBirth(newValue);
     const dateLanding = new Date(newValue.startDate);
     const date = dateLanding.getDate().toString();
@@ -245,6 +244,7 @@ export default function UserOnboard() {
         firstName: firstName ? firstName : null,
         lastName: lastName ? lastName : null,
         name: name ? name : null,
+        profile_picture_url: null,
         userType: userType,
         supabase: supabase,
       });
@@ -257,7 +257,12 @@ export default function UserOnboard() {
             type: userType,
             username: username,
             gym_name: name,
-            gym_type: gymType,
+            first_name: null,
+            last_name: null,
+            active_clients: null,
+            completed_clients: null,
+            experience: null,
+            pro_type: gymType,
             phone: phone,
             country: CountriesData[0].name,
             state: currentState,
@@ -273,7 +278,6 @@ export default function UserOnboard() {
             instagram: null,
             personal: null,
             profile_picture_url: null,
-            reviews: null,
             twitter: null,
             website: null,
           };
@@ -286,6 +290,7 @@ export default function UserOnboard() {
             type: userType,
             username: username,
             joined: today,
+            gym_name: null,
             first_name: firstName,
             last_name: lastName,
             gender: gender,
@@ -293,7 +298,7 @@ export default function UserOnboard() {
             birth_date: birthDate,
             birth_month: birthMonth,
             birth_year: birthYear,
-            trainer_type: trainerType,
+            pro_type: trainerType,
             experience: experience,
             country: CountriesData[0].name,
             city: currentCity,
@@ -304,10 +309,8 @@ export default function UserOnboard() {
             gallery: null,
             active_clients: null,
             completed_clients: null,
-            programs: null,
             has_premium: false,
             profile_picture_url: null,
-            reviews: null,
             twitter: null,
             instagram: null,
             website: null,
@@ -321,6 +324,7 @@ export default function UserOnboard() {
             joined: today,
             type: userType,
             username: username,
+            gym_name: null,
             first_name: firstName,
             last_name: lastName,
             gender: gender,
@@ -328,7 +332,7 @@ export default function UserOnboard() {
             birth_date: birthDate,
             birth_month: birthMonth,
             birth_year: birthYear,
-            nutritionist_type: nutritionistType,
+            pro_type: nutritionistType,
             experience: experience,
             country: CountriesData[0].name,
             city: currentCity,
@@ -342,7 +346,6 @@ export default function UserOnboard() {
             programs: null,
             has_premium: false,
             profile_picture_url: null,
-            reviews: null,
             twitter: null,
             instagram: null,
             website: null,
@@ -445,6 +448,7 @@ export default function UserOnboard() {
                     setNameError('');
                   }}
                   handleBlur={() => {
+                    setConfirmBtnDisable(false);
                     setNameError('');
                     handleInputRequired(name)
                       ? setNameError(AuthError.InputRequired)
@@ -471,6 +475,7 @@ export default function UserOnboard() {
                     setLastNameError('');
                   }}
                   handleBlur={() => {
+                    setConfirmBtnDisable(false);
                     setLastNameError('');
                     handleInputRequired(lastName)
                       ? setLastNameError(AuthError.InputRequired)
@@ -495,6 +500,7 @@ export default function UserOnboard() {
                     setFirstNameError('');
                   }}
                   handleBlur={() => {
+                    setConfirmBtnDisable(false);
                     setFirstNameError('');
                     handleInputRequired(firstName)
                       ? setFirstNameError(AuthError.InputRequired)
@@ -521,6 +527,7 @@ export default function UserOnboard() {
                 setUsernameError('');
               }}
               handleBlur={() => {
+                setConfirmBtnDisable(false);
                 setUsernameError('');
                 handleSearchUsername();
                 handleInputRequired(username)
@@ -547,6 +554,7 @@ export default function UserOnboard() {
                     setGender(e.target.value);
                   }}
                   handleBlur={() => {
+                    setConfirmBtnDisable(false);
                     setGenderError('');
                     handleInputRequired(gender)
                       ? setGenderError(AuthError.InputRequired)
@@ -573,6 +581,7 @@ export default function UserOnboard() {
                     setGymType(e.target.value);
                   }}
                   handleBlur={() => {
+                    setConfirmBtnDisable(false);
                     setGymTypeError('');
                     handleInputRequired(gymType)
                       ? setGymTypeError(AuthError.InputRequired)
@@ -599,8 +608,9 @@ export default function UserOnboard() {
                     setTrainerType(e.target.value);
                   }}
                   handleBlur={() => {
+                    setConfirmBtnDisable(false);
                     setTrainerTypeError('');
-                    handleInputRequired(gymType)
+                    handleInputRequired(trainerType)
                       ? setTrainerTypeError(AuthError.InputRequired)
                       : null;
                   }}
@@ -625,6 +635,7 @@ export default function UserOnboard() {
                     setNutritionistType(e.target.value);
                   }}
                   handleBlur={() => {
+                    setConfirmBtnDisable(false);
                     setNutritionistTypeError('');
                     handleInputRequired(nutritionistType)
                       ? setNutritionistTypeError(AuthError.InputRequired)
@@ -652,6 +663,7 @@ export default function UserOnboard() {
                     setExperience(e.target.value);
                   }}
                   handleBlur={() => {
+                    setConfirmBtnDisable(false);
                     setExperienceError('');
                     handleInputRequired(experience)
                       ? setExperienceError(AuthError.InputRequired)
@@ -676,6 +688,7 @@ export default function UserOnboard() {
                 setCurrentState(e.target.value);
               }}
               handleBlur={() => {
+                setConfirmBtnDisable(false);
                 setCurrentStateError('');
                 handleInputRequired(currentState)
                   ? setCurrentStateError(AuthError.InputRequired)
@@ -698,6 +711,7 @@ export default function UserOnboard() {
                 setCurrentCity(e.target.value);
               }}
               handleBlur={() => {
+                setConfirmBtnDisable(false);
                 setCurrentCityError('');
                 handleInputRequired(currentCity)
                   ? setCurrentCityError(AuthError.InputRequired)
@@ -724,9 +738,13 @@ export default function UserOnboard() {
                   placeholder={'DD/MM/YYYY'}
                   displayFormat={'DD/MM/YYYY'}
                   value={birth}
-                  onChange={handleBirthChange}
+                  onChange={(value) => {
+                    setConfirmBtnDisable(false);
+                    setBirthError('');
+                    handleBirthChange(value);
+                  }}
                   inputClassName={clsx(
-                    'rounded-lg border border-gray-600 bg-gray-700 p-2.5 capitalize text-white placeholder-gray-400 focus:border-primary-600 focus:outline-none focus:ring-primary-600 sm:text-sm',
+                    'rounded-lg border border-gray-600 !bg-gray-700 p-2.5 capitalize text-white placeholder-gray-400 focus:border-primary-600 focus:outline-none focus:ring-primary-600 sm:text-sm',
                     {
                       'border-red-600': birthError,
                     },
@@ -755,6 +773,7 @@ export default function UserOnboard() {
                     setStreetError('');
                   }}
                   handleBlur={() => {
+                    setConfirmBtnDisable(false);
                     setStreetError('');
                     handleInputRequired(street)
                       ? setStreetError(AuthError.InputRequired)
@@ -779,6 +798,7 @@ export default function UserOnboard() {
                 setPhoneError('');
               }}
               handleBlur={() => {
+                setConfirmBtnDisable(false);
                 setPhoneError('');
                 handleInputRequired(phone)
                   ? setPhoneError(AuthError.InputRequired)

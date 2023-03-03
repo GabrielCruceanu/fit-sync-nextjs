@@ -12,18 +12,18 @@ import Link from 'next/link';
 
 export default function ClientHowItWorks() {
   return (
-    <SectionWithWave bgWhite={true}>
+    <SectionWithWave bgWhite={true} id="home-details">
       <div className="mx-auto max-w-screen-xl space-y-12 py-8 px-4 sm:py-16 lg:space-y-20 lg:px-6">
         {/*Row*/}
         <div className="items-center gap-8 lg:grid lg:grid-cols-2 xl:gap-16">
-          <div className="text-gray-400 sm:text-lg">
+          <div className="text-gray-500 sm:text-lg">
             {/*Image on mobile and tablet*/}
             <Image
               className="mb-4 flex w-full rounded-lg lg:mb-0 lg:hidden"
               src={TrainerMobile}
               alt="Antrenor Personal"
             />
-            <h2 className="mb-4 text-4xl font-bold tracking-tight text-white">
+            <h2 className="mb-4 text-4xl font-bold tracking-tight text-gray-900">
               Antrenor Personal
             </h2>
             <p className="mb-4 font-light lg:text-xl">
@@ -42,7 +42,7 @@ export default function ClientHowItWorks() {
               <li className="flex space-x-3">
                 {/*Icon*/}
                 <svg
-                  className="h-5 w-5 flex-shrink-0 text-primary-600 dark:text-primary-500"
+                  className="h-5 w-5 flex-shrink-0 text-primary-600"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                   xmlns="http://www.w3.org/2000/svg"
@@ -53,14 +53,14 @@ export default function ClientHowItWorks() {
                     clipRule="evenodd"
                   />
                 </svg>
-                <span className="text-base font-medium leading-tight text-gray-900 dark:text-white">
+                <span className="text-base font-medium leading-tight text-gray-900 ">
                   Antrenori personali certificați
                 </span>
               </li>
               <li className="flex space-x-3">
                 {/*Icon*/}
                 <svg
-                  className="h-5 w-5 flex-shrink-0 text-primary-600 dark:text-primary-500"
+                  className="h-5 w-5 flex-shrink-0 text-primary-600"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                   xmlns="http://www.w3.org/2000/svg"
@@ -71,14 +71,14 @@ export default function ClientHowItWorks() {
                     clipRule="evenodd"
                   />
                 </svg>
-                <span className="text-base font-medium leading-tight text-gray-900 dark:text-white">
+                <span className="text-base font-medium leading-tight text-gray-900 ">
                   Program de antrenament personal online
                 </span>
               </li>
               <li className="flex space-x-3">
                 {/*Icon*/}
                 <svg
-                  className="h-5 w-5 flex-shrink-0 text-primary-600 dark:text-primary-500"
+                  className="h-5 w-5 flex-shrink-0 text-primary-600"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                   xmlns="http://www.w3.org/2000/svg"
@@ -89,14 +89,32 @@ export default function ClientHowItWorks() {
                     clipRule="evenodd"
                   />
                 </svg>
-                <span className="text-base font-medium leading-tight text-gray-900 dark:text-white">
+                <span className="text-base font-medium leading-tight text-gray-900 ">
                   Antrenament 1 to 1
                 </span>
               </li>
+              {/*<li className="flex space-x-3">*/}
+              {/*  /!*Icon*!/*/}
+              {/*  <svg*/}
+              {/*    className="h-5 w-5 flex-shrink-0 text-primary-600"*/}
+              {/*    fill="currentColor"*/}
+              {/*    viewBox="0 0 20 20"*/}
+              {/*    xmlns="http://www.w3.org/2000/svg"*/}
+              {/*  >*/}
+              {/*    <path*/}
+              {/*      fillRule="evenodd"*/}
+              {/*      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"*/}
+              {/*      clipRule="evenodd"*/}
+              {/*    />*/}
+              {/*  </svg>*/}
+              {/*  <span className="text-base font-medium leading-tight text-gray-900 ">*/}
+              {/*    Programare online*/}
+              {/*  </span>*/}
+              {/*</li>*/}
               <li className="flex space-x-3">
                 {/*Icon*/}
                 <svg
-                  className="h-5 w-5 flex-shrink-0 text-primary-600 dark:text-primary-500"
+                  className="h-5 w-5 flex-shrink-0 text-primary-600"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                   xmlns="http://www.w3.org/2000/svg"
@@ -107,32 +125,13 @@ export default function ClientHowItWorks() {
                     clipRule="evenodd"
                   />
                 </svg>
-                <span className="text-base font-medium leading-tight text-gray-900 dark:text-white">
-                  Programare online
-                </span>
-              </li>
-              <li className="flex space-x-3">
-                {/*Icon*/}
-                <svg
-                  className="h-5 w-5 flex-shrink-0 text-primary-600 dark:text-primary-500"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-                <span className="text-base font-medium leading-tight text-gray-900 dark:text-white">
+                <span className="text-base font-medium leading-tight text-gray-900 ">
                   Chat online
                 </span>
               </li>
             </ul>
 
             <Link
-              replace
               href={PagesLinks.searchTrainerHomePage.link}
               className="mb-8 text-white"
             >
@@ -163,8 +162,8 @@ export default function ClientHowItWorks() {
             src={NutritionistDesktop}
             alt="Nutriționist personal"
           />
-          <div className="text-gray-500 dark:text-gray-400 sm:text-lg">
-            <h2 className="mb-4 text-4xl font-bold tracking-tight text-gray-900 dark:text-white">
+          <div className="text-gray-500 sm:text-lg">
+            <h2 className="mb-4 text-4xl font-bold tracking-tight text-gray-900">
               Nutriționist
             </h2>
             <p className="mb-4 font-light lg:text-xl">
@@ -183,7 +182,7 @@ export default function ClientHowItWorks() {
               <li className="flex space-x-3">
                 {/*Icon*/}
                 <svg
-                  className="h-5 w-5 flex-shrink-0 text-primary-600 dark:text-primary-500"
+                  className="h-5 w-5 flex-shrink-0 text-primary-600"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                   xmlns="http://www.w3.org/2000/svg"
@@ -194,14 +193,14 @@ export default function ClientHowItWorks() {
                     clipRule="evenodd"
                   />
                 </svg>
-                <span className="text-base font-medium leading-tight text-gray-900 dark:text-white">
+                <span className="text-base font-medium leading-tight text-gray-900 ">
                   Nutriționiști certificați
                 </span>
               </li>
               <li className="flex space-x-3">
                 {/*Icon*/}
                 <svg
-                  className="h-5 w-5 flex-shrink-0 text-primary-600 dark:text-primary-500"
+                  className="h-5 w-5 flex-shrink-0 text-primary-600"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                   xmlns="http://www.w3.org/2000/svg"
@@ -212,14 +211,14 @@ export default function ClientHowItWorks() {
                     clipRule="evenodd"
                   />
                 </svg>
-                <span className="text-base font-medium leading-tight text-gray-900 dark:text-white">
+                <span className="text-base font-medium leading-tight text-gray-900 ">
                   Planuri de masă personalizate
                 </span>
               </li>
               <li className="flex space-x-3">
                 {/*Icon*/}
                 <svg
-                  className="h-5 w-5 flex-shrink-0 text-primary-600 dark:text-primary-500"
+                  className="h-5 w-5 flex-shrink-0 text-primary-600"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                   xmlns="http://www.w3.org/2000/svg"
@@ -230,14 +229,14 @@ export default function ClientHowItWorks() {
                     clipRule="evenodd"
                   />
                 </svg>
-                <span className="text-base font-medium leading-tight text-gray-900 dark:text-white">
+                <span className="text-base font-medium leading-tight text-gray-900 ">
                   Programare online
                 </span>
               </li>
               <li className="flex space-x-3">
                 {/*Icon*/}
                 <svg
-                  className="h-5 w-5 flex-shrink-0 text-primary-600 dark:text-primary-500"
+                  className="h-5 w-5 flex-shrink-0 text-primary-600"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                   xmlns="http://www.w3.org/2000/svg"
@@ -248,14 +247,14 @@ export default function ClientHowItWorks() {
                     clipRule="evenodd"
                   />
                 </svg>
-                <span className="text-base font-medium leading-tight text-gray-900 dark:text-white">
+                <span className="text-base font-medium leading-tight text-gray-900 ">
                   Chat online
                 </span>
               </li>
             </ul>
 
             <Link
-              href={PagesLinks.searchTrainerHomePage.link}
+              href={PagesLinks.searchNutritionistHomePage.link}
               className="mb-8 text-white"
             >
               <Button
@@ -274,7 +273,7 @@ export default function ClientHowItWorks() {
               src={GymMobile}
               alt="Sală de antrenament"
             />
-            <h2 className="mb-4 text-4xl font-bold tracking-tight text-gray-900 dark:text-white">
+            <h2 className="mb-4 text-4xl font-bold tracking-tight text-gray-900 ">
               Sală de antrenament
             </h2>
             <p className="mb-8 font-light lg:text-xl">
@@ -291,7 +290,7 @@ export default function ClientHowItWorks() {
               <li className="flex space-x-3">
                 {/*Icon*/}
                 <svg
-                  className="h-5 w-5 flex-shrink-0 text-primary-600 dark:text-primary-500"
+                  className="h-5 w-5 flex-shrink-0 text-primary-600"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                   xmlns="http://www.w3.org/2000/svg"
@@ -302,14 +301,14 @@ export default function ClientHowItWorks() {
                     clipRule="evenodd"
                   />
                 </svg>
-                <span className="text-base font-medium leading-tight text-gray-900 dark:text-white">
+                <span className="text-base font-medium leading-tight text-gray-900 ">
                   Sală cu antrenor personal
                 </span>
               </li>
               <li className="flex space-x-3">
                 {/*Icon*/}
                 <svg
-                  className="h-5 w-5 flex-shrink-0 text-primary-600 dark:text-primary-500"
+                  className="h-5 w-5 flex-shrink-0 text-primary-600"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                   xmlns="http://www.w3.org/2000/svg"
@@ -320,14 +319,14 @@ export default function ClientHowItWorks() {
                     clipRule="evenodd"
                   />
                 </svg>
-                <span className="text-base font-medium leading-tight text-gray-900 dark:text-white">
+                <span className="text-base font-medium leading-tight text-gray-900 ">
                   Abonament sală fitness
                 </span>
               </li>
               <li className="flex space-x-3">
                 {/*Icon*/}
                 <svg
-                  className="h-5 w-5 flex-shrink-0 text-primary-600 dark:text-primary-500"
+                  className="h-5 w-5 flex-shrink-0 text-primary-600"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                   xmlns="http://www.w3.org/2000/svg"
@@ -338,14 +337,14 @@ export default function ClientHowItWorks() {
                     clipRule="evenodd"
                   />
                 </svg>
-                <span className="text-base font-medium leading-tight text-gray-900 dark:text-white">
+                <span className="text-base font-medium leading-tight text-gray-900 ">
                   Abonament ESX sau 7Card
                 </span>
               </li>
             </ul>
 
             <Link
-              href={PagesLinks.searchTrainerHomePage.link}
+              href={PagesLinks.searchGymHomePage.link}
               className="mb-8 text-white"
             >
               <Button type={ButtonType.primary} description="Caută o Sală" />

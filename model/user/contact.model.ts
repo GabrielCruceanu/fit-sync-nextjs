@@ -1,10 +1,10 @@
 export default class ContactModel {
-  phone: string;
-  email: string;
-  website?: string;
-  facebook?: string;
-  twitter?: string;
-  instagram?: string;
+  phone?: string | null;
+  email?: string | null;
+  website?: string | null;
+  facebook?: string | null;
+  twitter?: string | null;
+  instagram?: string | null;
 
   constructor(props: ContactModel) {
     this.phone = props.phone;

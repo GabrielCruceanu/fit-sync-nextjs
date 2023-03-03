@@ -7,7 +7,6 @@ import { MyUserContextProvider } from '#/utils/useUserContext';
 import { createServerClient } from '#/utils/supabase-server';
 import SupabaseProvider from '#/ui/auth/SupabaseProvider';
 import SupabaseListener from '#/ui/auth/SupabaseListener';
-import SeoProvider from '#/ui/shared/SeoProvider';
 
 export default async function RootLayout({
   children,
@@ -21,9 +20,8 @@ export default async function RootLayout({
   } = await supabase.auth.getSession();
 
   return (
-    <html lang="ro" className="[color-scheme:dark]">
+    <html lang="ro" className="h-full [color-scheme:dark]">
       <body className="min-h-screen overflow-y-scroll bg-gray-900">
-        <SeoProvider />
         <SupabaseProvider session={session}>
           <SupabaseListener serverAccessToken={session?.access_token} />
           <MyUserContextProvider>

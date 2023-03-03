@@ -1,21 +1,20 @@
 'use client';
-import ReviewModel from '#/model/review/review.model';
 import Link from 'next/link';
 import { Avatar, Rating } from 'flowbite-react';
-import BirthModel from '#/model/user/birth.model';
+import { TypedReviews } from '#/types';
 const _ = require('lodash');
 
 export default function Reviews({
   reviews,
   username,
 }: {
-  reviews: ReviewModel[];
+  reviews: TypedReviews[];
   username?: string;
 }) {
   const reviewCount = reviews.length;
   let reviewRating = 0;
   reviews.map((review) => {
-    reviewRating = review.stars;
+    reviewRating = review.stars ? review.stars : 0;
   });
   const lastReview = _.last(reviews);
 
@@ -42,24 +41,24 @@ export default function Reviews({
             {reviewRating} din 5. Total {reviewCount} recenzii.
           </p>
         </Rating>
-        {username ? (
+        {username && lastReview ? (
           <ReviewItem
-            clientId={lastReview.clientId}
-            clientPhoto={lastReview.clientPhoto}
-            clientFirstName={lastReview.clientFirstName}
-            clientLastName={lastReview.clientLastName}
-            date={lastReview.date}
+            clientId={lastReview.client_id}
+            clientPhoto={lastReview.client_photo}
+            clientFirstName={lastReview.client_first_name}
+            clientLastName={lastReview.client_last_name}
+            date={lastReview.date_created}
             description={lastReview.description}
           />
         ) : (
           reviews.map((review, key) => (
             <ReviewItem
-              clientId={review.clientId}
-              clientPhoto={review.clientPhoto}
-              clientFirstName={review.clientFirstName}
-              clientLastName={review.clientLastName}
-              date={review.date}
-              description={review.description}
+              clientId={review.client_id!}
+              clientPhoto={review.client_photo!}
+              clientFirstName={review.client_first_name!}
+              clientLastName={review.client_last_name!}
+              date={review.date_created!}
+              description={review.description!}
               key={key}
             />
           ))
@@ -81,7 +80,7 @@ export function ReviewItem({
   clientPhoto: string;
   clientFirstName: string;
   clientLastName: string;
-  date: BirthModel;
+  date: string;
   description: string;
 }) {
   return (
@@ -98,10 +97,7 @@ export function ReviewItem({
           <h3 className="text-l font-semibold text-white">
             {clientFirstName + ' ' + clientLastName}
           </h3>
-          <h6 className="text-xs">
-            {' '}
-            Din data {date.date + '/' + date.month + '/' + date.year}
-          </h6>
+          <h6 className="text-xs"> Din data {date}</h6>
         </div>
       </div>
       <p className="text-gray-300">{description}</p>

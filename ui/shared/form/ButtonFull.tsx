@@ -1,6 +1,6 @@
 import { MouseEventHandler } from 'react';
 import clsx from 'clsx';
-import { ButtonType } from '#/types/types';
+import { ButtonType } from '#/types';
 
 export type ButtonFullProps = {
   shortText: string;
@@ -18,7 +18,6 @@ export default function ButtonFull({
 }: ButtonFullProps) {
   return (
     <button
-      disabled={disabled}
       onClick={handleClick}
       className={clsx(
         'w-full items-center rounded-lg border py-2.5 text-center text-sm font-medium focus:z-10 focus:outline-none focus:ring-4 sm:py-3.5',

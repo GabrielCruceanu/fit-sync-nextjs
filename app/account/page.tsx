@@ -6,7 +6,7 @@ import {
   useUser,
 } from '@supabase/auth-helpers-react';
 import { Database } from '#/types/supabase';
-import { TypedUserDetails } from '#/types/types';
+import { TypedUserDetails } from '#/types';
 
 export default function Account() {
   const supabase = useSupabaseClient<Database>();

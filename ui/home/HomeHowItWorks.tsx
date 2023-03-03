@@ -35,7 +35,7 @@ export default function HomeHowItWorks() {
           </p>
           <div className="mt-5">
             <div className="mr-3 mt-3 inline-block md:mt-0 lg:mr-3">
-              <Link replace href={PagesLinks.trainerHomePage.link}>
+              <Link replace href={PagesLinks.proPage.link}>
                 <Button
                   type={ButtonType.primary}
                   description="Sunt profesionist"

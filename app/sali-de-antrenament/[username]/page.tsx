@@ -1,31 +1,29 @@
-import TrainerProfileModel from '#/model/trainer/trainerProfile.model';
+import 'server-only';
+
 import { notFound } from 'next/navigation';
-import TrainerProfile from '#/ui/profile/TrainerProfile';
+import ProProfile from '#/ui/profile/ProProfile';
+import { createServerClient } from '#/utils/supabase-server';
+import { getReviews } from '#/utils/review-hooks';
+import { getGymProfileByUserName } from '#/utils/gym-hooks';
 
-async function getTrainersData() {
-  const res = await fetch('https://www.kaapo.fit/api/trainers');
-  // The return value is *not* serialized
-  // You can return Date, Map, Set, etc.
-
-  // Recommendation: handle errors
-  if (!res.ok) {
-    // This will activate the closest `error.js` Error Boundary
-    throw new Error('Failed to fetch trainers data');
-  }
-
-  return res.json();
-}
-
-export default async function TrainerIdPage({
+export default async function Page({
   params,
 }: {
   params: { username: string };
 }) {
-  const trainersData: TrainerProfileModel[] = await getTrainersData();
-  const trainer = trainersData.find((trainer) => {
-    if (trainer.username === params.username) {
-      return trainer;
-    }
-  });
-  return <>{trainer ? <TrainerProfile trainer={trainer} /> : notFound()}</>;
+  const supabase = createServerClient();
+
+  const gymData = await getGymProfileByUserName(params.username, supabase);
+
+  const reviewsData = await getReviews(gymData.id, supabase);
+
+  return (
+    <>
+      {gymData ? (
+        <ProProfile pro={gymData} reviews={reviewsData} />
+      ) : (
+        notFound()
+      )}
+    </>
+  );
 }

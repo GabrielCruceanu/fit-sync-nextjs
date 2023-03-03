@@ -4,7 +4,7 @@ import type { Session } from '@supabase/auth-helpers-nextjs';
 import React, { createContext, useContext, useState } from 'react';
 
 import { createBrowserClient } from '#/utils/supabase-browser';
-import { TypedSupabaseClient } from '#/types/types';
+import { TypedSupabaseClient } from '#/types';
 
 type MaybeSession = Session | null;
 

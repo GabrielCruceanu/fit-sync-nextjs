@@ -84,24 +84,28 @@ export interface Database {
       }
       gyms: {
         Row: {
+          active_clients: string | null
           active_personal_trainers: number | null
           certificate: boolean | null
           city: string | null
+          completed_clients: string | null
           country: string | null
           description: string | null
           email: string | null
+          experience: string | null
           facebook: string | null
+          first_name: string | null
           gallery: string | null
           gym_name: string | null
-          gym_type: string | null
           has_premium: boolean | null
           id: string
           instagram: string | null
           joined: string
+          last_name: string | null
           personal: string | null
           phone: string | null
+          pro_type: string | null
           profile_picture_url: string | null
-          reviews: string | null
           state: string | null
           street: string | null
           twitter: string | null
@@ -110,24 +114,28 @@ export interface Database {
           website: string | null
         }
         Insert: {
+          active_clients?: string | null
           active_personal_trainers?: number | null
           certificate?: boolean | null
           city?: string | null
+          completed_clients?: string | null
           country?: string | null
           description?: string | null
           email?: string | null
+          experience?: string | null
           facebook?: string | null
+          first_name?: string | null
           gallery?: string | null
           gym_name?: string | null
-          gym_type?: string | null
           has_premium?: boolean | null
           id: string
           instagram?: string | null
           joined?: string
+          last_name?: string | null
           personal?: string | null
           phone?: string | null
+          pro_type?: string | null
           profile_picture_url?: string | null
-          reviews?: string | null
           state?: string | null
           street?: string | null
           twitter?: string | null
@@ -136,100 +144,34 @@ export interface Database {
           website?: string | null
         }
         Update: {
+          active_clients?: string | null
           active_personal_trainers?: number | null
           certificate?: boolean | null
           city?: string | null
+          completed_clients?: string | null
           country?: string | null
           description?: string | null
           email?: string | null
+          experience?: string | null
           facebook?: string | null
+          first_name?: string | null
           gallery?: string | null
           gym_name?: string | null
-          gym_type?: string | null
           has_premium?: boolean | null
           id?: string
           instagram?: string | null
           joined?: string
+          last_name?: string | null
           personal?: string | null
           phone?: string | null
+          pro_type?: string | null
           profile_picture_url?: string | null
-          reviews?: string | null
           state?: string | null
           street?: string | null
           twitter?: string | null
           type?: Database["public"]["Enums"]["user_type"] | null
           username?: string | null
           website?: string | null
-        }
-      }
-      gyms_reviews: {
-        Row: {
-          client_first_name: string | null
-          client_id: string | null
-          client_last_name: string | null
-          client_photo: string | null
-          date_created: string | null
-          description: string | null
-          id: number
-          nutritionist_id: string | null
-          stars: number | null
-        }
-        Insert: {
-          client_first_name?: string | null
-          client_id?: string | null
-          client_last_name?: string | null
-          client_photo?: string | null
-          date_created?: string | null
-          description?: string | null
-          id?: number
-          nutritionist_id?: string | null
-          stars?: number | null
-        }
-        Update: {
-          client_first_name?: string | null
-          client_id?: string | null
-          client_last_name?: string | null
-          client_photo?: string | null
-          date_created?: string | null
-          description?: string | null
-          id?: number
-          nutritionist_id?: string | null
-          stars?: number | null
-        }
-      }
-      nutritionist_reviews: {
-        Row: {
-          client_first_name: string | null
-          client_id: string | null
-          client_last_name: string | null
-          client_photo: string | null
-          date_created: string | null
-          description: string | null
-          id: number
-          nutritionist_id: string | null
-          stars: number | null
-        }
-        Insert: {
-          client_first_name?: string | null
-          client_id?: string | null
-          client_last_name?: string | null
-          client_photo?: string | null
-          date_created?: string | null
-          description?: string | null
-          id?: number
-          nutritionist_id?: string | null
-          stars?: number | null
-        }
-        Update: {
-          client_first_name?: string | null
-          client_id?: string | null
-          client_last_name?: string | null
-          client_photo?: string | null
-          date_created?: string | null
-          description?: string | null
-          id?: number
-          nutritionist_id?: string | null
-          stars?: number | null
         }
       }
       nutritionists: {
@@ -249,16 +191,16 @@ export interface Database {
           first_name: string | null
           gallery: string | null
           gender: string | null
+          gym_name: string | null
           has_premium: boolean | null
           id: string
           instagram: string | null
           joined: string
           last_name: string | null
-          nutritionist_type: string | null
           phone: string | null
+          pro_type: string | null
           profile_picture_url: string | null
           programs: string | null
-          reviews: string | null
           state: string | null
           twitter: string | null
           type: Database["public"]["Enums"]["user_type"] | null
@@ -281,16 +223,16 @@ export interface Database {
           first_name?: string | null
           gallery?: string | null
           gender?: string | null
+          gym_name?: string | null
           has_premium?: boolean | null
           id: string
           instagram?: string | null
           joined?: string
           last_name?: string | null
-          nutritionist_type?: string | null
           phone?: string | null
+          pro_type?: string | null
           profile_picture_url?: string | null
           programs?: string | null
-          reviews?: string | null
           state?: string | null
           twitter?: string | null
           type?: Database["public"]["Enums"]["user_type"] | null
@@ -313,16 +255,16 @@ export interface Database {
           first_name?: string | null
           gallery?: string | null
           gender?: string | null
+          gym_name?: string | null
           has_premium?: boolean | null
           id?: string
           instagram?: string | null
           joined?: string
           last_name?: string | null
-          nutritionist_type?: string | null
           phone?: string | null
+          pro_type?: string | null
           profile_picture_url?: string | null
           programs?: string | null
-          reviews?: string | null
           state?: string | null
           twitter?: string | null
           type?: Database["public"]["Enums"]["user_type"] | null
@@ -456,6 +398,41 @@ export interface Database {
           name?: string | null
         }
       }
+      reviews: {
+        Row: {
+          beneficiary_id: string | null
+          client_first_name: string | null
+          client_id: string | null
+          client_last_name: string | null
+          client_photo: string | null
+          date_created: string | null
+          description: string | null
+          id: number
+          stars: number | null
+        }
+        Insert: {
+          beneficiary_id?: string | null
+          client_first_name?: string | null
+          client_id?: string | null
+          client_last_name?: string | null
+          client_photo?: string | null
+          date_created?: string | null
+          description?: string | null
+          id?: number
+          stars?: number | null
+        }
+        Update: {
+          beneficiary_id?: string | null
+          client_first_name?: string | null
+          client_id?: string | null
+          client_last_name?: string | null
+          client_photo?: string | null
+          date_created?: string | null
+          description?: string | null
+          id?: number
+          stars?: number | null
+        }
+      }
       subscriptions: {
         Row: {
           cancel_at: string | null
@@ -509,41 +486,6 @@ export interface Database {
           user_id?: string
         }
       }
-      trainer_reviews: {
-        Row: {
-          client_first_name: string | null
-          client_id: string | null
-          client_last_name: string | null
-          client_photo: string | null
-          date_created: string | null
-          description: string | null
-          id: number
-          stars: number | null
-          trainer_id: string | null
-        }
-        Insert: {
-          client_first_name?: string | null
-          client_id?: string | null
-          client_last_name?: string | null
-          client_photo?: string | null
-          date_created?: string | null
-          description?: string | null
-          id?: number
-          stars?: number | null
-          trainer_id?: string | null
-        }
-        Update: {
-          client_first_name?: string | null
-          client_id?: string | null
-          client_last_name?: string | null
-          client_photo?: string | null
-          date_created?: string | null
-          description?: string | null
-          id?: number
-          stars?: number | null
-          trainer_id?: string | null
-        }
-      }
       trainers: {
         Row: {
           active_clients: string | null
@@ -559,19 +501,18 @@ export interface Database {
           experience: string | null
           facebook: string | null
           first_name: string | null
-          gallery: string | null
+          gallery: string[] | null
           gender: string | null
+          gym_name: string | null
           has_premium: boolean | null
           id: string
           instagram: string | null
           joined: string
           last_name: string | null
           phone: string | null
+          pro_type: string | null
           profile_picture_url: string | null
-          programs: string | null
-          reviews: string | null
           state: string | null
-          trainer_type: string | null
           twitter: string | null
           type: string | null
           username: string | null
@@ -591,19 +532,18 @@ export interface Database {
           experience?: string | null
           facebook?: string | null
           first_name?: string | null
-          gallery?: string | null
+          gallery?: string[] | null
           gender?: string | null
+          gym_name?: string | null
           has_premium?: boolean | null
           id: string
           instagram?: string | null
           joined?: string
           last_name?: string | null
           phone?: string | null
+          pro_type?: string | null
           profile_picture_url?: string | null
-          programs?: string | null
-          reviews?: string | null
           state?: string | null
-          trainer_type?: string | null
           twitter?: string | null
           type?: string | null
           username?: string | null
@@ -623,19 +563,18 @@ export interface Database {
           experience?: string | null
           facebook?: string | null
           first_name?: string | null
-          gallery?: string | null
+          gallery?: string[] | null
           gender?: string | null
+          gym_name?: string | null
           has_premium?: boolean | null
           id?: string
           instagram?: string | null
           joined?: string
           last_name?: string | null
           phone?: string | null
+          pro_type?: string | null
           profile_picture_url?: string | null
-          programs?: string | null
-          reviews?: string | null
           state?: string | null
-          trainer_type?: string | null
           twitter?: string | null
           type?: string | null
           username?: string | null
@@ -668,6 +607,7 @@ export interface Database {
           last_name: string | null
           name: string | null
           payment_method: Json | null
+          profile_picture_url: string | null
           user_type: Database["public"]["Enums"]["user_type"] | null
           username: string | null
         }
@@ -679,6 +619,7 @@ export interface Database {
           last_name?: string | null
           name?: string | null
           payment_method?: Json | null
+          profile_picture_url?: string | null
           user_type?: Database["public"]["Enums"]["user_type"] | null
           username?: string | null
         }
@@ -690,6 +631,7 @@ export interface Database {
           last_name?: string | null
           name?: string | null
           payment_method?: Json | null
+          profile_picture_url?: string | null
           user_type?: Database["public"]["Enums"]["user_type"] | null
           username?: string | null
         }

@@ -1,11 +1,10 @@
 import Image from 'next/image';
 import {
-  BadgeCheckIcon,
+  CheckBadgeIcon,
   BriefcaseIcon,
-  ChatIcon,
-  LocationMarkerIcon,
-} from '@heroicons/react/solid';
-import ClientProfileModel from '#/model/client/clientProfile.model';
+  ChatBubbleBottomCenterIcon,
+  MapPinIcon,
+} from '@heroicons/react/20/solid';
 import { Button, Tooltip } from 'flowbite-react';
 
 export default function ProfileHeader({
@@ -33,8 +32,8 @@ export default function ProfileHeader({
   certificate?: boolean | null;
   state: string | null;
   city: string | null;
-  completedClients?: ClientProfileModel[] | null;
-  activeClients?: ClientProfileModel[] | null;
+  completedClients?: string | null;
+  activeClients?: string | null;
   phone?: string | null;
 }) {
   return (
@@ -86,7 +85,7 @@ export default function ProfileHeader({
                       size={'xs'}
                       pill={true}
                     >
-                      <BadgeCheckIcon className="h-6 w-6 fill-amber-500" />
+                      <CheckBadgeIcon className="h-6 w-6 fill-amber-500" />
                     </Button>
                   </Tooltip>
                 ) : null}
@@ -101,7 +100,7 @@ export default function ProfileHeader({
                 </div>
 
                 <div className="flex  items-center">
-                  <LocationMarkerIcon className="mr-2 h-5 w-5 fill-teal-500" />
+                  <MapPinIcon className="mr-2 h-5 w-5 fill-teal-500" />
                   <h3 className="text-sm tracking-wide">
                     {state + ' / ' + city}
                   </h3>
@@ -118,7 +117,7 @@ export default function ProfileHeader({
                   rel="noreferrer"
                   className="block flex h-[54px] w-[54px] items-center justify-center overflow-hidden rounded-full bg-teal-500"
                 >
-                  <ChatIcon className="h-9 w-9 fill-gray-900 transition-all ease-in-out hover:fill-teal-900" />
+                  <ChatBubbleBottomCenterIcon className="h-9 w-9 fill-gray-900 transition-all ease-in-out hover:fill-teal-900" />
                 </a>
               </div>
             ) : null}
@@ -129,23 +128,22 @@ export default function ProfileHeader({
             <ul className="mx-auto my-4 flex max-w-[288px] items-center rounded-xl bg-gray-800 text-center text-white">
               <li className="w-4/12 p-3">
                 <h3 className="text-xl font-bold">
-                  {experience ? experience : '0'}
+                  {experience ? experience : '0'}{' '}
+                  <span className="text-xs">Ani</span>
                 </h3>
-                <p className="text-xs text-gray-300">Ani de Experienta</p>
+                <p className="text-xs text-gray-300">Experienta</p>
               </li>
               <li className="w-4/12 border-x border-gray-700 p-3">
                 <h3 className="text-xl font-bold">
-                  {completedClients ? completedClients.length : '0'}
+                  {certificate ? 'Da' : 'Nu'}
                 </h3>
-                <p className="text-xs text-gray-300">Clienti Completi</p>
+                <p className="text-xs text-gray-300">Certificat</p>
               </li>
               <li className="w-4/12 p-3">
                 <h3 className="text-xl font-bold">
-                  {activeClients ? activeClients.length : '0'}
+                  {certificate ? 'Da' : 'Nu'}
                 </h3>
-                <p className="text-xs text-gray-300">
-                  Clienti <br /> Activi
-                </p>
+                <p className="text-xs text-gray-300">Verificat</p>
               </li>
             </ul>
           ) : null}

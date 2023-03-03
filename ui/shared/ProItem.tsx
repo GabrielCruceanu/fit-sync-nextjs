@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { ArrowRightIcon, UserCircleIcon } from '@heroicons/react/solid';
+import { ArrowRightIcon } from '@heroicons/react/20/solid';
 import Link from 'next/link';
 import ReviewModel from '#/model/review/review.model';
 
@@ -8,13 +8,17 @@ export default function ProItem({
   photoSrc,
   name,
   type,
+  proType,
   reviews,
   certificate,
+  city,
 }: {
   link: string;
   certificate: boolean;
   name: string;
   type: string;
+  proType: string;
+  city: string | null;
   photoSrc?: string;
   reviews?: ReviewModel[];
 }) {
@@ -31,43 +35,47 @@ export default function ProItem({
       }
     });
   }
-
+  console.log('type', type);
+  console.log('name', name);
   return (
-    <Link replace href={`/antrenori/${link}`}>
+    <Link href={link}>
+      {type}
       <div className="flex items-center justify-between rounded-xl bg-gray-800 p-4">
         <div className="flex items-center">
-          <div className="mr-3 flex h-[64px] w-[64px] items-center justify-center overflow-hidden rounded-full bg-teal-500 md:h-[100px] md:w-[100px]">
+          <div className="mr-3 flex h-[64px] w-[64px] items-center justify-center overflow-hidden rounded-full bg-gray-500 md:h-[100px] md:w-[100px]">
             {photoSrc ? (
               <Image
                 src={photoSrc}
-                alt={name + ' ' + type}
+                alt={name + ' ' + proType}
                 className="h-full w-full object-cover"
                 width="100"
                 height="100"
               />
             ) : (
-              <UserCircleIcon />
+              <p className="text-xl text-gray-100">{name[0]}</p>
             )}
           </div>
           <div>
             <h4 className="mb-1 text-lg font-medium leading-none text-white md:text-xl">
               {name}
             </h4>
-            <h6 className="mb-1 text-sm text-gray-300">{type}</h6>
-            {rateMedia ? (
-              <span className="mr-2 inline-block rounded-md bg-teal-500 px-2 py-1 text-xs font-bold leading-none text-white">
-                {rateMedia}
-              </span>
-            ) : null}
+            <h6 className="mb-1 text-sm text-gray-300">
+              {city ? city : null} / {proType}
+            </h6>
             {certificate ? (
-              <span className="mr-2 inline-block rounded-md bg-amber-500 px-2 py-1 text-xs font-bold leading-none text-white">
+              <span className="mr-2 flex max-w-fit items-center rounded-md bg-amber-500 px-2 py-1 text-xs font-bold leading-none text-white">
                 CERTIFICAT
               </span>
-            ) : null}
+            ) : (
+              <span className="mr-2  flex max-w-fit items-center rounded-md bg-gray-500 px-2 py-1 text-xs font-bold leading-none text-white">
+                NECERTIFICAT
+              </span>
+            )}
           </div>
         </div>
-
-        <ArrowRightIcon className="h-[16px] text-teal-500" />
+        <div>
+          <ArrowRightIcon className="h-[24px] text-teal-500" />
+        </div>
       </div>
     </Link>
   );

@@ -23,9 +23,9 @@ export default function Button({
       type={submit ? 'submit' : 'button'}
       onClick={onClick}
       className={clsx(
-        'mr-3 rounded-md py-2.5 px-4 text-sm font-semibold uppercase focus:outline-none focus:ring-2 md:px-5',
+        'inline-flex h-fit w-full max-w-[400px] items-center justify-center justify-self-center rounded-lg bg-primary-700 px-5 py-2.5 text-center text-sm font-medium focus:outline-none focus:ring-4 md:mx-auto lg:w-4/12 ',
         {
-          '"text-white dark:focus:ring-teal-800" bg-teal-700 transition ease-in hover:bg-teal-800 focus:ring-teal-300 dark:bg-teal-600 dark:hover:bg-teal-700':
+          'bg-teal-600 text-white transition ease-in hover:bg-teal-700 focus:ring-teal-700':
             type === ButtonType.primary,
         },
       )}

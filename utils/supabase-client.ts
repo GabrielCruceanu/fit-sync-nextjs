@@ -7,7 +7,7 @@ import {
   ProductWithPrice,
   TypedSupabaseClient,
   TypedUserDetails,
-} from '#/types/types';
+} from '#/types';
 
 export const supabaseClient = createBrowserSupabaseClient<Database>();
 
@@ -48,6 +48,7 @@ export const updateUser = async ({
   billingAddress,
   paymentMethod,
   email,
+  profile_picture_url,
   userType,
   supabase,
 }: {
@@ -59,6 +60,7 @@ export const updateUser = async ({
   billingAddress?: Json;
   paymentMethod?: Json;
   email: string;
+  profile_picture_url: string | null;
   userType: TypedUserDetails['user_type'];
   supabase: TypedSupabaseClient;
 }) => {
@@ -71,6 +73,7 @@ export const updateUser = async ({
       username: username,
       first_name: firstName,
       last_name: lastName,
+      profile_picture_url: profile_picture_url,
       name: name,
       user_type: userType,
     })

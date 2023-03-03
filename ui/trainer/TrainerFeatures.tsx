@@ -4,11 +4,11 @@ import TitleSection from '#/ui/shared/TitleSection';
 import Image from 'next/image';
 import KaapoFitPhone from '#/public/images/homepage/phone.png';
 import {
-  ChatIcon,
+  ChatBubbleBottomCenterIcon,
   DocumentTextIcon,
   PresentationChartBarIcon,
   UserGroupIcon,
-} from '@heroicons/react/solid';
+} from '@heroicons/react/20/solid';
 import { PagesLinks } from '#/constants/links';
 import Button, { ButtonType } from '#/ui/shared/Button';
 import Link from 'next/link';
@@ -68,7 +68,7 @@ export default function TrainerFeatures() {
         <li className="mb-5 lg:w-1/2 lg:pl-3">
           <div className="md:flex md:items-center">
             <div className="mb-3 flex h-[48px] w-[48px] items-center justify-center rounded-full bg-teal-500 ">
-              <ChatIcon className="block w-6 text-teal-900" />
+              <ChatBubbleBottomCenterIcon className="block w-6 text-teal-900" />
             </div>
             <h4 className="mb-3 text-2xl font-semibold md:ml-3 lg:mb-4">
               Mesagerie în timp real
