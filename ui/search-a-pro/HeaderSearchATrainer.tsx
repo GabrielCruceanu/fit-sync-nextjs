@@ -76,7 +76,7 @@ export default function HeaderSearchATrainer({
             </p>
           </div>
           <div className="mt-8 flex w-full flex-wrap items-end justify-center rounded bg-gray-800 p-4 lg:mt-12">
-            <div className="w-full md:w-4/12 md:px-3">
+            <div className="w-full">
               <SelectInput
                 name="trainer-type"
                 label="Tip de antrenor"
@@ -103,7 +103,7 @@ export default function HeaderSearchATrainer({
                 error={trainerTypeError}
               />
             </div>
-            <div className="mt-4 w-full md:w-4/12 md:px-3">
+            <div className="mt-4 w-full">
               <SelectInput
                 name="state"
                 label="Judet"
@@ -128,7 +128,7 @@ export default function HeaderSearchATrainer({
                 error={currentStateError}
               />
             </div>
-            <div className="mt-4 w-full md:w-4/12 md:px-3">
+            <div className="mt-4 w-full">
               <SelectInput
                 name="city"
                 label="Oras / Sector"
@@ -157,7 +157,7 @@ export default function HeaderSearchATrainer({
                 trainerType === '' || currentState === '' || currentCity === ''
               }
               className={clsx(
-                'mt-6 inline-flex h-fit w-full max-w-[400px] items-center justify-center justify-self-center rounded-lg bg-primary-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 md:mx-auto lg:w-4/12 ',
+                'mt-6 inline-flex h-fit w-full max-w-[400px] items-center justify-center justify-self-center rounded-lg bg-primary-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 md:mx-auto',
                 {
                   '!bg-gray-300 !text-gray-600':
                     trainerType === '' ||

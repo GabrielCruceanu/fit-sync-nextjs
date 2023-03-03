@@ -59,7 +59,7 @@ export default function ProItem({
               {city ? city : null} / {type}
             </h6>
             {certificate ? (
-              <span className="mr-2 flex items-center rounded-md bg-amber-500 px-2 py-1 text-xs font-bold leading-none text-white">
+              <span className="mr-2 flex max-w-fit items-center rounded-md bg-amber-500 px-2 py-1 text-xs font-bold leading-none text-white">
                 CERTIFICAT
               </span>
             ) : (

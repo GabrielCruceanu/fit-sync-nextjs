@@ -91,12 +91,14 @@ export interface Database {
           description: string | null
           email: string | null
           facebook: string | null
+          first_name: string | null
           gallery: string | null
           gym_name: string | null
           has_premium: boolean | null
           id: string
           instagram: string | null
           joined: string
+          last_name: string | null
           personal: string | null
           phone: string | null
           pro_type: string | null
@@ -116,12 +118,14 @@ export interface Database {
           description?: string | null
           email?: string | null
           facebook?: string | null
+          first_name?: string | null
           gallery?: string | null
           gym_name?: string | null
           has_premium?: boolean | null
           id: string
           instagram?: string | null
           joined?: string
+          last_name?: string | null
           personal?: string | null
           phone?: string | null
           pro_type?: string | null
@@ -141,12 +145,14 @@ export interface Database {
           description?: string | null
           email?: string | null
           facebook?: string | null
+          first_name?: string | null
           gallery?: string | null
           gym_name?: string | null
           has_premium?: boolean | null
           id?: string
           instagram?: string | null
           joined?: string
+          last_name?: string | null
           personal?: string | null
           phone?: string | null
           pro_type?: string | null
@@ -176,6 +182,7 @@ export interface Database {
           first_name: string | null
           gallery: string | null
           gender: string | null
+          gym_name: string | null
           has_premium: boolean | null
           id: string
           instagram: string | null
@@ -207,6 +214,7 @@ export interface Database {
           first_name?: string | null
           gallery?: string | null
           gender?: string | null
+          gym_name?: string | null
           has_premium?: boolean | null
           id: string
           instagram?: string | null
@@ -238,6 +246,7 @@ export interface Database {
           first_name?: string | null
           gallery?: string | null
           gender?: string | null
+          gym_name?: string | null
           has_premium?: boolean | null
           id?: string
           instagram?: string | null
@@ -485,6 +494,7 @@ export interface Database {
           first_name: string | null
           gallery: string[] | null
           gender: string | null
+          gym_name: string | null
           has_premium: boolean | null
           id: string
           instagram: string | null
@@ -515,6 +525,7 @@ export interface Database {
           first_name?: string | null
           gallery?: string[] | null
           gender?: string | null
+          gym_name?: string | null
           has_premium?: boolean | null
           id: string
           instagram?: string | null
@@ -545,6 +556,7 @@ export interface Database {
           first_name?: string | null
           gallery?: string[] | null
           gender?: string | null
+          gym_name?: string | null
           has_premium?: boolean | null
           id?: string
           instagram?: string | null

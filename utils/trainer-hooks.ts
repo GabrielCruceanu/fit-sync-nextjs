@@ -6,14 +6,14 @@ export const createTrainerProfile = async (
   trainer: TypedTrainerDetails,
   supabase: TypedSupabaseClient,
 ) => {
-  const { data, error } = await supabase.from('trainers').upsert([trainer]);
+  const { error } = await supabase.from('trainers').upsert([trainer]);
 
   if (error) {
     console.log('create trainer profile error: ', error.message);
     return false;
   }
-  console.log('create  trainer profile data:', data);
-  return true;
+  console.log('create  trainer profile data:');
+  location.reload();
 };
 
 export const getAllTrainers = async (supabase: TypedSupabaseClient) => {
@@ -25,19 +25,6 @@ export const getAllTrainers = async (supabase: TypedSupabaseClient) => {
 
   console.log('select trainers data:', trainers);
   return trainers as unknown as TypedTrainerDetails[];
-};
-
-export const getAllTrainersType = async (supabase: TypedSupabaseClient) => {
-  const { data: trainers, error } = await supabase
-    .from('trainers')
-    .select('pro_type');
-
-  if (error) {
-    console.log('select trainers pro_type error: ', error.message);
-  }
-
-  console.log('select trainers pro_type data:', trainers);
-  return trainers as unknown as TypedTrainerDetails['pro_type'][];
 };
 
 export const getTrainerProfile = async (

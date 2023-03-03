@@ -1,21 +1,11 @@
+import 'server-only';
 import HeaderSearchANutritionist from '#/ui/search-a-pro/HeaderSearchANutritionist';
-
-async function getNutritionistsData() {
-  const res = await fetch('https://kaapo.fit/api/trainers');
-  // The return value is *not* serialized
-  // You can return Date, Map, Set, etc.
-
-  // Recommendation: handle errors
-  if (!res.ok) {
-    // This will activate the closest `error.js` Error Boundary
-    throw new Error('Failed to fetch nutritionists data');
-  }
-
-  return res.json();
-}
+import { getAllNutritionists } from '#/utils/nutritionist-hooks';
+import { createServerClient } from '#/utils/supabase-server';
 
 export default async function SearchNutritionistsPage() {
-  const nutritionistsData = await getNutritionistsData();
+  const supabase = createServerClient();
+  const nutritionistsData = await getAllNutritionists(supabase);
   return (
     <>
       <HeaderSearchANutritionist nutritionists={nutritionistsData} />

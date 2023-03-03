@@ -10,14 +10,14 @@ export const createClientProfile = async (
   client: TypedClientDetails,
   supabase: TypedSupabaseClient,
 ) => {
-  const { data, error } = await supabase.from('clients').upsert([client]);
+  const { error } = await supabase.from('clients').upsert([client]);
 
   if (error) {
     console.log('create client profile error: ', error.message);
     return false;
   }
-  console.log('create  client profile data:', data);
-  return true;
+  console.log('create  client profile data:');
+  location.reload();
 };
 
 export const getClientProfile = async (

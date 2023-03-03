@@ -34,11 +34,9 @@ import { createClientProfile } from '#/utils/client-hooks';
 import { createNutritionistProfile } from '#/utils/nutritionist-hooks';
 import { createTrainerProfile } from '#/utils/trainer-hooks';
 import { createGymProfile } from '#/utils/gym-hooks';
-import { useRouter } from 'next/navigation';
 
 export default function UserOnboard() {
   const { supabase, session } = useSupabase();
-  const router = useRouter();
   const [onboardSteps, setOnboardSteps] = useState<OnboardStepsType>(
     OnboardStepsType.UserType,
   );
@@ -246,6 +244,7 @@ export default function UserOnboard() {
         firstName: firstName ? firstName : null,
         lastName: lastName ? lastName : null,
         name: name ? name : null,
+        profile_picture_url: null,
         userType: userType,
         supabase: supabase,
       });
@@ -258,6 +257,8 @@ export default function UserOnboard() {
             type: userType,
             username: username,
             gym_name: name,
+            first_name: null,
+            last_name: null,
             pro_type: gymType,
             phone: phone,
             country: CountriesData[0].name,
@@ -277,9 +278,7 @@ export default function UserOnboard() {
             twitter: null,
             website: null,
           };
-          createGymProfile(session.user, gym, supabase).then((result) =>
-            result ? router.push('/profil') : null,
-          );
+          createGymProfile(session.user, gym, supabase);
           break;
         case UserType.Trainer:
           const trainer: TypedTrainerDetails = {
@@ -288,6 +287,7 @@ export default function UserOnboard() {
             type: userType,
             username: username,
             joined: today,
+            gym_name: null,
             first_name: firstName,
             last_name: lastName,
             gender: gender,
@@ -312,9 +312,7 @@ export default function UserOnboard() {
             instagram: null,
             website: null,
           };
-          createTrainerProfile(session.user, trainer, supabase).then((result) =>
-            result ? router.push('/profil') : null,
-          );
+          createTrainerProfile(session.user, trainer, supabase);
           break;
         case UserType.Nutritionist:
           const nutritionist: TypedNutritionistDetails = {
@@ -323,6 +321,7 @@ export default function UserOnboard() {
             joined: today,
             type: userType,
             username: username,
+            gym_name: null,
             first_name: firstName,
             last_name: lastName,
             gender: gender,
@@ -348,9 +347,7 @@ export default function UserOnboard() {
             instagram: null,
             website: null,
           };
-          createNutritionistProfile(session.user, nutritionist, supabase).then(
-            (result) => (result ? router.push('/profil') : null),
-          );
+          createNutritionistProfile(session.user, nutritionist, supabase);
           break;
         case UserType.Client:
           const client: TypedClientDetails = {
@@ -372,9 +369,7 @@ export default function UserOnboard() {
             username: username,
             phone: phone,
           };
-          createClientProfile(session.user, client, supabase).then((result) =>
-            result ? router.push('/profil') : null,
-          );
+          createClientProfile(session.user, client, supabase);
           break;
       }
     }

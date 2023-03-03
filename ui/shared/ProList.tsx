@@ -1,26 +1,40 @@
 import ProItem from '#/ui/shared/ProItem';
 import clsx from 'clsx';
-import { TypedTrainerDetails } from '#/types';
+import {
+  TypedGymDetails,
+  TypedNutritionistDetails,
+  TypedTrainerDetails,
+} from '#/types';
+import { UserType } from '#/constants/user';
 
 export default function ProList({
   proList,
   isHome,
 }: {
-  proList: TypedTrainerDetails[];
+  proList:
+    | TypedTrainerDetails[]
+    | TypedNutritionistDetails[]
+    | TypedGymDetails[];
   isHome: boolean;
 }) {
   return (
     <ul className="mt-5 md:flex md:flex-wrap">
-      {proList.map((proCard: TypedTrainerDetails, key: number) => {
+      {proList.map((proCard, key: number) => {
         const {
           username,
-          first_name,
-          last_name,
           pro_type,
           profile_picture_url,
           certificate,
           city,
+          type,
+          gym_name,
+          first_name,
+          last_name,
         } = proCard;
+        const name =
+          type === UserType.Gym && gym_name
+            ? gym_name
+            : first_name + ' ' + last_name;
         return (
           <li
             className={clsx('mt-4 md:w-1/2 md:pr-3', {
@@ -31,7 +45,7 @@ export default function ProList({
             <ProItem
               link={username!}
               key={key}
-              name={first_name + ' ' + last_name}
+              name={name}
               type={pro_type!}
               city={city}
               photoSrc={profile_picture_url!}
