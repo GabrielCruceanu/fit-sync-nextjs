@@ -1,10 +1,10 @@
 import 'server-only';
 
 import { notFound } from 'next/navigation';
-import TrainerProfile from '#/ui/profile/TrainerProfile';
-import { getTrainerProfileByUserName } from '#/utils/trainer-hooks';
+import ProProfile from '#/ui/profile/ProProfile';
 import { createServerClient } from '#/utils/supabase-server';
 import { getReviews } from '#/utils/review-hooks';
+import { getGymProfileByUserName } from '#/utils/gym-hooks';
 
 export default async function Page({
   params,
@@ -13,17 +13,14 @@ export default async function Page({
 }) {
   const supabase = createServerClient();
 
-  const trainerData = await getTrainerProfileByUserName(
-    params.username,
-    supabase,
-  );
+  const gymData = await getGymProfileByUserName(params.username, supabase);
 
-  const reviewsData = await getReviews(trainerData.id, supabase);
+  const reviewsData = await getReviews(gymData.id, supabase);
 
   return (
     <>
-      {trainerData ? (
-        <TrainerProfile trainer={trainerData} reviews={reviewsData} />
+      {gymData ? (
+        <ProProfile pro={gymData} reviews={reviewsData} />
       ) : (
         notFound()
       )}

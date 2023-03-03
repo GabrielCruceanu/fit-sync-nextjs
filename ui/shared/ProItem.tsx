@@ -8,6 +8,7 @@ export default function ProItem({
   photoSrc,
   name,
   type,
+  proType,
   reviews,
   certificate,
   city,
@@ -16,6 +17,7 @@ export default function ProItem({
   certificate: boolean;
   name: string;
   type: string;
+  proType: string;
   city: string | null;
   photoSrc?: string;
   reviews?: ReviewModel[];
@@ -33,16 +35,18 @@ export default function ProItem({
       }
     });
   }
-
+  console.log('type', type);
+  console.log('name', name);
   return (
-    <Link href={`/antrenori/${link}`}>
+    <Link href={link}>
+      {type}
       <div className="flex items-center justify-between rounded-xl bg-gray-800 p-4">
         <div className="flex items-center">
           <div className="mr-3 flex h-[64px] w-[64px] items-center justify-center overflow-hidden rounded-full bg-gray-500 md:h-[100px] md:w-[100px]">
             {photoSrc ? (
               <Image
                 src={photoSrc}
-                alt={name + ' ' + type}
+                alt={name + ' ' + proType}
                 className="h-full w-full object-cover"
                 width="100"
                 height="100"
@@ -56,7 +60,7 @@ export default function ProItem({
               {name}
             </h4>
             <h6 className="mb-1 text-sm text-gray-300">
-              {city ? city : null} / {type}
+              {city ? city : null} / {proType}
             </h6>
             {certificate ? (
               <span className="mr-2 flex max-w-fit items-center rounded-md bg-amber-500 px-2 py-1 text-xs font-bold leading-none text-white">

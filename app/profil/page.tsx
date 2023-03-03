@@ -16,6 +16,8 @@ import { getClientProfile } from '#/utils/client-hooks';
 import { UserType } from '#/constants/user';
 import { getTrainerProfile } from '#/utils/trainer-hooks';
 import { flushSync } from 'react-dom';
+import { getNutritionistProfileById } from '#/utils/nutritionist-hooks';
+import { getGymProfileById } from '#/utils/gym-hooks';
 
 export default function ProfilePage() {
   const router = useRouter();
@@ -49,7 +51,6 @@ export default function ProfilePage() {
           throw error;
         }
 
-        console.log('user_type', data);
         if (data) {
           switch (data.user_type) {
             case UserType.Client:
@@ -66,6 +67,20 @@ export default function ProfilePage() {
               );
               setTrainerProfile(trainerProfile);
               break;
+            case UserType.Nutritionist:
+              const nutritionistProfile = await getNutritionistProfileById(
+                session.user.id,
+                supabase,
+              );
+              setNutritionistProfile(nutritionistProfile);
+              break;
+            case UserType.Gym:
+              const gymProfile = await getGymProfileById(
+                session.user.id,
+                supabase,
+              );
+              setGymProfile(gymProfile);
+              break;
           }
           flushSync(() => {
             setUserType(data.user_type);
@@ -75,6 +90,12 @@ export default function ProfilePage() {
                 break;
               case UserType.Trainer:
                 setTrainerProfile(trainerProfile);
+                break;
+              case UserType.Nutritionist:
+                setNutritionistProfile(nutritionistProfile);
+                break;
+              case UserType.Gym:
+                setGymProfile(gymProfile);
                 break;
             }
           });
@@ -101,6 +122,7 @@ export default function ProfilePage() {
       clientProfile={clientProfile}
       gymProfile={gymProfile}
       trainerProfile={trainerProfile}
+      nutritionistProfile={nutritionistProfile}
     />
   );
 }

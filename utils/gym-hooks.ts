@@ -1,5 +1,9 @@
 import { User } from '@supabase/auth-helpers-nextjs';
-import { TypedGymDetails, TypedSupabaseClient } from '#/types';
+import {
+  TypedGymDetails,
+  TypedNutritionistDetails,
+  TypedSupabaseClient,
+} from '#/types';
 
 export const createGymProfile = async (
   user: User,
@@ -25,4 +29,38 @@ export const getAllGyms = async (supabase: TypedSupabaseClient) => {
 
   console.log('select gyms data:', gyms);
   return gyms as unknown as TypedGymDetails[];
+};
+
+export const getGymProfileById = async (
+  id: string,
+  supabase: TypedSupabaseClient,
+) => {
+  const { data: gym, error } = await supabase
+    .from('gyms')
+    .select('*')
+    .eq('id', id)
+    .single();
+
+  if (error) {
+    console.log('select gym profile error: ', error.message);
+  }
+  console.log('select gym profile data:', gym);
+  return gym as unknown as TypedGymDetails;
+};
+export const getGymProfileByUserName = async (
+  username: string,
+  supabase: TypedSupabaseClient,
+) => {
+  const { data: gyms, error } = await supabase
+    .from('gyms')
+    .select('*')
+    .eq('username', username)
+    .single();
+
+  if (error) {
+    console.log('select gym profile error: ', error.message);
+  }
+
+  console.log('select gym profile data:', gyms);
+  return gyms as unknown as TypedNutritionistDetails;
 };

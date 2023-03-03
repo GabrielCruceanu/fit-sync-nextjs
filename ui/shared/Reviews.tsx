@@ -1,14 +1,14 @@
 'use client';
 import Link from 'next/link';
 import { Avatar, Rating } from 'flowbite-react';
-import { TypedTrainerReview } from '#/types';
+import { TypedReviews } from '#/types';
 const _ = require('lodash');
 
 export default function Reviews({
   reviews,
   username,
 }: {
-  reviews: TypedTrainerReview[];
+  reviews: TypedReviews[];
   username?: string;
 }) {
   const reviewCount = reviews.length;
@@ -41,7 +41,7 @@ export default function Reviews({
             {reviewRating} din 5. Total {reviewCount} recenzii.
           </p>
         </Rating>
-        {username ? (
+        {username && lastReview ? (
           <ReviewItem
             clientId={lastReview.client_id}
             clientPhoto={lastReview.client_photo}

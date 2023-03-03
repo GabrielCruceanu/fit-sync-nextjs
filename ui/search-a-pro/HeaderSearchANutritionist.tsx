@@ -200,7 +200,7 @@ export default function HeaderSearchANutritionist({
           </SectionWithWave>
         ) : (
           <SectionWithWave bgWhite={true}>
-            <h1>Nu s-au gasit antrenori</h1>
+            <h1>Nu s-au gasit nutritionisti</h1>
           </SectionWithWave>
         )
       ) : null}

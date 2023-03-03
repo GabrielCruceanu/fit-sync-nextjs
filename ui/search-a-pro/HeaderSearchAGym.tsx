@@ -190,7 +190,7 @@ export default function HeaderSearchAGym({
           </SectionWithWave>
         ) : (
           <SectionWithWave bgWhite={true}>
-            <h1>Nu s-au gasit antrenori</h1>
+            <h1>Nu s-au gasit aali de antrenament</h1>
           </SectionWithWave>
         )
       ) : null}

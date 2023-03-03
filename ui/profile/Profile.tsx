@@ -1,23 +1,26 @@
 import {
   TypedClientDetails,
   TypedGymDetails,
+  TypedNutritionistDetails,
   TypedTrainerDetails,
   TypedUserDetails,
 } from '#/types';
 import UserOnboard from '#/ui/user-onboarding/UserOnboard';
 import { UserType } from '#/constants/user';
 import ClientProfile from '#/ui/profile/ClientProfile';
-import TrainerProfile from '#/ui/profile/TrainerProfile';
+import ProProfile from '#/ui/profile/ProProfile';
 
 export default function Profile({
   userType,
   clientProfile,
   trainerProfile,
+  nutritionistProfile,
   gymProfile,
 }: {
   userType: TypedUserDetails['user_type'];
   clientProfile: TypedClientDetails | null;
   trainerProfile: TypedTrainerDetails | null;
+  nutritionistProfile: TypedNutritionistDetails | null;
   gymProfile: TypedGymDetails | null;
 }) {
   switch (userType) {
@@ -27,13 +30,13 @@ export default function Profile({
       ) : null;
       break;
     case UserType.Trainer:
-      return <TrainerProfile trainer={trainerProfile!} reviews={[]} />;
+      return <ProProfile pro={trainerProfile!} reviews={[]} />;
       break;
     case UserType.Gym:
-      return <pre>userType: {JSON.stringify(userType)}</pre>;
+      return <ProProfile pro={gymProfile!} reviews={[]} />;
       break;
     case UserType.Nutritionist:
-      return <pre>userType: {JSON.stringify(userType)}</pre>;
+      return <ProProfile pro={nutritionistProfile!} reviews={[]} />;
       break;
 
     default:

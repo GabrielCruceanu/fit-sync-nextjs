@@ -35,6 +35,12 @@ export default function ProList({
           type === UserType.Gym && gym_name
             ? gym_name
             : first_name + ' ' + last_name;
+        const link =
+          type === UserType.Gym
+            ? 'sali-de-antrenament'
+            : type === UserType.Trainer
+            ? 'antrenori'
+            : 'nutritionisti';
         return (
           <li
             className={clsx('mt-4 md:w-1/2 md:pr-3', {
@@ -43,10 +49,11 @@ export default function ProList({
             key={key}
           >
             <ProItem
-              link={username!}
+              link={link + '/' + username!}
               key={key}
               name={name}
-              type={pro_type!}
+              type={type!}
+              proType={pro_type!}
               city={city}
               photoSrc={profile_picture_url!}
               certificate={!!certificate}

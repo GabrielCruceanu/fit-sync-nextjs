@@ -84,12 +84,15 @@ export interface Database {
       }
       gyms: {
         Row: {
+          active_clients: string | null
           active_personal_trainers: number | null
           certificate: boolean | null
           city: string | null
+          completed_clients: string | null
           country: string | null
           description: string | null
           email: string | null
+          experience: string | null
           facebook: string | null
           first_name: string | null
           gallery: string | null
@@ -111,12 +114,15 @@ export interface Database {
           website: string | null
         }
         Insert: {
+          active_clients?: string | null
           active_personal_trainers?: number | null
           certificate?: boolean | null
           city?: string | null
+          completed_clients?: string | null
           country?: string | null
           description?: string | null
           email?: string | null
+          experience?: string | null
           facebook?: string | null
           first_name?: string | null
           gallery?: string | null
@@ -138,12 +144,15 @@ export interface Database {
           website?: string | null
         }
         Update: {
+          active_clients?: string | null
           active_personal_trainers?: number | null
           certificate?: boolean | null
           city?: string | null
+          completed_clients?: string | null
           country?: string | null
           description?: string | null
           email?: string | null
+          experience?: string | null
           facebook?: string | null
           first_name?: string | null
           gallery?: string | null

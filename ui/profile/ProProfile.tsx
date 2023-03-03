@@ -2,27 +2,32 @@
 import ProfileHeader from '#/ui/profile/ProfileHeader';
 import ProfileContact from '#/ui/profile/ProfileContact';
 import ProfileDescription from '#/ui/profile/ProfileDescription';
-import { TypedReviews, TypedTrainerDetails } from '#/types';
+import {
+  TypedGymDetails,
+  TypedNutritionistDetails,
+  TypedReviews,
+  TypedTrainerDetails,
+} from '#/types';
 import Reviews from '#/ui/shared/Reviews';
 
-export default function TrainerProfile({
-  trainer,
+export default function ProProfile({
+  pro,
   reviews,
 }: {
-  trainer: TypedTrainerDetails;
-  reviews: TypedReviews[];
+  pro: TypedTrainerDetails | TypedNutritionistDetails | TypedGymDetails;
+  reviews?: TypedReviews[];
 }) {
-  console.log('trainer', trainer);
   const {
     first_name,
     last_name,
+    gym_name,
     username,
     profile_picture_url,
     type,
     city,
     description,
-    experience,
     certificate,
+    experience,
     active_clients,
     completed_clients,
     email,
@@ -32,7 +37,7 @@ export default function TrainerProfile({
     twitter,
     pro_type,
     state,
-  } = trainer;
+  } = pro;
   const contact = { email, phone, facebook, instagram, twitter };
 
   return (
@@ -50,7 +55,7 @@ export default function TrainerProfile({
         certificate={certificate}
         activeClients={active_clients}
         completedClients={completed_clients}
-        name={null}
+        name={gym_name}
         state={state}
       />
 
