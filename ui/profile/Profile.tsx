@@ -17,7 +17,7 @@ export default function Profile({
   nutritionistProfile,
   gymProfile,
 }: {
-  userType: TypedUserDetails['user_type'];
+  userType: TypedUserDetails['user_type'] | null;
   clientProfile: TypedClientDetails | null;
   trainerProfile: TypedTrainerDetails | null;
   nutritionistProfile: TypedNutritionistDetails | null;
@@ -28,16 +28,12 @@ export default function Profile({
       return clientProfile ? (
         <ClientProfile clientProfile={clientProfile} />
       ) : null;
-      break;
     case UserType.Trainer:
       return <ProProfile pro={trainerProfile!} reviews={[]} />;
-      break;
     case UserType.Gym:
       return <ProProfile pro={gymProfile!} reviews={[]} />;
-      break;
     case UserType.Nutritionist:
       return <ProProfile pro={nutritionistProfile!} reviews={[]} />;
-      break;
 
     default:
       return <UserOnboard />;

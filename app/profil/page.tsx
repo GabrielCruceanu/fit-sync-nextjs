@@ -1,128 +1,84 @@
-'use client';
 import Profile from '#/ui/profile/Profile';
-import { useRouter } from 'next/navigation';
-import { useSupabase } from '#/ui/auth/SupabaseProvider';
-import { useEffect, useState } from 'react';
-import { navigationAuth } from '#/constants/navigation';
 import LoadingDots from '#/ui/shared/LoadingDots';
-import {
-  TypedClientDetails,
-  TypedGymDetails,
-  TypedNutritionistDetails,
-  TypedTrainerDetails,
-  TypedUserDetails,
-} from '#/types';
 import { getClientProfile } from '#/utils/client-hooks';
 import { UserType } from '#/constants/user';
 import { getTrainerProfile } from '#/utils/trainer-hooks';
-import { flushSync } from 'react-dom';
 import { getNutritionistProfileById } from '#/utils/nutritionist-hooks';
 import { getGymProfileById } from '#/utils/gym-hooks';
+import { createServerClient } from '#/utils/supabase-server';
 
-export default function ProfilePage() {
-  const router = useRouter();
-  const { supabase, session } = useSupabase();
-  const [loading, setLoading] = useState(true);
-  const [userType, setUserType] = useState<TypedUserDetails['user_type']>(null);
-  const [clientProfile, setClientProfile] = useState<TypedClientDetails | null>(
-    null,
-  );
-  const [trainerProfile, setTrainerProfile] =
-    useState<TypedTrainerDetails | null>(null);
-  const [nutritionistProfile, setNutritionistProfile] =
-    useState<TypedNutritionistDetails | null>(null);
-  const [gymProfile, setGymProfile] = useState<TypedGymDetails | null>(null);
+export default async function ProfilePage() {
+  const supabase = createServerClient();
+  const { data: { session } } = await supabase.auth.getSession();
+  let loading = false;
 
-  useEffect(() => {
-    if (!session) {
-      router.push(navigationAuth.slug);
+  if (!session) {
+    throw new Error('No session');
+  }
+  loading = true;
+  let clientProfile;
+  let trainerProfile;
+  let nutritionistProfile;
+  let gymProfile;
+
+  if (!session?.user.id) throw new Error('No user');
+  const { data, error, status } = await supabase
+    .from('users')
+    .select('user_type')
+    .eq('id', session?.user.id)
+    .single();
+
+  try {
+
+    if (error && status !== 406) {
+      throw error;
     }
-    const fetchUser = async () => {
-      try {
-        if (!session?.user.id) throw new Error('No user');
 
-        const { data, error, status } = await supabase
-          .from('users')
-          .select('user_type')
-          .eq('id', session.user.id)
-          .single();
-
-        if (error && status !== 406) {
-          throw error;
-        }
-
-        if (data) {
-          switch (data.user_type) {
-            case UserType.Client:
-              const clientProfile = await getClientProfile(
-                session.user.id,
-                supabase,
-              );
-              setClientProfile(clientProfile);
-              break;
-            case UserType.Trainer:
-              const trainerProfile = await getTrainerProfile(
-                session.user.id,
-                supabase,
-              );
-              setTrainerProfile(trainerProfile);
-              break;
-            case UserType.Nutritionist:
-              const nutritionistProfile = await getNutritionistProfileById(
-                session.user.id,
-                supabase,
-              );
-              setNutritionistProfile(nutritionistProfile);
-              break;
-            case UserType.Gym:
-              const gymProfile = await getGymProfileById(
-                session.user.id,
-                supabase,
-              );
-              setGymProfile(gymProfile);
-              break;
-          }
-          flushSync(() => {
-            setUserType(data.user_type);
-            switch (data.user_type) {
-              case UserType.Client:
-                setClientProfile(clientProfile);
-                break;
-              case UserType.Trainer:
-                setTrainerProfile(trainerProfile);
-                break;
-              case UserType.Nutritionist:
-                setNutritionistProfile(nutritionistProfile);
-                break;
-              case UserType.Gym:
-                setGymProfile(gymProfile);
-                break;
-            }
-          });
-        }
-      } catch (error) {
-        alert('Error loading user_type data!');
-        console.log(error);
-      } finally {
-        setLoading(false);
+    if (data) {
+      console.log('data', data);
+      switch (data.user_type) {
+        case UserType.Client:
+          clientProfile = await getClientProfile(
+            session.user.id,
+            supabase,
+          );
+          break;
+        case UserType.Trainer:
+          trainerProfile = await getTrainerProfile(
+            session.user.id,
+            supabase,
+          );
+          break;
+        case UserType.Nutritionist:
+          nutritionistProfile = await getNutritionistProfileById(
+            session.user.id,
+            supabase,
+          );
+          break;
+        case UserType.Gym:
+          gymProfile = await getGymProfileById(
+            session.user.id,
+            supabase,
+          );
+          break;
       }
-    };
-    if (session) {
-      fetchUser();
     }
-  }, [session]);
-
+  } catch (error) {
+    alert('Error loading user_type data!');
+    console.log(error);
+  } finally {
+    loading = false;
+  }
   return loading ? (
-    <div className="m-6 flex min-h-screen items-center justify-center">
+    <div className='m-6 flex min-h-screen items-center justify-center'>
       <LoadingDots />
     </div>
-  ) : (
-    <Profile
-      userType={userType}
-      clientProfile={clientProfile}
-      gymProfile={gymProfile}
-      trainerProfile={trainerProfile}
-      nutritionistProfile={nutritionistProfile}
+  ) : (<Profile
+      userType={data?.user_type ? data.user_type : null}
+      clientProfile={clientProfile ? clientProfile : null}
+      gymProfile={gymProfile ? gymProfile : null}
+      trainerProfile={trainerProfile ? trainerProfile : null}
+      nutritionistProfile={nutritionistProfile ? nutritionistProfile : null}
     />
   );
 }
