@@ -18,7 +18,7 @@ export default function TextLink({
       target={target}
       className="cursor-pointer text-teal-500 transition-all ease-in hover:text-teal-700"
     >
-      <a>{content}</a>
+      {content}
     </Link>
   );
 }
