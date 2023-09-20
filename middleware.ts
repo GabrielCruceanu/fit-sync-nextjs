@@ -3,10 +3,11 @@ import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
 import { Database } from '#/types/supabase';
 import { urlRequestIncludes } from '#/helpers/url-request-includes';
+import { PagesLinks } from '#/constants/links';
 
 export async function middleware(req: NextRequest) {
   const url = req.nextUrl.clone();
-  url.pathname = '/profile';
+  url.pathname = PagesLinks.profile.link;
   const res = NextResponse.next();
   const supabase = createMiddlewareClient<Database>({ req, res });
   const {

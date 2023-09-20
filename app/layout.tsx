@@ -20,7 +20,11 @@ export default async function RootLayout({
   } = await supabase.auth.getSession();
 
   return (
-    <html lang="ro" className="h-full [color-scheme:dark]">
+    <html
+      lang="ro"
+      className="h-full [color-scheme:dark]"
+      suppressHydrationWarning={true}
+    >
       <body className="min-h-screen overflow-y-scroll bg-gray-900">
         <SupabaseProvider session={session}>
           <SupabaseListener serverAccessToken={session?.access_token} />

@@ -1,6 +1,6 @@
 export function ProCardCTA() {
   return (
-    <div className="mt-auto max-w-xs rounded-2xl bg-gray-800 p-3">
+    <div className="mt-auto rounded-2xl bg-gray-800 p-3">
       <div className="flex items-center justify-between">
         <div>
           <div className="min-w-min">

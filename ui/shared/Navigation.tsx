@@ -330,9 +330,9 @@ export function Navigation() {
                     as="a"
                     className={classNames(
                       navigationAuth.slug === segment
-                        ? 'bg-teal-800'
-                        : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                      'mx-2 block rounded-md bg-gray-800 px-3 py-2 text-base font-medium text-teal-500 sm:mx-3',
+                        ? 'text-teal-500 hover:bg-gray-700 hover:text-white'
+                        : 'bg-teal-800 text-gray-300',
+                      'mx-2 block rounded-md px-3 py-2 text-base font-medium sm:mx-3',
                     )}
                     href={navigationAuth.slug}
                   >
