@@ -41,7 +41,7 @@ export default function EditProfilePage() {
     if (session) {
       fetchUser();
     }
-  }, [session]);
+  }, [router, session, supabase]);
 
   return loading ? (
     <div className="m-6 flex min-h-screen items-center justify-center">

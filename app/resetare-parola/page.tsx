@@ -10,7 +10,7 @@ export default function ForgotPasswordPage() {
 
   useEffect(() => {
     if (session) {
-      router.push('/profil');
+      router.push('/profile');
     }
   }, [router, session]);
   if (!session) return <ForgotPassword supabase={supabase} />;

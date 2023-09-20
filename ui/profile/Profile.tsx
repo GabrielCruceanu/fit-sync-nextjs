@@ -10,34 +10,34 @@ import { UserType } from '#/constants/user';
 import ClientProfile from '#/ui/profile/ClientProfile';
 import ProProfile from '#/ui/profile/ProProfile';
 
-export default function Profile({
+export default async function Profile({
   userType,
   clientProfile,
   trainerProfile,
   nutritionistProfile,
   gymProfile,
 }: {
-  userType: TypedUserDetails['user_type'];
+  userType: TypedUserDetails['user_type'] | null;
   clientProfile: TypedClientDetails | null;
   trainerProfile: TypedTrainerDetails | null;
   nutritionistProfile: TypedNutritionistDetails | null;
   gymProfile: TypedGymDetails | null;
 }) {
+  const data = await fetch('http://localhost:3000/api/cities', {
+    cache: 'no-store',
+  });
+  console.log('data', data);
   switch (userType) {
     case UserType.Client:
       return clientProfile ? (
         <ClientProfile clientProfile={clientProfile} />
       ) : null;
-      break;
     case UserType.Trainer:
       return <ProProfile pro={trainerProfile!} reviews={[]} />;
-      break;
     case UserType.Gym:
       return <ProProfile pro={gymProfile!} reviews={[]} />;
-      break;
     case UserType.Nutritionist:
       return <ProProfile pro={nutritionistProfile!} reviews={[]} />;
-      break;
 
     default:
       return <UserOnboard />;

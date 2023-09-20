@@ -56,9 +56,9 @@ export const getTrainerProfileByUserName = async (
     .single();
 
   if (error) {
-    console.log('select trainer profile error: ', error.message);
+    console.log('select trainer profile by username error: ', error.message);
   }
 
-  console.log('select trainer profile data:', trainers);
+  console.log('select trainer profile by username data:', trainers);
   return trainers as unknown as TypedTrainerDetails;
 };

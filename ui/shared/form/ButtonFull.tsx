@@ -4,7 +4,7 @@ import { ButtonType } from '#/types';
 
 export type ButtonFullProps = {
   shortText: string;
-  longText: string;
+  longText?: string;
   type: ButtonType;
   disabled?: boolean;
   handleClick: MouseEventHandler<HTMLButtonElement> | undefined;
@@ -32,7 +32,9 @@ export default function ButtonFull({
       )}
     >
       {shortText}
-      <span className="hidden sm:inline-block">: {longText}</span>
+      {longText && (
+        <span className={clsx('hidden sm:inline-block')}>: {longText}</span>
+      )}
     </button>
   );
 }

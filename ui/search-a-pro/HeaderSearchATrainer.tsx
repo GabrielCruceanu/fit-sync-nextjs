@@ -5,7 +5,7 @@ import SelectInput from '#/ui/shared/form/SelectInput';
 import SectionWithWave from '#/ui/shared/SectionWithWave';
 import ProList from '#/ui/shared/ProList';
 import { flushSync } from 'react-dom';
-import { executeScroll } from '#/helpers/scrollTo';
+import { executeScroll } from '#/helpers/scroll-to';
 import { handleInputRequired } from '#/utils/helpers';
 import { AuthError } from '#/constants/authError';
 import { TypedTrainerDetails } from '#/types';

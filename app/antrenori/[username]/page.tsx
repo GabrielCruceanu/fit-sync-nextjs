@@ -1,5 +1,3 @@
-import 'server-only';
-
 import { notFound } from 'next/navigation';
 import ProProfile from '#/ui/profile/ProProfile';
 import { getTrainerProfileByUserName } from '#/utils/trainer-hooks';

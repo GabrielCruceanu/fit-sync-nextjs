@@ -1,3 +1,4 @@
+'use client';
 import Image from 'next/image';
 import {
   CheckBadgeIcon,
@@ -23,8 +24,8 @@ export default function ProfileHeader({
   phone,
 }: {
   name?: string | null;
-  firstName: string | null;
-  lastName: string | null;
+  firstName?: string | null;
+  lastName?: string | null;
   profilePicture?: string | null;
   type?: string | null;
   proType?: string | null;
@@ -71,7 +72,7 @@ export default function ProfileHeader({
             {/*Profile Name*/}
             <div>
               <div className="flex">
-                <h1 className="mb-2 w-full overflow-ellipsis text-xl text-2xl font-semibold tracking-wide">
+                <h1 className="mb-2 w-full overflow-ellipsis text-2xl font-semibold tracking-wide">
                   {firstName + ' ' + lastName}
                 </h1>
                 {certificate ? (
@@ -115,7 +116,7 @@ export default function ProfileHeader({
                   href={'https://wa.me/' + phone}
                   target="_blank"
                   rel="noreferrer"
-                  className="block flex h-[54px] w-[54px] items-center justify-center overflow-hidden rounded-full bg-teal-500"
+                  className="flex h-[54px] w-[54px] items-center justify-center overflow-hidden rounded-full bg-teal-500"
                 >
                   <ChatBubbleBottomCenterIcon className="h-9 w-9 fill-gray-900 transition-all ease-in-out hover:fill-teal-900" />
                 </a>

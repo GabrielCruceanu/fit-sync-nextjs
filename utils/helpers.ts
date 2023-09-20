@@ -59,10 +59,10 @@ export const validateOnlyLetter = (input: string) => {
   return validUsernameRegex.test(input);
 };
 export const validateIsPhoneNumber = (input: string) => {
-  if (input.length !== 10) {
-    return false;
-  }
-  const validUsernameRegex = /^[0-9]*$/;
+  // if (input.length !== 10) {
+  //   return false;
+  // }
+  const validUsernameRegex = /^\+(?:[0-9]●?){6,14}[0-9]$/;
   return validUsernameRegex.test(input);
 };
 

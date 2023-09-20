@@ -78,11 +78,6 @@ export const navigationProfessional: NavItem[] = [
   // },
 ];
 
-export const navigationLogout: NavItem = {
-  name: 'Deconectare',
-  slug: '/deconectare',
-};
-
 export const navigationAuth: NavItem = {
   name: 'Autentificare',
   slug: '/autentificare',

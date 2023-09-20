@@ -24,6 +24,7 @@ import { PagesLinks } from '#/constants/links';
 import { useSupabase } from '#/ui/auth/SupabaseProvider';
 import { useUserContext } from '#/utils/useUserContext';
 import { UserType } from '#/constants/user';
+import Link from 'next/link';
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ');
@@ -49,10 +50,10 @@ export function Navigation() {
     const handleRouteChange = (url: string) => {
       gtag.pageView(url);
     };
-    handleRouteChange(pathname ? pathname : 'acasa');
+    handleRouteChange(pathname ? pathname : '/');
 
     return () => {
-      handleRouteChange(pathname ? pathname : 'acasa');
+      handleRouteChange(pathname ? pathname : '/');
     };
   }, [pathname]);
 
@@ -61,7 +62,7 @@ export function Navigation() {
       <Gtag />
       <Disclosure
         as="nav"
-        className="border-1 fixed top-0 left-0 right-0 z-50 border-b border-teal-500 bg-gray-900"
+        className="border-1 fixed left-0 right-0 top-0 z-50 border-b border-teal-500 bg-gray-900"
       >
         {({ open }) => (
           <>
@@ -75,102 +76,82 @@ export function Navigation() {
                 <div className="hidden w-full justify-center md:flex">
                   <div className="flex items-baseline space-x-4">
                     {navigationStatic.map((item) => (
-                      <a
+                      <Link
                         key={item.name}
                         href={item.slug}
+                        prefetch={true}
                         className={classNames(
-                          item.slug === segment ||
+                          item.slug === `/${segment}` ||
                             (item.slug === '/' && segment === null)
                             ? 'bg-gray-800 text-teal-500'
                             : 'text-gray-300 hover:bg-gray-700',
-                          'rounded-md px-3 py-2 align-middle text-sm font-medium font-medium leading-5 transition hover:text-white',
+                          'rounded-md px-3 py-2 align-middle text-sm font-medium leading-5 transition hover:text-white',
                         )}
                         aria-current={
-                          item.slug === segment ||
+                          item.slug === `/${segment}` ||
                           (item.slug === '' && segment === null)
                             ? 'page'
                             : undefined
                         }
                       >
                         {item.name}
-                      </a>
+                      </Link>
                     ))}
                     {/* Profile dropdown */}
-                    <Menu as="div" className="relative ml-3">
-                      <div>
-                        <Menu.Button className="rounded-md px-3 py-2 align-middle text-sm font-medium font-medium leading-5 text-gray-300 transition hover:bg-gray-700 hover:text-white">
-                          {/*<Bars3Icon*/}
-                          {/*  className="block h-6 w-6"*/}
-                          {/*  aria-hidden="true"*/}
-                          {/*/>*/}
-                          Profil
-                        </Menu.Button>
-                      </div>
-                      <Transition
-                        as={Fragment}
-                        enter="transition ease-out duration-100"
-                        enterFrom="transform opacity-0 scale-95"
-                        enterTo="transform opacity-100 scale-100"
-                        leave="transition ease-in duration-75"
-                        leaveFrom="transform opacity-100 scale-100"
-                        leaveTo="transform opacity-0 scale-95"
-                      >
-                        <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-gray-900 py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                          {navLinks.map((item) => (
-                            <Menu.Item key={item.name}>
+                    {isLogged && (
+                      <Menu as="div" className="relative ml-3">
+                        <div>
+                          <Menu.Button className="rounded-md px-3 py-2 align-middle text-sm font-medium leading-5 text-gray-300 transition hover:bg-gray-700 hover:text-white">
+                            Profil
+                          </Menu.Button>
+                        </div>
+                        <Transition
+                          as={Fragment}
+                          enter="transition ease-out duration-100"
+                          enterFrom="transform opacity-0 scale-95"
+                          enterTo="transform opacity-100 scale-100"
+                          leave="transition ease-in duration-75"
+                          leaveFrom="transform opacity-100 scale-100"
+                          leaveTo="transform opacity-0 scale-95"
+                        >
+                          <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-gray-900 py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                            {navLinks.map((item) => (
+                              <Menu.Item key={item.name}>
+                                {() => (
+                                  <a
+                                    href={item.slug}
+                                    className={classNames(
+                                      item.slug === `/${segment}`
+                                        ? 'bg-gray-800 text-teal-500'
+                                        : 'text-gray-300 hover:bg-gray-700',
+                                      'block w-full rounded-md px-3 py-2 text-center align-middle text-sm font-medium leading-5 transition hover:text-white',
+                                    )}
+                                  >
+                                    {item.name}
+                                  </a>
+                                )}
+                              </Menu.Item>
+                            ))}
+
+                            <Menu.Item>
                               {() => (
-                                <a
-                                  href={item.slug}
-                                  className={classNames(
-                                    item.slug === segment
-                                      ? 'bg-gray-800 text-teal-500'
-                                      : 'text-gray-300 hover:bg-gray-700',
-                                    'block w-full rounded-md px-3 py-2 text-center align-middle text-sm font-medium font-medium leading-5 transition hover:text-white',
-                                  )}
+                                <button
+                                  onClick={logout}
+                                  className="block w-full rounded-md px-3 py-2 align-middle text-sm font-medium leading-5 text-red-500 transition hover:bg-red-700 hover:text-white"
                                 >
-                                  {item.name}
-                                </a>
+                                  Deconectare
+                                </button>
                               )}
                             </Menu.Item>
-                          ))}
-
-                          <Menu.Item>
-                            {() => (
-                              <button
-                                onClick={logout}
-                                className="block w-full rounded-md px-3 py-2 align-middle text-sm font-medium font-medium leading-5 text-red-500 transition hover:bg-red-700 hover:text-white"
-                              >
-                                Deconectare
-                              </button>
-                            )}
-                          </Menu.Item>
-                        </Menu.Items>
-                      </Transition>
-                    </Menu>
+                          </Menu.Items>
+                        </Transition>
+                      </Menu>
+                    )}
                   </div>
                 </div>
                 {isLogged ? (
                   <div className="hidden w-full justify-end md:flex">
                     <div className="ml-4 flex items-center md:ml-6">
-                      {/*<button*/}
-                      {/*  type="button"*/}
-                      {/*  onClick={logout}*/}
-                      {/*  className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-800 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"*/}
-                      {/*>*/}
-                      {/*  <span className="sr-only">{navigationLogout.name}</span>*/}
-                      {/*  <ArrowLeftOnRectangleIcon*/}
-                      {/*    className="h-6 w-6"*/}
-                      {/*    aria-hidden="true"*/}
-                      {/*  />*/}
-                      {/*</button>*/}
-                      {/* Notification */}
-                      {/*<button*/}
-                      {/*  type="button"*/}
-                      {/*  className="rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"*/}
-                      {/*>*/}
-                      {/*  <span className="sr-only">View notifications</span>*/}
-                      {/*  <BellIcon className="h-6 w-6" aria-hidden="true" />*/}
-                      {/*</button>*/}
                       {user?.userDetails?.name ||
                       user?.userDetails?.last_name ||
                       user?.userDetails?.first_name ? (
@@ -220,7 +201,7 @@ export function Navigation() {
                         navigationAuth.slug === segment
                           ? 'bg-teal-500 text-white hover:border-teal-900 hover:bg-teal-900'
                           : 'text-gray-300 hover:bg-teal-500',
-                        'hidden rounded-md border-2 border border-teal-500 px-3 py-2 align-middle text-sm font-medium font-medium leading-5 transition hover:text-white md:block',
+                        'hidden rounded-md border border-teal-500 px-3 py-2 align-middle text-sm font-medium leading-5 transition hover:text-white md:block',
                       )}
                     >
                       {navigationAuth.name}
@@ -243,7 +224,7 @@ export function Navigation() {
             </div>
 
             <Disclosure.Panel className="md:hidden">
-              <div className="space-y-1 px-2 pt-2 pb-3 sm:px-3">
+              <div className="space-y-1 px-2 pb-3 pt-2 sm:px-3">
                 {navigationStatic.map((item) => (
                   <Disclosure.Button
                     key={item.name}
@@ -263,7 +244,7 @@ export function Navigation() {
                 ))}
               </div>
               {isLogged ? (
-                <div className="border-t border-gray-700 pt-4 pb-3">
+                <div className="border-t border-gray-700 pb-3 pt-4">
                   <div className="flex items-center px-5">
                     <div className="flex-shrink-0">
                       {user.userDetails?.profile_picture_url ? (

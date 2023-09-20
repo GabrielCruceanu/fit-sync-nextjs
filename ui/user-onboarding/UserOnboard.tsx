@@ -1,3 +1,4 @@
+'use client';
 import { useState } from 'react';
 import {
   ButtonType,
@@ -20,7 +21,7 @@ import {
 } from '#/utils/helpers';
 import { AuthError } from '#/constants/authError';
 import SelectInput from '#/ui/shared/form/SelectInput';
-import { CountriesData, RomaniaStatesData } from '#/data/location-data';
+import { CitiesData, CountriesData } from '#/data/location-data';
 import { useSupabase } from '#/ui/auth/SupabaseProvider';
 import ButtonFull from '#/ui/shared/form/ButtonFull';
 import Datepicker from 'react-tailwindcss-datepicker';
@@ -60,12 +61,16 @@ export default function UserOnboard() {
   const [nutritionistTypeError, setNutritionistTypeError] = useState('');
   const [experience, setExperience] = useState('');
   const [experienceError, setExperienceError] = useState('');
+  const [currentCountry, setCurrentCountry] = useState('');
+  const [currentCountryError, setCurrentCountryError] = useState('');
   const [currentState, setCurrentState] = useState('');
   const [currentStateError, setCurrentStateError] = useState('');
   const [currentCity, setCurrentCity] = useState('');
   const [currentCityError, setCurrentCityError] = useState('');
   const [street, setStreet] = useState('');
   const [streetError, setStreetError] = useState('');
+  const [streetNumber, setStreetNumber] = useState('');
+  const [streetNumberError, setStreetNumberError] = useState('');
   const [phone, setPhone] = useState('');
   const [phoneError, setPhoneError] = useState('');
   const [birth, setBirth] = useState({
@@ -117,14 +122,33 @@ export default function UserOnboard() {
   const nutritionistTypeList = NutritionistTypeList;
   const experienceList = ExperienceDataList;
 
+  let countries: string[];
+  let currentStates: string[] = [];
   let currentCites: string[] = [];
-  const states = RomaniaStatesData.map((state) => state.name);
-
-  RomaniaStatesData.filter((state) => {
-    if (state.name === currentState) {
-      currentCites = state.cities;
+  const duplicateCountries = CitiesData.map((city) => city.country);
+  const duplicateStates = CitiesData.map((city) => {
+    if (city.country === currentCountry) {
+      return city.state;
+    } else {
+      return '';
     }
   });
+  const duplicateCities = CitiesData.map((city) => {
+    if (city.state === currentState) {
+      return city.name;
+    } else {
+      return '';
+    }
+  });
+
+  // @ts-ignore
+  countries = [...new Set(duplicateCountries)].sort();
+
+  // @ts-ignore
+  currentStates = [...new Set(duplicateStates)].sort();
+
+  // @ts-ignore
+  currentCites = [...new Set(duplicateCities)].sort();
 
   const handleBirthChange = (newValue: any) => {
     setBirth(newValue);
@@ -158,6 +182,11 @@ export default function UserOnboard() {
     }
     if (!phone) {
       setPhoneError(AuthError.InputRequired);
+      setConfirmBtnDisable(true);
+      return;
+    }
+    if (!currentCountry) {
+      setCurrentCountryError(AuthError.InputRequired);
       setConfirmBtnDisable(true);
       return;
     }
@@ -196,6 +225,11 @@ export default function UserOnboard() {
         }
         if (!street) {
           setStreetError(AuthError.InputRequired);
+          setConfirmBtnDisable(true);
+          return;
+        }
+        if (!streetNumber) {
+          setStreetNumberError(AuthError.InputRequired);
           setConfirmBtnDisable(true);
           return;
         }
@@ -268,6 +302,7 @@ export default function UserOnboard() {
             state: currentState,
             city: currentCity,
             street: street,
+            street_number: streetNumber,
             joined: today,
             active_personal_trainers: null,
             certificate: false,
@@ -382,8 +417,8 @@ export default function UserOnboard() {
     return (
       <UserOnboardWrap
         currentStep={OnboardStepsType.UserType}
-        heading={'Tip utilizator'}
-        paragraph={'Ce tip de cont doresti sa ai?'}
+        heading={'User type'}
+        paragraph={'What type of account would you like to have?'}
       >
         <ul className="container mb-6 flex flex-wrap items-center justify-center">
           <li className="mt-3 h-fit w-full md:w-6/12 md:pr-1">
@@ -412,7 +447,7 @@ export default function UserOnboard() {
           </li>
           <li className="mt-3 h-fit w-full md:w-6/12 md:pl-1">
             <InputSelectButton
-              label={'Sala de antrenament'}
+              label={'Gym'}
               name={UserType.Gym}
               value={UserType.Gym}
               handleClick={() => handleUserTypeClick(UserType.Gym)}
@@ -435,7 +470,7 @@ export default function UserOnboard() {
           {userType === UserType.Gym ? (
             <>
               {/*NAME*/}
-              <div className="my-2 w-full md:w-6/12 md:px-2">
+              <div className="my-2 w-full md:w-4/12 md:px-2">
                 <Input
                   name="name"
                   label="Nume sala"
@@ -446,9 +481,9 @@ export default function UserOnboard() {
                   handleChange={(event) => {
                     setName(event.target.value);
                     setNameError('');
+                    setConfirmBtnDisable(false);
                   }}
                   handleBlur={() => {
-                    setConfirmBtnDisable(false);
                     setNameError('');
                     handleInputRequired(name)
                       ? setNameError(AuthError.InputRequired)
@@ -473,9 +508,9 @@ export default function UserOnboard() {
                   handleChange={(event) => {
                     setLastName(event.target.value);
                     setLastNameError('');
+                    setConfirmBtnDisable(false);
                   }}
                   handleBlur={() => {
-                    setConfirmBtnDisable(false);
                     setLastNameError('');
                     handleInputRequired(lastName)
                       ? setLastNameError(AuthError.InputRequired)
@@ -498,9 +533,9 @@ export default function UserOnboard() {
                   handleChange={(event) => {
                     setFirstName(event.target.value);
                     setFirstNameError('');
+                    setConfirmBtnDisable(false);
                   }}
                   handleBlur={() => {
-                    setConfirmBtnDisable(false);
                     setFirstNameError('');
                     handleInputRequired(firstName)
                       ? setFirstNameError(AuthError.InputRequired)
@@ -514,7 +549,12 @@ export default function UserOnboard() {
           )}
 
           {/*USERNAME*/}
-          <div className="my-2 w-full md:w-6/12 md:px-2">
+          <div
+            className={clsx('my-2 w-full md:px-2', {
+              'md:w-4/12': userType === UserType.Gym,
+              'md:w-6/12': userType !== UserType.Gym,
+            })}
+          >
             <Input
               name="username"
               label="Nume de utilizator"
@@ -525,15 +565,15 @@ export default function UserOnboard() {
               handleChange={(event) => {
                 setUsername(event.target.value.toLowerCase());
                 setUsernameError('');
+                setConfirmBtnDisable(false);
               }}
               handleBlur={() => {
-                setConfirmBtnDisable(false);
                 setUsernameError('');
                 handleSearchUsername();
                 handleInputRequired(username)
                   ? setUsernameError(AuthError.InputRequired)
-                  : !validateOnlyLetter(username)
-                  ? setUsernameError(AuthError.OnlyLetter)
+                  : !validateUsername(username)
+                  ? setUsernameError(AuthError.UsernameInvalid)
                   : null;
               }}
             />
@@ -552,9 +592,9 @@ export default function UserOnboard() {
                   handleChange={(e) => {
                     setGenderError('');
                     setGender(e.target.value);
+                    setConfirmBtnDisable(false);
                   }}
                   handleBlur={() => {
-                    setConfirmBtnDisable(false);
                     setGenderError('');
                     handleInputRequired(gender)
                       ? setGenderError(AuthError.InputRequired)
@@ -569,7 +609,7 @@ export default function UserOnboard() {
           {userType === UserType.Gym ? (
             <>
               {/*GYM TYPE*/}
-              <div className="my-2 w-full md:w-6/12 md:px-2">
+              <div className={clsx('my-2 w-full md:w-4/12 md:px-2')}>
                 <SelectInput
                   name="gym_type"
                   label="Tip Sala"
@@ -579,9 +619,9 @@ export default function UserOnboard() {
                   handleChange={(e) => {
                     setGymTypeError('');
                     setGymType(e.target.value);
+                    setConfirmBtnDisable(false);
                   }}
                   handleBlur={() => {
-                    setConfirmBtnDisable(false);
                     setGymTypeError('');
                     handleInputRequired(gymType)
                       ? setGymTypeError(AuthError.InputRequired)
@@ -606,9 +646,9 @@ export default function UserOnboard() {
                   handleChange={(e) => {
                     setTrainerTypeError('');
                     setTrainerType(e.target.value);
+                    setConfirmBtnDisable(false);
                   }}
                   handleBlur={() => {
-                    setConfirmBtnDisable(false);
                     setTrainerTypeError('');
                     handleInputRequired(trainerType)
                       ? setTrainerTypeError(AuthError.InputRequired)
@@ -633,9 +673,9 @@ export default function UserOnboard() {
                   handleChange={(e) => {
                     setNutritionistTypeError('');
                     setNutritionistType(e.target.value);
+                    setConfirmBtnDisable(false);
                   }}
                   handleBlur={() => {
-                    setConfirmBtnDisable(false);
                     setNutritionistTypeError('');
                     handleInputRequired(nutritionistType)
                       ? setNutritionistTypeError(AuthError.InputRequired)
@@ -661,9 +701,9 @@ export default function UserOnboard() {
                   handleChange={(e) => {
                     setExperienceError('');
                     setExperience(e.target.value);
+                    setConfirmBtnDisable(false);
                   }}
                   handleBlur={() => {
-                    setConfirmBtnDisable(false);
                     setExperienceError('');
                     handleInputRequired(experience)
                       ? setExperienceError(AuthError.InputRequired)
@@ -675,20 +715,49 @@ export default function UserOnboard() {
             </>
           ) : null}
 
+          {/*COUNTRY*/}
+          <div className="my-2 w-full md:w-4/12 md:px-2">
+            <SelectInput
+              name="country"
+              label="Tara"
+              value={currentCountry}
+              placeholder="Romania"
+              options={countries}
+              handleChange={(e) => {
+                setCurrentCountryError('');
+                setCurrentCountry(e.target.value);
+                setConfirmBtnDisable(false);
+                currentStates = [];
+                currentCites = [];
+                setCurrentState('');
+                setCurrentCity('');
+              }}
+              handleBlur={() => {
+                setCurrentCountryError('');
+                handleInputRequired(currentCountry)
+                  ? setCurrentCountryError(AuthError.InputRequired)
+                  : null;
+              }}
+              error={currentCountryError}
+            />
+          </div>
+
           {/*STATE*/}
-          <div className="my-2 w-full md:w-6/12 md:px-2">
+          <div className="my-2 w-full md:w-4/12 md:px-2">
             <SelectInput
               name="state"
               label="Judet"
               value={currentState}
               placeholder="Bucuresti"
-              options={states}
+              options={currentStates}
               handleChange={(e) => {
                 setCurrentStateError('');
                 setCurrentState(e.target.value);
+                setConfirmBtnDisable(false);
+                currentCites = [];
+                setCurrentCity('');
               }}
               handleBlur={() => {
-                setConfirmBtnDisable(false);
                 setCurrentStateError('');
                 handleInputRequired(currentState)
                   ? setCurrentStateError(AuthError.InputRequired)
@@ -699,7 +768,7 @@ export default function UserOnboard() {
           </div>
 
           {/*City*/}
-          <div className="my-2 w-full md:w-6/12 md:px-2">
+          <div className="my-2 w-full md:w-4/12 md:px-2">
             <SelectInput
               name="city"
               label="Oras / Sector"
@@ -709,9 +778,9 @@ export default function UserOnboard() {
               handleChange={(e) => {
                 setCurrentCityError('');
                 setCurrentCity(e.target.value);
+                setConfirmBtnDisable(false);
               }}
               handleBlur={() => {
-                setConfirmBtnDisable(false);
                 setCurrentCityError('');
                 handleInputRequired(currentCity)
                   ? setCurrentCityError(AuthError.InputRequired)
@@ -771,12 +840,34 @@ export default function UserOnboard() {
                   handleChange={(event) => {
                     setStreet(event.target.value);
                     setStreetError('');
+                    setConfirmBtnDisable(false);
                   }}
                   handleBlur={() => {
-                    setConfirmBtnDisable(false);
                     setStreetError('');
                     handleInputRequired(street)
                       ? setStreetError(AuthError.InputRequired)
+                      : null;
+                  }}
+                />
+              </div>
+              {/*Street Number*/}
+              <div className="my-2 w-full md:w-2/12 md:px-2">
+                <Input
+                  name="streetNumber"
+                  label="Numarul"
+                  value={streetNumber}
+                  type="text"
+                  placeholder="13"
+                  error={streetNumberError}
+                  handleChange={(event) => {
+                    setStreetNumber(event.target.value);
+                    setStreetNumberError('');
+                    setConfirmBtnDisable(false);
+                  }}
+                  handleBlur={() => {
+                    setStreetNumberError('');
+                    handleInputRequired(streetNumber)
+                      ? setStreetNumberError(AuthError.InputRequired)
                       : null;
                   }}
                 />
@@ -785,20 +876,25 @@ export default function UserOnboard() {
           )}
 
           {/*Phone*/}
-          <div className="my-2 w-full md:w-6/12 md:px-2">
+          <div
+            className={clsx('my-2 w-full md:px-2', {
+              'md:w-6/12': userType !== UserType.Gym,
+              'md:w-4/12': userType === UserType.Gym,
+            })}
+          >
             <Input
               name="phone"
               label="Telefon"
               value={phone}
               type="phone"
-              placeholder="0770121943"
+              placeholder="+40770121943"
               error={phoneError}
               handleChange={(event) => {
                 setPhone(event.target.value);
                 setPhoneError('');
+                setConfirmBtnDisable(false);
               }}
               handleBlur={() => {
-                setConfirmBtnDisable(false);
                 setPhoneError('');
                 handleInputRequired(phone)
                   ? setPhoneError(AuthError.InputRequired)
@@ -834,8 +930,7 @@ export default function UserOnboard() {
       currentStep={OnboardStepsType.UserConfirm}
       heading={'Confirmare'}
       paragraph={
-        'Prin apasarea butonului de confirma iti vei salva datele de\n' +
-        '              utilizarea'
+        'Prin apasarea butonului de confirma iti vei salva datele de utilizarea'
       }
     >
       <div className="flex flex-wrap">
@@ -902,6 +997,15 @@ export default function UserOnboard() {
 
         <div className="w-full md:w-6/12">
           <Paragraph customClass={''}>
+            Tara:{' '}
+            <strong className="capitalize text-primary-500">
+              {currentCountry}
+            </strong>
+          </Paragraph>
+        </div>
+
+        <div className="w-full md:w-6/12">
+          <Paragraph customClass={''}>
             Judet:{' '}
             <strong className="capitalize text-primary-500">
               {currentState}
@@ -919,12 +1023,24 @@ export default function UserOnboard() {
         </div>
 
         {userType === UserType.Gym ? (
-          <div className="w-full md:w-6/12">
-            <Paragraph customClass={''}>
-              Strada:{' '}
-              <strong className="capitalize text-primary-500">{street}</strong>
-            </Paragraph>
-          </div>
+          <>
+            <div className="w-full md:w-6/12">
+              <Paragraph customClass={''}>
+                Strada:{' '}
+                <strong className="capitalize text-primary-500">
+                  {street}
+                </strong>
+              </Paragraph>
+            </div>
+            <div className="w-full md:w-6/12">
+              <Paragraph customClass={''}>
+                Numarul strazii:{' '}
+                <strong className="capitalize text-primary-500">
+                  {streetNumber}
+                </strong>
+              </Paragraph>
+            </div>
+          </>
         ) : null}
         <div className="w-full md:w-6/12">
           <Paragraph customClass={''}>
