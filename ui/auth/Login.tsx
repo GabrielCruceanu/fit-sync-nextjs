@@ -52,6 +52,10 @@ export default function Login({ supabase }: { supabase: TypedSupabaseClient }) {
         setLoginError('Adresa de email sau parola nu este valida');
         return;
       }
+      if (error?.message === AuthError.EmailNotConfirmed) {
+        setLoginError('Adresa de email nu a fost confirmata');
+        return;
+      }
     } catch (error: any) {
       console.log('Error thrown:', error.message);
       alert(error.error_description || error);

@@ -6,6 +6,7 @@ import { getTrainerProfile } from '#/utils/trainer-hooks';
 import { getNutritionistProfileById } from '#/utils/nutritionist-hooks';
 import { getGymProfileById } from '#/utils/gym-hooks';
 import { createServerClient } from '#/utils/supabase-server';
+import { redirect } from 'next/navigation'
 
 export default async function ProfilePage() {
   const supabase = createServerClient();
@@ -13,7 +14,7 @@ export default async function ProfilePage() {
   let loading = false;
 
   if (!session) {
-    throw new Error('No session');
+    return redirect('/login')
   }
   loading = true;
   let clientProfile;

@@ -5,15 +5,11 @@ import Link from 'next/link';
 import { PagesLinks, TermsLinks } from '#/constants/links';
 import { handleInputRequired, validateEmail } from '#/utils/helpers';
 import { AuthError } from '#/constants/authError';
-import { TypedSupabaseClient } from '#/types';
-import clsx from 'clsx';
 import Input from '#/ui/shared/form/Input';
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
+import { Database } from '#/types/supabase';
 
-export default function SignUp({
-  supabase,
-}: {
-  supabase: TypedSupabaseClient;
-}) {
+export default function SignUp() {
   const [email, setEmail] = useState('');
   const [emailError, setEmailError] = useState('');
   const [password, setPassword] = useState('');
@@ -26,6 +22,7 @@ export default function SignUp({
   const [termsError, setTermsError] = useState('');
   const [signUpError, setSignUpError] = useState('');
   const router = useRouter();
+  const supabase = createClientComponentClient<Database>();
 
   const handleSignUp = async (email: string, password: string) => {
     if (email === null || email === '') {
@@ -62,15 +59,20 @@ export default function SignUp({
       if (!error && !user)
         alert('Verifică-ți e-mailul pentru linkul de autentificare');
       if (error) console.log('Error returned: ', error.message);
-      if (error?.message === AuthError.UserAlreadyRegistered) {
+      if (
+        error?.message === AuthError.UserAlreadyRegistered ||
+        error?.message === AuthError.EmailAlreadyRegistered
+      ) {
         setSignUpError('Adresa de email este deja inregistrata.');
         return;
+      }
+      if (user) {
+        router.push('/profil');
       }
     } catch (error: any) {
       console.log('Error thrown:', error.message);
       alert(error.error_description || error);
     }
-    router.push('/profil');
   };
 
   return (

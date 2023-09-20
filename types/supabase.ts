@@ -3,7 +3,7 @@ export type Json =
   | number
   | boolean
   | null
-  | { [key: string]: Json }
+  | { [key: string]: Json | undefined }
   | Json[]
 
 export interface Database {
@@ -67,6 +67,14 @@ export interface Database {
           type?: Database["public"]["Enums"]["user_type"] | null
           username?: string | null
         }
+        Relationships: [
+          {
+            foreignKeyName: "clients_client_id_fkey"
+            columns: ["client_id"]
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          }
+        ]
       }
       customers: {
         Row: {
@@ -81,6 +89,14 @@ export interface Database {
           id?: string
           stripe_customer_id?: string | null
         }
+        Relationships: [
+          {
+            foreignKeyName: "customers_id_fkey"
+            columns: ["id"]
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          }
+        ]
       }
       gyms: {
         Row: {
@@ -108,6 +124,7 @@ export interface Database {
           profile_picture_url: string | null
           state: string | null
           street: string | null
+          street_number: string | null
           twitter: string | null
           type: Database["public"]["Enums"]["user_type"] | null
           username: string | null
@@ -138,6 +155,7 @@ export interface Database {
           profile_picture_url?: string | null
           state?: string | null
           street?: string | null
+          street_number?: string | null
           twitter?: string | null
           type?: Database["public"]["Enums"]["user_type"] | null
           username?: string | null
@@ -168,11 +186,20 @@ export interface Database {
           profile_picture_url?: string | null
           state?: string | null
           street?: string | null
+          street_number?: string | null
           twitter?: string | null
           type?: Database["public"]["Enums"]["user_type"] | null
           username?: string | null
           website?: string | null
         }
+        Relationships: [
+          {
+            foreignKeyName: "gyms_id_fkey"
+            columns: ["id"]
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          }
+        ]
       }
       nutritionists: {
         Row: {
@@ -271,6 +298,14 @@ export interface Database {
           username?: string | null
           website?: string | null
         }
+        Relationships: [
+          {
+            foreignKeyName: "nutritionists_id_fkey"
+            columns: ["id"]
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          }
+        ]
       }
       physical_details: {
         Row: {
@@ -330,6 +365,14 @@ export interface Database {
           thigh?: number | null
           waist?: number | null
         }
+        Relationships: [
+          {
+            foreignKeyName: "physical_details_client_id_fkey"
+            columns: ["client_id"]
+            referencedRelation: "clients"
+            referencedColumns: ["client_id"]
+          }
+        ]
       }
       prices: {
         Row: {
@@ -371,6 +414,14 @@ export interface Database {
           type?: Database["public"]["Enums"]["pricing_type"] | null
           unit_amount?: number | null
         }
+        Relationships: [
+          {
+            foreignKeyName: "prices_product_id_fkey"
+            columns: ["product_id"]
+            referencedRelation: "products"
+            referencedColumns: ["id"]
+          }
+        ]
       }
       products: {
         Row: {
@@ -397,6 +448,7 @@ export interface Database {
           metadata?: Json | null
           name?: string | null
         }
+        Relationships: []
       }
       reviews: {
         Row: {
@@ -432,6 +484,20 @@ export interface Database {
           id?: number
           stars?: number | null
         }
+        Relationships: [
+          {
+            foreignKeyName: "reviews_beneficiary_id_fkey"
+            columns: ["beneficiary_id"]
+            referencedRelation: "trainers"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "reviews_client_id_fkey"
+            columns: ["client_id"]
+            referencedRelation: "clients"
+            referencedColumns: ["client_id"]
+          }
+        ]
       }
       subscriptions: {
         Row: {
@@ -485,6 +551,20 @@ export interface Database {
           trial_start?: string | null
           user_id?: string
         }
+        Relationships: [
+          {
+            foreignKeyName: "subscriptions_price_id_fkey"
+            columns: ["price_id"]
+            referencedRelation: "prices"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "subscriptions_user_id_fkey"
+            columns: ["user_id"]
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          }
+        ]
       }
       trainers: {
         Row: {
@@ -580,6 +660,14 @@ export interface Database {
           username?: string | null
           website?: string | null
         }
+        Relationships: [
+          {
+            foreignKeyName: "trainers_id_fkey"
+            columns: ["id"]
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          }
+        ]
       }
       usernames: {
         Row: {
@@ -597,6 +685,14 @@ export interface Database {
           id?: string
           username?: string | null
         }
+        Relationships: [
+          {
+            foreignKeyName: "usernames_id_fkey"
+            columns: ["id"]
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          }
+        ]
       }
       users: {
         Row: {
@@ -635,6 +731,14 @@ export interface Database {
           user_type?: Database["public"]["Enums"]["user_type"] | null
           username?: string | null
         }
+        Relationships: [
+          {
+            foreignKeyName: "users_id_fkey"
+            columns: ["id"]
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          }
+        ]
       }
     }
     Views: {

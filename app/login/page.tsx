@@ -10,11 +10,11 @@ export default function AuthPage() {
   const router = useRouter();
   const { supabase, session } = useSupabase();
 
-  useEffect(() => {
-    if (session) {
-      router.push('/profil');
-    }
-  }, [router, session]);
+  // useEffect(() => {
+  //   if (session) {
+  //     router.push('/profile');
+  //   }
+  // }, [router, session]);
   if (!session) return <Login supabase={supabase} />;
 
   return (
