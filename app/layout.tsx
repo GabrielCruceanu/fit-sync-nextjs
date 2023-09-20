@@ -7,7 +7,7 @@ import { MyUserContextProvider } from '#/utils/useUserContext';
 import { createServerClient } from '#/utils/supabase-server';
 import SupabaseProvider from '#/ui/auth/SupabaseProvider';
 import SupabaseListener from '#/ui/auth/SupabaseListener';
-
+export const dynamic = 'force-dynamic';
 export default async function RootLayout({
   children,
 }: {

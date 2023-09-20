@@ -1,4 +1,5 @@
-import { createClientComponentClient,
+import {
+  createClientComponentClient,
   User,
 } from '@supabase/auth-helpers-nextjs';
 import { Database, Json } from '#/types/supabase';

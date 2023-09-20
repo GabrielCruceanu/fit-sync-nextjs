@@ -6,15 +6,17 @@ import { getTrainerProfile } from '#/utils/trainer-hooks';
 import { getNutritionistProfileById } from '#/utils/nutritionist-hooks';
 import { getGymProfileById } from '#/utils/gym-hooks';
 import { createServerClient } from '#/utils/supabase-server';
-import { redirect } from 'next/navigation'
+import { redirect } from 'next/navigation';
 
 export default async function ProfilePage() {
   const supabase = createServerClient();
-  const { data: { session } } = await supabase.auth.getSession();
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
   let loading = false;
 
   if (!session) {
-    return redirect('/login')
+    return redirect('/login');
   }
   loading = true;
   let clientProfile;
@@ -30,7 +32,6 @@ export default async function ProfilePage() {
     .single();
 
   try {
-
     if (error && status !== 406) {
       throw error;
     }
@@ -39,16 +40,10 @@ export default async function ProfilePage() {
       console.log('data', data);
       switch (data.user_type) {
         case UserType.Client:
-          clientProfile = await getClientProfile(
-            session.user.id,
-            supabase,
-          );
+          clientProfile = await getClientProfile(session.user.id, supabase);
           break;
         case UserType.Trainer:
-          trainerProfile = await getTrainerProfile(
-            session.user.id,
-            supabase,
-          );
+          trainerProfile = await getTrainerProfile(session.user.id, supabase);
           break;
         case UserType.Nutritionist:
           nutritionistProfile = await getNutritionistProfileById(
@@ -57,10 +52,7 @@ export default async function ProfilePage() {
           );
           break;
         case UserType.Gym:
-          gymProfile = await getGymProfileById(
-            session.user.id,
-            supabase,
-          );
+          gymProfile = await getGymProfileById(session.user.id, supabase);
           break;
       }
     }
@@ -71,10 +63,11 @@ export default async function ProfilePage() {
     loading = false;
   }
   return loading ? (
-    <div className='m-6 flex min-h-screen items-center justify-center'>
+    <div className="m-6 flex min-h-screen items-center justify-center">
       <LoadingDots />
     </div>
-  ) : (<Profile
+  ) : (
+    <Profile
       userType={data?.user_type ? data.user_type : null}
       clientProfile={clientProfile ? clientProfile : null}
       gymProfile={gymProfile ? gymProfile : null}

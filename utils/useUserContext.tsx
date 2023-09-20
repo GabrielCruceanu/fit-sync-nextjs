@@ -1,6 +1,5 @@
 'use client';
 import { createContext, useContext, useEffect, useState } from 'react';
-import { User } from '@supabase/auth-helpers-react';
 import {
   TypedClientDetails,
   TypedGymDetails,
@@ -10,6 +9,7 @@ import {
   TypedUserDetails,
 } from '#/types';
 import { useSupabase } from '#/ui/auth/SupabaseProvider';
+import { User } from '@supabase/auth-helpers-nextjs';
 
 type UserContextType = {
   accessToken: string | null;
