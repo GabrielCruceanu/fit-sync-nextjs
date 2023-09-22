@@ -62,7 +62,7 @@ export function Navigation() {
       <Gtag />
       <Disclosure
         as="nav"
-        className="border-1 fixed left-0 right-0 top-0 z-50 border-b border-teal-500 bg-gray-900"
+        className="border-1 fixed left-0 right-0 top-0 z-50 border-b border-primary bg-gray-900"
       >
         {({ open }) => (
           <>
@@ -83,7 +83,7 @@ export function Navigation() {
                         className={classNames(
                           item.slug === `/${segment}` ||
                             (item.slug === '/' && segment === null)
-                            ? 'bg-gray-800 text-teal-500'
+                            ? 'bg-gray-800 text-primary'
                             : 'text-gray-300 hover:bg-gray-700',
                           'rounded-md px-3 py-2 align-middle text-sm font-medium leading-5 transition hover:text-white',
                         )}
@@ -122,7 +122,7 @@ export function Navigation() {
                                     href={item.slug}
                                     className={classNames(
                                       item.slug === `/${segment}`
-                                        ? 'bg-gray-800 text-teal-500'
+                                        ? 'bg-gray-800 text-primary'
                                         : 'text-gray-300 hover:bg-gray-700',
                                       'block w-full rounded-md px-3 py-2 text-center align-middle text-sm font-medium leading-5 transition hover:text-white',
                                     )}
@@ -199,9 +199,9 @@ export function Navigation() {
                       href={navigationAuth.slug}
                       className={classNames(
                         navigationAuth.slug === segment
-                          ? 'bg-teal-500 text-white hover:border-teal-900 hover:bg-teal-900'
-                          : 'text-gray-300 hover:bg-teal-500',
-                        'hidden rounded-md border border-teal-500 px-3 py-2 align-middle text-sm font-medium leading-5 transition hover:text-white md:block',
+                          ? 'bg-primary text-white hover:border-primary-foreground hover:bg-primary-foreground'
+                          : 'text-gray-300 hover:bg-primary',
+                        'hidden rounded-md border border-primary px-3 py-2 align-middle text-sm font-medium leading-5 transition hover:text-white md:block',
                       )}
                     >
                       {navigationAuth.name}

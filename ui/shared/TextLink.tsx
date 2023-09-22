@@ -16,7 +16,7 @@ export default function TextLink({
       replace
       href={link}
       target={target}
-      className="cursor-pointer text-teal-500 transition-all ease-in hover:text-teal-700"
+      className="cursor-pointer text-primary transition-all ease-in hover:text-teal-700"
     >
       {content}
     </Link>

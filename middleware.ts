@@ -16,8 +16,8 @@ export async function middleware(req: NextRequest) {
 
   if (
     session &&
-    (urlRequestIncludes(req, 'registration') ||
-      urlRequestIncludes(req, 'login'))
+    (urlRequestIncludes(req, 'inregistrare') ||
+      urlRequestIncludes(req, 'autentificare'))
   ) {
     return NextResponse.redirect(url);
   }

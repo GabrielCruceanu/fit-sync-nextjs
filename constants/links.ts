@@ -61,7 +61,7 @@ export const PagesLinks = {
     link: '/blog',
     name: 'Blog',
   },
-  auth: {
+  login: {
     link: '/autentificare',
     name: 'Autentificare',
   },
@@ -71,7 +71,7 @@ export const PagesLinks = {
   },
   forgotPassword: {
     link: '/resetare-parola',
-    name: 'Parola uitata',
+    name: 'Resetare parola',
   },
   physicalDetails: {
     link: '/adaugare-masuratori',

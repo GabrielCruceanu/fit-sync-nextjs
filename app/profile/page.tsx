@@ -17,7 +17,7 @@ export default async function ProfilePage() {
   let loading = false;
 
   if (!session) {
-    return redirect(PagesLinks.auth.link);
+    return redirect(PagesLinks.login.link);
   }
   loading = true;
   let clientProfile;

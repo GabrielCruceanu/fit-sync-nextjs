@@ -290,7 +290,7 @@ export default function SignUp() {
                     >
                       <Link
                         href={TermsLinks.termeniSiConditii.link}
-                        className="text-teal-500"
+                        className="text-primary"
                       >
                         {TermsLinks.termeniSiConditii.name}
                       </Link>{' '}
@@ -319,7 +319,7 @@ export default function SignUp() {
                     <label htmlFor="remember" className="text-gray-300">
                       <Link
                         href={TermsLinks.gdpr.link}
-                        className="text-teal-500"
+                        className="text-primary"
                       >
                         {TermsLinks.gdpr.name}
                       </Link>{' '}
@@ -348,7 +348,7 @@ export default function SignUp() {
                     <label htmlFor="remember" className="text-gray-300">
                       <Link
                         href={TermsLinks.cookies.link}
-                        className="text-teal-500"
+                        className="text-primary"
                       >
                         {TermsLinks.cookies.name}
                       </Link>{' '}
@@ -374,7 +374,7 @@ export default function SignUp() {
               </button>
               <div className="flex justify-between text-sm font-light ">
                 <Link
-                  href={PagesLinks.auth.link}
+                  href={PagesLinks.login.link}
                   className="font-medium text-primary-500 hover:underline"
                 >
                   Ai deja un cont?
