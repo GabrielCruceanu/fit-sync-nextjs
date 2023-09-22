@@ -6,7 +6,7 @@ export const LoginSchema = z.object({
     .string()
     .min(8, { message: 'Parola trebuie sa contină minimum 8 caractere.' }),
 });
-export const RecoverySchema = z.object({
+export const ForgotPasswordSchema = z.object({
   email: z.string().email({ message: 'Adresa de e-mail nu este validă.' }),
 });
 export const RegisterSchema = z.object({

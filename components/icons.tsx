@@ -50,6 +50,7 @@ export const Icons = {
   sun: SunMedium,
   moon: Moon,
   laptop: Laptop,
+
   facebook: ({ ...props }: LucideProps) => (
     <svg
       aria-hidden="true"

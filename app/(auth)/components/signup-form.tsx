@@ -60,9 +60,8 @@ export function UserSignUpForm({ className, ...props }: UserAuthFormProps) {
 
       if (!error && !user) {
         return toast({
-          title: 'Verifica e-mailul',
+          title: 'Inregistrare cu success',
           description: 'Verifica-ti e-mailul pentru linkul de autentificare!',
-          variant: 'destructive',
         });
       }
 
@@ -223,24 +222,24 @@ export function UserSignUpForm({ className, ...props }: UserAuthFormProps) {
               loginWithProvider(AuthProvider.Google);
             }}
           >
-            {isLoading ? (
+            {isLoading && (
               <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
-            ) : (
-              <Icons.google className="mr-2 h-4 w-4" />
-            )}{' '}
-            Google
+            )}
+            Conecteaza-te prin Google
           </Button>
           <Button
             variant="outline"
             type="button"
             disabled={isLoading || isGoogleLoading || isFacebookLoading}
+            onClick={() => {
+              loginWithProvider(AuthProvider.Facebook);
+            }}
+            className="bg-blue-500 text-white hover:bg-blue-700 hover:text-white"
           >
-            {isLoading ? (
+            {isLoading && (
               <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
-            ) : (
-              <Icons.facebook className="mr-2 h-4 w-4" />
-            )}{' '}
-            Facebook
+            )}
+            Conecteaza-te prin Facebook
           </Button>
         </div>
       </form>
