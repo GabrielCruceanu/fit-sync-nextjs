@@ -81,4 +81,8 @@ export const PagesLinks = {
     link: '/profil',
     name: 'Profil',
   },
+  account: {
+    link: '/cont',
+    name: 'Cont',
+  },
 };

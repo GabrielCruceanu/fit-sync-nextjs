@@ -7,7 +7,7 @@ import { PagesLinks } from '#/constants/links';
 
 export async function middleware(req: NextRequest) {
   const url = req.nextUrl.clone();
-  url.pathname = PagesLinks.profile.link;
+  url.pathname = PagesLinks.account.link;
   const res = NextResponse.next();
   const supabase = createMiddlewareClient<Database>({ req, res });
   const {

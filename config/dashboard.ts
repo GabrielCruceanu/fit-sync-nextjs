@@ -1,3 +1,5 @@
+import { DashboardConfig } from '#/types/Dashboard';
+
 export const dashboardConfig: DashboardConfig = {
   mainNav: [
     {

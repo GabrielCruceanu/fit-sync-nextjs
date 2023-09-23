@@ -9,6 +9,10 @@ export const siteConfig = {
       title: 'Acasa',
       href: '/',
     },
+    {
+      title: 'Panou',
+      href: '/panou',
+    },
   ],
   url: 'https://kaapo.fit',
   links: {
