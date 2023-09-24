@@ -3,7 +3,7 @@ import { Icons } from '#/components/icons';
 import { AvatarProps } from '@radix-ui/react-avatar';
 
 interface UserAvatarProps extends AvatarProps {
-  user: Pick<User, 'image' | 'name'>;
+  user: Pick<any, 'image' | 'name'>;
 }
 
 export function UserAvatar({ user, ...props }: UserAvatarProps) {
