@@ -21,7 +21,7 @@ export default function TrainerHeader() {
               clienții online.
             </p>
 
-            <Link replace href={PagesLinks.auth.link}>
+            <Link replace href={PagesLinks.login.link}>
               <Button type={ButtonType.primary} description="ÎNCEPE ACUM" />
             </Link>
           </div>

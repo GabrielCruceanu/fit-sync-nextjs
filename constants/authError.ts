@@ -1,5 +1,7 @@
 export enum AuthError {
   InvalidLoginCredentials = 'Invalid login credentials',
+  NewPasswordNeedBeDifferent = 'New password should be different from the old password.',
+  EmailUsedToMuch = 'Email rate limit exceeded',
   EmailNotConfirmed = 'Adresa de email nu a fost confirmata',
   UserAlreadyRegistered = 'Userul exista deja',
   EmailAlreadyRegistered = 'Adresa de email exista deja',

@@ -12,7 +12,7 @@ export type InputProps = {
   handleBlur: ChangeEventHandler<HTMLInputElement>;
 };
 
-export default function Input({
+export default function InputGroup({
   label,
   name,
   value,
@@ -23,11 +23,11 @@ export default function Input({
   handleBlur,
 }: InputProps) {
   return (
-    <div className="w-full">
+    <div className="w-full mb-2">
       {label ? (
         <label
           htmlFor={name}
-          className="mb-2 block text-left text-sm font-medium text-gray-300"
+          className="mb-1 text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
         >
           {label}
         </label>
@@ -42,7 +42,7 @@ export default function Input({
         onChange={handleChange}
         onBlur={handleBlur}
         className={clsx(
-          'block w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-white placeholder-gray-400 focus:border-primary-600 focus:outline-none focus:ring-primary-600 sm:text-sm',
+          'flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50',
           {
             'border-red-600': error,
           },

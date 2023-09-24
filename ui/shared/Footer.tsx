@@ -63,7 +63,7 @@ export function Footer() {
               replace
               href={TermsLinks.termeniSiConditii.link}
               target="_blank"
-              className="text-teal-500 hover:text-teal-700"
+              className="text-primary hover:text-primary-foreground"
             >
               {TermsLinks.termeniSiConditii.name}
             </Link>
@@ -71,7 +71,7 @@ export function Footer() {
               replace
               href={TermsLinks.gdpr.link}
               target="_blank"
-              className="text-teal-500 hover:text-teal-700 md:px-3"
+              className="text-primary hover:text-primary-foreground md:px-3"
             >
               {TermsLinks.gdpr.name}
             </Link>

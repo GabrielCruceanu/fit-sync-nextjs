@@ -13,6 +13,7 @@ export default function ForgotPassword({
 }) {
   const [email, setEmail] = useState('');
   const [emailError, setEmailError] = useState('');
+  const [forgotError, setForgotError] = useState('');
   const [forgotPasswordMessage, setForgotPasswordMessage] = useState('');
 
   async function forgotPassword(email: string) {
@@ -28,6 +29,14 @@ export default function ForgotPassword({
     let { error } = await supabase.auth.resetPasswordForEmail(email);
     if (error) {
       console.log('Error: ', error.message);
+      if (error?.message === AuthError.EmailUsedToMuch) {
+        setForgotError(
+          'Ai facut prea multe cerereri de resetare. Incearca mai tarziu.',
+        );
+        return;
+      } else {
+        setForgotError(error?.message);
+      }
     } else {
       setForgotPasswordMessage(
         'E-mailul de recuperare a parolei a fost trimis.',
@@ -56,15 +65,22 @@ export default function ForgotPassword({
                     setEmail(event.target.value);
                     setEmailError('');
                     setForgotPasswordMessage('');
+                    setForgotError('');
                   }}
                   handleBlur={() => {
                     setEmailError('');
                     setForgotPasswordMessage('');
+                    setForgotError('');
                     handleInputRequired(email)
                       ? setEmailError(AuthError.InputRequired)
                       : null;
                   }}
                 />
+                {forgotError ? (
+                  <p className="mt-2 block text-xs font-medium text-red-500">
+                    {forgotError}
+                  </p>
+                ) : null}
                 {forgotPasswordMessage ? (
                   <p className="mt-2 block text-xs font-medium text-primary-500">
                     {forgotPasswordMessage}

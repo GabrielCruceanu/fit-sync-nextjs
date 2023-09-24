@@ -31,7 +31,7 @@ export default function TrainerFeatures() {
             astfel încât să ai mai mult timp să lucrezi cu clienții și să le
             urmărești progresul.
           </p>
-          <Link replace href={PagesLinks.auth.link}>
+          <Link replace href={PagesLinks.login.link}>
             <Button type={ButtonType.primary} description="INCEPEȚI ACUM" />
           </Link>
         </div>
