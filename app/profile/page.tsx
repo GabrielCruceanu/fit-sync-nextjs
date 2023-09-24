@@ -7,6 +7,7 @@ import { getNutritionistProfileById } from '#/utils/nutritionist-hooks';
 import { getGymProfileById } from '#/utils/gym-hooks';
 import { createServerClient } from '#/utils/supabase-server';
 import { redirect } from 'next/navigation';
+import { PagesLinks } from '#/constants/links';
 
 export default async function ProfilePage() {
   const supabase = createServerClient();
@@ -16,7 +17,7 @@ export default async function ProfilePage() {
   let loading = false;
 
   if (!session) {
-    return redirect('/login');
+    return redirect(PagesLinks.login.link);
   }
   loading = true;
   let clientProfile;
