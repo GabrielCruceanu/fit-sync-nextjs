@@ -2,7 +2,7 @@
 import * as React from 'react';
 import Link from 'next/link';
 
-import { SidebarNavItem } from '#/types/nav';
+import { SidebarNavItem } from '#/types/Nav';
 import { cn } from '#/lib/utils';
 import { usePathname } from 'next/navigation';
 import { Icons } from '#/components/icons';

@@ -7,7 +7,7 @@ import ProList from '#/ui/shared/ProList';
 import { flushSync } from 'react-dom';
 import { executeScroll } from '#/helpers/scroll-to';
 import { handleInputRequired } from '#/utils/helpers';
-import { AuthError } from '#/constants/authError';
+import { InputError } from '#/types/Error';
 import { TypedTrainerDetails } from '#/types';
 import clsx from 'clsx';
 import { removeDuplicate } from '#/helpers/remove-duplicate';
@@ -97,7 +97,7 @@ export default function HeaderSearchATrainer({
                   setCurrentState('');
                   setCurrentCity('');
                   handleInputRequired(trainerType)
-                    ? setTrainerTypeError(AuthError.InputRequired)
+                    ? setTrainerTypeError(InputError.InputRequired)
                     : null;
                 }}
                 error={trainerTypeError}
@@ -122,7 +122,7 @@ export default function HeaderSearchATrainer({
                   setShowCurrentTrainers(false);
                   setCurrentCity('');
                   handleInputRequired(currentState)
-                    ? setCurrentStateError(AuthError.InputRequired)
+                    ? setCurrentStateError(InputError.InputRequired)
                     : null;
                 }}
                 error={currentStateError}
@@ -145,7 +145,7 @@ export default function HeaderSearchATrainer({
                   setCurrentTrainers([]);
                   setShowCurrentTrainers(false);
                   handleInputRequired(currentCity)
-                    ? setCurrentCityError(AuthError.InputRequired)
+                    ? setCurrentCityError(InputError.InputRequired)
                     : null;
                 }}
                 error={currentCityError}

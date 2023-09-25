@@ -7,7 +7,7 @@ import ProList from '#/ui/shared/ProList';
 import { flushSync } from 'react-dom';
 import { executeScroll } from '#/helpers/scroll-to';
 import { handleInputRequired } from '#/utils/helpers';
-import { AuthError } from '#/constants/authError';
+import { InputError } from '#/types/Error';
 import { useSupabase } from '#/ui/auth/SupabaseProvider';
 import { TypedNutritionistDetails } from '#/types';
 import clsx from 'clsx';
@@ -100,7 +100,7 @@ export default function HeaderSearchANutritionist({
                   setCurrentCity('');
                   setNutritionistTypeError('');
                   handleInputRequired(nutritionistType)
-                    ? setNutritionistType(AuthError.InputRequired)
+                    ? setNutritionistType(InputError.InputRequired)
                     : null;
                 }}
                 error={nutritionistTypeError}
@@ -125,7 +125,7 @@ export default function HeaderSearchANutritionist({
                   setShowCurrentNutritionists(false);
                   setCurrentCity('');
                   handleInputRequired(currentState)
-                    ? setCurrentStateError(AuthError.InputRequired)
+                    ? setCurrentStateError(InputError.InputRequired)
                     : null;
                 }}
                 error={currentStateError}
@@ -148,7 +148,7 @@ export default function HeaderSearchANutritionist({
                   setCurrentNutritionists([]);
                   setShowCurrentNutritionists(false);
                   handleInputRequired(currentCity)
-                    ? setCurrentCityError(AuthError.InputRequired)
+                    ? setCurrentCityError(InputError.InputRequired)
                     : null;
                 }}
                 error={currentCityError}

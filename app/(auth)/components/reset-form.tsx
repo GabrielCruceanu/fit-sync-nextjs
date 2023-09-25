@@ -1,21 +1,25 @@
 'use client';
 
 import * as React from 'react';
+import { useForm } from 'react-hook-form';
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { ForgotPasswordSchema, LoginSchema } from '#/lib/validations/auth';
-import { useForm } from 'react-hook-form';
-import { useSearchParams } from 'next/navigation';
-import { toast } from '#/components/ui/use-toast';
-import { AuthError } from '#/constants/authError';
-import { PagesLinks } from '#/constants/links';
-import { AuthProvider } from '#/types/Auth';
+
+import { ForgotPasswordSchema } from '#/lib/validations/auth';
 import { cn } from '#/lib/utils';
+import {
+  AuthErrorMessage,
+  checkErrorMessage,
+} from '#/lib/validations/error-check';
+
+import { Database } from '#/types/supabase';
+
+import { toast } from '#/components/ui/use-toast';
 import { Label } from '#/components/ui/label';
 import { Input } from '#/components/ui/input';
 import { Button } from '#/components/ui/button';
 import { Icons } from '#/components/icons';
-import { useSupabase } from '#/ui/auth/SupabaseProvider';
 
 interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
@@ -25,7 +29,7 @@ export function UserResetPasswordForm({
   className,
   ...props
 }: UserAuthFormProps) {
-  const { supabase, session } = useSupabase();
+  const supabase = createClientComponentClient<Database>();
   const {
     register,
     handleSubmit,
@@ -44,35 +48,21 @@ export function UserResetPasswordForm({
 
       if (!error) {
         return toast({
-          title: 'Verifica e-mailul',
-          description: 'E-mailul de recuperare a parolei a fost trimis.',
+          title: AuthErrorMessage.ResetPassword.title,
+          description: AuthErrorMessage.ResetPassword.description,
+          variant: AuthErrorMessage.ResetPassword.variant,
         });
       }
 
-      if (error?.message === AuthError.EmailUsedToMuch) {
-        return toast({
-          title: 'Incercari multiple',
-          description:
-            'Ai facut prea multe cerereri de resetare. Incearca mai tarziu.',
-          variant: 'destructive',
-        });
-      }
-
-      if (error?.message === AuthError.EmailNotConfirmed) {
-        return toast({
-          title: 'Adresa de email neconfirmata',
-          description: 'Adresa de email nu a fost confirmata, verifica in spam',
-          variant: 'destructive',
-        });
+      if (error) {
+        const errorToast = checkErrorMessage(error);
+        return toast(errorToast);
       }
     } catch (error: any) {
       console.log('Error thrown:', error.message);
 
-      return toast({
-        title: error.title,
-        description: error.message,
-        variant: 'destructive',
-      });
+      const errorToast = checkErrorMessage(error);
+      return toast(errorToast);
     }
   }
 
