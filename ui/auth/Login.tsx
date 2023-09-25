@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { PagesLinks } from '#/constants/links';
 import { handleInputRequired, validateEmail } from '#/utils/helpers';
-import { AuthError } from '#/constants/authError';
+import { AuthError, InputError } from '#/types/Error';
 import { TypedSupabaseClient } from '#/types';
 import Input from '#/ui/shared/form/Input';
 import { Button } from 'flowbite-react';
@@ -196,7 +196,7 @@ export default function Login({ supabase }: { supabase: TypedSupabaseClient }) {
                   setEmailError('');
                   setLoginError('');
                   handleInputRequired(email)
-                    ? setEmailError(AuthError.InputRequired)
+                    ? setEmailError(InputError.InputRequired)
                     : null;
                 }}
               />
@@ -216,7 +216,7 @@ export default function Login({ supabase }: { supabase: TypedSupabaseClient }) {
                   setPasswordError('');
                   setLoginError('');
                   handleInputRequired(password)
-                    ? setPasswordError(AuthError.InputRequired)
+                    ? setPasswordError(InputError.InputRequired)
                     : null;
                 }}
               />

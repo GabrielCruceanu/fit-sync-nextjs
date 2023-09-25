@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
+
 import { PagesLinks, TermsLinks } from '#/constants/links';
+
 import { UserSignUpForm } from '#/app/(auth)/components/signup-form';
 
 export const metadata: Metadata = {

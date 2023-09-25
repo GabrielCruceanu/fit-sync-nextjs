@@ -1,7 +1,8 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { UserLoginForm } from '#/app/(auth)/components/login-form';
+
 import { PagesLinks } from '#/constants/links';
+
 import { UserResetPasswordForm } from '#/app/(auth)/components/reset-form';
 
 export const metadata: Metadata = {

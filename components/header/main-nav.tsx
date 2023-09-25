@@ -8,7 +8,7 @@ import { siteConfig } from '#/config/site';
 import { cn } from '#/lib/utils';
 import { Icons } from '#/components/icons';
 import { MobileNav } from '#/components/header/mobile-nav';
-import { MainNavItem } from '#/types/nav';
+import { MainNavItem } from '#/types/Nav';
 
 interface MainNavProps {
   items?: MainNavItem[];

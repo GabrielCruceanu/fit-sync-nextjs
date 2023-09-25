@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { PagesLinks, TermsLinks } from '#/constants/links';
 import { handleInputRequired, validateEmail } from '#/utils/helpers';
-import { AuthError } from '#/constants/authError';
+import { InputError } from '#/types/Error';
 import Input from '#/ui/shared/form/Input';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import { Database } from '#/types/supabase';
@@ -61,8 +61,8 @@ export default function SignUp() {
         alert('Verifică-ți e-mailul pentru linkul de autentificare');
       if (error) console.log('Error returned: ', error.message);
       if (
-        error?.message === AuthError.UserAlreadyRegistered ||
-        error?.message === AuthError.EmailAlreadyRegistered
+        error?.message === InputError.UserAlreadyRegistered ||
+        error?.message === InputError.EmailAlreadyRegistered
       ) {
         setSignUpError('Adresa de email este deja inregistrata.');
         return;
@@ -213,7 +213,7 @@ export default function SignUp() {
                   setEmailError('');
                   setSignUpError('');
                   handleInputRequired(email)
-                    ? setEmailError(AuthError.InputRequired)
+                    ? setEmailError(InputError.InputRequired)
                     : null;
                 }}
               />
@@ -233,7 +233,7 @@ export default function SignUp() {
                   setPasswordError('');
                   setSignUpError('');
                   handleInputRequired(password)
-                    ? setPasswordError(AuthError.InputRequired)
+                    ? setPasswordError(InputError.InputRequired)
                     : null;
                 }}
               />
@@ -253,7 +253,7 @@ export default function SignUp() {
                   setConfirmPasswordError('');
                   setSignUpError('');
                   handleInputRequired(confirmPassword)
-                    ? setConfirmPasswordError(AuthError.InputRequired)
+                    ? setConfirmPasswordError(InputError.InputRequired)
                     : null;
                 }}
               />
