@@ -91,7 +91,6 @@ export default async function RootLayout({
           <SupabaseListener serverAccessToken={accessToken} />
           <MyUserContextProvider>
             <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-              <Navigation />
               {children}
               <Analytics />
               <Toaster />

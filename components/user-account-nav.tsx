@@ -11,6 +11,7 @@ import {
 } from '#/components/ui/dropdown-menu';
 import { UserAvatar } from '#/components/user-avatar';
 import { useSupabase } from '#/ui/auth/SupabaseProvider';
+import { PagesLinks } from '#/constants/links';
 
 interface UserAccountNavProps extends React.HTMLAttributes<HTMLDivElement> {
   user: Pick<any, 'name' | 'image' | 'email'>;
@@ -42,7 +43,7 @@ export function UserAccountNav({ user }: UserAccountNavProps) {
         </div>
         <DropdownMenuSeparator />
         <DropdownMenuItem asChild>
-          <Link href="/dashboard">Dashboard</Link>
+          <Link href={PagesLinks.account.link}>{PagesLinks.account.name}</Link>
         </DropdownMenuItem>
         <DropdownMenuItem asChild>
           <Link href="/dashboard/billing">Billing</Link>

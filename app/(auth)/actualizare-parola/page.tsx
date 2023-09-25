@@ -44,13 +44,13 @@ export default function LoginPage() {
             <p className="flex justify-between  text-sm text-muted-foreground">
               <Link
                 href={PagesLinks.signUp.link}
-                className="underline underline-offset-4 hover:text-primary"
+                className="underline underline-offset-4 hover:text-primary transition-all"
               >
                 {PagesLinks.signUp.name}
               </Link>
               <Link
                 href={PagesLinks.login.link}
-                className="underline underline-offset-4 hover:text-primary"
+                className="underline underline-offset-4 hover:text-primary transition-all"
               >
                 {PagesLinks.login.name}
               </Link>

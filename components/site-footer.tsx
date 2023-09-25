@@ -4,55 +4,104 @@ import { siteConfig } from '#/config/site';
 import { cn } from '#/lib/utils';
 import { Icons } from '#/components/icons';
 import { ThemeToggle } from '#/components/theme/theme-toggle';
+import Link from 'next/link';
+import { SocialLinks, TermsLinks } from '#/constants/links';
+import { FacebookIcon } from '#/ui/shared/icons/FacebookIcon';
+import InstagramIcon from '#/ui/shared/InstagramIcon';
+import TwitterIcon from '#/ui/shared/icons/TwitterIcon';
+import EnvelopeIcon from '#/ui/shared/icons/EnvelopeIcon';
 
 export function SiteFooter({ className }: React.HTMLAttributes<HTMLElement>) {
+  const date = new Date();
   return (
-    <footer className={cn(className)}>
-      <div className="container flex flex-col items-center justify-between gap-4 py-10 md:h-24 md:flex-row md:py-0">
-        <div className="flex flex-col items-center gap-4 px-8 md:flex-row md:gap-2 md:px-0">
-          <Icons.logo />
-          <p className="text-center text-sm leading-loose md:text-left">
-            Built by{' '}
-            <a
-              href={siteConfig.links.twitter}
-              target="_blank"
-              rel="noreferrer"
-              className="font-medium underline underline-offset-4"
-            >
-              shadcn
-            </a>
-            . Hosted on{' '}
-            <a
-              href="https://vercel.com"
-              target="_blank"
-              rel="noreferrer"
-              className="font-medium underline underline-offset-4"
-            >
-              Vercel
-            </a>
-            . Illustrations by{' '}
-            <a
-              href="https://popsy.co"
-              target="_blank"
-              rel="noreferrer"
-              className="font-medium underline underline-offset-4"
-            >
-              Popsy
-            </a>
-            . The source code is available on{' '}
-            <a
-              href={siteConfig.links.facebook}
-              target="_blank"
-              rel="noreferrer"
-              className="font-medium underline underline-offset-4"
-            >
-              GitHub
-            </a>
-            .
-          </p>
+    <>
+      <footer
+        className={cn(
+          className,
+          'mt-1 w-full border-t border-primary px-4 py-11 antialiased',
+        )}
+      >
+        <div className="container mx-auto flex flex-col lg:flex-row">
+          <div className="mb-5 w-full lg:mb-0">
+            <h3 className="mb-2 text-2xl font-semibold">Despre noi</h3>
+            <p className="text-sm">
+              TrainTap este o platformă care dorește să îmbunătățească
+              experiența clienților cu antrenorii și să facă munca antrenorilor
+              mai ușoară oferindu-le mai multe unelte prin care își pot gestiona
+              clienții mai ușor.
+            </p>
+          </div>
+          <div className="mb-5 w-full lg:mb-0">
+            <h3 className="mb-2 text-2xl font-semibold lg:text-center">
+              Contact
+            </h3>
+            <div className="flex lg:justify-center">
+              <div className="border-1 d-flex w-fit border-r px-3">
+                <div className="h-8 space-x-2.5 fill-muted hover:fill-primary transition-all">
+                  <Link href={SocialLinks.facebook.link} target="_blank">
+                    <FacebookIcon />
+                  </Link>
+                </div>
+              </div>
+              <div className="border-1 d-flex w-fit border-r px-3">
+                <div className="h-8 space-x-2.5 fill-muted hover:fill-primary transition-all">
+                  <Link href={SocialLinks.instagram.link} target="_blank">
+                    <InstagramIcon />
+                  </Link>
+                </div>
+              </div>
+              <div className="border-1 d-flex w-fit border-r px-3">
+                <div className="h-8 space-x-2.5 fill-muted hover:fill-primary transition-all">
+                  <Link href={SocialLinks.twitter.link} target="_blank">
+                    <TwitterIcon />
+                  </Link>
+                </div>
+              </div>
+              <div className="px-3">
+                <div className="h-8 space-x-2.5 fill-muted hover:fill-primary transition-all">
+                  <Link href={SocialLinks.mail.link} target="_blank">
+                    <EnvelopeIcon />
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="mb-5 w-full lg:mb-0">
+            <h3 className="mb-2 text-2xl font-semibold  lg:text-right">
+              Altele
+            </h3>
+            <div className="flex flex-col text-sm md:flex-row lg:justify-end">
+              <Link
+                replace
+                href={TermsLinks.termeniSiConditii.link}
+                className="underline underline-offset-4 hover:text-primary transition-all"
+              >
+                {TermsLinks.termeniSiConditii.name}
+              </Link>
+              <Link
+                replace
+                href={TermsLinks.gdpr.link}
+                className="underline underline-offset-4 hover:text-primary transition-all md:px-3"
+              >
+                {TermsLinks.gdpr.name}
+              </Link>
+              <Link
+                replace
+                href={TermsLinks.cookies.link}
+                className="underline underline-offset-4 hover:text-primary transition-all"
+              >
+                {TermsLinks.cookies.name}
+              </Link>
+            </div>
+
+            <p className="mt-2 text-sm lg:text-right">
+              © {date.getFullYear()} TrainTap. <br /> Toate drepturile
+              rezervate.
+            </p>
+          </div>
         </div>
-        <ThemeToggle />
-      </div>
-    </footer>
+      </footer>
+    </>
   );
 }

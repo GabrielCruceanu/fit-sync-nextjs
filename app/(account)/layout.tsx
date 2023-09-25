@@ -7,6 +7,8 @@ import { SiteFooter } from '#/components/site-footer';
 
 import { dashboardConfig } from '#/config/dashboard';
 import { createServerClient } from '#/utils/supabase-server';
+import { ThemeToggle } from '#/components/theme/theme-toggle';
+import * as React from 'react';
 
 interface DashboardLayoutProps {
   children?: React.ReactNode;
@@ -31,16 +33,22 @@ export default async function DashboardLayout({
       <header className="sticky top-0 z-40 border-b bg-background">
         <div className="container flex h-16 items-center justify-between py-4">
           <MainNav items={dashboardConfig.mainNav} />
-          <UserAccountNav
-            user={{
-              // name: user.name,
-              // image: user.image,
-              // email: user.email,
-              name: 'nume',
-              image: '',
-              email: user.email,
-            }}
-          />
+
+          <div className="flex items-center">
+            <div className="mr-3">
+              <ThemeToggle />
+            </div>
+            <UserAccountNav
+              user={{
+                // name: user.name,
+                // image: user.image,
+                // email: user.email,
+                name: 'nume',
+                image: '',
+                email: user.email,
+              }}
+            />
+          </div>
         </div>
       </header>
       <div className="container grid flex-1 gap-12 md:grid-cols-[200px_1fr]">

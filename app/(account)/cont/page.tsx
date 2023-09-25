@@ -3,7 +3,7 @@ import { DashboardShell } from '#/components/dashboard/shell';
 import { DashboardHeader } from '#/components/dashboard/header';
 
 export const metadata = {
-  title: 'Dashboard',
+  title: 'Cont',
 };
 
 export default async function DashboardPage() {

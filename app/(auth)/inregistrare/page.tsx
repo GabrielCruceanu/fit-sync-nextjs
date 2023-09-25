@@ -45,14 +45,14 @@ export default function SignUpPage() {
               Prin crearea contului esti de acord cu{' '}
               <Link
                 href={TermsLinks.termeniSiConditii.link}
-                className="underline underline-offset-4 hover:text-primary"
+                className="underline underline-offset-4 hover:text-primary transition-all"
               >
                 {TermsLinks.termeniSiConditii.name}
               </Link>{' '}
               si{' '}
               <Link
                 href={TermsLinks.gdpr.link}
-                className="underline underline-offset-4 hover:text-primary"
+                className="underline underline-offset-4 hover:text-primary transition-all"
               >
                 {TermsLinks.gdpr.name}
               </Link>{' '}
@@ -62,13 +62,13 @@ export default function SignUpPage() {
             <p className="flex justify-between  text-sm text-muted-foreground">
               <Link
                 href={PagesLinks.login.link}
-                className="underline underline-offset-4 hover:text-primary"
+                className="underline underline-offset-4 hover:text-primary transition-all"
               >
                 {PagesLinks.login.name}
               </Link>
               <Link
                 href={PagesLinks.forgotPassword.link}
-                className="underline underline-offset-4 hover:text-primary"
+                className="underline underline-offset-4 hover:text-primary transition-all"
               >
                 {PagesLinks.forgotPassword.name}
               </Link>
