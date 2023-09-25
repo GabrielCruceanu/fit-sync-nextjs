@@ -1,28 +1,36 @@
 'use client';
-
 import * as React from 'react';
+import { useForm } from 'react-hook-form';
+import { useRouter } from 'next/navigation';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
+
 import { LoginSchema } from '#/lib/validations/auth';
-import { useForm } from 'react-hook-form';
-import { useSearchParams } from 'next/navigation';
-import { toast } from '#/components/ui/use-toast';
-import { AuthError } from '#/constants/authError';
-import { PagesLinks } from '#/constants/links';
-import { AuthProvider } from '#/types/Auth';
 import { cn } from '#/lib/utils';
+
+import { Database } from '#/types/supabase';
+import { AuthProvider } from '#/types/Auth';
+
+import { toast } from '#/components/ui/use-toast';
 import { Label } from '#/components/ui/label';
 import { Input } from '#/components/ui/input';
 import { Button } from '#/components/ui/button';
 import { Icons } from '#/components/icons';
-import { useSupabase } from '#/ui/auth/SupabaseProvider';
+import { PagesLinks } from '#/constants/links';
+import {
+  AuthErrorMessage,
+  checkErrorMessage,
+} from '#/lib/validations/error-check';
 
 interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 type FormData = z.infer<typeof LoginSchema>;
 
 export function UserLoginForm({ className, ...props }: UserAuthFormProps) {
-  const { supabase, session } = useSupabase();
+  const supabase = createClientComponentClient<Database>();
+  const router = useRouter();
+
   const {
     register,
     handleSubmit,
@@ -33,10 +41,10 @@ export function UserLoginForm({ className, ...props }: UserAuthFormProps) {
   const [isGoogleLoading, setIsGoogleLoading] = React.useState<boolean>(false);
   const [isFacebookLoading, setIsFacebookLoading] =
     React.useState<boolean>(false);
-  const searchParams = useSearchParams();
 
   async function onSubmit(data: FormData) {
     setIsLoading(true);
+
     try {
       const {
         data: { user },
@@ -50,34 +58,23 @@ export function UserLoginForm({ className, ...props }: UserAuthFormProps) {
 
       if (!error && !user) {
         return toast({
-          title: 'Verifica e-mailul',
-          description: 'Verifica-ti e-mailul pentru linkul de autentificare!',
+          title: AuthErrorMessage.CheckTheEmail.title,
+          description: AuthErrorMessage.CheckTheEmail.description,
+          variant: AuthErrorMessage.CheckTheEmail.variant,
         });
       }
 
-      if (error?.message === AuthError.InvalidLoginCredentials) {
-        return toast({
-          title: 'Credentiale invalide',
-          description: 'Adresa de email sau parola nu este valida',
-          variant: 'destructive',
-        });
+      if (error) {
+        const errorToast = checkErrorMessage(error);
+        return toast(errorToast);
       }
 
-      if (error?.message === AuthError.EmailNotConfirmed) {
-        return toast({
-          title: 'Adresa de email neconfirmata',
-          description: 'Adresa de email nu a fost confirmata, verifica in spam',
-          variant: 'destructive',
-        });
-      }
+      router.replace(PagesLinks.account.link);
     } catch (error: any) {
       console.log('Error thrown:', error.message);
 
-      return toast({
-        title: error.title,
-        description: error.message,
-        variant: 'destructive',
-      });
+      const errorToast = checkErrorMessage(error);
+      return toast(errorToast);
     }
   }
 
@@ -95,7 +92,6 @@ export function UserLoginForm({ className, ...props }: UserAuthFormProps) {
             access_type: 'offline',
             prompt: 'consent',
           },
-          redirectTo: PagesLinks.profile.link,
         },
       });
       if (error) {
@@ -105,6 +101,7 @@ export function UserLoginForm({ className, ...props }: UserAuthFormProps) {
           variant: 'destructive',
         });
       }
+      router.refresh();
     } catch (error: any) {
       console.log('Error thrown:', error.message);
 
@@ -189,7 +186,6 @@ export function UserLoginForm({ className, ...props }: UserAuthFormProps) {
             onClick={() => {
               loginWithProvider(AuthProvider.Google);
             }}
-            // className="bg-orange-500 text-white hover:bg-orange-700 hover:text-white"
           >
             {isLoading && (
               <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />

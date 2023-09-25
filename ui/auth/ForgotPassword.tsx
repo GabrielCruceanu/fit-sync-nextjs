@@ -1,10 +1,12 @@
 'use client';
 import { useState } from 'react';
+
 import { handleInputRequired, validateEmail } from '#/utils/helpers';
+
 import { TypedSupabaseClient } from '#/types';
-import clsx from 'clsx';
+import { AuthError, InputError } from '#/types/Error';
+
 import Input from '#/ui/shared/form/Input';
-import { AuthError } from '#/constants/authError';
 
 export default function ForgotPassword({
   supabase,
@@ -72,7 +74,7 @@ export default function ForgotPassword({
                     setForgotPasswordMessage('');
                     setForgotError('');
                     handleInputRequired(email)
-                      ? setEmailError(AuthError.InputRequired)
+                      ? setEmailError(InputError.InputRequired)
                       : null;
                   }}
                 />

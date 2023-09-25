@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { handleInputRequired, validateEmail } from '#/utils/helpers';
 import { TypedSupabaseClient } from '#/types';
 import Input from '#/ui/shared/form/Input';
-import { AuthError } from '#/constants/authError';
+import { AuthError, InputError } from '#/types/Error';
 import { PagesLinks } from '#/constants/links';
 import { router } from 'next/client';
 
@@ -107,7 +107,7 @@ export default function UpdatePassword({
                   setEmailError('');
                   setUpdatePasswordMessage('');
                   handleInputRequired(email)
-                    ? setEmailError(AuthError.InputRequired)
+                    ? setEmailError(InputError.InputRequired)
                     : null;
                 }}
               />{' '}
@@ -127,7 +127,7 @@ export default function UpdatePassword({
                   setPasswordError('');
                   setUpdateError('');
                   handleInputRequired(password)
-                    ? setPasswordError(AuthError.InputRequired)
+                    ? setPasswordError(InputError.InputRequired)
                     : null;
                 }}
               />

@@ -1,28 +1,37 @@
 'use client';
 
 import * as React from 'react';
+import { useForm } from 'react-hook-form';
+import { useRouter } from 'next/navigation';
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { RegisterSchema } from '#/lib/validations/auth';
-import { useForm } from 'react-hook-form';
-import { useSearchParams } from 'next/navigation';
-import { toast } from '#/components/ui/use-toast';
-import { AuthError } from '#/constants/authError';
-import { PagesLinks } from '#/constants/links';
+
 import { AuthProvider } from '#/types/Auth';
+import { Database } from '#/types/supabase';
+
+import { RegisterSchema } from '#/lib/validations/auth';
 import { cn } from '#/lib/utils';
+import {
+  AuthErrorMessage,
+  checkErrorMessage,
+} from '#/lib/validations/error-check';
+import { PagesLinks } from '#/constants/links';
+
+import { toast } from '#/components/ui/use-toast';
 import { Label } from '#/components/ui/label';
 import { Input } from '#/components/ui/input';
 import { Button } from '#/components/ui/button';
 import { Icons } from '#/components/icons';
-import { useSupabase } from '#/ui/auth/SupabaseProvider';
 
 interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 type FormData = z.infer<typeof RegisterSchema>;
 
 export function UserSignUpForm({ className, ...props }: UserAuthFormProps) {
-  const { supabase, session } = useSupabase();
+  const supabase = createClientComponentClient<Database>();
+  const router = useRouter();
+
   const {
     register,
     handleSubmit,
@@ -34,60 +43,52 @@ export function UserSignUpForm({ className, ...props }: UserAuthFormProps) {
   const [isFacebookLoading, setIsFacebookLoading] =
     React.useState<boolean>(false);
 
-  const searchParams = useSearchParams();
+  async function onSubmit(formData: FormData) {
+    const { email, password, confirmPassword } = formData;
 
-  async function onSubmit(data: FormData) {
-    const { email, password, confirmPassword } = data;
     setIsLoading(true);
     try {
       if (password !== confirmPassword) {
         setIsLoading(false);
         return toast({
-          title: 'Parole diferite',
-          description: 'Parolele trebuie sa fie identice.',
-          variant: 'destructive',
+          title: AuthErrorMessage.DifferentPassword.title,
+          description: AuthErrorMessage.DifferentPassword.description,
+          variant: AuthErrorMessage.DifferentPassword.variant,
         });
       }
+
       const {
         data: { user },
         error,
       } = await supabase.auth.signUp({
-        email,
+        email: email.toLowerCase(),
         password,
+        options: {
+          emailRedirectTo: `${location.origin}/auth/callback`,
+        },
       });
 
       setIsLoading(false);
 
-      if (!error && !user) {
+      if (!error && user) {
+        router.replace(PagesLinks.login.link);
+
         return toast({
-          title: 'Inregistrare cu success',
-          description: 'Verifica-ti e-mailul pentru linkul de autentificare!',
+          title: AuthErrorMessage.SuccessSignUp.title,
+          description: AuthErrorMessage.SuccessSignUp.description,
+          variant: AuthErrorMessage.SuccessSignUp.variant,
         });
       }
 
-      if (error?.message === AuthError.InvalidLoginCredentials) {
-        return toast({
-          title: 'Credentiale invalide',
-          description: 'Adresa de email sau parola nu este valida',
-          variant: 'destructive',
-        });
-      }
-
-      if (error?.message === AuthError.EmailNotConfirmed) {
-        return toast({
-          title: 'Adresa de email neconfirmata',
-          description: 'Adresa de email nu a fost confirmata, verifica in spam',
-          variant: 'destructive',
-        });
+      if (error) {
+        const errorToast = checkErrorMessage(error);
+        return toast(errorToast);
       }
     } catch (error: any) {
       console.log('Error thrown:', error.message);
 
-      return toast({
-        title: error.title,
-        description: error.message,
-        variant: 'destructive',
-      });
+      const errorToast = checkErrorMessage(error);
+      return toast(errorToast);
     }
   }
 

@@ -1,19 +1,22 @@
-import 'server-only';
-
 import '#/styles/globals.css';
 
 import React from 'react';
-import { MyUserContextProvider } from '#/utils/useUserContext';
-import { createServerClient } from '#/utils/supabase-server';
+import { Metadata } from 'next';
+
 import SupabaseProvider from '#/ui/auth/SupabaseProvider';
 import SupabaseListener from '#/ui/auth/SupabaseListener';
-import { ThemeProvider } from '#/components/theme/theme-provider';
+
 import { cn } from '#/lib/utils';
 import { fontSans } from '#/lib/fonts';
+import { MyUserContextProvider } from '#/utils/useUserContext';
+import { createServerClient } from '#/utils/supabase-server';
 import { siteConfig } from '#/config/site';
-import { Metadata } from 'next';
+
 import { Toaster } from '#/components/ui/toaster';
 import { Analytics } from '#/components/analytics';
+import { ThemeProvider } from '#/components/theme/theme-provider';
+import { Navigation } from '#/ui/shared/Navigation';
+
 export const metadata: Metadata = {
   title: {
     default: siteConfig.name,
@@ -30,30 +33,39 @@ export const metadata: Metadata = {
   creator: 'kaapo-studio',
   themeColor: [
     { media: '(prefers-color-scheme: light)', color: 'white' },
-    { media: '(prefers-color-scheme: dark)', color: 'black' },
+    {
+      media: '(prefers-color-scheme: dark)',
+      color: 'black',
+    },
   ],
-  openGraph: {
-    type: 'website',
-    locale: 'ro_RO',
-    url: siteConfig.url,
-    title: siteConfig.name,
-    description: siteConfig.description,
-    siteName: siteConfig.name,
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: siteConfig.name,
-    description: siteConfig.description,
-    images: [`${siteConfig.url}/og.jpg`],
-    creator: '@kaapo-studio',
-  },
+  // TODO: Add openGraph
+  // openGraph: {
+  //   type: 'website',
+  //   locale: 'ro_RO',
+  //   url: siteConfig.url,
+  //   title: siteConfig.name,
+  //   description: siteConfig.description,
+  //   siteName: siteConfig.name,
+  // },
+  // TODO: Add twitter and og jpg
+  // twitter: {
+  //   card: 'summary_large_image',
+  //   title: siteConfig.name,
+  //   description: siteConfig.description,
+  //   images: [`${siteConfig.url}/og.jpg`],
+  //   creator: '@kaapo-studio',
+  // },
   icons: {
     icon: '/favicon.ico',
     shortcut: '/favicon-16x16.png',
     apple: '/apple-touch-icon.png',
   },
-  manifest: `${siteConfig.url}/site.webmanifest`,
+  // TODO add webmanifest
+  // manifest: `${siteConfig.url}/site.webmanifest`,
 };
+
+export const dynamic = 'force-dynamic';
+
 export default async function RootLayout({
   children,
 }: {
@@ -64,7 +76,9 @@ export default async function RootLayout({
   const {
     data: { session },
   } = await supabase.auth.getSession();
-
+  const accessToken = session?.access_token || undefined;
+  console.log('session', session);
+  console.log('accessToken', accessToken);
   return (
     <html lang="ro" suppressHydrationWarning>
       <body
@@ -74,9 +88,10 @@ export default async function RootLayout({
         )}
       >
         <SupabaseProvider session={session}>
-          <SupabaseListener serverAccessToken={session?.access_token} />
+          <SupabaseListener serverAccessToken={accessToken} />
           <MyUserContextProvider>
             <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+              <Navigation />
               {children}
               <Analytics />
               <Toaster />

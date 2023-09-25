@@ -1,7 +1,9 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { UserLoginForm } from '#/app/(auth)/components/login-form';
+
 import { PagesLinks } from '#/constants/links';
+
+import { UserLoginForm } from '#/app/(auth)/components/login-form';
 
 export const metadata: Metadata = {
   title: 'Autentificare',

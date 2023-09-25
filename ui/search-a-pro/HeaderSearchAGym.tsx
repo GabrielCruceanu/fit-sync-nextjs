@@ -7,7 +7,7 @@ import ProList from '#/ui/shared/ProList';
 import { flushSync } from 'react-dom';
 import { executeScroll } from '#/helpers/scroll-to';
 import { handleInputRequired } from '#/utils/helpers';
-import { AuthError } from '#/constants/authError';
+import { InputError } from '#/types/Error';
 import { TypedGymDetails } from '#/types';
 import clsx from 'clsx';
 import { removeDuplicate } from '#/helpers/remove-duplicate';
@@ -57,7 +57,7 @@ export default function HeaderSearchAGym({
       executeScroll('gyms-section');
     }
   };
-  var city_names = [
+  const city_names = [
     'Aberdeen',
     'Abilene',
     'Akron',
@@ -481,7 +481,7 @@ export default function HeaderSearchAGym({
                   setCurrentState('');
                   setCurrentCity('');
                   handleInputRequired(gymType)
-                    ? setGymTypeError(AuthError.InputRequired)
+                    ? setGymTypeError(InputError.InputRequired)
                     : null;
                 }}
                 error={gymTypeError}
@@ -507,7 +507,7 @@ export default function HeaderSearchAGym({
                   setShowCurrentGyms(false);
                   setCurrentCity('');
                   handleInputRequired(currentState)
-                    ? setCurrentStateError(AuthError.InputRequired)
+                    ? setCurrentStateError(InputError.InputRequired)
                     : null;
                 }}
               />
@@ -529,7 +529,7 @@ export default function HeaderSearchAGym({
                   setCurrentGyms([]);
                   setShowCurrentGyms(false);
                   handleInputRequired(currentCity)
-                    ? setCurrentCityError(AuthError.InputRequired)
+                    ? setCurrentCityError(InputError.InputRequired)
                     : null;
                 }}
                 error={currentCityError}

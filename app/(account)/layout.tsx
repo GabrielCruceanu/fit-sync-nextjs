@@ -1,16 +1,18 @@
 import { notFound } from 'next/navigation';
 
-import { dashboardConfig } from '#/config/dashboard';
 import { MainNav } from '#/components/header/main-nav';
 import { UserAccountNav } from '#/components/user-account-nav';
-import { createServerClient } from '#/utils/supabase-server';
 import { DashboardNav } from '#/components/header/dashboard-nav';
 import { SiteFooter } from '#/components/site-footer';
+
+import { dashboardConfig } from '#/config/dashboard';
+import { createServerClient } from '#/utils/supabase-server';
 
 interface DashboardLayoutProps {
   children?: React.ReactNode;
 }
 
+export const dynamic = 'force-dynamic';
 export default async function DashboardLayout({
   children,
 }: DashboardLayoutProps) {
