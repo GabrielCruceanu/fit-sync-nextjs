@@ -28,9 +28,9 @@ export default function GDPRPage() {
           datelor dumneavoastră cu caracter personal, în contextul utilizării
           paginii de internet{' '}
           <TextLink
-            link="https://kaapo.fit"
+            link="https://TrainTap.ro"
             target="_blank"
-            content="https://kaapo.fit"
+            content="https://TrainTap.ro"
           />
           ,{' '}
           <TextLink

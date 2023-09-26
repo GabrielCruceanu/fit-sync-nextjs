@@ -2,7 +2,7 @@ import HeadUi from '#/ui/shared/HeadUi';
 import TrainerProfileModel from '#/model/trainer/trainerProfile.model';
 
 async function getTrainersData() {
-  const res = await fetch('https://kaapo.fit/api/trainers');
+  const res = await fetch('https://traintap.ro/api/trainers');
   // The return value is *not* serialized
   // You can return Date, Map, Set, etc.
 
@@ -32,8 +32,8 @@ export default async function Head({
       <HeadUi
         title={`Recenzii Antrenor ${
           trainer ? trainer.firstName + ' ' + trainer.lastName : ''
-        } | Kaapo.Fit`}
-        description="Kaapo.Fit este platforma construită pentru antrenorii personali care vor să-și dezvolte afacerea și să managerieze mai ușor clienții online."
+        } | TrainTap`}
+        description="TrainTap este platforma construită pentru antrenorii personali care vor să-și dezvolte afacerea și să managerieze mai ușor clienții online."
       />
     </>
   );

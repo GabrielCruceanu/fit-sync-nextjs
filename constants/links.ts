@@ -12,7 +12,7 @@ export const SocialLinks = {
     name: 'Twitter',
   },
   mail: {
-    link: 'mailto:contact@kaapo.fit',
+    link: 'mailto:contact@traintap.ro',
     name: 'Mail',
   },
 };

@@ -21,9 +21,9 @@ export default function TermsPage() {
         <ul className="ml-4 mb-3">
           <li className="list-disc">
             <TextLink
-              link="https://kaapo.fit"
+              link="https://TrainTap.ro"
               target="_blank"
-              content="https://kaapo.fit"
+              content="https://TrainTap.ro"
             />
           </li>
           <li className="list-disc">

@@ -4,7 +4,7 @@ export default function Head() {
   return (
     <>
       <HeadUi
-        title="Client | Kaapo.Fit"
+        title="Client | TrainTap"
         description="Dacă dorești să obții cele mai bune rezultate, este important să găsești un antrenor care să înțeleagă de ce ai nevoie și să te ajute să iți atingi obiectivul."
       />
     </>

@@ -17,7 +17,7 @@ export default function ResetPasswordPage() {
         <div className="relative flex p-3 px-8 h-full flex-col bg-muted lg:p-10 text-white dark:border-r lg:flex">
           <div className="absolute inset-0 bg-zinc-900 bg-opacity-60 bg-[url('/images/auth/forgot-password.jpg')] bg-cover bg-center bg-no-repeat  bg-blend-multiply" />
           <div className="relative z-20 flex items-center text-lg font-medium">
-            Kaapo<span className="text-primary">.</span>Fit
+            Train<span className="text-primary">Tap</span>
           </div>
           <div className="relative z-20 mt-auto">
             <blockquote className="space-y-2">

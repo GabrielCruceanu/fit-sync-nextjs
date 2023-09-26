@@ -4,7 +4,7 @@ export default function Head() {
   return (
     <>
       <HeadUi
-        title={`Cauta o sala de antrenament | Kaapo.Fit`}
+        title={`Cauta o sala de antrenament | TrainTap`}
         description="Cauta in cea mai cuprinzatoare baza de date de sali de antrenament din Romania. Sala potrivita tie este aici."
       />
     </>

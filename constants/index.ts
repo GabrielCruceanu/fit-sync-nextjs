@@ -1,1 +1,1 @@
-export const appTitle = 'Kaapo Fit';
+export const appTitle = 'TrainTap';

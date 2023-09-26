@@ -8,12 +8,12 @@ export default function CookiesPage() {
       <article className="mb-4 text-justify text-gray-100">
         <p>
           Document de informare a utilizatorilor despre prezența cookie-urilor
-          pe site-urile web ale Kaapo.Fit. Informațiile prezentate în continuare
+          pe site-urile web ale TrainTap. Informațiile prezentate în continuare
           au scopul de a aduce la cunoștința utilizatorului mai multe detalii
           despre plasarea, utilizarea și administrarea cookie-urilor utilizate
-          de site-urile <TextLink link="/" target="_self" content="Kaapo.Fit" />{' '}
-          (ex. <TextLink link="/" target="_self" content="www.kaapo.fit" />,{' '}
-          <TextLink link="/" target="_self" content="blog.kaapo.fit" />,{' '}
+          de site-urile <TextLink link="/" target="_self" content="TrainTap" />{' '}
+          (ex. <TextLink link="/" target="_self" content="www.TrainTap.ro" />,{' '}
+          <TextLink link="/" target="_self" content="blog.TrainTap.ro" />,{' '}
           <TextLink link="/" target="_self" content="www.kaapo.ro" />,{' '}
           <TextLink link="/" target="_self" content="www.kaapo.studio" />, etc).
         </p>
@@ -47,7 +47,7 @@ export default function CookiesPage() {
           Ce tipuri de cookie sunt utilizate?
         </strong>
         <p className="mb-3">
-          Kaapo.Fit folosește pe site-urile sale atât cookie-uri proprietare cât
+          TrainTap folosește pe site-urile sale atât cookie-uri proprietare cât
           și cookie-uri terțe.
         </p>
         <p>

@@ -37,28 +37,28 @@ export function SiteFooter({ className }: React.HTMLAttributes<HTMLElement>) {
             </h3>
             <div className="flex lg:justify-center">
               <div className="border-1 d-flex w-fit border-r px-3">
-                <div className="h-8 space-x-2.5 fill-muted hover:fill-primary transition-all">
+                <div className="h-8 space-x-2.5 fill-primary hover:fill-primary/90 transition-all">
                   <Link href={SocialLinks.facebook.link} target="_blank">
                     <FacebookIcon />
                   </Link>
                 </div>
               </div>
               <div className="border-1 d-flex w-fit border-r px-3">
-                <div className="h-8 space-x-2.5 fill-muted hover:fill-primary transition-all">
+                <div className="h-8 space-x-2.5 fill-primary hover:fill-primary/90 transition-all">
                   <Link href={SocialLinks.instagram.link} target="_blank">
                     <InstagramIcon />
                   </Link>
                 </div>
               </div>
               <div className="border-1 d-flex w-fit border-r px-3">
-                <div className="h-8 space-x-2.5 fill-muted hover:fill-primary transition-all">
+                <div className="h-8 space-x-2.5 fill-primary hover:fill-primary/90 transition-all">
                   <Link href={SocialLinks.twitter.link} target="_blank">
                     <TwitterIcon />
                   </Link>
                 </div>
               </div>
               <div className="px-3">
-                <div className="h-8 space-x-2.5 fill-muted hover:fill-primary transition-all">
+                <div className="h-8 space-x-2.5 fill-primary hover:fill-primary/90 transition-all">
                   <Link href={SocialLinks.mail.link} target="_blank">
                     <EnvelopeIcon />
                   </Link>

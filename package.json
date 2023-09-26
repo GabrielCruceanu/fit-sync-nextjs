@@ -1,5 +1,5 @@
 {
-  "name": "kaapo-fit",
+  "name": "train-tap",
   "private": true,
   "scripts": {
     "build": "next build",
