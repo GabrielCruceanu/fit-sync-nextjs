@@ -1,5 +1,5 @@
 {
-  "name": "train-tap",
+  "name": "fit-sync",
   "private": true,
   "scripts": {
     "build": "next build",
@@ -36,6 +36,7 @@
     "@radix-ui/react-label": "^2.0.2",
     "@radix-ui/react-slot": "^1.0.2",
     "@radix-ui/react-toast": "^1.1.4",
+    "@radix-ui/react-dialog": "^1.0.4",
     "@reduxjs/toolkit": "^1.9.6",
     "@stripe/stripe-js": "2.1.6",
     "@supabase/auth-helpers-nextjs": "^0.8.1",
