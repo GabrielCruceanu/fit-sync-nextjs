@@ -4,7 +4,7 @@ import {
   TypedNutritionistDetails,
   TypedTrainerDetails,
   TypedUserDetails,
-} from '#/types';
+} from 'ts';
 import UserOnboard from '#/ui/user-onboarding/UserOnboard';
 import { UserType } from '#/constants/user';
 import ClientProfile from '#/ui/profile/ClientProfile';

@@ -8,7 +8,7 @@ const nextConfig = {
       'flowbite.s3.amazonaws.com',
       'localhost',
       'firebasestorage.googleapis.com',
-      'www.kaapo.fit',
+      'www.fitsync.ro',
       'kaapo-fit-angular.vercel.app',
     ],
   },

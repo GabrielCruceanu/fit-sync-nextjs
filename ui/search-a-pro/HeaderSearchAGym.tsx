@@ -7,11 +7,12 @@ import ProList from '#/ui/shared/ProList';
 import { flushSync } from 'react-dom';
 import { executeScroll } from '#/helpers/scroll-to';
 import { handleInputRequired } from '#/utils/helpers';
-import { InputError } from '#/types/Error';
-import { TypedGymDetails } from '#/types';
+import { TypedGymDetails } from 'ts';
 import clsx from 'clsx';
 import { removeDuplicate } from '#/helpers/remove-duplicate';
-import { useSupabase } from '#/ui/auth/SupabaseProvider';
+import { useSupabase } from '#/modules/application/supabase/supabase-provider';
+
+import { AuthInputError } from '#/ts/enum';
 
 export default function HeaderSearchAGym({
   gyms,
@@ -481,7 +482,7 @@ export default function HeaderSearchAGym({
                   setCurrentState('');
                   setCurrentCity('');
                   handleInputRequired(gymType)
-                    ? setGymTypeError(InputError.InputRequired)
+                    ? setGymTypeError(AuthInputError.InputRequired)
                     : null;
                 }}
                 error={gymTypeError}
@@ -507,7 +508,7 @@ export default function HeaderSearchAGym({
                   setShowCurrentGyms(false);
                   setCurrentCity('');
                   handleInputRequired(currentState)
-                    ? setCurrentStateError(InputError.InputRequired)
+                    ? setCurrentStateError(AuthInputError.InputRequired)
                     : null;
                 }}
               />
@@ -529,7 +530,7 @@ export default function HeaderSearchAGym({
                   setCurrentGyms([]);
                   setShowCurrentGyms(false);
                   handleInputRequired(currentCity)
-                    ? setCurrentCityError(InputError.InputRequired)
+                    ? setCurrentCityError(AuthInputError.InputRequired)
                     : null;
                 }}
                 error={currentCityError}

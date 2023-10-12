@@ -4,7 +4,7 @@ import {
   TypedGymDetails,
   TypedNutritionistDetails,
   TypedTrainerDetails,
-} from '#/types';
+} from 'ts';
 import { UserType } from '#/constants/user';
 
 export default function ProList({

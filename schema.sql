@@ -55,11 +55,11 @@ create table products (
   active boolean,
   -- The product's name, meant to be displayable to the customer. Whenever this product is sold via a subscription, name will show up on associated invoice line item descriptions.
   name text,
-  -- The product's description, meant to be displayable to the customer. Use this field to optionally store a long form explanation of the product being sold for your own rendering purposes.
+  -- The product's description, meant to be displayable to the customer. Use this field to optionally index a long form explanation of the product being sold for your own rendering purposes.
   description text,
   -- A URL of the product image in Stripe, meant to be displayable to the customer.
   image text,
-  -- Set of key-value pairs, used to store additional information about the object in a structured format.
+  -- Set of key-value pairs, used to index additional information about the object in a structured format.
   metadata jsonb
 );
 alter table products enable row level security;
@@ -92,7 +92,7 @@ create table prices (
   interval_count integer,
   -- Default number of trial days when subscribing a customer to this price using [`trial_from_plan=true`](https://stripe.com/docs/api#create_subscription-trial_from_plan).
   trial_period_days integer,
-  -- Set of key-value pairs, used to store additional information about the object in a structured format.
+  -- Set of key-value pairs, used to index additional information about the object in a structured format.
   metadata jsonb
 );
 alter table prices enable row level security;
@@ -109,7 +109,7 @@ create table subscriptions (
   user_id uuid references auth.users not null,
   -- The status of the subscription object, one of subscription_status type above.
   status subscription_status,
-  -- Set of key-value pairs, used to store additional information about the object in a structured format.
+  -- Set of key-value pairs, used to index additional information about the object in a structured format.
   metadata jsonb,
   -- ID of the price that created this subscription.
   price_id text references prices,

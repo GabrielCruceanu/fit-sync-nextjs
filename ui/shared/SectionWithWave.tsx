@@ -30,7 +30,7 @@ export default function SectionWithWave({
       <div className="container mx-auto">{children}</div>
       <div
         className={clsx(
-          'fill:teal-500 w absolute -bottom-1 right-0 max-h-28 min-w-full min-w-full rotate-180',
+          'fill:teal-500 w absolute -bottom-1 right-0 max-h-28 min-w-full rotate-180',
           {
             hidden: !bgWhite,
           },

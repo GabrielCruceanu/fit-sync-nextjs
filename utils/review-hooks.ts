@@ -1,4 +1,4 @@
-import { TypedReviews, TypedSupabaseClient } from '#/types';
+import { TypedReviews, TypedSupabaseClient } from 'ts';
 
 export const createReview = async (
   review: TypedReviews,

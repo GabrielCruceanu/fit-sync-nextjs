@@ -7,7 +7,7 @@ import {
   TypedNutritionistDetails,
   TypedTrainerDetails,
   TypedUserDetails,
-} from '#/types';
+} from 'ts';
 import { OnboardStepsType } from '#/ui/user-onboarding/OnboardSteps';
 import { GenderList, UserType } from '#/constants/user';
 import UserOnboardWrap from '#/ui/user-onboarding/UserOnboardWrap';
@@ -19,10 +19,9 @@ import {
   validateOnlyLetter,
   validateUsername,
 } from '#/utils/helpers';
-import { InputError } from '#/types/Error';
 import SelectInput from '#/ui/shared/form/SelectInput';
 import { CitiesData, CountriesData } from '#/data/location-data';
-import { useSupabase } from '#/ui/auth/SupabaseProvider';
+import { useSupabase } from '#/modules/application/supabase/supabase-provider';
 import ButtonFull from '#/ui/shared/form/ButtonFull';
 import Datepicker from 'react-tailwindcss-datepicker';
 import clsx from 'clsx';
@@ -35,6 +34,8 @@ import { createClientProfile } from '#/utils/client-hooks';
 import { createNutritionistProfile } from '#/utils/nutritionist-hooks';
 import { createTrainerProfile } from '#/utils/trainer-hooks';
 import { createGymProfile } from '#/utils/gym-hooks';
+
+import { AuthInputError } from '#/ts/enum';
 
 export default function UserOnboard() {
   const { supabase, session } = useSupabase();
@@ -99,12 +100,12 @@ export default function UserOnboard() {
 
   const handleSearchUsername = async () => {
     if (handleInputRequired(username)) {
-      setUsernameError(InputError.InputRequired);
+      setUsernameError(AuthInputError.InputRequired);
       return;
     }
 
     if (!validateUsername(username)) {
-      setUsernameError(InputError.UsernameInvalid);
+      setUsernameError(AuthInputError.UsernameInvalid);
       return;
     }
 
@@ -113,7 +114,7 @@ export default function UserOnboard() {
     const found = usernames?.find((item) => item.username === username);
 
     if (found) {
-      setUsernameError(InputError.UsernameIsNotAvailable);
+      setUsernameError(AuthInputError.UsernameIsNotAvailable);
     }
   };
   const genderTypeList = GenderList;
@@ -160,53 +161,53 @@ export default function UserOnboard() {
     setBirthMonth(month);
     setBirthYear(year);
     handleInputRequired(newValue.startDate === null ? '' : newValue.startDate)
-      ? setBirthError(InputError.InputRequired)
+      ? setBirthError(AuthInputError.InputRequired)
       : null;
   };
 
   const inputsAreOk = () => {
     if (!lastName && userType !== UserType.Gym) {
-      setLastNameError(InputError.InputRequired);
+      setLastNameError(AuthInputError.InputRequired);
       setConfirmBtnDisable(true);
       return;
     }
     if (!firstName && userType !== UserType.Gym) {
-      setFirstNameError(InputError.InputRequired);
+      setFirstNameError(AuthInputError.InputRequired);
       setConfirmBtnDisable(true);
       return;
     }
     if (!username) {
-      setUsernameError(InputError.InputRequired);
+      setUsernameError(AuthInputError.InputRequired);
       setConfirmBtnDisable(true);
       return;
     }
     if (!phone) {
-      setPhoneError(InputError.InputRequired);
+      setPhoneError(AuthInputError.InputRequired);
       setConfirmBtnDisable(true);
       return;
     }
     if (!currentCountry) {
-      setCurrentCountryError(InputError.InputRequired);
+      setCurrentCountryError(AuthInputError.InputRequired);
       setConfirmBtnDisable(true);
       return;
     }
     if (!currentState) {
-      setCurrentStateError(InputError.InputRequired);
+      setCurrentStateError(AuthInputError.InputRequired);
       setConfirmBtnDisable(true);
       return;
     }
     if (!currentCity) {
-      setCurrentCityError(InputError.InputRequired);
+      setCurrentCityError(AuthInputError.InputRequired);
       setConfirmBtnDisable(true);
       return;
     }
     if (!gender && userType !== UserType.Gym) {
-      setGenderError(InputError.InputRequired);
+      setGenderError(AuthInputError.InputRequired);
       setConfirmBtnDisable(true);
       return;
     }
     if (!birth && userType !== UserType.Gym) {
-      setBirthError(InputError.InputRequired);
+      setBirthError(AuthInputError.InputRequired);
       setConfirmBtnDisable(true);
       return;
     }
@@ -214,46 +215,46 @@ export default function UserOnboard() {
     switch (userType) {
       case UserType.Gym:
         if (!name) {
-          setNameError(InputError.InputRequired);
+          setNameError(AuthInputError.InputRequired);
           setConfirmBtnDisable(true);
           return;
         }
         if (!gymType) {
-          setGymTypeError(InputError.InputRequired);
+          setGymTypeError(AuthInputError.InputRequired);
           setConfirmBtnDisable(true);
           return;
         }
         if (!street) {
-          setStreetError(InputError.InputRequired);
+          setStreetError(AuthInputError.InputRequired);
           setConfirmBtnDisable(true);
           return;
         }
         if (!streetNumber) {
-          setStreetNumberError(InputError.InputRequired);
+          setStreetNumberError(AuthInputError.InputRequired);
           setConfirmBtnDisable(true);
           return;
         }
         break;
       case UserType.Trainer:
         if (!trainerType) {
-          setTrainerTypeError(InputError.InputRequired);
+          setTrainerTypeError(AuthInputError.InputRequired);
           setConfirmBtnDisable(true);
           return;
         }
         if (!experience) {
-          setExperienceError(InputError.InputRequired);
+          setExperienceError(AuthInputError.InputRequired);
           setConfirmBtnDisable(true);
           return;
         }
         break;
       case UserType.Nutritionist:
         if (!nutritionistType) {
-          setNutritionistTypeError(InputError.InputRequired);
+          setNutritionistTypeError(AuthInputError.InputRequired);
           setConfirmBtnDisable(true);
           return;
         }
         if (!experience) {
-          setExperienceError(InputError.InputRequired);
+          setExperienceError(AuthInputError.InputRequired);
           setConfirmBtnDisable(true);
           return;
         }
@@ -486,9 +487,9 @@ export default function UserOnboard() {
                   handleBlur={() => {
                     setNameError('');
                     handleInputRequired(name)
-                      ? setNameError(InputError.InputRequired)
+                      ? setNameError(AuthInputError.InputRequired)
                       : !validateOnlyLetter(name)
-                      ? setNameError(InputError.OnlyLetter)
+                      ? setNameError(AuthInputError.OnlyLetter)
                       : null;
                   }}
                 />
@@ -513,9 +514,9 @@ export default function UserOnboard() {
                   handleBlur={() => {
                     setLastNameError('');
                     handleInputRequired(lastName)
-                      ? setLastNameError(InputError.InputRequired)
+                      ? setLastNameError(AuthInputError.InputRequired)
                       : !validateOnlyLetter(lastName)
-                      ? setLastNameError(InputError.OnlyLetter)
+                      ? setLastNameError(AuthInputError.OnlyLetter)
                       : null;
                   }}
                 />
@@ -538,9 +539,9 @@ export default function UserOnboard() {
                   handleBlur={() => {
                     setFirstNameError('');
                     handleInputRequired(firstName)
-                      ? setFirstNameError(InputError.InputRequired)
+                      ? setFirstNameError(AuthInputError.InputRequired)
                       : !validateOnlyLetter(firstName)
-                      ? setFirstNameError(InputError.OnlyLetter)
+                      ? setFirstNameError(AuthInputError.OnlyLetter)
                       : null;
                   }}
                 />
@@ -571,9 +572,9 @@ export default function UserOnboard() {
                 setUsernameError('');
                 handleSearchUsername();
                 handleInputRequired(username)
-                  ? setUsernameError(InputError.InputRequired)
+                  ? setUsernameError(AuthInputError.InputRequired)
                   : !validateUsername(username)
-                  ? setUsernameError(InputError.UsernameInvalid)
+                  ? setUsernameError(AuthInputError.UsernameInvalid)
                   : null;
               }}
             />
@@ -597,7 +598,7 @@ export default function UserOnboard() {
                   handleBlur={() => {
                     setGenderError('');
                     handleInputRequired(gender)
-                      ? setGenderError(InputError.InputRequired)
+                      ? setGenderError(AuthInputError.InputRequired)
                       : null;
                   }}
                   error={genderError}
@@ -624,7 +625,7 @@ export default function UserOnboard() {
                   handleBlur={() => {
                     setGymTypeError('');
                     handleInputRequired(gymType)
-                      ? setGymTypeError(InputError.InputRequired)
+                      ? setGymTypeError(AuthInputError.InputRequired)
                       : null;
                   }}
                   error={gymTypeError}
@@ -651,7 +652,7 @@ export default function UserOnboard() {
                   handleBlur={() => {
                     setTrainerTypeError('');
                     handleInputRequired(trainerType)
-                      ? setTrainerTypeError(InputError.InputRequired)
+                      ? setTrainerTypeError(AuthInputError.InputRequired)
                       : null;
                   }}
                   error={trainerTypeError}
@@ -678,7 +679,7 @@ export default function UserOnboard() {
                   handleBlur={() => {
                     setNutritionistTypeError('');
                     handleInputRequired(nutritionistType)
-                      ? setNutritionistTypeError(InputError.InputRequired)
+                      ? setNutritionistTypeError(AuthInputError.InputRequired)
                       : null;
                   }}
                   error={nutritionistTypeError}
@@ -706,7 +707,7 @@ export default function UserOnboard() {
                   handleBlur={() => {
                     setExperienceError('');
                     handleInputRequired(experience)
-                      ? setExperienceError(InputError.InputRequired)
+                      ? setExperienceError(AuthInputError.InputRequired)
                       : null;
                   }}
                   error={experienceError}
@@ -735,7 +736,7 @@ export default function UserOnboard() {
               handleBlur={() => {
                 setCurrentCountryError('');
                 handleInputRequired(currentCountry)
-                  ? setCurrentCountryError(InputError.InputRequired)
+                  ? setCurrentCountryError(AuthInputError.InputRequired)
                   : null;
               }}
               error={currentCountryError}
@@ -760,7 +761,7 @@ export default function UserOnboard() {
               handleBlur={() => {
                 setCurrentStateError('');
                 handleInputRequired(currentState)
-                  ? setCurrentStateError(InputError.InputRequired)
+                  ? setCurrentStateError(AuthInputError.InputRequired)
                   : null;
               }}
               error={currentStateError}
@@ -783,7 +784,7 @@ export default function UserOnboard() {
               handleBlur={() => {
                 setCurrentCityError('');
                 handleInputRequired(currentCity)
-                  ? setCurrentCityError(InputError.InputRequired)
+                  ? setCurrentCityError(AuthInputError.InputRequired)
                   : null;
               }}
               error={currentCityError}
@@ -845,7 +846,7 @@ export default function UserOnboard() {
                   handleBlur={() => {
                     setStreetError('');
                     handleInputRequired(street)
-                      ? setStreetError(InputError.InputRequired)
+                      ? setStreetError(AuthInputError.InputRequired)
                       : null;
                   }}
                 />
@@ -867,7 +868,7 @@ export default function UserOnboard() {
                   handleBlur={() => {
                     setStreetNumberError('');
                     handleInputRequired(streetNumber)
-                      ? setStreetNumberError(InputError.InputRequired)
+                      ? setStreetNumberError(AuthInputError.InputRequired)
                       : null;
                   }}
                 />
@@ -897,9 +898,9 @@ export default function UserOnboard() {
               handleBlur={() => {
                 setPhoneError('');
                 handleInputRequired(phone)
-                  ? setPhoneError(InputError.InputRequired)
+                  ? setPhoneError(AuthInputError.InputRequired)
                   : !validateIsPhoneNumber(phone)
-                  ? setPhoneError(InputError.OnlyNumbers)
+                  ? setPhoneError(AuthInputError.OnlyNumbers)
                   : null;
               }}
             />

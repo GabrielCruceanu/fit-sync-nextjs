@@ -1,15 +1,31 @@
-import { DashboardConfig } from '#/types/Dashboard';
+import { DashboardConfig } from '#/ts/types';
+import { PagesLinks } from '#/constants/links';
 
 export const dashboardConfig: DashboardConfig = {
   mainNav: [
     {
-      title: 'Documentation',
-      href: '/docs',
+      title: PagesLinks.homePage.name,
+      href: PagesLinks.homePage.link,
     },
     {
-      title: 'Support',
-      href: '/support',
-      disabled: true,
+      title: PagesLinks.proPage.name,
+      href: PagesLinks.proPage.link,
+    },
+    {
+      title: PagesLinks.searchTrainerHomePage.name,
+      href: PagesLinks.searchTrainerHomePage.link,
+    },
+    {
+      title: PagesLinks.searchNutritionistHomePage.name,
+      href: PagesLinks.searchNutritionistHomePage.link,
+    },
+    {
+      title: PagesLinks.searchGymHomePage.name,
+      href: PagesLinks.searchGymHomePage.link,
+    },
+    {
+      title: PagesLinks.blog.name,
+      href: PagesLinks.blog.link,
     },
   ],
   sidebarNav: [

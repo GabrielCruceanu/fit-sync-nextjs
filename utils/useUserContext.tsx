@@ -7,8 +7,8 @@ import {
   Subscription,
   TypedTrainerDetails,
   TypedUserDetails,
-} from '#/types';
-import { useSupabase } from '#/ui/auth/SupabaseProvider';
+} from 'ts';
+import { useSupabase } from '#/modules/application/supabase/supabase-provider';
 import { User } from '@supabase/auth-helpers-nextjs';
 
 type UserContextType = {

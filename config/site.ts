@@ -1,9 +1,9 @@
 export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
-  name: 'Kaapo.Fit',
+  name: 'FitSync',
   description:
-    'Kaapo.Fit oferă profiluri detaliate ale antrenorilor, nutriționiștilor și ale centrelor de fitness, astfel încât să îl poți găsi pe cel care se potrivește cel mai bine nevoilor tale.',
+    'FitSync oferă profiluri detaliate ale antrenorilor, nutriționiștilor și ale centrelor de fitness, astfel încât să îl poți găsi pe cel care se potrivește cel mai bine nevoilor tale.',
   mainNav: [
     {
       title: 'Acasa',
@@ -14,7 +14,7 @@ export const siteConfig = {
       href: '/panou',
     },
   ],
-  url: 'https://kaapo.fit',
+  url: 'https://FitSync.ro',
   links: {
     twitter: 'https://twitter.com/',
     instagram: 'https://github.com/',
