@@ -12,7 +12,7 @@ export const SocialLinks = {
     name: 'Twitter',
   },
   mail: {
-    link: 'mailto:contact@traintap.ro',
+    link: 'mailto:contact@fitsync.ro',
     name: 'Mail',
   },
 };
@@ -34,7 +34,7 @@ export const TermsLinks = {
 
 export const PagesLinks = {
   homePage: {
-    link: '/acasa',
+    link: '/',
     name: 'Acasa',
   },
   proPage: {
@@ -84,5 +84,9 @@ export const PagesLinks = {
   account: {
     link: '/cont',
     name: 'Cont',
+  },
+  onboarding: {
+    link: '/integrare',
+    name: 'Integrare',
   },
 };

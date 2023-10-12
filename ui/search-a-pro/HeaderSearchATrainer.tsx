@@ -7,11 +7,12 @@ import ProList from '#/ui/shared/ProList';
 import { flushSync } from 'react-dom';
 import { executeScroll } from '#/helpers/scroll-to';
 import { handleInputRequired } from '#/utils/helpers';
-import { InputError } from '#/types/Error';
-import { TypedTrainerDetails } from '#/types';
+import { TypedTrainerDetails } from 'ts';
 import clsx from 'clsx';
 import { removeDuplicate } from '#/helpers/remove-duplicate';
-import { useSupabase } from '#/ui/auth/SupabaseProvider';
+import { useSupabase } from '#/modules/application/supabase/supabase-provider';
+
+import { AuthInputError } from '#/ts/enum';
 
 export default function HeaderSearchATrainer({
   trainers,
@@ -97,7 +98,7 @@ export default function HeaderSearchATrainer({
                   setCurrentState('');
                   setCurrentCity('');
                   handleInputRequired(trainerType)
-                    ? setTrainerTypeError(InputError.InputRequired)
+                    ? setTrainerTypeError(AuthInputError.InputRequired)
                     : null;
                 }}
                 error={trainerTypeError}
@@ -122,7 +123,7 @@ export default function HeaderSearchATrainer({
                   setShowCurrentTrainers(false);
                   setCurrentCity('');
                   handleInputRequired(currentState)
-                    ? setCurrentStateError(InputError.InputRequired)
+                    ? setCurrentStateError(AuthInputError.InputRequired)
                     : null;
                 }}
                 error={currentStateError}
@@ -145,7 +146,7 @@ export default function HeaderSearchATrainer({
                   setCurrentTrainers([]);
                   setShowCurrentTrainers(false);
                   handleInputRequired(currentCity)
-                    ? setCurrentCityError(InputError.InputRequired)
+                    ? setCurrentCityError(AuthInputError.InputRequired)
                     : null;
                 }}
                 error={currentCityError}

@@ -1,5 +1,5 @@
 import { User } from '@supabase/auth-helpers-nextjs';
-import { TypedTrainerDetails, TypedSupabaseClient } from '#/types';
+import { TypedTrainerDetails, TypedSupabaseClient } from 'ts';
 
 export const createTrainerProfile = async (
   user: User,

@@ -7,7 +7,7 @@ import {
   TypedNutritionistDetails,
   TypedReviews,
   TypedTrainerDetails,
-} from '#/types';
+} from 'ts';
 import Reviews from '#/ui/shared/Reviews';
 
 export default function ProProfile({
@@ -42,34 +42,36 @@ export default function ProProfile({
 
   return (
     <>
-      {/* Profile Header */}
-      <ProfileHeader
-        firstName={first_name}
-        lastName={last_name}
-        profilePicture={profile_picture_url}
-        phone={phone}
-        type={type}
-        proType={pro_type}
-        city={city}
-        experience={experience}
-        certificate={certificate}
-        activeClients={active_clients}
-        completedClients={completed_clients}
-        name={gym_name}
-        state={state}
-      />
+      <div className="w-full">
+        {/* Profile Header */}
+        <ProfileHeader
+          firstName={first_name}
+          lastName={last_name}
+          profilePicture={profile_picture_url}
+          phone={phone}
+          type={type}
+          proType={pro_type}
+          city={city}
+          experience={experience}
+          certificate={certificate}
+          activeClients={active_clients}
+          completedClients={completed_clients}
+          name={gym_name}
+          state={state}
+        />
 
-      {/* Profile Description */}
-      {description ? <ProfileDescription description={description} /> : null}
+        {/* Profile Description */}
+        {description ? <ProfileDescription description={description} /> : null}
 
-      {/* Profile Contact */}
-      <ProfileContact contact={contact} />
+        {/* Profile Contact */}
+        <ProfileContact contact={contact} />
 
-      {/* Profile Review */}
-      {reviews ? <Reviews reviews={reviews} username={username!} /> : null}
+        {/* Profile Review */}
+        {reviews ? <Reviews reviews={reviews} username={username!} /> : null}
 
-      {/* Profile Programs */}
-      {/*{programs ? <ProfilePrograms programs={programs} /> : null}*/}
+        {/* Profile Programs */}
+        {/*{programs ? <ProfilePrograms programs={programs} /> : null}*/}
+      </div>
     </>
   );
 }

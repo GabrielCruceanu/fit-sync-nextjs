@@ -1,8 +1,8 @@
 'use client';
 import { Button, Timeline } from 'flowbite-react';
-import { useSupabase } from '#/ui/auth/SupabaseProvider';
+import { useSupabase } from '#/modules/application/supabase/supabase-provider';
 import { useEffect, useState } from 'react';
-import { TypedPhysicalDetails } from '#/types';
+import { TypedPhysicalDetails } from 'ts';
 import { navigationAuth } from '#/constants/navigation';
 import { useRouter } from 'next/navigation';
 import { getClientPhysicalDetails } from '#/utils/client-hooks';

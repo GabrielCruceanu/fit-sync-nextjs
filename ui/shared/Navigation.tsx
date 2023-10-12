@@ -21,7 +21,7 @@ import {
 } from '#/constants/navigation';
 import { ProCardCTA } from '#/ui/shared/ProCardCTA';
 import { PagesLinks } from '#/constants/links';
-import { useSupabase } from '#/ui/auth/SupabaseProvider';
+import { useSupabase } from '#/modules/application/supabase/supabase-provider';
 import { useUserContext } from '#/utils/useUserContext';
 import { UserType } from '#/constants/user';
 import Link from 'next/link';

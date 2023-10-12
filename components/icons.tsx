@@ -24,6 +24,7 @@ import {
   Twitter,
   User,
   X,
+  Menu,
 } from 'lucide-react';
 
 export type Icon = LucideIcon;
@@ -49,6 +50,7 @@ export const Icons = {
   pizza: Pizza,
   sun: SunMedium,
   moon: Moon,
+  menu: Menu,
   laptop: Laptop,
 
   facebook: ({ ...props }: LucideProps) => (

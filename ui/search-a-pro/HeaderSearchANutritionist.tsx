@@ -7,11 +7,12 @@ import ProList from '#/ui/shared/ProList';
 import { flushSync } from 'react-dom';
 import { executeScroll } from '#/helpers/scroll-to';
 import { handleInputRequired } from '#/utils/helpers';
-import { InputError } from '#/types/Error';
-import { useSupabase } from '#/ui/auth/SupabaseProvider';
-import { TypedNutritionistDetails } from '#/types';
+import { useSupabase } from '#/modules/application/supabase/supabase-provider';
+import { TypedNutritionistDetails } from 'ts';
 import clsx from 'clsx';
 import { removeDuplicate } from '#/helpers/remove-duplicate';
+
+import { AuthInputError } from '#/ts/enum';
 
 export default function HeaderSearchANutritionist({
   nutritionists,
@@ -100,7 +101,7 @@ export default function HeaderSearchANutritionist({
                   setCurrentCity('');
                   setNutritionistTypeError('');
                   handleInputRequired(nutritionistType)
-                    ? setNutritionistType(InputError.InputRequired)
+                    ? setNutritionistType(AuthInputError.InputRequired)
                     : null;
                 }}
                 error={nutritionistTypeError}
@@ -125,7 +126,7 @@ export default function HeaderSearchANutritionist({
                   setShowCurrentNutritionists(false);
                   setCurrentCity('');
                   handleInputRequired(currentState)
-                    ? setCurrentStateError(InputError.InputRequired)
+                    ? setCurrentStateError(AuthInputError.InputRequired)
                     : null;
                 }}
                 error={currentStateError}
@@ -148,7 +149,7 @@ export default function HeaderSearchANutritionist({
                   setCurrentNutritionists([]);
                   setShowCurrentNutritionists(false);
                   handleInputRequired(currentCity)
-                    ? setCurrentCityError(InputError.InputRequired)
+                    ? setCurrentCityError(AuthInputError.InputRequired)
                     : null;
                 }}
                 error={currentCityError}

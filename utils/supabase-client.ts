@@ -2,12 +2,8 @@ import {
   createClientComponentClient,
   User,
 } from '@supabase/auth-helpers-nextjs';
-import { Database, Json } from '#/types/supabase';
-import {
-  ProductWithPrice,
-  TypedSupabaseClient,
-  TypedUserDetails,
-} from '#/types';
+import { Database, Json } from '#/ts/supabase';
+import { ProductWithPrice, TypedSupabaseClient, TypedUserDetails } from 'ts';
 
 export const supabaseClient = createClientComponentClient<Database>();
 

@@ -1,5 +1,5 @@
-import { AuthError } from '#/types/Error';
-import { ToastVariant } from '#/types/Toast';
+import { AuthResponseError, ToastVariant } from '#/ts/enum';
+
 export const AuthErrorMessage = {
   CheckTheEmail: {
     title: 'Verifica e-mailul',
@@ -41,13 +41,13 @@ export const AuthErrorMessage = {
 export function checkErrorMessage(error: any) {
   console.log('error?.message', error?.message);
   switch (error?.message) {
-    case AuthError.InvalidLoginCredentials:
+    case AuthResponseError.InvalidLoginCredentials:
       return {
         title: AuthErrorMessage.InvalidLoginCredentials.title,
         description: AuthErrorMessage.InvalidLoginCredentials.description,
         variant: AuthErrorMessage.InvalidLoginCredentials.variant,
       };
-    case AuthError.EmailNotConfirmed:
+    case AuthResponseError.EmailNotConfirmed:
       return {
         title: AuthErrorMessage.EmailNotConfirmed.title,
         description: AuthErrorMessage.EmailNotConfirmed.description,

@@ -1,1 +1,1 @@
-export const appTitle = 'TrainTap';
+export const appTitle = 'FitSync';

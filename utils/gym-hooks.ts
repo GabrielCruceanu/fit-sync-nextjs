@@ -3,7 +3,7 @@ import {
   TypedGymDetails,
   TypedNutritionistDetails,
   TypedSupabaseClient,
-} from '#/types';
+} from 'ts';
 
 export const createGymProfile = async (
   user: User,
