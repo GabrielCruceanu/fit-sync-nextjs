@@ -1,5 +1,6 @@
 import { UserType } from '#/constants/user';
 import { MouseEventHandler } from 'react';
+
 export type InputSelectButtonProps = {
   label: string;
   name: string;
@@ -26,8 +27,8 @@ export default function InputSelectButton({
       <label
         htmlFor={UserType.Trainer}
         onClick={handleClick}
-        className="inline-flex w-full cursor-pointer items-center justify-center rounded-lg border-2  border-gray-700 bg-gray-800
-                   p-5 text-gray-400 transition-all ease-in-out hover:bg-gray-700 hover:text-gray-300 peer-checked:border-primary-600 peer-checked:text-primary-500"
+        className="inline-flex text-sm font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 w-full cursor-pointer items-center justify-center rounded-lg border-2 bg-primary text-primary-foreground shadow hover:bg-primary/90
+                   p-5 transition-all ease-in-out peer-checked:border-primary peer-checked:text-primary"
       >
         <span className="w-full">{label}</span>
         <svg

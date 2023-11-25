@@ -12,9 +12,9 @@ export default function OnboardSteps({
   currentStep: OnboardStepsType;
 }) {
   return (
-    <ol className="mb-6 flex items-center justify-center text-center text-sm font-medium text-gray-400 sm:text-base lg:mb-12">
-      <li className="after:border-1 flex items-center after:mx-6 after:hidden after:h-1 after:w-12 after:border-b after:border-gray-700 after:content-[''] sm:after:inline-block xl:after:mx-10">
-        <div className="flex items-center text-primary-500 after:mx-2 after:font-light after:text-gray-500 after:content-['/'] sm:block sm:after:hidden">
+    <ol className="mb-6 flex items-center justify-center text-center text-sm font-medium sm:text-base lg:mb-12">
+      <li className="after:border-1 flex items-center after:mx-6 after:hidden after:h-1 after:w-12 after:border-b after:border-foreground after:content-[''] sm:after:inline-block xl:after:mx-10">
+        <div className="flex items-center text-primary after:mx-2 after:font-light after:text-foreground after:content-['/'] sm:block sm:after:hidden">
           {currentStep === OnboardStepsType.UserType ? (
             <div className="mr-2 sm:mx-auto sm:mb-2">1</div>
           ) : (
@@ -31,15 +31,16 @@ export default function OnboardSteps({
               ></path>
             </svg>
           )}
-          Tip utilizator
+
+          <span className="hidden md:inline-flex">Tip utilizator</span>
         </div>
       </li>
-      <li className="after:border-1 flex items-center after:mx-6 after:hidden after:h-1 after:w-12 after:border-b after:border-gray-700 after:content-[''] sm:after:inline-block xl:after:mx-10">
+      <li className="after:border-1 flex items-center after:mx-6 after:hidden after:h-1 after:w-12 after:border-b after:border-foreground after:content-[''] sm:after:inline-block xl:after:mx-10">
         <div
           className={clsx(
-            "flex items-center after:mx-2 after:font-light after:text-gray-500 after:content-['/'] sm:block sm:after:hidden",
+            "flex items-center after:mx-2 after:font-light after:text-foreground after:content-['/'] sm:block sm:after:hidden",
             {
-              'text-primary-500':
+              'text-primary':
                 currentStep === OnboardStepsType.UserDetails ||
                 currentStep === OnboardStepsType.UserConfirm,
             },
@@ -61,16 +62,16 @@ export default function OnboardSteps({
           ) : (
             <div className="mr-2 sm:mx-auto sm:mb-2">2</div>
           )}
-          Detalii cont
+          <span className="hidden md:inline-flex">Detalii cont</span>
         </div>
       </li>
       <li
         className={clsx('flex items-center sm:block', {
-          'text-primary-500': currentStep === OnboardStepsType.UserConfirm,
+          'text-primary': currentStep === OnboardStepsType.UserConfirm,
         })}
       >
         <div className="mr-2 sm:mx-auto sm:mb-2">3</div>
-        Confirmare
+        <span className="hidden md:inline-flex">Confirmare</span>
       </li>
     </ol>
   );

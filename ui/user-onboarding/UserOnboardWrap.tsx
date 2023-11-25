@@ -16,15 +16,15 @@ export default function UserOnboardWrap({
   paragraph: string;
 }) {
   return (
-    <section className="bg-gray-900 py-8">
+    <section className="rounded-xl border bg-card text-card-foreground shadow flex flex-col space-y-1.5 p-4 md:p-8">
       <div className="md:flex md:min-h-[42rem]">
-        <div className="mx-auto flex px-4 md:w-[42rem] md:px-8 xl:px-0">
+        <div className="mx-auto flex md:w-[42rem] md:px-8 xl:px-0">
           <div className="w-full">
             <OnboardSteps currentStep={currentStep} />
-            <h1 className="mb-4 text-2xl font-extrabold leading-tight tracking-tight text-white">
+            <h1 className="mb-4 font-heading text-3xl md:text-4xl font-extrabold leading-tight tracking-tight">
               {heading}
             </h1>
-            <Paragraph customClass="">{paragraph}</Paragraph>
+            <Paragraph customClass="mb-3">{paragraph}</Paragraph>
             <>{children}</>
           </div>
         </div>

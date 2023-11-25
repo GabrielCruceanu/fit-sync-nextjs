@@ -18,7 +18,7 @@ import {
   validateIsPhoneNumber,
   validateOnlyLetter,
   validateUsername,
-} from '#/utils/helpers';
+} from '#/helpers/helpers';
 import SelectInput from '#/ui/shared/form/SelectInput';
 import { CitiesData, CountriesData } from '#/data/location-data';
 import { useSupabase } from '#/modules/application/supabase/supabase-provider';
@@ -36,6 +36,17 @@ import { createTrainerProfile } from '#/utils/trainer-hooks';
 import { createGymProfile } from '#/utils/gym-hooks';
 
 import { AuthInputError } from '#/ts/enum';
+import { Calendar } from '#/components/ui/calendar';
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '#/components/ui/popover';
+import { date } from 'zod';
+import { format, setDate } from 'date-fns';
+import { CalendarIcon } from 'lucide-react';
+import { Button } from '#/components/ui/button';
+import { cn } from '#/lib/utils';
 
 export default function UserOnboard() {
   const { supabase, session } = useSupabase();
@@ -74,10 +85,7 @@ export default function UserOnboard() {
   const [streetNumberError, setStreetNumberError] = useState('');
   const [phone, setPhone] = useState('');
   const [phoneError, setPhoneError] = useState('');
-  const [birth, setBirth] = useState({
-    startDate: null,
-    endDate: null,
-  });
+  const [birth, setBirth] = useState<Date>();
   const [birthError, setBirthError] = useState('');
   const [birthDate, setBirthDate] = useState('');
   const [birthMonth, setBirthMonth] = useState('');
@@ -153,10 +161,11 @@ export default function UserOnboard() {
 
   const handleBirthChange = (newValue: any) => {
     setBirth(newValue);
-    const dateLanding = new Date(newValue.startDate);
+    const dateLanding = new Date(newValue);
     const date = dateLanding.getDate().toString();
     const month = (dateLanding.getMonth() + 1).toString();
     const year = dateLanding.getFullYear().toString();
+
     setBirthDate(date);
     setBirthMonth(month);
     setBirthYear(year);
@@ -418,10 +427,10 @@ export default function UserOnboard() {
     return (
       <UserOnboardWrap
         currentStep={OnboardStepsType.UserType}
-        heading={'User type'}
-        paragraph={'What type of account would you like to have?'}
+        heading={'Tipul de utilizator'}
+        paragraph={'Ce tip de cont ați dori să aveți?'}
       >
-        <ul className="container mb-6 flex flex-wrap items-center justify-center">
+        <ul className="md:container px-3 mb-6 flex flex-wrap items-center justify-center">
           <li className="mt-3 h-fit w-full md:w-6/12 md:pr-1">
             <InputSelectButton
               label={'Client'}
@@ -463,9 +472,7 @@ export default function UserOnboard() {
       <UserOnboardWrap
         currentStep={OnboardStepsType.UserDetails}
         heading={'Detalii cont'}
-        paragraph={
-          'Completeaza campurile de mai jos pentru a merge mai departe.'
-        }
+        paragraph={'Completați câmpurile de mai jos pentru a continua.'}
       >
         <form className="mb-6 md:flex md:flex-wrap">
           {userType === UserType.Gym ? (
@@ -797,31 +804,35 @@ export default function UserOnboard() {
               <div className="my-2 w-full md:w-6/12 md:px-2">
                 <label
                   htmlFor="birth"
-                  className="mb-2 block text-left text-sm font-medium text-gray-300"
+                  className="mb-2 block text-left text-sm font-medium"
                 >
                   Data nasterii
                 </label>
-                <Datepicker
-                  inputId="birth"
-                  useRange={false}
-                  asSingle={true}
-                  placeholder={'DD/MM/YYYY'}
-                  displayFormat={'DD/MM/YYYY'}
-                  value={birth}
-                  onChange={(value) => {
-                    setConfirmBtnDisable(false);
-                    setBirthError('');
-                    handleBirthChange(value);
-                  }}
-                  inputClassName={clsx(
-                    'rounded-lg border border-gray-600 !bg-gray-700 p-2.5 capitalize text-white placeholder-gray-400 focus:border-primary-600 focus:outline-none focus:ring-primary-600 sm:text-sm',
-                    {
-                      'border-red-600': birthError,
-                    },
-                  )}
-                />
+                <Popover>
+                  <PopoverTrigger asChild>
+                    <Button
+                      variant={'outline'}
+                      className={cn(
+                        'w-[280px] justify-start text-left font-normal',
+                        !date && 'text-muted-foreground',
+                      )}
+                    >
+                      <CalendarIcon className="mr-2 h-4 w-4" />
+                      {birth ? format(birth, 'PPP') : <span>Alege o data</span>}
+                    </Button>
+                  </PopoverTrigger>
+                  <PopoverContent className="w-auto p-0">
+                    <Calendar
+                      mode="single"
+                      selected={birth}
+                      onSelect={($event) => handleBirthChange($event)}
+                      initialFocus
+                      required
+                    />
+                  </PopoverContent>
+                </Popover>
                 {birthError ? (
-                  <p className="mt-2 block text-xs font-medium text-red-500">
+                  <p className="mt-2 block text-xs font-medium text-red">
                     {birthError}
                   </p>
                 ) : null}
@@ -938,14 +949,14 @@ export default function UserOnboard() {
         <div className="w-full md:w-6/12">
           <Paragraph customClass={''}>
             Tip utilizator:{' '}
-            <strong className="capitalize text-primary-500">{userType}</strong>
+            <strong className="capitalize text-primary">{userType}</strong>
           </Paragraph>
         </div>
 
         <div className="w-full md:w-6/12">
           <Paragraph customClass={''}>
             Nume de utilizator:{' '}
-            <strong className="text-primary-500">{username}</strong>
+            <strong className="text-primary">{username}</strong>
           </Paragraph>
         </div>
 
@@ -953,7 +964,7 @@ export default function UserOnboard() {
           <div className="w-full md:w-6/12">
             <Paragraph customClass={''}>
               Nume sala:{' '}
-              <strong className="capitalize text-primary-500">{name}</strong>
+              <strong className="capitalize text-primary">{name}</strong>
             </Paragraph>
           </div>
         ) : (
@@ -961,34 +972,28 @@ export default function UserOnboard() {
             <div className="w-full md:w-6/12">
               <Paragraph customClass={''}>
                 Nume:{' '}
-                <strong className="capitalize text-primary-500">
-                  {lastName}
-                </strong>
+                <strong className="capitalize text-primary">{lastName}</strong>
               </Paragraph>
             </div>
 
             <div className="w-full md:w-6/12">
               <Paragraph customClass={''}>
                 Prenume:{' '}
-                <strong className="capitalize text-primary-500">
-                  {firstName}
-                </strong>
+                <strong className="capitalize text-primary">{firstName}</strong>
               </Paragraph>
             </div>
 
             <div className="w-full md:w-6/12">
               <Paragraph customClass={''}>
                 Gen:{' '}
-                <strong className="capitalize text-primary-500">
-                  {gender}
-                </strong>
+                <strong className="capitalize text-primary">{gender}</strong>
               </Paragraph>
             </div>
 
             <div className="w-full md:w-6/12">
               <Paragraph customClass={''}>
                 Data nasterii:{' '}
-                <strong className="capitalize text-primary-500">
+                <strong className="capitalize text-primary">
                   {birthDate}/{birthMonth}/{birthYear}
                 </strong>
               </Paragraph>
@@ -999,7 +1004,7 @@ export default function UserOnboard() {
         <div className="w-full md:w-6/12">
           <Paragraph customClass={''}>
             Tara:{' '}
-            <strong className="capitalize text-primary-500">
+            <strong className="capitalize text-primary">
               {currentCountry}
             </strong>
           </Paragraph>
@@ -1008,18 +1013,14 @@ export default function UserOnboard() {
         <div className="w-full md:w-6/12">
           <Paragraph customClass={''}>
             Judet:{' '}
-            <strong className="capitalize text-primary-500">
-              {currentState}
-            </strong>
+            <strong className="capitalize text-primary">{currentState}</strong>
           </Paragraph>
         </div>
 
         <div className="w-full md:w-6/12">
           <Paragraph customClass={''}>
             Oras/Sector:{' '}
-            <strong className="capitalize text-primary-500">
-              {currentCity}
-            </strong>
+            <strong className="capitalize text-primary">{currentCity}</strong>
           </Paragraph>
         </div>
 
@@ -1028,15 +1029,13 @@ export default function UserOnboard() {
             <div className="w-full md:w-6/12">
               <Paragraph customClass={''}>
                 Strada:{' '}
-                <strong className="capitalize text-primary-500">
-                  {street}
-                </strong>
+                <strong className="capitalize text-primary">{street}</strong>
               </Paragraph>
             </div>
             <div className="w-full md:w-6/12">
               <Paragraph customClass={''}>
                 Numarul strazii:{' '}
-                <strong className="capitalize text-primary-500">
+                <strong className="capitalize text-primary">
                   {streetNumber}
                 </strong>
               </Paragraph>
@@ -1046,7 +1045,7 @@ export default function UserOnboard() {
         <div className="w-full md:w-6/12">
           <Paragraph customClass={''}>
             Telefon:{' '}
-            <strong className="capitalize text-primary-500">{phone}</strong>
+            <strong className="capitalize text-primary">{phone}</strong>
           </Paragraph>
         </div>
       </div>

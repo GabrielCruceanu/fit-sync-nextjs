@@ -6,7 +6,7 @@ import SectionWithWave from '#/ui/shared/SectionWithWave';
 import ProList from '#/ui/shared/ProList';
 import { flushSync } from 'react-dom';
 import { executeScroll } from '#/helpers/scroll-to';
-import { handleInputRequired } from '#/utils/helpers';
+import { handleInputRequired } from '#/helpers/helpers';
 import { useSupabase } from '#/modules/application/supabase/supabase-provider';
 import { TypedNutritionistDetails } from 'ts';
 import clsx from 'clsx';

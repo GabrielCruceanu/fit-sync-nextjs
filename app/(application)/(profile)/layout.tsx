@@ -12,7 +12,7 @@ export default function ProfileLayout({ children }: ProfileLayoutProps) {
     <div className="flex min-h-screen flex-col space-y-6">
       <MainNav items={dashboardConfig.mainNav} />
       <div className="container grid flex-1 gap-12 md:grid-cols-[200px_1fr]">
-        <main className=" w-full overflow-hidden">{children}</main>
+        <main className=" w-full">{children}</main>
         <aside className="hidden w-[200px] flex-col md:flex">
           <h1>Exmsda</h1>
         </aside>

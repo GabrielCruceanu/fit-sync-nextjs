@@ -3,7 +3,7 @@ import { stripe } from './stripe';
 import { Price, Product } from 'ts';
 import type { Database } from '#/ts/supabase';
 import Stripe from 'stripe';
-import { toDateTime } from '#/utils/helpers';
+import { toDateTime } from '#/helpers/helpers';
 
 // Note: supabaseAdmin uses the SERVICE_ROLE_KEY which you must only use in a secure server-side context
 // as it has admin priviliges and overwrites RLS policies!

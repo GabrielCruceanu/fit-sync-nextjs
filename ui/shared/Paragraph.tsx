@@ -6,10 +6,6 @@ export default function Paragraph({
   customClass: string;
 }) {
   return (
-    <p
-      className={`mb-2 font-light text-gray-300 md:text-lg lg:mx-0 xl:mb-4 xl:text-xl ${customClass}`}
-    >
-      {children}
-    </p>
+    <p className={`text-lg text-muted-foreground ${customClass}`}>{children}</p>
   );
 }

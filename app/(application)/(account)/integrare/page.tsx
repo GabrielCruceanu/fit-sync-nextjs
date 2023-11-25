@@ -1,3 +1,5 @@
+import UserOnboard from '#/ui/user-onboarding/UserOnboard';
+
 export default function UserOnboarding() {
-  return <h1>User Onboarding</h1>;
+  return <UserOnboard />;
 }

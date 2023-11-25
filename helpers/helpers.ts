@@ -1,4 +1,4 @@
-import { Price } from 'ts';
+import { Price } from '#/ts';
 
 export const getURL = () => {
   let url =

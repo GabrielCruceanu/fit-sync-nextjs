@@ -14,7 +14,7 @@ export function SiteFooter({ className }: React.HTMLAttributes<HTMLElement>) {
       <footer
         className={cn(
           className,
-          'mt-1 w-full border-t border-primary px-4 py-11 antialiased',
+          'mt-1 w-full border-t border-primary py-11 antialiased',
         )}
       >
         <div className="container mx-auto flex flex-col lg:flex-row">
