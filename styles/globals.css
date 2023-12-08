@@ -62,3 +62,18 @@
     --radius: 0.3rem;
   }
 }
+
+
+.rdp-vhidden {
+  display: none;
+}
+
+.rdp-dropdown_year select,.rdp-dropdown_month select {
+  display: flex;
+  justify-content: space-between;
+  min-width: 110px;
+}
+
+.rdp-dropdown_month select {
+  margin-bottom: 5px;
+}

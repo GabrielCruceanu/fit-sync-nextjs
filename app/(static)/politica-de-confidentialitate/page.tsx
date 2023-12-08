@@ -7,13 +7,13 @@ export default function GDPRPage() {
         Politică de confidențialitate
       </h1>
 
-      <article className="mb-4 text-justify text-gray-100">
+      <article className="mb-4 text-justify">
         <strong className="block text-lg">
           Ultima actualizare: Ianuarie 2023
         </strong>
       </article>
 
-      <article className="mb-4 text-justify text-gray-100">
+      <article className="mb-4 text-justify">
         <strong className="block text-lg">I. Informații generale</strong>
         <p className="mb-3">
           Confidențialitatea datelor dumneavoastră cu caracter personal
@@ -48,7 +48,7 @@ export default function GDPRPage() {
         </p>
       </article>
 
-      <article className="mb-4 text-justify text-gray-100">
+      <article className="mb-4 text-justify">
         <strong className="block text-lg">
           II. Categoriile de date cu caracter personal prelucrate
         </strong>
@@ -79,7 +79,7 @@ export default function GDPRPage() {
         </p>
       </article>
 
-      <article className="mb-4 text-justify text-gray-100">
+      <article className="mb-4 text-justify">
         <strong className="block text-lg">
           III. Scopurile și temeiurile prelucrării
         </strong>
@@ -99,9 +99,9 @@ export default function GDPRPage() {
           contractul încheiat între dumneavoastră și Kaapo Webify S.R.L, definit
           în cuprinsul Termenelor și Condițiilor{' '}
           <TextLink
-            link="https://kaapo.fit/termeni-si-conditii/"
+            link="https://fitsync.ro/termeni-si-conditii/"
             target="_blank"
-            content="https://kaapo.fit/termeni-si-conditii/"
+            content="https://fitsync.ro/termeni-si-conditii/"
           />
           . Furnizarea datelor dumneavoastră cu caracter personal este necesară
           pentru executareaa acestui contract. Refuzul furnizării datelor poate
@@ -174,7 +174,7 @@ export default function GDPRPage() {
         </p>
       </article>
 
-      <article className="mb-4 text-justify text-gray-100">
+      <article className="mb-4 text-justify">
         <p>
           <strong>III.2.</strong> Dacă sunteți vizitator al Site-ului, Kaapo
           Webify S.R.L prelucrează datele dumneavoastră cu caracter personal
@@ -225,7 +225,7 @@ export default function GDPRPage() {
         </p>
       </article>
 
-      <article className="mb-4 text-justify text-gray-100">
+      <article className="mb-4 text-justify">
         <strong className="block text-lg">
           IV. Durata pentru care vă prelucrăm datele
         </strong>
@@ -270,7 +270,7 @@ export default function GDPRPage() {
         </p>
       </article>
 
-      <article className="mb-4 text-justify text-gray-100">
+      <article className="mb-4 text-justify">
         <strong className="block text-lg">
           V. Dezvăluirea datelor cu caracter personal
         </strong>
@@ -311,7 +311,7 @@ export default function GDPRPage() {
         </ul>
       </article>
 
-      <article className="mb-4 text-justify text-gray-100">
+      <article className="mb-4 text-justify">
         <strong className="block text-lg">
           VI. Transferul datelor cu caracter personal
         </strong>
@@ -322,7 +322,7 @@ export default function GDPRPage() {
         </p>
       </article>
 
-      <article className="mb-4 text-justify text-gray-100">
+      <article className="mb-4 text-justify">
         <strong className="block text-lg">
           VII. Drepturile de care beneficiați
         </strong>
@@ -472,9 +472,9 @@ export default function GDPRPage() {
           drepturile menționate mai sus, vă rugăm să vă adresați la adresa de
           email:{' '}
           <TextLink
-            link="mailto:contact@kaapo.fit"
+            link="mailto:contact@fitsync.ro"
             target="_blank"
-            content="contact@kaapo.fit"
+            content="contact@fitsync.ro"
           />
           .
         </p>
@@ -483,9 +483,9 @@ export default function GDPRPage() {
           multe informații cu privire la modul în care se folosesc aceste
           fișiere, vă rugăm să accesați următorul link:{' '}
           <TextLink
-            link="https://kaapo.fit/politica-cookie/"
+            link="https://fitsync.ro/politica-cookie/"
             target="_blank"
-            content="https://kaapo.fit/politica-cookie/"
+            content="https://fitsync.ro/politica-cookie/"
           />
         </p>
       </article>

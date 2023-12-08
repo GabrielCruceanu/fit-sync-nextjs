@@ -24,7 +24,7 @@ export default function ButtonFull({
         {
           'bg-primary-600 hover:bg-primary-700 focus:ring-primary-800':
             type === ButtonType.Primary && !disabled,
-          'border-gray-600 bg-gray-800 text-gray-400 hover:bg-gray-700 hover:text-white focus:ring-gray-700':
+          'border-gray-600 text-white bg-gray-800 hover:bg-gray-700 hover:text-white focus:ring-gray-700':
             type === ButtonType.Secondary && !disabled,
           'border-gray-300 bg-gray-300 text-gray-600 hover:bg-gray-300 hover:text-gray-600 focus:ring-gray-700':
             disabled,

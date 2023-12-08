@@ -5,7 +5,7 @@ export default function TermsPage() {
     <div className="container mx-auto px-4 py-9">
       <h1 className="mb-4 text-center text-3xl">Termeni de utilizare</h1>
 
-      <article className="mb-4 text-justify text-gray-100">
+      <article className="mb-4 text-justify">
         <strong className="block text-lg">
           Ultima actualizare: Ianuarie 2023
         </strong>
@@ -43,7 +43,7 @@ export default function TermsPage() {
         </ul>
       </article>
 
-      <article className="mb-4 text-justify text-gray-100">
+      <article className="mb-4 text-justify">
         <strong className="block text-lg">
           1. Cine suntem și cum ne puteți contacta
         </strong>
@@ -73,7 +73,7 @@ export default function TermsPage() {
         </ul>
       </article>
 
-      <article className="mb-4 text-justify text-gray-100">
+      <article className="mb-4 text-justify">
         <strong className="block text-lg">
           2. Prin utilizarea site-urilor noastre, acceptați acești termeni
         </strong>
@@ -89,7 +89,7 @@ export default function TermsPage() {
         </p>
       </article>
 
-      <article className="mb-4 text-justify text-gray-100">
+      <article className="mb-4 text-justify">
         <strong className="block text-lg">
           3. Există alți termeni care vi se aplică
         </strong>
@@ -98,14 +98,14 @@ export default function TermsPage() {
           confidențialitatea, care se aplică, de asemenea, utilizării de către
           dvs. a site-urilor noastre și poate fi găsită la:{' '}
           <TextLink
-            link="https://www.kaapo.fit/politica-de-confidentialitate"
+            link="https://www.fitsync.ro/politica-de-confidentialitate"
             target="_blank"
-            content="https://www.kaapo.fit/politica-de-confidentialitate"
+            content="https://www.fitsync.ro/politica-de-confidentialitate"
           />
         </p>
       </article>
 
-      <article className="mb-4 text-justify text-gray-100">
+      <article className="mb-4 text-justify">
         <strong className="block text-lg">
           4. Putem aduce modificări la acești termeni
         </strong>
@@ -127,7 +127,7 @@ export default function TermsPage() {
         </p>
       </article>
 
-      <article className="mb-4 text-justify text-gray-100">
+      <article className="mb-4 text-justify">
         <strong className="block text-lg">
           5. Putem face modificări la site-urile noastre
         </strong>
@@ -152,7 +152,7 @@ export default function TermsPage() {
         </p>
       </article>
 
-      <article className="mb-4 text-justify text-gray-100">
+      <article className="mb-4 text-justify">
         <strong className="block text-lg">
           6. Putem suspenda sau retrage site-urile noastre
         </strong>
@@ -171,7 +171,7 @@ export default function TermsPage() {
         </p>
       </article>
 
-      <article className="mb-4 text-justify text-gray-100">
+      <article className="mb-4 text-justify">
         <strong className="block text-lg">
           7. Cum puteți utiliza materialele de pe site-urile noastre
         </strong>
@@ -199,7 +199,7 @@ export default function TermsPage() {
         </p>
       </article>
 
-      <article className="mb-4 text-justify text-gray-100">
+      <article className="mb-4 text-justify">
         <strong className="block text-lg">
           8. Utilizarea acceptabilă a site-urilor noastre și regulile de
           conduită
@@ -302,7 +302,7 @@ export default function TermsPage() {
         </p>
       </article>
 
-      <article className="mb-4 text-justify text-gray-100">
+      <article className="mb-4 text-justify">
         <strong className="block text-lg">
           9. Cum putem utiliza informațiile dumneavoastră personale
         </strong>
@@ -310,14 +310,14 @@ export default function TermsPage() {
           Vom utiliza informațiile dvs. personale numai așa cum este prevăzut în
           Notificarea noastră privind confidențialitatea:{' '}
           <TextLink
-            link="https://www.kaapo.fit/politica-de-confidentialitate"
+            link="https://www.fitsync.ro/politica-de-confidentialitate"
             target="_blank"
-            content="https://www.kaapo.fit/politica-de-confidentialitate"
+            content="https://www.fitsync.ro/politica-de-confidentialitate"
           />
         </p>
       </article>
 
-      <article className="mb-4 text-justify text-gray-100">
+      <article className="mb-4 text-justify">
         <strong className="block text-lg">
           10. Nu suntem răspunzători pentru site-urile web cu care ne legăm
         </strong>
@@ -331,7 +331,7 @@ export default function TermsPage() {
         </p>
       </article>
 
-      <article className="mb-4 text-justify text-gray-100">
+      <article className="mb-4 text-justify">
         <strong className="block text-lg">
           11. Limitarea de răspundere a garanțiilor
         </strong>

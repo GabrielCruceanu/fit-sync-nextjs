@@ -5,7 +5,7 @@ export default function CookiesPage() {
     <div className="container mx-auto px-4 py-9">
       <h1 className="mb-4 text-center text-3xl">Politică cookie</h1>
 
-      <article className="mb-4 text-justify text-gray-100">
+      <article className="mb-4 text-justify">
         <p>
           Document de informare a utilizatorilor despre prezența cookie-urilor
           pe site-urile web ale FitSync. Informațiile prezentate în continuare
@@ -19,7 +19,7 @@ export default function CookiesPage() {
         </p>
       </article>
 
-      <article className="mb-4 text-justify text-gray-100">
+      <article className="mb-4 text-justify">
         <strong className="block text-lg">Ce este un cookie?</strong>
         <p>
           Un cookie este un fișier text care conține informații descărcate pe
@@ -32,7 +32,7 @@ export default function CookiesPage() {
         </p>
       </article>
 
-      <article className="mb-4 text-justify text-gray-100">
+      <article className="mb-4 text-justify">
         <strong className="block text-lg">Ce NU este un cookie?</strong>
         <p>
           Cookie-urile NU sunt viruși! Ele folosesc formate tip plain text. Nu
@@ -42,7 +42,7 @@ export default function CookiesPage() {
         </p>
       </article>
 
-      <article className="mb-4 text-justify text-gray-100">
+      <article className="mb-4 text-justify">
         <strong className="block text-lg">
           Ce tipuri de cookie sunt utilizate?
         </strong>
@@ -51,7 +51,7 @@ export default function CookiesPage() {
           și cookie-uri terțe.
         </p>
         <p>
-          Cookie-urile proprietare sunt cookie-uri utilizate de Kaapo.Fit când
+          Cookie-urile proprietare sunt cookie-uri utilizate de fitsync.ro când
           vizitați unul dintre site-urile noastre web și sunt de următoarele
           tipuri: tehnice, de sesiune, persistente și funcționale:
         </p>
@@ -80,8 +80,8 @@ export default function CookiesPage() {
           </li>
         </ul>
         <p className="mb-3">
-          Cookie-urile terțe sunt module cookie care sunt utilizate de Kaapo.Fit
-          când vizitați unul dintre site-urile noastre web și sunt de
+          Cookie-urile terțe sunt module cookie care sunt utilizate de
+          fitsync.ro când vizitați unul dintre site-urile noastre web și sunt de
           următoarele tipuri:
         </p>
 
@@ -123,15 +123,15 @@ export default function CookiesPage() {
             Cookie-urile pe care la folosim noi nu colectează date care să vă
             dezvăluie identitatea și, de aceea, nu vă putem identifica cu
             ajutorul lor. Site-urile noastre web pot conține link-uri către alte
-            site-uri web care nu sunt deținute/administrate de Kaapo.Fit
-            (conținut terț, linkuri și plug-in-uri). Kaapo.Fit nu își asumă
+            site-uri web care nu sunt deținute/administrate de fitsync.ro
+            (conținut terț, linkuri și plug-in-uri). fitsync.ro nu își asumă
             responsabilitatea pentru practicile de confidențialitate aplicate de
             aceste site-uri web.
           </li>
         </ul>
       </article>
 
-      <article className="mb-4 text-justify text-gray-100">
+      <article className="mb-4 text-justify">
         <strong className="block text-lg">Cum vă exprimați acordul?</strong>
         <p>
           Când vizitați pentru prima dată site-urile noastre, în partea de sus a
@@ -144,7 +144,7 @@ export default function CookiesPage() {
         </p>
       </article>
 
-      <article className="mb-4 text-justify text-gray-100">
+      <article className="mb-4 text-justify">
         <strong className="block text-lg">Cum respingeți cookie-urile?</strong>
         <p className="mb-3">
           Puteți să vă retrageți în orice moment acordul ștergând cookie-urile

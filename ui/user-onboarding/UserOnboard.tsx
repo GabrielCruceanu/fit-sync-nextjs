@@ -47,6 +47,9 @@ import { format, setDate } from 'date-fns';
 import { CalendarIcon } from 'lucide-react';
 import { Button } from '#/components/ui/button';
 import { cn } from '#/lib/utils';
+import { ro } from 'date-fns/locale';
+import { Cross2Icon } from '@radix-ui/react-icons';
+import { PopoverClose } from '@radix-ui/react-popover';
 
 export default function UserOnboard() {
   const { supabase, session } = useSupabase();
@@ -814,14 +817,29 @@ export default function UserOnboard() {
                       variant={'outline'}
                       className={cn(
                         'w-[280px] justify-start text-left font-normal',
-                        !date && 'text-muted-foreground',
+                        !date && 'text-red-600 border-red-600',
                       )}
                     >
-                      <CalendarIcon className="mr-2 h-4 w-4" />
-                      {birth ? format(birth, 'PPP') : <span>Alege o data</span>}
+                      <CalendarIcon
+                        className={cn(
+                          'mr-2 h-4 w-4',
+                          !date && 'text-red-600 border-red-600',
+                        )}
+                      />
+                      {birth ? (
+                        format(birth, 'PPP', { locale: ro })
+                      ) : (
+                        <span>Alege o data</span>
+                      )}
                     </Button>
                   </PopoverTrigger>
                   <PopoverContent className="w-auto p-0">
+                    <PopoverClose
+                      className="absolute top-3 right-3 z-50"
+                      aria-label="Close"
+                    >
+                      <Cross2Icon />
+                    </PopoverClose>
                     <Calendar
                       mode="single"
                       selected={birth}
@@ -832,7 +850,7 @@ export default function UserOnboard() {
                   </PopoverContent>
                 </Popover>
                 {birthError ? (
-                  <p className="mt-2 block text-xs font-medium text-red">
+                  <p className="mt-2 block text-xs font-medium text-red-600">
                     {birthError}
                   </p>
                 ) : null}
